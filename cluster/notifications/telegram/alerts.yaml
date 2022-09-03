@@ -1,0 +1,16 @@
+apiVersion: notification.toolkit.fluxcd.io/v1beta1
+kind: Alert
+metadata:
+  name: telegram-alerts
+  namespace: flux-system
+spec:
+  eventSeverity: info
+  eventSources:
+  - kind: GitRepository
+    name: '*'
+  - kind: Kustomization
+    name: '*'
+  - kind: HelmRelease
+    name: '*'
+  providerRef:
+    name: telegram
