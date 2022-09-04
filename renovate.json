@@ -1,0 +1,22 @@
+{
+  "enabled": true,
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:base"
+  ],
+  "timezone": "Europe/Sofia",
+  "dependencyDashboard": true,
+  "dependencyDashboardTitle": "Renovate Dashboard",
+  "flux": {
+    "fileMatch": ["\\.yaml$"]
+  },
+  "helm-values": {
+    "fileMatch": ["\\.yaml$"]
+  },
+  "kubernetes": {
+    "fileMatch": ["\\.yaml$"],
+    "ignorePaths": [
+      "cluster/flux-system/"
+    ] 
+  }
+}
