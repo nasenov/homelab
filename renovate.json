@@ -23,7 +23,7 @@
     {
       "matchDatasources": ["docker"],
       "matchPackageNames": ["linuxserver/heimdall"],
-      "versioning": "loose"
+      "enabled": false
     }
   ]
 }
