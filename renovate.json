@@ -18,5 +18,12 @@
     "ignorePaths": [
       "cluster/flux-system/"
     ] 
-  }
+  },
+  "packageRules": [
+    {
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["linuxserver/heimdall"],
+      "versioning": "loose"
+    }
+  ]
 }
