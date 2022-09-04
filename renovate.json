@@ -11,12 +11,12 @@
     "fileMatch": ["\\.yaml$"]
   },
   "helm-values": {
+    "fileMatch": ["\\.yaml$"]
+  },
+  "kubernetes": {
     "fileMatch": ["\\.yaml$"],
     "ignorePaths": [
       "cluster/flux-system/"
-    ]
-  },
-  "kubernetes": {
-    "fileMatch": ["\\.yaml$"] 
+    ] 
   }
 }
