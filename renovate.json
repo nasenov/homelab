@@ -13,7 +13,7 @@
   "helm-values": {
     "fileMatch": ["\\.yaml$"],
     "ignorePaths": [
-      "/cluster/flux-system/"
+      "cluster/flux-system/"
     ]
   },
   "kubernetes": {
