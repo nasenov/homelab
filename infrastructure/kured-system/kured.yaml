@@ -19,9 +19,8 @@ spec:
       repository: raspbernetes/kured
       tag: 1.10.2
     configuration:
-      startTime: "00:00"
-      endTime: "23:59"
-      period: "1m"
+      startTime: "01:00"
+      endTime: "05:00"
       timeZone: "Europe/Sofia"
     tolerations:
     - key: "node-role.kubernetes.io/control-plane"
