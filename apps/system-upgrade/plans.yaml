@@ -33,7 +33,7 @@ spec:
   prepare:
     args:
     - prepare
-    - server-plan
+    - k3s-server
     image: rancher/k3s-upgrade
   serviceAccountName: system-upgrade
   upgrade:
