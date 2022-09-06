@@ -14,3 +14,9 @@ spec:
         namespace: flux-system
       version: 39.11.0
   interval: 10m0s
+  values:
+    grafana:
+      service:
+        enabled: true
+        type: LoadBalancer
+        loadBalancerIP: 192.168.1.152
