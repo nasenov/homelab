@@ -14,6 +14,10 @@ spec:
         namespace: flux-system
       version: 39.11.0
   interval: 10m0s
+  install:
+    crds: Create
+  upgrade:
+    crds: CreateReplace
   values:
     grafana:
       service:
@@ -25,6 +29,14 @@ spec:
         type: LoadBalancer
         loadBalancerIP: 192.168.1.153
     kubeControllerManager:
+      enabled: true
+      endpoints:
+        - 192.168.1.120
+      serviceMonitor:
+        enabled: true
+        https: true
+        insecureSkipVerify: true
+    kubeScheduler:
       enabled: true
       endpoints:
         - 192.168.1.120
