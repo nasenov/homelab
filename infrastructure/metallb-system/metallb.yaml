@@ -14,3 +14,11 @@ spec:
         namespace: flux-system
       version: 0.13.5
   interval: 10m0s
+  values:
+    prometheus:
+      namespace: monitoring
+      serviceAccount: kube-prometheus-stack-prometheus
+      serviceMonitor:
+        enabled: true
+      prometheusRule:
+        enabled: true
