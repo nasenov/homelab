@@ -22,6 +22,8 @@ spec:
       startTime: "01:00"
       endTime: "05:00"
       timeZone: "Europe/Sofia"
+    metrics:
+      create: true
     tolerations:
     - key: "node-role.kubernetes.io/control-plane"
       operator: "Exists"
