@@ -19,6 +19,7 @@ spec:
   upgrade:
     crds: CreateReplace
   values:
+    cleanPrometheusOperatorObjectNames: true
     grafana:
       service:
         enabled: true
@@ -32,7 +33,22 @@ spec:
         ruleSelectorNilUsesHelmValues: false
         serviceMonitorSelectorNilUsesHelmValues: false
         podMonitorSelectorNilUsesHelmValues: false
+        storageSpec:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: longhorn
+              resources:
+                requests:
+                  storage: 40Gi
     alertmanager:
+      alertmanagerSpec:
+        storage:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: longhorn
+              resources:
+                requests:
+                  storage: 10Gi
       service:
         type: LoadBalancer
         loadBalancerIP: 192.168.1.154
