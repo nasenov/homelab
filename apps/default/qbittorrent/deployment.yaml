@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: qbittorrent
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: qbittorrent
+  template:
+    metadata:
+      labels:
+        app: qbittorrent
+    spec:
+      containers:
+      - name: qbittorrent
+        image: linuxserver/qbittorrent:4.4.5
+        ports:
+        - containerPort: 8080
+        env:
+        - name: TZ
+          value: Europe/Sofia
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+          limits:
+            cpu: 1000m
+            memory: 500Mi
+        volumeMounts:
+        - name: config
+          mountPath: /config
+        - name: media
+          mountPath: /data/downloads
+          subPath: downloads
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: qbittorrent-pvc
+      - name: media
+        persistentVolumeClaim:
+          claimName: media-pvc
