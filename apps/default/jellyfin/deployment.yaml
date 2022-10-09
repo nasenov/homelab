@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jellyfin
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: jellyfin
+  template:
+    metadata:
+      labels:
+        app: jellyfin
+    spec:
+      containers:
+        - name: jellyfin
+          image: linuxserver/jellyfin:10.8.5
+          env:
+            - name: TZ
+              value: Europe/Sofia
+          ports:
+            - containerPort: 8096
+          resources:
+            requests:
+              cpu: 500m
+              memory: 500Mi
+            limits:
+              cpu: 1000m
+              memory: 1000Mi
+          volumeMounts:
+            - name: config
+              mountPath: /config
+            - name: media
+              mountPath: /data/media
+              subPath: media
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: jellyfin-pvc
+        - name: media
+          persistentVolumeClaim:
+            claimName: media-pvc
