@@ -22,7 +22,7 @@
   "packageRules": [
     {
       "matchDatasources": ["docker"],
-      "matchPackageNames": ["linuxserver/heimdall"],
+      "matchPackageNames": ["linuxserver/heimdall", "linuxserver/jellyfin", "linuxserver/qbittorrent"],
       "enabled": false
     }
   ]
