@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: radarr
+  namespace: default
+  labels:
+    app: radarr
+spec:
+  ports:
+  - name: web
+    port: 80
+    protocol: TCP
+    targetPort: 7878
+  selector:
+    app: radarr
+  type: LoadBalancer
+  loadBalancerIP: 192.168.1.165
