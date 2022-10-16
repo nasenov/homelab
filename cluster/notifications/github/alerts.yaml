@@ -8,5 +8,7 @@ spec:
   eventSources:
     - kind: Kustomization
       name: '*' 
+  exclusionList:
+    - "^Dependencies.*"
   providerRef:
     name: github
