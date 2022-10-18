@@ -7,8 +7,6 @@ spec:
   eventSeverity: info
   eventSources:
     - kind: Kustomization
-      name: '*' 
-  exclusionList:
-    - "^Dependencies.*"
+      name: '*'
   providerRef:
     name: github

@@ -12,5 +12,7 @@ spec:
     name: '*'
   - kind: HelmRelease
     name: '*'
+  exclusionList:
+    - "^Dependencies.*"
   providerRef:
     name: telegram
