@@ -1,0 +1,69 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: blocky
+  namespace: networking
+spec:
+  chart:
+    spec:
+      chart: blocky
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: samipsolutions
+        namespace: flux-system
+      version: 11.2.0
+  interval: 10m0s
+  values:
+    env:
+      TZ: Europe/Sofia
+
+    service:
+      main:
+        enabled: true
+      dns-tcp:
+        enabled: true
+        type: LoadBalancer
+        loadBalancerIP: 192.168.1.155
+        ports:
+          dns-tcp:
+            enabled: true
+            port: 53
+            protocol: TCP
+            targetPort: 53
+        externalTrafficPolicy: Local
+        annotations:
+              metallb.universe.tf/allow-shared-ip: blocky
+      dns-udp:
+        enabled: true
+        type: LoadBalancer
+        loadBalancerIP: 192.168.1.155
+        ports:
+          dns-udp:
+            enabled: true
+            port: 53
+            protocol: UDP
+            targetPort: 53
+        externalTrafficPolicy: Local
+        annotations:
+              metallb.universe.tf/allow-shared-ip: blocky
+          
+    config: |
+      upstream:
+        default:
+          - 5.9.164.112
+          - 1.1.1.1
+          - 95.111.101.129
+          - 89.190.192.248
+          - tcp-tls:fdns1.dismail.de:853
+          - https://dns.digitale-gesellschaft.ch/dns-query
+
+      customDNS:
+        mapping:
+          longhorn.home: 192.168.1.151
+          monitoring.home: 192.168.1.152
+          heimdall.home: 192.168.1.160
+          media.home: 192.168.1.161
+
+      port: 53
+      httpPort: 4000
