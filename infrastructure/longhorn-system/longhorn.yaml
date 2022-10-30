@@ -15,7 +15,6 @@ spec:
       version: 1.3.2
   interval: 10m0s
   values:
-    service:
-      ui:
-        type: LoadBalancer
-        loadBalancerIP: 192.168.1.151
+    ingress: 
+      enabled: true
+      host: "storage.bramble.home"

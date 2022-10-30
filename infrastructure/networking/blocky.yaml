@@ -60,10 +60,7 @@ spec:
 
       customDNS:
         mapping:
-          longhorn.home: 192.168.1.151
-          monitoring.home: 192.168.1.152
-          heimdall.home: 192.168.1.160
-          media.home: 192.168.1.161
+          bramble.home: 192.168.1.150
 
       port: 53
       httpPort: 4000
