@@ -21,14 +21,15 @@ spec:
   values:
     cleanPrometheusOperatorObjectNames: true
     grafana:
-      service:
+      ingress:
         enabled: true
-        type: LoadBalancer
-        loadBalancerIP: 192.168.1.152
+        hosts:
+          - grafana.bramble.home
     prometheus:
-      service:
-        type: LoadBalancer
-        loadBalancerIP: 192.168.1.153
+      ingress:
+        enabled: true
+        hosts:
+          - prometheus.bramble.home
       prometheusSpec:
         ruleSelectorNilUsesHelmValues: false
         serviceMonitorSelectorNilUsesHelmValues: false
@@ -41,6 +42,10 @@ spec:
                 requests:
                   storage: 40Gi
     alertmanager:
+      ingress:
+        enabled: true
+        hosts:
+          - alertmanager.bramble.home
       alertmanagerSpec:
         storage:
           volumeClaimTemplate:
@@ -49,9 +54,6 @@ spec:
               resources:
                 requests:
                   storage: 10Gi
-      service:
-        type: LoadBalancer
-        loadBalancerIP: 192.168.1.154
     kubeControllerManager:
       enabled: true
       endpoints:
