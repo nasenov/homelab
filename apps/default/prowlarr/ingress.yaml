@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: prowlarr
+  namespace: default
+spec:
+  rules:
+  - host: prowlarr.bramble.home
+    http:
+      paths:
+      - backend:
+          service:
+            name: prowlarr
+            port:
+              number: 80
+        path: /
+        pathType: ImplementationSpecific

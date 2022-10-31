@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: home-assistant
+  namespace: default
+spec:
+  rules:
+  - host: hass.bramble.home
+    http:
+      paths:
+      - backend:
+          service:
+            name: home-assistant
+            port:
+              number: 80
+        path: /
+        pathType: ImplementationSpecific

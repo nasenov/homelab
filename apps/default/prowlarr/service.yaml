@@ -13,6 +13,4 @@ spec:
     targetPort: 9696
   selector:
     app: prowlarr
-  type: LoadBalancer
-  loadBalancerIP: 192.168.1.164
   

@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: qbittorrent
+  namespace: default
+spec:
+  rules:
+  - host: torrent.bramble.home
+    http:
+      paths:
+      - backend:
+          service:
+            name: qbittorrent
+            port:
+              number: 80
+        path: /
+        pathType: ImplementationSpecific
