@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: home-assistant
-          image: homeassistant/home-assistant:2022.10.5
+          image: homeassistant/home-assistant:2022.11.1
           env:
             - name: TZ
               value: Europe/Sofia
