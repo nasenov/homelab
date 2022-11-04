@@ -3,6 +3,8 @@ kind: Ingress
 metadata:
   name: heimdall
   namespace: default
+  annotations:
+    cert-manager.io/cluster-issuer: bramble-ca-issuer
 spec:
   rules:
   - host: heimdall.bramble.home
@@ -15,3 +17,7 @@ spec:
               number: 80
         path: /
         pathType: ImplementationSpecific
+  tls:
+    - hosts:
+        - heimdall.bramble.home
+      secretName: heimdall-tls
