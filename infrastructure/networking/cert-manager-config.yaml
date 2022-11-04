@@ -53,4 +53,13 @@ spec:
         spec:
           ca:
             secretName: root-secret
+      - apiVersion: traefik.containo.us/v1alpha1
+        kind: Middleware
+        metadata:
+          name: https-redirect
+          namespace: networking
+        spec:
+          redirectScheme:
+            scheme: https
+            permanent: true
       

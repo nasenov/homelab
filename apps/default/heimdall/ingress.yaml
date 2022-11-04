@@ -5,6 +5,7 @@ metadata:
   namespace: default
   annotations:
     cert-manager.io/cluster-issuer: bramble-ca-issuer
+    traefik.ingress.kubernetes.io/router.middlewares: networking-https-redirect@kubernetescrd
 spec:
   rules:
   - host: heimdall.bramble.home
