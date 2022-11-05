@@ -3,6 +3,9 @@ kind: Ingress
 metadata:
   name: qbittorrent
   namespace: default
+  annotations:
+    cert-manager.io/cluster-issuer: bramble-ca-issuer
+    traefik.ingress.kubernetes.io/router.middlewares: networking-https-redirect@kubernetescrd
 spec:
   rules:
   - host: torrent.bramble.home
@@ -15,3 +18,7 @@ spec:
               number: 80
         path: /
         pathType: ImplementationSpecific
+  tls:
+    - hosts:
+        - torrent.bramble.home
+      secretName: torrent-tls

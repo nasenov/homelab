@@ -3,6 +3,9 @@ kind: Ingress
 metadata:
   name: radarr
   namespace: default
+  annotations:
+    cert-manager.io/cluster-issuer: bramble-ca-issuer
+    traefik.ingress.kubernetes.io/router.middlewares: networking-https-redirect@kubernetescrd
 spec:
   rules:
   - host: radarr.bramble.home
@@ -15,3 +18,7 @@ spec:
               number: 80
         path: /
         pathType: ImplementationSpecific
+  tls:
+    - hosts:
+        - radarr.bramble.home
+      secretName: radarr-tls
