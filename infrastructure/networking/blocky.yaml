@@ -16,7 +16,7 @@ spec:
   interval: 10m0s
   values:
     controller:
-      replicas: 3
+      replicas: 2
 
     env:
       TZ: Europe/Sofia
@@ -42,11 +42,6 @@ spec:
       prometheusRule:
         enabled: true
 
-    redis:
-      enabled: true
-      auth:
-        enabled: false
-
     config: |
       httpPort: 4000
       upstream:
@@ -66,5 +61,3 @@ spec:
             - ads
       prometheus:
         enable: true
-      redis:
-        address: redis-master:6379
