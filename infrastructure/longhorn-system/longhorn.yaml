@@ -17,4 +17,9 @@ spec:
   values:
     ingress: 
       enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: bramble-ca-issuer
+        traefik.ingress.kubernetes.io/router.middlewares: networking-https-redirect@kubernetescrd
       host: "storage.bramble.home"
+      tls: true
+      tlsSecret: longhorn-tls

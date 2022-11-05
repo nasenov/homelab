@@ -23,13 +23,27 @@ spec:
     grafana:
       ingress:
         enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: bramble-ca-issuer
+          traefik.ingress.kubernetes.io/router.middlewares: networking-https-redirect@kubernetescrd
         hosts:
           - grafana.bramble.home
+        tls:
+          - hosts:
+              - grafana.bramble.home
+            secretName: grafana-tls
     prometheus:
       ingress:
         enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: bramble-ca-issuer
+          traefik.ingress.kubernetes.io/router.middlewares: networking-https-redirect@kubernetescrd
         hosts:
           - prometheus.bramble.home
+        tls:
+          - hosts:
+              - prometheus.bramble.home
+            secretName: prometheus-tls
       prometheusSpec:
         affinity:
           nodeAffinity:
@@ -54,8 +68,15 @@ spec:
     alertmanager:
       ingress:
         enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: bramble-ca-issuer
+          traefik.ingress.kubernetes.io/router.middlewares: networking-https-redirect@kubernetescrd
         hosts:
           - alertmanager.bramble.home
+        tls:
+          - hosts:
+              - alertmanager.bramble.home
+            secretName: alertmanager-tls
       alertmanagerSpec:
         storage:
           volumeClaimTemplate:
