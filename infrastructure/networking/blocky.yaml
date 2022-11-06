@@ -15,6 +15,9 @@ spec:
       version: 11.3.0
   interval: 10m0s
   values:
+    podAnnotations:
+      configmap.reloader.stakater.com/reload: "blocky-config"
+
     controller:
       replicas: 2
 
