@@ -32,6 +32,11 @@ spec:
           - hosts:
               - grafana.bramble.home
             secretName: grafana-tls
+      dashboards:
+        default:
+          blocky:
+            url: https://raw.githubusercontent.com/0xERR0R/blocky/v0.19/docs/blocky-grafana.json
+            datasource: Prometheus
     prometheus:
       ingress:
         enabled: true
