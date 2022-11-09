@@ -51,6 +51,16 @@ spec:
             datasource:
               - name: DS_PROMETHEUS
                 value: Prometheus
+      datasources:
+        datasources.yaml:
+          apiVersion: 1
+          datasources:
+            - name: Loki
+              type: loki
+              url: http://loki-stack:3100
+              access: proxy
+              jsonData:
+                maxLines: 1000
     prometheus:
       ingress:
         enabled: true
