@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: prowlarr
-        image: linuxserver/prowlarr:0.4.8-develop
+        image: linuxserver/prowlarr:0.4.9-develop
         env:
         - name: TZ
           value: Europe/Sofia
