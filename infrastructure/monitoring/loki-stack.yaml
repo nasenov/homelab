@@ -16,6 +16,7 @@ spec:
   interval: 10m0s
   values:
     loki:
+      isDefault: false
       storage:
         type: filesystem
     promtail:
