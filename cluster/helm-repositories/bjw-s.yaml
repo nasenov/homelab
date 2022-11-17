@@ -1,8 +1,8 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
 metadata:
-  name: samipsolutions
+  name: bjw-s
   namespace: flux-system
 spec:
   interval: 10m0s
-  url: https://helm.samipsolutions.fi
+  url: https://bjw-s.github.io/helm-charts/

@@ -6,20 +6,26 @@ metadata:
 spec:
   chart:
     spec:
-      chart: blocky
+      chart: app-template
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
-        name: samipsolutions
+        name: bjw-s
         namespace: flux-system
-      version: 11.3.0
+      version: 1.0.1
   interval: 10m0s
   values:
-    podAnnotations:
-      configmap.reloader.stakater.com/reload: "blocky-config"
+    image:
+      repository: ghcr.io/0xerr0r/blocky
+      tag: v0.20
+      pullPolicy: IfNotPresent
 
     controller:
       replicas: 2
+      strategy: RollingUpdate
+
+    podAnnotations:
+      configmap.reloader.stakater.com/reload: "blocky-config"
 
     env:
       TZ: Europe/Sofia
@@ -27,42 +33,78 @@ spec:
     service:
       main:
         enabled: true
+        ports:
+          http: 
+            port: 4000
       dns-tcp:
         enabled: true
+        primary: false
         annotations:
-          metallb.universe.tf/allow-shared-ip: blocky
+          metallb.universe.tf/allow-shared-ip: blockys
         type: LoadBalancer
         loadBalancerIP: 192.168.1.155
+        externalTrafficPolicy: Local
+        ports:
+          http:
+            enabled: false
+          dns-tcp:
+            enabled: true
+            port: 53
+            protocol: TCP
+            targetPort: 53
       dns-udp:
         enabled: true
+        primary: false
         annotations:
           metallb.universe.tf/allow-shared-ip: blocky
         type: LoadBalancer
         loadBalancerIP: 192.168.1.155
+        externalTrafficPolicy: Local
+        ports:
+          http:
+            enabled: false        
+          dns-udp:
+            enabled: true
+            port: 53
+            protocol: UDP
+            targetPort: 53
 
-    metrics:
-      enabled: true
-      prometheusRule:
+    serviceMonitor:
+      main:
         enabled: true
 
-    config: |
-      httpPort: 4000
-      upstream:
-        default:
-          - tcp-tls:1.1.1.1
-          - tcp-tls:8.8.8.8
-          - tcp-tls:9.9.9.9
-      customDNS:
-        mapping:
-          bramble.home: 192.168.1.150
-      blocking:
-        blackLists:
-          ads:
-            - https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
-        clientGroupsBlock:
-          default:
-            - ads
-      redis:
-        address: redis:6379
-      prometheus:
-        enable: true
+    configMaps:
+      config:
+        enabled: true
+        data:
+          config.yml: |
+            httpPort: 4000
+            upstream:
+              default:
+                - tcp-tls:1.1.1.1
+                - tcp-tls:8.8.8.8
+                - tcp-tls:9.9.9.9
+            customDNS:
+              mapping:
+                bramble.home: 192.168.1.150
+            blocking:
+              blackLists:
+                ads:
+                  - https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
+              clientGroupsBlock:
+                default:
+                  - ads
+            redis:
+              address: redis:6379
+            prometheus:
+              enable: true
+
+    persistence:
+      config:
+        enabled: true
+        mountPath: /app/config.yml
+        subPath: config.yml
+        type: custom
+        volumeSpec:
+          configMap:
+            name: blocky-config
