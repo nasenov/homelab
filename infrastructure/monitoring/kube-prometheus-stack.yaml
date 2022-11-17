@@ -12,7 +12,7 @@ spec:
         kind: HelmRepository
         name: prometheus
         namespace: flux-system
-      version: 41.8.0
+      version: 41.9.0
   interval: 10m0s
   install:
     crds: Create
