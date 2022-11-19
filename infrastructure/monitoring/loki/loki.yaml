@@ -1,0 +1,38 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: loki
+  namespace: monitoring
+spec:
+  chart:
+    spec:
+      chart: loki
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: grafana
+        namespace: flux-system
+      version: 3.3.4
+  interval: 10m0s
+  values:
+    loki:
+      commonConfig:
+        replication_factor: 2
+      storage:
+        bucketNames:
+          chunks: chunks
+          ruler: ruler
+          admin: admin
+        type: s3
+        s3:
+          s3: null
+          endpoint: http://minio.storage:9000
+          region: null
+          s3ForcePathStyle: true
+          insecure: true
+    gateway:
+      enabled: false
+  valuesFrom:
+    - kind: Secret
+      name: loki-minio-credentials
+      optional: false
