@@ -30,10 +30,10 @@ spec:
           region: null
           s3ForcePathStyle: true
           insecure: true
-      write:
-        replicas: 1
-      read:
-        replicas: 1
+    write:
+      replicas: 1
+    read:
+      replicas: 1
   valuesFrom:
     - kind: Secret
       name: loki-minio-credentials
