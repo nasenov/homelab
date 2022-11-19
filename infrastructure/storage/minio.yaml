@@ -51,3 +51,8 @@ spec:
       - name: admin
         policy: none
         purge: false
+
+    metrics:
+      serviceMonitor:
+        enabled: true
+        includeNode: true
