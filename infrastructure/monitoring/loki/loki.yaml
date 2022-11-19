@@ -34,7 +34,7 @@ spec:
     monitoring:
       dashboards:
         labels:
-          grafana_dashboard: 1
+          grafana_dashboard: "1"
     write:
       replicas: 1
     read:
