@@ -18,7 +18,10 @@ spec:
     loki:
       isDefault: false
       storage:
-        type: filesystem
+        s3:
+          endpoint: http://minio.storage:9000
+          s3ForcePathStyle: true
+          insecure: true
     promtail:
       config:
         snippets:
@@ -44,3 +47,7 @@ spec:
           readOnly: true
       serviceMonitor:
         enabled: true
+  valuesFrom:
+    - kind: Secret
+      name: loki
+      optional: false
