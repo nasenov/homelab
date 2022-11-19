@@ -30,8 +30,6 @@ spec:
           region: null
           s3ForcePathStyle: true
           insecure: true
-    gateway:
-      enabled: false
   valuesFrom:
     - kind: Secret
       name: loki-minio-credentials
