@@ -17,7 +17,7 @@ spec:
   values:
     loki:
       commonConfig:
-        replication_factor: 2
+        replication_factor: 1
       storage:
         bucketNames:
           chunks: chunks
@@ -30,6 +30,10 @@ spec:
           region: null
           s3ForcePathStyle: true
           insecure: true
+      write:
+        replicas: 1
+      read:
+        replicas: 1
   valuesFrom:
     - kind: Secret
       name: loki-minio-credentials
