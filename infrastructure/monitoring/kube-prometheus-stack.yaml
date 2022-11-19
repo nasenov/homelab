@@ -57,7 +57,7 @@ spec:
           datasources:
             - name: Loki
               type: loki
-              url: http://loki-stack:3100
+              url: http://loki-gateway
               access: proxy
               jsonData:
                 maxLines: 1000
