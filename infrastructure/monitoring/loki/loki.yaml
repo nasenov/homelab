@@ -31,6 +31,10 @@ spec:
           region: null
           s3ForcePathStyle: true
           insecure: true
+    monitoring:
+      dashboards:
+        labels:
+          grafana_dashboard: 1
     write:
       replicas: 1
     read:
