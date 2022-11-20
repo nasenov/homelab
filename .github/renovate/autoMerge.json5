@@ -4,7 +4,6 @@
       "matchUpdateTypes": ["minor", "patch"],
       "matchCurrentVersion": "!/^0/",
       "automerge": true,
-      "automergeType": "branch",
       "automergeSchedule": "after 1am and before 6am",
       "requiredStatusChecks": null,
       "ignoreTests": true
