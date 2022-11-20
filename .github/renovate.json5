@@ -2,10 +2,10 @@
   "extends": [
     "config:base",
     "docker:enableMajor",
-    ":disableRateLimiting"
+    ":disableRateLimiting",
     ":dependencyDashboard",
     ":semanticCommits",
-    ":separatePatchReleases"
+    ":separatePatchReleases",
     "github>n-asenov/bramble//.github/renovate/autoMerge.json5",
     "github>n-asenov/bramble//.github/renovate/commitMessage.json5",
     "github>n-asenov/bramble//.github/renovate/labels.json5",
