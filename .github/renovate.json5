@@ -18,12 +18,5 @@
     "ignorePaths": [
       "cluster/flux-system/"
     ] 
-  },
-  "packageRules": [
-    {
-      "matchDatasources": ["docker"],
-      "matchPackageNames": ["linuxserver/heimdall", "linuxserver/jellyfin", "linuxserver/qbittorrent"],
-      "enabled": false
-    }
-  ]
+  }
 }
