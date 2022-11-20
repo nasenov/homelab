@@ -1,12 +1,20 @@
 {
-  "enabled": true,
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:base"
+    "config:base",
+    "docker:enableMajor",
+    ":disableRateLimiting"
+    ":dependencyDashboard",
+    ":semanticCommits",
+    ":separatePatchReleases"
+    "github>n-asenov/bramble//.github/renovate/autoMerge.json5",
+    "github>n-asenov/bramble//.github/renovate/commitMessage.json5",
+    "github>n-asenov/bramble//.github/renovate/labels.json5",
+    "github>n-asenov/bramble//.github/renovate/semanticCommits.json5"
   ],
+  "enabled": true,
   "timezone": "Europe/Sofia",
-  "dependencyDashboard": true,
   "dependencyDashboardTitle": "Renovate Dashboard",
+  "commitBodyTable": true,
   "flux": {
     "fileMatch": ["\\.yaml$"]
   },
@@ -18,5 +26,13 @@
     "ignorePaths": [
       "cluster/flux-system/"
     ] 
-  }
+  },
+  "packageRules": [
+    {
+      "description": "Use custom versioning for Minio",
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["quay.io/minio/minio"],
+      "versioning": "regex:^RELEASE\\.(?<major>\\d+)-(?<minor>\\d+)-(?<patch>\\d+)T.*Z(-(?<compatibility>.*))?$"
+    }
+  ]
 }

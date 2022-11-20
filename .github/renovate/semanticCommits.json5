@@ -1,0 +1,25 @@
+{
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["major"],
+      "semanticCommitType": "feat",
+      "commitMessagePrefix": "{{semanticCommitType}}({{semanticCommitScope}})!: "
+    },
+    {
+      "matchUpdateTypes": ["minor"],
+      "semanticCommitType": "feat"
+    },
+    {
+      "matchUpdateTypes": ["patch"],
+      "semanticCommitType": "fix"
+    },
+    {
+      "matchDatasources": ["docker"],
+      "semanticCommitScope": "image"
+    },
+    {
+      "matchDatasources": ["helm"],
+      "semanticCommitScope": "chart"
+    }
+  ]
+}
