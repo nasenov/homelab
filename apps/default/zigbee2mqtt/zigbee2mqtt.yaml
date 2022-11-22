@@ -65,6 +65,9 @@ spec:
         enabled: true
         hosts:
           - host: zigbee.bramble.home
+            paths:
+              - path: /
+                pathType: Prefix
         tls:
           - secretName: zigbee2mqtt-tls
             hosts:
