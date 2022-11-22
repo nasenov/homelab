@@ -44,6 +44,22 @@ spec:
             interval: 1m
             scrapeTimeout: 10s
 
+    configMaps:
+      config:
+        enabled: true
+        data:
+          configuration.yaml: |
+            permit_join: true
+
+            mqtt:
+              base_topic: zigbee2mqtt
+              server: mqtt://emqx
+
+            serial:
+              port: /dev/ttyACM0
+
+            frontend: true
+
     ingress:
       main:
         enabled: true
