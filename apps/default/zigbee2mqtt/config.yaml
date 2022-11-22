@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: zigbee2mqtt-config
+data:
+  configuration.yaml: |
+    permit_join: true
+
+    mqtt:
+      base_topic: zigbee2mqtt
+      server: mqtt://emqx
+
+    serial:
+      port: /dev/ttyACM0
+
+    frontend: true
