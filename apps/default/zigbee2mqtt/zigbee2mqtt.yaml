@@ -60,6 +60,9 @@ spec:
 
             frontend: true
 
+            advanced:
+              network_key: GENERATE
+
     ingress:
       main:
         enabled: true
