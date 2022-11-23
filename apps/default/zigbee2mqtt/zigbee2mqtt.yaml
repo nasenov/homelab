@@ -47,28 +47,12 @@ spec:
             interval: 1m
             scrapeTimeout: 10s
 
-    configMaps:
-      config:
-        enabled: true
-        data:
-          configuration.yaml: |
-            permit_join: true
-
-            mqtt:
-              base_topic: zigbee2mqtt
-              server: mqtt://emqx
-
-            serial:
-              port: /dev/ttyACM0
-
-            frontend: true
-
-            advanced:
-              network_key: GENERATE
-
     ingress:
       main:
         enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: bramble-ca-issuer
+          traefik.ingress.kubernetes.io/router.middlewares: networking-https-redirect@kubernetescrd
         hosts:
           - host: zigbee.bramble.home
             paths:
