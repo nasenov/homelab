@@ -21,13 +21,11 @@ spec:
 
     env:
       TZ: "Europe/Sofia"
-      DEBUG: zigbee-herdsman*
-      ZIGBEE2MQTT_CONFIG_PERMIT_JOIN: 'false'
+      ZIGBEE2MQTT_CONFIG_PERMIT_JOIN: "false"
       ZIGBEE2MQTT_CONFIG_MQTT_SERVER: mqtt://emqx
       ZIGBEE2MQTT_CONFIG_SERIAL_PORT: /dev/ttyACM0
-      # ZIGBEE2MQTT_CONFIG_FRONTEND: 'true'
       ZIGBEE2MQTT_CONFIG_FRONTEND_URL: https://zigbee.bramble.home
-      ZIGBEE2MQTT_CONFIG_HOMEASSISTANT: 'true'
+      ZIGBEE2MQTT_CONFIG_HOMEASSISTANT: "true"
 
     envFrom:
       - secretRef:
@@ -44,7 +42,7 @@ spec:
           metrics:
             enabled: true
             port: 80
-    
+
     serviceMonitor:
       main:
         enabled: true
@@ -71,7 +69,7 @@ spec:
             hosts:
               - zigbee.bramble.home
 
-    nodeSelector:     
+    nodeSelector:
       kubernetes.io/hostname: k8s-node2
 
     resources:
@@ -80,17 +78,11 @@ spec:
         memory: 100Mi
       limits:
         memory: 500Mi
-    
+
     persistence:
-      config:
-        enabled: true
-        type: pvc
-        mountPath: /app/data
-        size: 1Gi
       usb:
         enabled: true
         type: hostPath
         hostPath: /dev/serial/by-id/usb-ITead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_cc6b105fee12ec11945f20c7bd930c07-if00-port0
         mountPath: /dev/ttyACM0
         hostPathType: CharDevice
-      
