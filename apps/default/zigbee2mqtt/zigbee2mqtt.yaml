@@ -27,6 +27,10 @@ spec:
       ZIGBEE2MQTT_CONFIG_SERIAL_PORT: /dev/ttyACM0
       ZIGBEE2MQTT_CONFIG_FRONTEND: 'true'
 
+    envFrom:
+      - secretRef:
+          name: zigbee2mqtt
+
     securityContext:
       privileged: true
 
