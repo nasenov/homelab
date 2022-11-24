@@ -22,7 +22,7 @@ spec:
     env:
       TZ: "Europe/Sofia"
       ZIGBEE2MQTT_CONFIG_PERMIT_JOIN: 'false'
-      ZIGBEE2MQTT_CONFIG_MQTT_SERVER: mqtt://192.168.1.151
+      ZIGBEE2MQTT_CONFIG_MQTT_SERVER: mqtt://emqx
       ZIGBEE2MQTT_CONFIG_SERIAL_PORT: /dev/ttyACM0
       ZIGBEE2MQTT_CONFIG_FRONTEND: 'true'
 
