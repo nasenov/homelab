@@ -25,8 +25,8 @@ spec:
       ZIGBEE2MQTT_CONFIG_PERMIT_JOIN: 'false'
       ZIGBEE2MQTT_CONFIG_MQTT_SERVER: mqtt://emqx
       ZIGBEE2MQTT_CONFIG_SERIAL_PORT: /dev/ttyACM0
-      ZIGBEE2MQTT_CONFIG_FRONTEND: 'true'
-      ZIGBEE2MQTT_CONFIG_FRONTEND_URL: 'https://zigbee.bramble.home'
+      # ZIGBEE2MQTT_CONFIG_FRONTEND: 'true'
+      ZIGBEE2MQTT_CONFIG_FRONTEND_URL: https://zigbee.bramble.home
       ZIGBEE2MQTT_CONFIG_HOMEASSISTANT: 'true'
 
     envFrom:
