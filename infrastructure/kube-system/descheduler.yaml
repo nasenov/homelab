@@ -20,6 +20,7 @@ spec:
     deschedulingInterval: 1m
 
     deschedulerPolicy:
+      evictLocalStoragePods: true
       strategies:
         LowNodeUtilization:
           enabled: false
