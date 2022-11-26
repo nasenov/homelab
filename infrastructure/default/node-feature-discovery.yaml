@@ -1,0 +1,38 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: node-feature-discovery
+  namespace: default
+spec:
+  chart:
+    spec:
+      chart: node-feature-discovery
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: node-feature-discovery
+        namespace: flux-system
+      version: 0.11.3
+  interval: 10m0s
+  values:
+    worker:
+      annotations:
+        configmap.reloader.stakater.com/reload: "nfd-worker-conf"
+      config:
+        core:
+          featureSources:
+            - usb
+          labelSources:
+            - usb
+        sources:
+          usb:
+            deviceClassWhitelist:
+              - "02"
+              - "0e"
+              - "ef"
+              - "fe"
+              - "ff"
+            deviceLabelFields:
+              - class
+              - vendor
+              - device
