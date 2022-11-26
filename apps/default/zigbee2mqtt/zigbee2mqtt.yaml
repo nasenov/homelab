@@ -70,7 +70,7 @@ spec:
               - zigbee.bramble.home
 
     nodeSelector:
-      kubernetes.io/hostname: k8s-node2
+      feature.node.kubernetes.io/usb-ff_10c4_ea60.present: 'true'
 
     resources:
       requests:
