@@ -16,7 +16,7 @@ spec:
         app: heimdall
     spec:
       containers:
-      - image: linuxserver/heimdall:2.5.1
+      - image: linuxserver/heimdall:2.5.2
         name: heimdall
         env:
           - name: TZ
