@@ -19,6 +19,11 @@ spec:
 
     deschedulingInterval: 1m
 
+    deschedulerPolicy:
+      strategies:
+        LowNodeUtilization:
+          enabled: false
+
     service:
       enabled: true
     
