@@ -2,7 +2,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: descheduler
-  namespace: default
+  namespace: kube-system
 spec:
   chart:
     spec:
@@ -16,6 +16,8 @@ spec:
   interval: 10m0s
   values:
     kind: Deployment
+
+    deschedulingInterval: 1m
 
     service:
       enabled: true
