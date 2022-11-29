@@ -17,8 +17,10 @@ spec:
   values:
     loki:
       auth_enabled: false
+
       commonConfig:
         replication_factor: 1
+      
       storage:
         bucketNames:
           chunks: chunks
@@ -31,14 +33,39 @@ spec:
           region: null
           s3ForcePathStyle: true
           insecure: true
+      
+      rulerConfig:
+        enable_api: true
+        enable_alertmanager_v2: true
+        alertmanager_url: http://kube-prometheus-stack-alertmanager:9093
+        storage:
+            type: local
+            local:
+              directory: /rules
+        rule_path: /tmp/scratch
+    
     monitoring:
       dashboards:
         labels:
           grafana_dashboard: "1"
+    
     write:
       replicas: 1
+    
     read:
       replicas: 1
+      extraVolumeMounts:
+        - name: loki-rules
+          mountPath: /rules/fake
+        - name: loki-rules-tmp
+          mountPath: /tmp/scratch
+      extraVolumes:
+        - name: loki-rules
+          configMap:
+            name: loki-alerting-rules
+        - name: loki-rules-tmp
+          emptyDir: {}
+
   valuesFrom:
     - kind: Secret
       name: loki-minio-credentials
