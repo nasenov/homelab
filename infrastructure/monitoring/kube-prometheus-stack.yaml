@@ -74,6 +74,10 @@ spec:
               - prometheus.bramble.home
             secretName: prometheus-tls
       prometheusSpec:
+        ruleSelectorNilUsesHelmValues: false
+        serviceMonitorSelectorNilUsesHelmValues: false
+        podMonitorSelectorNilUsesHelmValues: false
+        retention: 5d
         affinity:
           nodeAffinity:
             requiredDuringSchedulingIgnoredDuringExecution:
@@ -81,9 +85,6 @@ spec:
                 - matchExpressions:
                     - key: node-role.kubernetes.io/control-plane
                       operator: DoesNotExist
-        ruleSelectorNilUsesHelmValues: false
-        serviceMonitorSelectorNilUsesHelmValues: false
-        podMonitorSelectorNilUsesHelmValues: false
         storageSpec:
           volumeClaimTemplate:
             spec:
