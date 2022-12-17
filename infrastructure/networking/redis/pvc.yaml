@@ -5,7 +5,7 @@ metadata:
   namespace: networking
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   storageClassName: longhorn
   resources:
     requests:
