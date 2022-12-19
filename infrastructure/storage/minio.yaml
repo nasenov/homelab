@@ -28,6 +28,7 @@ spec:
 
     persistence:
       size: 5Gi
+      accessMode: ReadWriteMany
 
     consoleIngress:
       enabled: true
