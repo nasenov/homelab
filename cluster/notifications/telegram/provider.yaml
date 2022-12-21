@@ -4,6 +4,7 @@ metadata:
   name: telegram
   namespace: flux-system
 spec:
+  interval: 10m
   type: telegram
   channel: "-1001767530134"
   secretRef:

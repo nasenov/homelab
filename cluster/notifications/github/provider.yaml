@@ -4,6 +4,7 @@ metadata:
   name: github
   namespace: flux-system
 spec:
+  interval: 10m
   type: github
   address: https://github.com/n-asenov/bramble
   secretRef:
