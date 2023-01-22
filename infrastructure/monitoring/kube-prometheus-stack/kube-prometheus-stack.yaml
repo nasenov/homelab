@@ -77,7 +77,8 @@ spec:
         ruleSelectorNilUsesHelmValues: false
         serviceMonitorSelectorNilUsesHelmValues: false
         podMonitorSelectorNilUsesHelmValues: false
-        retention: 5d
+        retention: 3d
+        retentionSize: 5Gi
         affinity:
           nodeAffinity:
             requiredDuringSchedulingIgnoredDuringExecution:
@@ -91,10 +92,7 @@ spec:
               storageClassName: longhorn
               resources:
                 requests:
-                  storage: 40Gi
-        resources:
-          requests:
-            memory: 1500Mi
+                  storage: 5Gi
     alertmanager:
       ingress:
         enabled: true
@@ -114,7 +112,7 @@ spec:
               storageClassName: longhorn
               resources:
                 requests:
-                  storage: 10Gi
+                  storage: 1Gi
     kubeControllerManager:
       enabled: true
       endpoints:
