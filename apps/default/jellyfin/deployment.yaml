@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: jellyfin
-          image: linuxserver/jellyfin:10.8.8
+          image: linuxserver/jellyfin:10.8.9
           env:
             - name: TZ
               value: Europe/Sofia
