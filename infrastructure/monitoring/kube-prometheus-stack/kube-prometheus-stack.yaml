@@ -78,7 +78,7 @@ spec:
         serviceMonitorSelectorNilUsesHelmValues: false
         podMonitorSelectorNilUsesHelmValues: false
         retention: 3d
-        retentionSize: 5Gi
+        retentionSize: 5GB
         affinity:
           nodeAffinity:
             requiredDuringSchedulingIgnoredDuringExecution:
