@@ -51,8 +51,11 @@
       path: /etc/dphys-swapfile
       regexp: '^#.?CONF_SWAPFACTOR=\d$'
       line: 'CONF_SWAPFACTOR=1'
-      backrefs: true
-      backup: true
+  - name: Disable swap size limit
+    ansible.builtin.lineinfile:
+      path: /etc/dphys-swapfile
+      regexp: '^#CONF_MAXSWAP=2048$'
+      line: 'CONF_MAXSWAP='
   - name: Init swap
     ansible.builtin.command: dphys-swapfile setup
   - name: Enable swap
