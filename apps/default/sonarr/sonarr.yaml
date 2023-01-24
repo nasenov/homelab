@@ -1,0 +1,60 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: sonarr
+  namespace: default
+spec:
+  chart:
+    spec:
+      chart: app-template
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+      version: 1.2.1
+  interval: 10m0s
+  values:
+    image:
+      repository: linuxserver/sonarr
+      tag: 3.0.9
+      
+    env:
+      TZ: Europe/Sofia
+
+    service:
+      main:
+        ports:
+          http:
+            port: 80
+            targetPort: 8989
+
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          cert-manager.io/cluster-issuer: bramble-ca-issuer
+          traefik.ingress.kubernetes.io/router.middlewares: networking-https-redirect@kubernetescrd
+        hosts:
+          - host: sonarr.bramble.home
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - secretName: sonarr-tls
+            hosts:
+              - sonarr.bramble.home
+
+    persistence:
+      config:
+        enabled: true
+        type: pvc
+        mountPath: /config
+        accessMode: ReadWriteMany
+        size: 1Gi
+
+      media:
+        enabled: true
+        type: pvc
+        mountPath: /data
+        existingClaim: media-pvc
