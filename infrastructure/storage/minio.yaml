@@ -56,8 +56,3 @@ spec:
     environment:
       MINIO_PROMETHEUS_URL: http://kube-prometheus-stack-prometheus.monitoring:9090
       MINIO_PROMETHEUS_JOB_ID: minio
-
-    metrics:
-      serviceMonitor:
-        enabled: true
-        includeNode: true

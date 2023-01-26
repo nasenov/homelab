@@ -69,10 +69,6 @@ spec:
             protocol: UDP
             targetPort: 53
 
-    serviceMonitor:
-      main:
-        enabled: true
-
     configMaps:
       config:
         enabled: true

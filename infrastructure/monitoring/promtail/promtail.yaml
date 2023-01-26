@@ -37,5 +37,3 @@ spec:
       - name: journal
         mountPath: /var/log/journal
         readOnly: true
-    serviceMonitor:
-      enabled: true

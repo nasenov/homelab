@@ -24,9 +24,3 @@ spec:
       strategies:
         LowNodeUtilization:
           enabled: false
-
-    service:
-      enabled: true
-    
-    serviceMonitor:
-      enabled: true
