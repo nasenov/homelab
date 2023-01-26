@@ -56,5 +56,6 @@ spec:
       media:
         enabled: true
         type: pvc
-        mountPath: /data
+        mountPath: /data/downloads
+        subPath: downloads
         existingClaim: media-pvc
