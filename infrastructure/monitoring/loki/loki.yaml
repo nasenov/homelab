@@ -48,6 +48,9 @@ spec:
       dashboards:
         labels:
           grafana_dashboard: "1"
+
+      serviceMonitor:
+        enabled: false
     
     write:
       replicas: 1
