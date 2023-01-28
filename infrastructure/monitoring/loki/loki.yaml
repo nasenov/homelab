@@ -1,85 +1,85 @@
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
-kind: HelmRelease
-metadata:
-  name: loki
-  namespace: monitoring
-spec:
-  chart:
-    spec:
-      chart: loki
-      reconcileStrategy: ChartVersion
-      sourceRef:
-        kind: HelmRepository
-        name: grafana
-        namespace: flux-system
-      version: 4.4.2
-  interval: 10m0s
-  suspend: true
-  values:
-    loki:
-      auth_enabled: false
+# apiVersion: helm.toolkit.fluxcd.io/v2beta1
+# kind: HelmRelease
+# metadata:
+#   name: loki
+#   namespace: monitoring
+# spec:
+#   chart:
+#     spec:
+#       chart: loki
+#       reconcileStrategy: ChartVersion
+#       sourceRef:
+#         kind: HelmRepository
+#         name: grafana
+#         namespace: flux-system
+#       version: 4.4.2
+#   interval: 10m0s
+#   suspend: true
+#   values:
+#     loki:
+#       auth_enabled: false
 
-      commonConfig:
-        replication_factor: 1
+#       commonConfig:
+#         replication_factor: 1
       
-      storage:
-        bucketNames:
-          chunks: chunks
-          ruler: ruler
-          admin: admin
-        type: s3
-        s3:
-          s3: null
-          endpoint: http://minio.storage:9000
-          region: null
-          s3ForcePathStyle: true
-          insecure: true
+#       storage:
+#         bucketNames:
+#           chunks: chunks
+#           ruler: ruler
+#           admin: admin
+#         type: s3
+#         s3:
+#           s3: null
+#           endpoint: http://minio.storage:9000
+#           region: null
+#           s3ForcePathStyle: true
+#           insecure: true
       
-      rulerConfig:
-        enable_api: true
-        enable_alertmanager_v2: true
-        alertmanager_url: http://kube-prometheus-stack-alertmanager:9093
-        storage:
-            type: local
-            local:
-              directory: /rules
-        rule_path: /tmp/scratch
+#       rulerConfig:
+#         enable_api: true
+#         enable_alertmanager_v2: true
+#         alertmanager_url: http://kube-prometheus-stack-alertmanager:9093
+#         storage:
+#             type: local
+#             local:
+#               directory: /rules
+#         rule_path: /tmp/scratch
     
-    monitoring:
-      dashboards:
-        labels:
-          grafana_dashboard: "1"
+#     monitoring:
+#       dashboards:
+#         labels:
+#           grafana_dashboard: "1"
 
-      serviceMonitor:
-        enabled: false
+#       serviceMonitor:
+#         enabled: false
     
-    write:
-      replicas: 1
+#     write:
+#       replicas: 1
     
-    read:
-      replicas: 1
-      extraVolumeMounts:
-        - name: loki-rules
-          mountPath: /rules/fake
-        - name: loki-rules-tmp
-          mountPath: /tmp/scratch
-      extraVolumes:
-        - name: loki-rules
-          configMap:
-            name: loki-alerting-rules
-        - name: loki-rules-tmp
-          emptyDir: {}
+#     read:
+#       replicas: 1
+#       extraVolumeMounts:
+#         - name: loki-rules
+#           mountPath: /rules/fake
+#         - name: loki-rules-tmp
+#           mountPath: /tmp/scratch
+#       extraVolumes:
+#         - name: loki-rules
+#           configMap:
+#             name: loki-alerting-rules
+#         - name: loki-rules-tmp
+#           emptyDir: {}
 
-    backend:
-      replicas: 1
-      extraVolumeMounts:
-        - name: rules
-          mountPath: /rules
-      extraVolumes:
-        - name: rules
-          emptyDir: {}
+#     backend:
+#       replicas: 1
+#       extraVolumeMounts:
+#         - name: rules
+#           mountPath: /rules
+#       extraVolumes:
+#         - name: rules
+#           emptyDir: {}
 
-  valuesFrom:
-    - kind: Secret
-      name: loki-minio-credentials
-      optional: false
+#   valuesFrom:
+#     - kind: Secret
+#       name: loki-minio-credentials
+#       optional: false
