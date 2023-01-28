@@ -14,6 +14,7 @@ spec:
         namespace: flux-system
       version: 4.4.2
   interval: 10m0s
+  suspend: true
   values:
     loki:
       auth_enabled: false

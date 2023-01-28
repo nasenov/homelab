@@ -14,6 +14,7 @@ spec:
         namespace: flux-system
       version: 44.3.0
   interval: 10m0s
+  suspend: true
   install:
     crds: Create
   upgrade:
