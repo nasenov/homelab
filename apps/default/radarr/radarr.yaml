@@ -57,4 +57,4 @@ spec:
         enabled: true
         type: pvc
         mountPath: /data
-        existingClaim: media-pvc
+        existingClaim: jellyfin-media
