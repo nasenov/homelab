@@ -17,7 +17,7 @@ spec:
   values:
     image:
       repository: linuxserver/sonarr
-      tag: 3.0.9
+      tag: 3.0.10
       
     env:
       TZ: Europe/Sofia
