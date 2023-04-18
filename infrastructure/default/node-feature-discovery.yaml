@@ -12,7 +12,7 @@ spec:
         kind: HelmRepository
         name: node-feature-discovery
         namespace: flux-system
-      version: 0.12.1
+      version: 0.12.3
   interval: 10m0s
   values:
     worker:
