@@ -12,7 +12,7 @@ spec:
         kind: HelmRepository
         name: emqx
         namespace: flux-system
-      version: 5.0.24
+      version: 5.0.25
   interval: 10m0s
   values:
     replicaCount: 1
