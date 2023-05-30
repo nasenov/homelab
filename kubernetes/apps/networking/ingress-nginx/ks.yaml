@@ -6,6 +6,8 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m0s
+  dependsOn:
+    - name: cluster-apps-metallb-config
   path: ./kubernetes/apps/networking/ingress-nginx
   prune: true
   sourceRef:
