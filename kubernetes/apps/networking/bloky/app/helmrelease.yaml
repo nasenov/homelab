@@ -91,7 +91,7 @@ spec:
                 default:
                   - ads
             redis:
-              address: redis:6379
+              address: redis.database.svc.cluster.local:6379
             prometheus:
               enable: true
 
