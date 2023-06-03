@@ -50,5 +50,5 @@ spec:
         enabled: true
         type: pvc
         mountPath: /config
-        accessMode: ReadWriteMany
+        accessMode: ReadWriteOnce
         size: 1Gi
