@@ -1,3 +1,4 @@
+---
 apiVersion: notification.toolkit.fluxcd.io/v1beta2
 kind: Provider
 metadata:
@@ -6,6 +7,6 @@ metadata:
 spec:
   interval: 10m
   type: github
-  address: https://github.com/n-asenov/bramble
+  address: https://github.com/n-asenov/homelab
   secretRef:
     name: github
