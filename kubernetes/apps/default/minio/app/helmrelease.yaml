@@ -13,7 +13,7 @@ spec:
         kind: HelmRepository
         name: minio
         namespace: flux-system
-      version: 5.0.9
+      version: 5.0.10
   interval: 10m0s
   values:
     mode: standalone
