@@ -1,7 +1,8 @@
+---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: qbittorrent
+  name: sonarr
   namespace: default
 spec:
   chart:
@@ -16,8 +17,8 @@ spec:
   interval: 10m0s
   values:
     image:
-      repository: linuxserver/qbittorrent
-      tag: 4.5.3
+      repository: linuxserver/sonarr
+      tag: 3.0.10
       
     env:
       TZ: Europe/Sofia
@@ -27,23 +28,23 @@ spec:
         ports:
           http:
             port: 80
-            targetPort: 8080
+            targetPort: 8989
 
     ingress:
       main:
         enabled: true
+        ingressClassName: nginx
         annotations:
           cert-manager.io/cluster-issuer: bramble-ca-issuer
-          traefik.ingress.kubernetes.io/router.middlewares: networking-https-redirect@kubernetescrd
         hosts:
-          - host: torrent.bramble.home
+          - host: sonarr.bramble.home
             paths:
               - path: /
                 pathType: Prefix
         tls:
-          - secretName: torrent-tls
+          - secretName: sonarr-tls
             hosts:
-              - torrent.bramble.home
+              - sonarr.bramble.home
 
     persistence:
       config:
@@ -56,6 +57,5 @@ spec:
       media:
         enabled: true
         type: pvc
-        mountPath: /data/downloads
-        subPath: downloads
+        mountPath: /data
         existingClaim: jellyfin-media

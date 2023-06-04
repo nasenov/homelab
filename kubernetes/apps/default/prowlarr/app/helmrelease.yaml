@@ -1,7 +1,8 @@
+---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: sonarr
+  name: prowlarr
   namespace: default
 spec:
   chart:
@@ -16,8 +17,8 @@ spec:
   interval: 10m0s
   values:
     image:
-      repository: linuxserver/sonarr
-      tag: 3.0.10
+      repository: linuxserver/prowlarr
+      tag: 1.5.1-develop
       
     env:
       TZ: Europe/Sofia
@@ -27,23 +28,23 @@ spec:
         ports:
           http:
             port: 80
-            targetPort: 8989
+            targetPort: 9696
 
     ingress:
       main:
         enabled: true
+        ingressClassName: nginx
         annotations:
           cert-manager.io/cluster-issuer: bramble-ca-issuer
-          traefik.ingress.kubernetes.io/router.middlewares: networking-https-redirect@kubernetescrd
         hosts:
-          - host: sonarr.bramble.home
+          - host: prowlarr.bramble.home
             paths:
               - path: /
                 pathType: Prefix
         tls:
-          - secretName: sonarr-tls
+          - secretName: prowlarr-tls
             hosts:
-              - sonarr.bramble.home
+              - prowlarr.bramble.home
 
     persistence:
       config:
@@ -52,9 +53,3 @@ spec:
         mountPath: /config
         accessMode: ReadWriteMany
         size: 1Gi
-
-      media:
-        enabled: true
-        type: pvc
-        mountPath: /data
-        existingClaim: jellyfin-media

@@ -1,7 +1,8 @@
+---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: jellyfin
+  name: qbittorrent
   namespace: default
 spec:
   chart:
@@ -16,8 +17,8 @@ spec:
   interval: 10m0s
   values:
     image:
-      repository: linuxserver/jellyfin
-      tag: 10.8.10
+      repository: linuxserver/qbittorrent
+      tag: 4.5.3
       
     env:
       TZ: Europe/Sofia
@@ -27,23 +28,23 @@ spec:
         ports:
           http:
             port: 80
-            targetPort: 8096
+            targetPort: 8080
 
     ingress:
       main:
         enabled: true
+        ingressClassName: nginx
         annotations:
           cert-manager.io/cluster-issuer: bramble-ca-issuer
-          traefik.ingress.kubernetes.io/router.middlewares: networking-https-redirect@kubernetescrd
         hosts:
-          - host: media.bramble.home
+          - host: torrent.bramble.home
             paths:
               - path: /
                 pathType: Prefix
         tls:
-          - secretName: media-tls
+          - secretName: torrent-tls
             hosts:
-              - media.bramble.home
+              - torrent.bramble.home
 
     persistence:
       config:
@@ -56,7 +57,6 @@ spec:
       media:
         enabled: true
         type: pvc
-        mountPath: /data/media
-        subPath: media
-        accessMode: ReadWriteMany
-        size: 10Gi
+        mountPath: /data/downloads
+        subPath: downloads
+        existingClaim: jellyfin-media
