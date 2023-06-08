@@ -16,6 +16,9 @@ spec:
       version: 1.4.2
   interval: 10m0s
   values:
+    defaultSettings:
+      storageMinimalAvailablePercentage: 0
+      
     ingress: 
       enabled: true
       ingressClassName: nginx
