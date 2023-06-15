@@ -74,6 +74,12 @@ spec:
         memory: 500Mi
 
     persistence:
+      data:
+        enabled: true
+        type: pvc
+        mountPath: /app/data
+        accessMode: ReadWriteOnce
+        size: 1Gi
       usb:
         enabled: true
         type: hostPath
