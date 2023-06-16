@@ -36,14 +36,14 @@ spec:
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt-staging
         hosts:
-          - host: hass.bramble.home
+          - host: hass.nasenov.dev
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - secretName: hass-tls
             hosts:
-              - hass.bramble.home
+              - hass.nasenov.dev
 
     persistence:
       config:
