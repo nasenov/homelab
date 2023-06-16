@@ -87,6 +87,7 @@ spec:
             customDNS:
               mapping:
                 bramble.home: 192.168.1.150
+                nasenov.dev: 192.168.1.150
             blocking:
               blackLists:
                 ads:
