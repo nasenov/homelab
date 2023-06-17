@@ -43,13 +43,13 @@ spec:
         enabled: true
         ingressClassName: nginx
         annotations:
-          cert-manager.io/cluster-issuer: bramble-ca-issuer
+          cert-manager.io/cluster-issuer: letsencrypt-production
         hosts:
-          - mqtt.bramble.home
+          - mqtt.nasenov.dev
         tls:
           - secretName: emqx-tls
             hosts:
-              - mqtt.bramble.home
+              - mqtt.nasenov.dev
 
     metrics:
       enabled: true

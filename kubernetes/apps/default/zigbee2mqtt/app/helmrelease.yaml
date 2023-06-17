@@ -25,7 +25,7 @@ spec:
       ZIGBEE2MQTT_CONFIG_PERMIT_JOIN: "false"
       ZIGBEE2MQTT_CONFIG_MQTT_SERVER: mqtt://emqx
       ZIGBEE2MQTT_CONFIG_SERIAL_PORT: /dev/ttyACM0
-      ZIGBEE2MQTT_CONFIG_FRONTEND_URL: https://zigbee.bramble.home
+      ZIGBEE2MQTT_CONFIG_FRONTEND_URL: https://zigbee.nasenov.dev
       ZIGBEE2MQTT_CONFIG_HOMEASSISTANT: "true"
 
     envFrom:
@@ -46,16 +46,16 @@ spec:
         enabled: true
         ingressClassName: nginx
         annotations:
-          cert-manager.io/cluster-issuer: bramble-ca-issuer
+          cert-manager.io/cluster-issuer: letsencrypt-production
         hosts:
-          - host: zigbee.bramble.home
+          - host: zigbee.nasenov.dev
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - secretName: zigbee2mqtt-tls
             hosts:
-              - zigbee.bramble.home
+              - zigbee.nasenov.dev
 
     affinity:
       nodeAffinity:

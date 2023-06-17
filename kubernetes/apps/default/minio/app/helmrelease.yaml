@@ -35,13 +35,13 @@ spec:
       enabled: true
       ingressClassName: nginx
       annotations:
-        cert-manager.io/cluster-issuer: bramble-ca-issuer
+        cert-manager.io/cluster-issuer: letsencrypt-production
       hosts:
-        - minio.bramble.home
+        - minio.nasenov.dev
       tls:
         - secretName: minio-tls
           hosts:
-            - minio.bramble.home
+            - minio.nasenov.dev
 
     buckets:
       - name: chunks

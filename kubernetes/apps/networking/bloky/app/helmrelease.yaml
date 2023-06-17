@@ -86,7 +86,6 @@ spec:
                 - tcp-tls:9.9.9.9
             customDNS:
               mapping:
-                bramble.home: 192.168.1.150
                 nasenov.dev: 192.168.1.150
             blocking:
               blackLists:

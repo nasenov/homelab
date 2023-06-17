@@ -26,12 +26,12 @@ spec:
         enabled: true
         ingressClassName: nginx
         annotations:
-          cert-manager.io/cluster-issuer: bramble-ca-issuer
+          cert-manager.io/cluster-issuer: letsencrypt-production
         hosts:
-          - grafana.bramble.home
+          - grafana.nasenov.dev
         tls:
           - hosts:
-              - grafana.bramble.home
+              - grafana.nasenov.dev
             secretName: grafana-tls
 
       dashboardProviders:
@@ -71,12 +71,12 @@ spec:
         enabled: true
         ingressClassName: nginx
         annotations:
-          cert-manager.io/cluster-issuer: bramble-ca-issuer
+          cert-manager.io/cluster-issuer: letsencrypt-production
         hosts:
-          - prometheus.bramble.home
+          - prometheus.nasenov.dev
         tls:
           - hosts:
-              - prometheus.bramble.home
+              - prometheus.nasenov.dev
             secretName: prometheus-tls
       
       prometheusSpec:
@@ -105,12 +105,12 @@ spec:
         enabled: true
         ingressClassName: nginx
         annotations:
-          cert-manager.io/cluster-issuer: bramble-ca-issuer
+          cert-manager.io/cluster-issuer: letsencrypt-production
         hosts:
-          - alertmanager.bramble.home
+          - alertmanager.nasenov.dev
         tls:
           - hosts:
-              - alertmanager.bramble.home
+              - alertmanager.nasenov.dev
             secretName: alertmanager-tls
       
       alertmanagerSpec:
