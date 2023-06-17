@@ -22,8 +22,5 @@ spec:
     ingress: 
       enabled: true
       ingressClassName: nginx
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-production
       host: storage.nasenov.dev
       tls: true
-      tlsSecret: longhorn-tls

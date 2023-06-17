@@ -25,14 +25,11 @@ spec:
       ingress:
         enabled: true
         ingressClassName: nginx
-        annotations:
-          cert-manager.io/cluster-issuer: letsencrypt-production
         hosts:
           - grafana.nasenov.dev
         tls:
           - hosts:
               - grafana.nasenov.dev
-            secretName: grafana-tls
 
       dashboardProviders:
         dashboardproviders.yaml:
@@ -70,14 +67,11 @@ spec:
       ingress:
         enabled: true
         ingressClassName: nginx
-        annotations:
-          cert-manager.io/cluster-issuer: letsencrypt-production
         hosts:
           - prometheus.nasenov.dev
         tls:
           - hosts:
               - prometheus.nasenov.dev
-            secretName: prometheus-tls
       
       prometheusSpec:
         ruleSelectorNilUsesHelmValues: false
@@ -104,14 +98,11 @@ spec:
       ingress:
         enabled: true
         ingressClassName: nginx
-        annotations:
-          cert-manager.io/cluster-issuer: letsencrypt-production
         hosts:
           - alertmanager.nasenov.dev
         tls:
           - hosts:
               - alertmanager.nasenov.dev
-            secretName: alertmanager-tls
       
       alertmanagerSpec:
         storage:

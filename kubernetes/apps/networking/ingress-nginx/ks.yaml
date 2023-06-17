@@ -2,13 +2,30 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
+  name: cluster-apps-ingress-nginx-certificates
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  dependsOn:
+    - name: cluster-apps-cert-manager-issuers
+  path: ./kubernetes/apps/networking/ingress-nginx/certificates
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  wait: true
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
   name: cluster-apps-ingress-nginx
   namespace: flux-system
 spec:
   interval: 10m0s
   dependsOn:
     - name: cluster-apps-metallb-config
-  path: ./kubernetes/apps/networking/ingress-nginx
+    - name: cluster-apps-ingress-nginx-certificates
+  path: ./kubernetes/apps/networking/ingress-nginx/app
   prune: true
   sourceRef:
     kind: GitRepository

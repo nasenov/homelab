@@ -14,3 +14,7 @@ spec:
         kind: HelmRepository
         name: ingress-nginx
         namespace: flux-system
+  values:
+    controller:
+      extraArgs:
+        default-ssl-certificate: networking/nasenov-dev-tls

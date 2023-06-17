@@ -16,7 +16,7 @@ spec:
   interval: 10m0s
   values:
     replicaCount: 1
-    
+
     recreatePods: true
 
     emqxConfig:
@@ -42,13 +42,10 @@ spec:
       dashboard:
         enabled: true
         ingressClassName: nginx
-        annotations:
-          cert-manager.io/cluster-issuer: letsencrypt-production
         hosts:
           - mqtt.nasenov.dev
         tls:
-          - secretName: emqx-tls
-            hosts:
+          - hosts:
               - mqtt.nasenov.dev
 
     metrics:
