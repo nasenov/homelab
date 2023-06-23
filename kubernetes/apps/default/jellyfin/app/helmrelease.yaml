@@ -59,4 +59,6 @@ spec:
         type: nfs
         server: 192.168.1.231
         path: /mnt/truenas/media
-        mountPath: /media
+        mountPath: /data/media
+        subPath: /media
+        readOnly: true
