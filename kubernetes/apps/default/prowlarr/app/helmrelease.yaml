@@ -16,6 +16,9 @@ spec:
       version: 1.5.1
   interval: 10m0s
   values:
+    controller:
+      type: statefulset
+
     image:
       repository: linuxserver/prowlarr
       tag: 1.6.1-develop
@@ -43,10 +46,9 @@ spec:
           - hosts:
               - prowlarr.nasenov.dev
 
-    persistence:
-      config:
-        enabled: true
-        type: pvc
+    volumeClaimTemplates:
+      - name: config
         mountPath: /config
-        accessMode: ReadWriteMany
+        accessMode: ReadWriteOnce
         size: 1Gi
+        storageClass: longhorn

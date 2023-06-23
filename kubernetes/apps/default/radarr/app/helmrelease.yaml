@@ -16,6 +16,9 @@ spec:
       version: 1.5.1
   interval: 10m0s
   values:
+    controller:
+      type: statefulset
+
     image:
       repository: linuxserver/radarr
       tag: 4.5.2
@@ -43,16 +46,17 @@ spec:
           - hosts:
               - radarr.nasenov.dev
 
-    persistence:
-      config:
-        enabled: true
-        type: pvc
+    volumeClaimTemplates:
+      - name: config
         mountPath: /config
-        accessMode: ReadWriteMany
+        accessMode: ReadWriteOnce
         size: 1Gi
+        storageClass: longhorn
 
+    persistence:
       media:
         enabled: true
-        type: pvc
+        type: nfs
+        server: 192.168.1.231
+        path: /mnt/truenas/media
         mountPath: /data
-        existingClaim: jellyfin-media
