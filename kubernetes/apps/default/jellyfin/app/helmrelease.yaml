@@ -22,7 +22,10 @@ spec:
     image:
       repository: linuxserver/jellyfin
       tag: 10.8.10
-      
+
+    nodeSelector:
+      intel.feature.node.kubernetes.io/gpu: "true"
+
     env:
       TZ: Europe/Sofia
 
@@ -62,3 +65,12 @@ spec:
         mountPath: /data/media
         subPath: media
         readOnly: true
+      transcode:
+        enabled: true
+        type: emptyDir
+
+    resources:
+      requests:
+        gpu.intel.com/i915: 1
+      limits:
+        gpu.intel.com/i915: 1
