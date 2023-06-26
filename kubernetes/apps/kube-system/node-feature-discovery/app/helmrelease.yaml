@@ -19,9 +19,11 @@ spec:
       config:
         core:
           featureSources:
+            - custom
             - pci
             - usb
           labelSources:
+            - custom
             - pci
             - usb
         sources:
