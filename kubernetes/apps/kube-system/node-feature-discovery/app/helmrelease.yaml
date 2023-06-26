@@ -16,13 +16,13 @@ spec:
   interval: 10m0s
   values:
     worker:
-      annotations:
-        configmap.reloader.stakater.com/reload: "node-feature-discovery-worker-conf"
       config:
         core:
           featureSources:
+            - pci
             - usb
           labelSources:
+            - pci
             - usb
         sources:
           usb:
