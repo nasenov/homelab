@@ -20,10 +20,12 @@ spec:
         core:
           featureSources:
             - custom
+            - kernel
             - pci
             - usb
           labelSources:
             - custom
+            - kernel
             - pci
             - usb
         sources:
