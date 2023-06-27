@@ -49,9 +49,7 @@ spec:
           - hosts:
               - media.nasenov.dev
 
-    podSecurityContext:
-      runAsUser: 1000 # Similar to "user: 1000:1000" on Docker
-      runAsGroup: 1000    
+    podSecurityContext: 
       supplementalGroups: 
         - 110
 
@@ -66,14 +64,14 @@ spec:
         storageClass: longhorn
 
     persistence:
-      # media:
-      #   enabled: true
-      #   type: nfs
-      #   server: 192.168.1.231
-      #   path: /mnt/truenas/media
-      #   mountPath: /data/media
-      #   subPath: media
-      #   readOnly: true
+      media:
+        enabled: true
+        type: nfs
+        server: 192.168.1.231
+        path: /mnt/truenas/media
+        mountPath: /data/media
+        subPath: media
+        readOnly: true
       transcode:
         enabled: true
         type: emptyDir
