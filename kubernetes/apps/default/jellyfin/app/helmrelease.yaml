@@ -20,7 +20,7 @@ spec:
       type: statefulset
 
     image:
-      repository: linuxserver/jellyfin
+      repository: jellyfin/jellyfin
       tag: 10.8.10
 
     nodeSelector:
