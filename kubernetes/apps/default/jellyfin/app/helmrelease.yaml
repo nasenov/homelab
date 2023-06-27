@@ -80,6 +80,9 @@ spec:
       cache:
         enabled: true
         type: emptyDir
+      jellyfin:
+        enabled: true
+        type: emptyDir
       transcode:
         enabled: true
         type: emptyDir
