@@ -50,8 +50,8 @@ spec:
               - media.nasenov.dev
 
     podSecurityContext: 
-      runAsUser: 1000
-      runAsGroup: 1000
+      # runAsUser: 1000
+      # runAsGroup: 1000
       supplementalGroups: 
         - 110
 
@@ -80,14 +80,14 @@ spec:
       transcode:
         enabled: true
         type: emptyDir
-      render-device:
-        enabled: true
-        type: hostPath
-        hostPath: /dev/dri/renderD128
-        mountPath: /dev/dri/renderD128
+      # render-device:
+      #   enabled: true
+      #   type: hostPath
+      #   hostPath: /dev/dri/renderD128
+      #   mountPath: /dev/dri/renderD128
 
-    # resources:
-    #   requests:
-    #     gpu.intel.com/i915: 1
-    #   limits:
-    #     gpu.intel.com/i915: 1
+    resources:
+      requests:
+        gpu.intel.com/i915: 1
+      limits:
+        gpu.intel.com/i915: 1
