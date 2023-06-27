@@ -50,8 +50,8 @@ spec:
               - media.nasenov.dev
 
     podSecurityContext: 
-      runAsUser: 1000
-      runAsGroup: 1000
+      runAsUser: 0
+      runAsGroup: 0
       supplementalGroups: 
         - 110
 
