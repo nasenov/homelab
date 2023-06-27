@@ -66,17 +66,14 @@ spec:
         storageClass: longhorn
 
     persistence:
-      # media:
-      #   enabled: true
-      #   type: nfs
-      #   server: 192.168.1.231
-      #   path: /mnt/truenas/media
-      #   mountPath: /data/media
-      #   subPath: media
-      #   readOnly: true
       media:
         enabled: true
-        type: emptyDir
+        type: nfs
+        server: 192.168.1.231
+        path: /mnt/truenas/media
+        mountPath: /data/media
+        subPath: media
+        readOnly: true
       cache:
         enabled: true
         type: emptyDir
