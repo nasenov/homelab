@@ -50,13 +50,8 @@ spec:
               - media.nasenov.dev
 
     podSecurityContext: 
-      # runAsUser: 1000
-      # runAsGroup: 1000
       supplementalGroups: 
-        - 104
-
-    securityContext:
-      privileged: true
+        - 104 # host render group
 
     volumeClaimTemplates:
       - name: config
@@ -77,11 +72,6 @@ spec:
       transcode:
         enabled: true
         type: emptyDir
-      # render-device:
-      #   enabled: true
-      #   type: hostPath
-      #   hostPath: /dev/dri/renderD128
-      #   mountPath: /dev/dri/renderD128
 
     resources:
       requests:
