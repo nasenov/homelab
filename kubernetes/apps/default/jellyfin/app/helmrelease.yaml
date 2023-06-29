@@ -53,7 +53,7 @@ spec:
       # runAsUser: 1000
       # runAsGroup: 1000
       supplementalGroups: 
-        - 110
+        - 104
 
     securityContext:
       privileged: true
@@ -74,9 +74,6 @@ spec:
         mountPath: /data/media
         subPath: media
         readOnly: true
-      cache:
-        enabled: true
-        type: emptyDir
       transcode:
         enabled: true
         type: emptyDir
