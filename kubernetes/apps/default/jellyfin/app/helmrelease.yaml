@@ -49,10 +49,6 @@ spec:
           - hosts:
               - media.nasenov.dev
 
-    podSecurityContext: 
-      supplementalGroups: 
-        - 104 # host render group
-
     volumeClaimTemplates:
       - name: config
         mountPath: /config
