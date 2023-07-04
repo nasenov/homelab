@@ -58,6 +58,6 @@ spec:
         enabled: true
         type: nfs
         server: 192.168.1.231
-        path: /mnt/truenas/media
+        path: /mnt/media
         mountPath: /data/downloads
         subPath: downloads
