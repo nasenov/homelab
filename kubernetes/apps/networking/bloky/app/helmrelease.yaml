@@ -78,7 +78,8 @@ spec:
         enabled: true
         data:
           config.yml: |
-            httpPort: 4000
+            ports: 
+              http: 4000
             upstream:
               default:
                 - tcp-tls:1.1.1.1
