@@ -21,7 +21,7 @@ spec:
 
     image:
       repository: linuxserver/prowlarr
-      tag: 1.7.1-develop
+      tag: 1.7.2-develop
       
     env:
       TZ: Europe/Sofia
