@@ -87,7 +87,7 @@ spec:
                 - tcp-tls:9.9.9.9
             customDNS:
               mapping:
-                truenas.nasenvo.dev: 192.168.1.100
+                truenas.nasenov.dev: 192.168.1.100
                 proxmox.nasenov.dev: 192.168.1.208
                 nasenov.dev: 192.168.1.150
             blocking:
