@@ -28,7 +28,7 @@ spec:
       title: Apps
       darkTheme: espresso
       showGreeting: false
-      showAppGroups: false
+      showAppGroups: true
       showAppUrls: false
       showAppStatus: false
       showBookmarkGroups: false
