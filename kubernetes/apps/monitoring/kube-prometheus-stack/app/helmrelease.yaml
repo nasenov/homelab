@@ -24,6 +24,9 @@ spec:
     grafana:
       ingress:
         enabled: true
+        annotations:
+          hajimari.io/appName: "grafana"
+          hajimari.io/icon: "mdi:chart-timeline-variant"
         ingressClassName: nginx
         hosts:
           - grafana.nasenov.dev
@@ -66,6 +69,9 @@ spec:
     prometheus:
       ingress:
         enabled: true
+        annotations:
+          hajimari.io/appName: "prometheus"
+          hajimari.io/icon: "mdi:database-outline"
         ingressClassName: nginx
         hosts:
           - prometheus.nasenov.dev
@@ -97,6 +103,9 @@ spec:
     alertmanager:
       ingress:
         enabled: true
+        annotations:
+          hajimari.io/appName: "alert-manager"
+          hajimari.io/icon: "mdi:bell-plus-outline"
         ingressClassName: nginx
         hosts:
           - alertmanager.nasenov.dev
