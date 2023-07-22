@@ -39,12 +39,10 @@ spec:
           apps:
             - name: Proxmox
               url: 'https://proxmox.nasenov.dev:8006'
-              icon: 'mdi:test-tube'
-              info: Proxmox
+              icon: 'mdi:server'
             - name: Truenas
               url: 'https://truenas.nasenov.dev'
-              icon: 'mdi:test-tube'
-              info: Truenas
+              icon: 'mdi:nas'
 
     podAnnotations:
       configmap.reloader.stakater.com/reload: "hajimari-settings"

@@ -33,6 +33,9 @@ spec:
 
     consoleIngress:
       enabled: true
+      annotations:
+        hajimari.io/group: "Infrastructure"
+        hajimari.io/icon: "mdi:pail-outline"
       ingressClassName: nginx
       hosts:
         - minio.nasenov.dev

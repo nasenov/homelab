@@ -21,6 +21,9 @@ spec:
       
     ingress: 
       enabled: true
+      annotations:
+        hajimari.io/group: "Infrastructure"
+        hajimari.io/icon: "mdi:storage-tank-outline"
       ingressClassName: nginx
       host: storage.nasenov.dev
       tls: true
