@@ -46,6 +46,9 @@ spec:
               icon: 'mdi:test-tube'
               info: Truenas
 
+    podAnnotations:
+      configmap.reloader.stakater.com/reload: "hajimari-settings"
+
     ingress:
       main:
         enabled: true
