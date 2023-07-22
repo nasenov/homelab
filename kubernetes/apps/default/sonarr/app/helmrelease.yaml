@@ -36,6 +36,9 @@ spec:
     ingress:
       main:
         enabled: true
+        annotations:
+          hajimari.io/group: "Media"
+          hajimari.io/icon: "mdi:television-classic"
         ingressClassName: nginx
         hosts:
           - host: sonarr.nasenov.dev

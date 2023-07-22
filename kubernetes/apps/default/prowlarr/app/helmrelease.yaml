@@ -36,6 +36,9 @@ spec:
     ingress:
       main:
         enabled: true
+        annotations:
+          hajimari.io/group: "Media"
+          hajimari.io/icon: "mdi:movie-search-outline"
         ingressClassName: nginx
         hosts:
           - host: prowlarr.nasenov.dev
