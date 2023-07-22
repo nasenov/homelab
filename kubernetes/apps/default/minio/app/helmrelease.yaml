@@ -34,7 +34,7 @@ spec:
     consoleIngress:
       enabled: true
       annotations:
-        hajimari.io/group: "Infrastructure"
+        hajimari.io/group: "Storage"
         hajimari.io/icon: "mdi:pail-outline"
       ingressClassName: nginx
       hosts:
