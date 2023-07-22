@@ -50,7 +50,7 @@ spec:
       main:
         enabled: true
         annotations:
-          hajimari.io/enable: false
+          hajimari.io/enable: "false"
         ingressClassName: nginx
         hosts:
           - host: apps.nasenov.dev
