@@ -12,7 +12,7 @@ spec:
         kind: HelmRepository
         name: grafana
         namespace: flux-system
-      version: 5.9.2
+      version: 5.10.0
   interval: 10m0s
   values:
     loki:
