@@ -83,6 +83,7 @@ spec:
         ruleSelectorNilUsesHelmValues: false
         serviceMonitorSelectorNilUsesHelmValues: false
         podMonitorSelectorNilUsesHelmValues: false
+        scrapeConfigSelectorNilUsesHelmValues: false
         retention: 3d
         retentionSize: 5GB
         affinity:
