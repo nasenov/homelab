@@ -21,7 +21,7 @@ spec:
 
     image:
       repository: linuxserver/prowlarr
-      tag: 1.8.1-develop
+      tag: 1.8.2-develop
       
     env:
       TZ: Europe/Sofia
