@@ -21,7 +21,7 @@ spec:
 
     image:
       repository: linuxserver/radarr
-      tag: 4.6.4
+      tag: 4.7.5
       
     env:
       TZ: Europe/Sofia
