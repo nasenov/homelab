@@ -8,6 +8,12 @@
         name: linux-generic
         state: present
 
+    # Longhorn RWX support requirement
+    - name: Install nfs-common package
+      ansible.builtin.apt:
+        name: nfs-common
+        state: present
+
     # https://github.com/longhorn/longhorn/issues/1210
     - name: Add Longhorn devices to multipathd blacklist
       ansible.builtin.blockinfile:
