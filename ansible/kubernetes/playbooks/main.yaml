@@ -1,0 +1,9 @@
+---
+- hosts: k3s_cluster
+  become: true
+  tasks:
+    # linux-generic is required for iGPU passthrough 
+    - name: Install linux-generic package
+      ansible.builtin.apt:
+        name: linux-generic
+        state: present
