@@ -64,6 +64,12 @@ resource "proxmox_vm_qemu" "k3s-2" {
     size    = "54784M"
   }
 
+  disk {
+    type    = "scsi"
+    storage = "longhorn-1"
+    size    = "953G"    
+  }
+
 }
 
 resource "proxmox_vm_qemu" "k3s-3" {
@@ -96,6 +102,12 @@ resource "proxmox_vm_qemu" "k3s-3" {
     type    = "scsi"
     storage = "fast"
     size    = "54784M"
+  }
+
+  disk {
+    type    = "scsi"
+    storage = "longhorn-2"
+    size    = "953G"    
   }
 
 }
