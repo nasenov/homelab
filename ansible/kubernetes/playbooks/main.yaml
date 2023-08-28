@@ -2,8 +2,25 @@
 - hosts: k3s_cluster
   become: true
   tasks:
-    # linux-generic is required for iGPU passthrough 
+    # linux-generic is required for iGPU passthrough
     - name: Install linux-generic package
       ansible.builtin.apt:
         name: linux-generic
         state: present
+
+    # https://github.com/longhorn/longhorn/issues/1210
+    - name: Add Longhorn devices to multipathd blacklist
+      ansible.builtin.blockinfile:
+        path: /etc/multipath.conf
+        create: true
+        block: |
+          blacklist {
+              devnode "^sd[a-z0-9]+"
+          }
+      register: multipath_conf
+
+    - name: Restart multipathd service
+      ansible.builtin.systemd:
+        name: multipathd.service
+        state: restarted
+      when: multipath_conf.changed
