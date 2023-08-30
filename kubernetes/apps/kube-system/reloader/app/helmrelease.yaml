@@ -13,7 +13,7 @@ spec:
         kind: HelmRepository
         name: stakater
         namespace: flux-system
-      version: 1.0.38
+      version: 1.0.39
   interval: 10m0s
   values:
     reloader:
