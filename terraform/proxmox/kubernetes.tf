@@ -115,6 +115,10 @@ resource "proxmox_vm_qemu" "k3s-3" {
     size    = "953G"
   }
 
+  usb {
+    host = "10c4:ea60"
+  }
+  
 }
 
 resource "proxmox_vm_qemu" "k3s-4" {
