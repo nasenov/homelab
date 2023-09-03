@@ -70,6 +70,11 @@ resource "proxmox_vm_qemu" "k3s-2" {
     size    = "953G"
   }
 
+  hostpci {
+    host = "0000:00:02"
+    pcie = 1
+  }
+
 }
 
 resource "proxmox_vm_qemu" "k3s-3" {
