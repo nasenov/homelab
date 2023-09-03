@@ -6,6 +6,9 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m0s
+  dependsOn:
+    - name: cluster-apps-metallb-config
+    - name: cluster-apps-kube-prometheus-stack
   path: ./kubernetes/apps/networking/bloky/app
   prune: true
   sourceRef:

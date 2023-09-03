@@ -6,8 +6,11 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m0s
+  dependsOn:
+    - name: cluster-apps-ingress-nginx
   path: ./kubernetes/apps/longhorn-system/longhorn/app
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
+  wait: true

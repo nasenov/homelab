@@ -6,6 +6,9 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m0s
+  dependsOn:
+    - name: cluster-apps-ingress-nginx
+    - name: cluster-apps-longhorn
   path: ./kubernetes/apps/default/qbittorrent/app
   prune: true
   sourceRef:
