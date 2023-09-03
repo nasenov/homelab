@@ -153,11 +153,10 @@ resource "proxmox_vm_qemu" "k3s-4" {
     size    = "54784M"
   }
 
-  # TODO: replace with actual disk before migration
   disk {
     type    = "scsi"
-    storage = "fast"
-    size    = "54784M"
+    storage = "longhorn-3"
+    size    = "953G"
   }
 
 }
