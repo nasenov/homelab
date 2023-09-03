@@ -30,3 +30,28 @@
         name: multipathd.service
         state: restarted
       when: multipath_conf.changed
+
+- hosts: workers
+  become: true
+  tasks:
+    # setup longhorn disk
+    - name: Create a new ext4 primary partition
+      community.general.parted:
+        device: /dev/sdb
+        number: 1
+        state: present
+        fs_type: ext4
+        label: gpt
+        name: longhorn
+
+    - name: Create a ext4 filesystem on /dev/sdb1
+      community.general.filesystem:
+        dev: /dev/sdb1
+        fstype: ext4
+
+    - name: Mount up device by label
+      ansible.posix.mount:
+        path: /var/lib/longhorn
+        src: PARTLABEL=longhorn
+        fstype: ext4
+        state: mounted
