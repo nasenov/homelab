@@ -9,6 +9,7 @@ spec:
   dependsOn:
     - name: cluster-apps-ingress-nginx
     - name: cluster-apps-longhorn
+    - name: cluster-apps-kube-prometheus-stack
   path: ./kubernetes/apps/default/emqx/app
   prune: true
   sourceRef:
