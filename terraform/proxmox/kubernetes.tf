@@ -56,7 +56,7 @@ resource "proxmox_vm_qemu" "k3s-2" {
   network {
     model  = "virtio"
     bridge = "vmbr0"
-  }  
+  }
 
   disk {
     type    = "scsi"
@@ -67,7 +67,7 @@ resource "proxmox_vm_qemu" "k3s-2" {
   disk {
     type    = "scsi"
     storage = "longhorn-1"
-    size    = "953G"    
+    size    = "953G"
   }
 
 }
@@ -107,7 +107,7 @@ resource "proxmox_vm_qemu" "k3s-3" {
   disk {
     type    = "scsi"
     storage = "longhorn-2"
-    size    = "953G"    
+    size    = "953G"
   }
 
 }
@@ -138,6 +138,13 @@ resource "proxmox_vm_qemu" "k3s-4" {
     bridge = "vmbr0"
   }
 
+  disk {
+    type    = "scsi"
+    storage = "fast"
+    size    = "54784M"
+  }
+
+  # TODO: replace with actual disk before migration
   disk {
     type    = "scsi"
     storage = "fast"
