@@ -15,3 +15,18 @@ spec:
     kind: GitRepository
     name: flux-system
   wait: true
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: cluster-apps-kube-prometheus-stack-scrapeconfigs
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  dependsOn:
+    - name: cluster-apps-kube-prometheus-stack
+  path: ./kubernetes/apps/monitoring/kube-prometheus-stack/scrapeconfigs
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
