@@ -60,6 +60,6 @@ spec:
       media:
         enabled: true
         type: nfs
-        server: truenas.nasenov.dev
+        server: 192.168.1.100
         path: /mnt/tank/media
         mountPath: /data
