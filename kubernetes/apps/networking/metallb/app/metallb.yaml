@@ -5,6 +5,7 @@ metadata:
   name: metallb
   namespace: networking
 spec:
+  interval: 10m0s
   chart:
     spec:
       chart: metallb
@@ -14,4 +15,9 @@ spec:
         name: metallb
         namespace: flux-system
       version: 0.13.11
-  interval: 10m0s
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
