@@ -37,7 +37,7 @@
     # setup longhorn disk
     - name: Create a new ext4 primary partition
       community.general.parted:
-        device: /dev/sdb
+        device: /dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_drive-scsi1
         number: 1
         state: present
         fs_type: ext4
@@ -46,7 +46,7 @@
 
     - name: Create a ext4 filesystem on /dev/sdb1
       community.general.filesystem:
-        dev: /dev/sdb1
+        dev: /dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_drive-scsi1-part1
         fstype: ext4
 
     - name: Mount up device by label
