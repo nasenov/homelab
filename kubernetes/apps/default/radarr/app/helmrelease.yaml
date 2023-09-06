@@ -5,6 +5,7 @@ metadata:
   name: radarr
   namespace: default
 spec:
+  interval: 10m0s
   chart:
     spec:
       chart: app-template
@@ -14,7 +15,12 @@ spec:
         name: bjw-s
         namespace: flux-system
       version: 1.5.1
-  interval: 10m0s
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
   values:
     controller:
       type: statefulset
