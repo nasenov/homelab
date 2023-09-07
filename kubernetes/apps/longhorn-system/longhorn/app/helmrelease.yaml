@@ -23,7 +23,7 @@ spec:
       retries: 3
   values:
     defaultSettings:
-      storageMinimalAvailablePercentage: 0
+      backupTarget: nfs://192.168.1.100:/mnt/tank/longhorn
       
     ingress: 
       enabled: true
