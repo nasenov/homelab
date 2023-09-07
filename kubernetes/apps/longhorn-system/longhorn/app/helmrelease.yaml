@@ -25,9 +25,9 @@ spec:
     defaultSettings:
       backupTarget: nfs://192.168.1.100:/mnt/tank/longhorn
       createDefaultDiskLabeledNodes: true
-      storageReservedPercentageForDefaultDisk: 10
-      
-    ingress: 
+      storageReservedPercentageForDefaultDisk: 0
+
+    ingress:
       enabled: true
       annotations:
         hajimari.io/group: "Storage"
