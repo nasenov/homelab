@@ -25,7 +25,7 @@ spec:
     defaultSettings:
       backupTarget: nfs://192.168.1.100:/mnt/tank/longhorn
       createDefaultDiskLabeledNodes: true
-      storageReservedPercentageForDefaultDisk: 0
+      storageReservedPercentageForDefaultDisk: 10
       
     ingress: 
       enabled: true
