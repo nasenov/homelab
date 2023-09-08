@@ -77,12 +77,6 @@ spec:
 
     backend:
       replicas: 1
-      extraVolumeMounts:
-        - name: rules
-          mountPath: /rules
-      extraVolumes:
-        - name: rules
-          emptyDir: {}
 
   valuesFrom:
     - kind: Secret
