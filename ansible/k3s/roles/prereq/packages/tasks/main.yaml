@@ -1,0 +1,12 @@
+---
+# hardware passthrough requirement
+- name: Install linux-generic package
+  ansible.builtin.apt:
+    name: linux-generic
+    state: present
+
+# Longhorn RWX support requirement
+- name: Install nfs-common package
+  ansible.builtin.apt:
+    name: nfs-common
+    state: present

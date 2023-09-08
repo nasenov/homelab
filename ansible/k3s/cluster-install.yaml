@@ -1,4 +1,14 @@
 ---
+- hosts: all
+  become: yes
+  roles:
+    - role: prereq/packages
+
+- hosts: workers
+  become: yes
+  roles:
+    - role: prereq/longhorn
+
 - name: Cluster Installation
   hosts: all
   roles:
