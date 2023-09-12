@@ -21,6 +21,9 @@ spec:
     remediation:
       retries: 3
   values:
+    controller:
+      type: statefulset
+
     image:
       repository: homeassistant/home-assistant
       tag: 2023.9.1
@@ -51,10 +54,9 @@ spec:
           - hosts:
               - hass.nasenov.dev
 
-    persistence:
-      config:
-        enabled: true
-        type: pvc
+    volumeClaimTemplates:
+      - name: config
         mountPath: /config
-        accessMode: ReadWriteMany
+        accessMode: ReadWriteOnce
         size: 1Gi
+        storageClass: longhorn
