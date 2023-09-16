@@ -6,6 +6,8 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m0s
+  dependsOn:
+    - name: cluster-apps-kube-prometheus-stack
   path: ./kubernetes/apps/flux-system/addons/app
   prune: true
   sourceRef:
