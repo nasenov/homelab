@@ -1,6 +1,8 @@
 ---
 k3s_control_node: true
 k3s_server:
+  tls-san:
+    - "{{ k3s_registration_address }}"
   disable-cloud-controller: true
   disable:
     - local-storage
