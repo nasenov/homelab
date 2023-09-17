@@ -17,7 +17,7 @@ resource "proxmox_vm_qemu" "k3s-1" {
   ciuser     = var.ci_user
   cipassword = var.ci_password
   sshkeys    = var.sshkeys
-  ipconfig0  = "ip=192.168.1.120/24,gw=192.168.1.1"
+  ipconfig0  = "ip=192.168.1.121/24,gw=192.168.1.1"
 
   network {
     model  = "virtio"
@@ -51,7 +51,7 @@ resource "proxmox_vm_qemu" "k3s-2" {
   ciuser     = var.ci_user
   cipassword = var.ci_password
   sshkeys    = var.sshkeys
-  ipconfig0  = "ip=192.168.1.121/24,gw=192.168.1.1"
+  ipconfig0  = "ip=192.168.1.122/24,gw=192.168.1.1"
 
   network {
     model  = "virtio"
@@ -85,7 +85,7 @@ resource "proxmox_vm_qemu" "k3s-3" {
   ciuser     = var.ci_user
   cipassword = var.ci_password
   sshkeys    = var.sshkeys
-  ipconfig0  = "ip=192.168.1.122/24,gw=192.168.1.1"
+  ipconfig0  = "ip=192.168.1.123/24,gw=192.168.1.1"
 
   network {
     model  = "virtio"
@@ -119,7 +119,7 @@ resource "proxmox_vm_qemu" "k3s-4" {
   ciuser     = var.ci_user
   cipassword = var.ci_password
   sshkeys    = var.sshkeys
-  ipconfig0  = "ip=192.168.1.123/24,gw=192.168.1.1"
+  ipconfig0  = "ip=192.168.1.124/24,gw=192.168.1.1"
 
   network {
     model  = "virtio"
@@ -164,7 +164,7 @@ resource "proxmox_vm_qemu" "k3s-5" {
   ciuser     = var.ci_user
   cipassword = var.ci_password
   sshkeys    = var.sshkeys
-  ipconfig0  = "ip=192.168.1.124/24,gw=192.168.1.1"
+  ipconfig0  = "ip=192.168.1.125/24,gw=192.168.1.1"
 
   network {
     model  = "virtio"
@@ -208,7 +208,7 @@ resource "proxmox_vm_qemu" "k3s-6" {
   ciuser     = var.ci_user
   cipassword = var.ci_password
   sshkeys    = var.sshkeys
-  ipconfig0  = "ip=192.168.1.125/24,gw=192.168.1.1"
+  ipconfig0  = "ip=192.168.1.126/24,gw=192.168.1.1"
 
   network {
     model  = "virtio"

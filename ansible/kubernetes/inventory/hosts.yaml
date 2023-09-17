@@ -6,16 +6,16 @@ kubernetes:
     master:
       hosts:
         k3s-1:
-          ansible_host: 192.168.1.120
-        k3s-2:
           ansible_host: 192.168.1.121
-        k3s-3:
+        k3s-2:
           ansible_host: 192.168.1.122
+        k3s-3:
+          ansible_host: 192.168.1.123
     workers:
       hosts:
         k3s-4:
-          ansible_host: 192.168.1.123
-        k3s-5:
           ansible_host: 192.168.1.124
-        k3s-6:
+        k3s-5:
           ansible_host: 192.168.1.125
+        k3s-6:
+          ansible_host: 192.168.1.126
