@@ -16,16 +16,16 @@
   "dependencyDashboardTitle": "Renovate Dashboard",
   "commitBodyTable": true,
   "flux": {
-    "fileMatch": ["\\.yaml$"]
+    "fileMatch": ["(^|/)kubernetes/.+\\.ya?ml$"]
   },
   "helm-values": {
-    "fileMatch": ["\\.yaml$"]
+    "fileMatch": ["(^|/)kubernetes/.+\\.ya?ml$"]
   },
   "kubernetes": {
-    "fileMatch": ["\\.yaml$"],
-    "ignorePaths": [
-      "cluster/flux-system/"
-    ] 
+    "fileMatch": [
+      "(^|/)ansible/.+\\.ya?ml(\\.j2)?$",
+      "(^|/)kubernetes/.+\\.ya?ml$"
+    ]
   },
   "packageRules": [
     {
