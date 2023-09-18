@@ -25,6 +25,9 @@
     "fileMatch": [
       "(^|/)ansible/.+\\.ya?ml(\\.j2)?$",
       "(^|/)kubernetes/.+\\.ya?ml$"
+    ],
+    "ignorePaths": [
+      "kubernetes/cluster/flux-system/"
     ]
   },
   "packageRules": [
