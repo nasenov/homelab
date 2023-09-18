@@ -60,3 +60,33 @@ spec:
         accessMode: ReadWriteOnce
         size: 1Gi
         storageClass: longhorn
+
+    addons:
+      codeserver:
+        enabled: true
+        image:
+          repository: ghcr.io/coder/code-server
+          tag: 4.16.1
+        env:
+          TZ: Europe/Sofia
+        args:
+          - --auth
+          - "none"
+          - --user-data-dir
+          - "/config/.vscode"
+          - --extensions-dir
+          - "/config/.vscode"
+        ingress:
+          enabled: true
+          ingressClassName: nginx
+          hosts:
+            - host: hass-code.nasenov.dev
+              paths:
+                - path: /
+                  pathType: Prefix
+          tls:
+            - hosts:
+                - hass-code.nasenov.dev
+        volumeMounts:
+          - name: config
+            mountPath: /config
