@@ -5,7 +5,7 @@ metadata:
   name: server
   namespace: system-upgrade
 spec:
-  channel: https://update.k3s.io/v1-release/channels/v1.27
+  channel: https://update.k3s.io/v1-release/channels/v1.28
   concurrency: 1
   cordon: true
   nodeSelector:
