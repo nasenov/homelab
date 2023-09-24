@@ -27,7 +27,7 @@ spec:
 
     image:
       repository: jellyfin/jellyfin
-      tag: 10.8.10
+      tag: 10.8.11
 
     nodeSelector:
       intel.feature.node.kubernetes.io/gpu: "true"
