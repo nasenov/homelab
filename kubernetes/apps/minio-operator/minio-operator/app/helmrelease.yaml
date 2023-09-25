@@ -21,3 +21,12 @@ spec:
   upgrade:
     remediation:
       retries: 3
+  values:
+    console:
+      ingress:
+        enabled: true
+        ingressClassName: nginx
+        host: minio-operator.nasenov.dev
+        tls:
+          - hosts:
+              - minio-operator.nasenov.dev
