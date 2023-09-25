@@ -24,7 +24,11 @@ spec:
   values:
     tenant:
       name: minio
-      
+
+      pools:
+        - name: pool
+          storageClassName: longhorn
+
     ingress:
       console:
         enabled: true
