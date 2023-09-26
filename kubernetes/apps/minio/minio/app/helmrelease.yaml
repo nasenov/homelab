@@ -29,11 +29,12 @@ spec:
         - name: pool
           storageClassName: longhorn
 
-      metrics:
-        enabled: true
-
       certificate:
         requestAutoCert: false
+
+      env:
+        - name: MINIO_PROMETHEUS_AUTH_TYPE
+          value: public
 
     ingress:
       api:
