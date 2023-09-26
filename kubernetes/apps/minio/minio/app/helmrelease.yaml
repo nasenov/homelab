@@ -33,6 +33,13 @@ spec:
         requestAutoCert: false
 
     ingress:
+      api:
+        enabled: true
+        ingressClassName: nginx
+        host: minio.nasenov.dev
+        tls:
+          - hosts:
+              - minio.nasenov.dev
       console:
         enabled: true
         ingressClassName: nginx
