@@ -22,6 +22,12 @@ spec:
     remediation:
       retries: 3
   values:
+    operator:
+      env:
+        - name: PROMETHEUS_NAMESPACE
+          value: monitoring
+        - name: PROMETHEUS_NAME
+          value: kube-prometheus-stack
     console:
       ingress:
         enabled: true
