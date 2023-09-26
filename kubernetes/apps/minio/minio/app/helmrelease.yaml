@@ -29,6 +29,9 @@ spec:
         - name: pool
           storageClassName: longhorn
 
+      metrics:
+        enabled: true
+
       certificate:
         requestAutoCert: false
 
