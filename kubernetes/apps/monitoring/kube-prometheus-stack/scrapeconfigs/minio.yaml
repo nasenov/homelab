@@ -1,0 +1,24 @@
+---
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: ScrapeConfig
+metadata:
+  name: minio
+  namespace: monitoring
+spec:
+  scheme: https
+  staticConfigs:
+    - targets:
+        - minio.nasenov.dev
+  metricsPath: /minio/v2/metrics/cluster
+---
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: ScrapeConfig
+metadata:
+  name: minio-bucket
+  namespace: monitoring
+spec:
+  scheme: https
+  staticConfigs:
+    - targets:
+        - minio.nasenov.dev
+  metricsPath: /minio/v2/metrics/bucket
