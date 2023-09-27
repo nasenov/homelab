@@ -91,7 +91,6 @@ spec:
             datasource:
               - name: DS_PROMETHEUS
                 value: Prometheus
-            scrape_jobs: scrapeconfig/monitoring/minio
           minio-bucket-dashboard:
             gnetId: 19237 # https://grafana.com/grafana/dashboards/19237-minio-bucket-dashboard/?tab=revisions
             revision: 1
