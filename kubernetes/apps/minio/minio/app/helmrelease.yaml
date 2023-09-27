@@ -38,7 +38,7 @@ spec:
         - name: MINIO_PROMETHEUS_URL
           value: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090
         - name: MINIO_PROMETHEUS_JOB_ID
-          value: minio-job
+          value: scrapeconfig/monitoring/minio
 
     ingress:
       api:
