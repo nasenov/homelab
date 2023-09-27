@@ -33,10 +33,12 @@ spec:
         requestAutoCert: false
 
       env:
+        - name: MINIO_PROMETHEUS_AUTH_TYPE
+          value: public
         - name: MINIO_PROMETHEUS_URL
-          value: http://kube-prometheus-stack-prometheus.monitoring:9090
+          value: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090
         - name: MINIO_PROMETHEUS_JOB_ID
-          value: minio-minio-job
+          value: minio-job
 
     ingress:
       api:
