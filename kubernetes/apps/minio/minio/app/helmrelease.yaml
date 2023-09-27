@@ -32,8 +32,6 @@ spec:
       certificate:
         requestAutoCert: false
 
-      prometheusOperator: true
-
       env:
         - name: MINIO_PROMETHEUS_URL
           value: http://kube-prometheus-stack-prometheus.monitoring:9090
