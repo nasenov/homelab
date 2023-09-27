@@ -5,7 +5,7 @@ metadata:
   name: minio
   namespace: monitoring
 spec:
-  scheme: https
+  scheme: HTTPS
   staticConfigs:
     - targets:
         - minio.nasenov.dev
@@ -17,7 +17,7 @@ metadata:
   name: minio-bucket
   namespace: monitoring
 spec:
-  scheme: https
+  scheme: HTTPS
   staticConfigs:
     - targets:
         - minio.nasenov.dev
