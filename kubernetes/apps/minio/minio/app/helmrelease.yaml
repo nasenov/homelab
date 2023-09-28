@@ -32,6 +32,12 @@ spec:
       certificate:
         requestAutoCert: false
 
+      liveness: &probes
+        httpGet:
+          port: 9000
+          path: /minio/health/live
+      readiness: *probes
+
       env:
         - name: MINIO_PROMETHEUS_AUTH_TYPE
           value: public
