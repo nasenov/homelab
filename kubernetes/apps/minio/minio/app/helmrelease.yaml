@@ -28,6 +28,9 @@ spec:
     tenant:
       name: minio
 
+      configuration:
+        name: minio-env-configuration
+      
       pools:
         - name: pool
           storageClassName: longhorn
