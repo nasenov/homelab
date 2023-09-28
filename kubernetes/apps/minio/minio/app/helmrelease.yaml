@@ -30,13 +30,18 @@ spec:
 
       configuration:
         name: minio-env-configuration
-      
+
       pools:
         - name: pool
           storageClassName: longhorn
 
       certificate:
         requestAutoCert: false
+
+      buckets:
+        - name: chunks
+        - name: ruler
+        - name: admin
 
       liveness: &probes
         httpGet:
