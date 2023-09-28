@@ -35,7 +35,7 @@ spec:
         type: s3
         s3:
           s3: null
-          endpoint: http://minio.default:9000
+          endpoint: http://minio.minio.svc.cluster.local:9000
           region: null
           s3ForcePathStyle: true
           insecure: true
