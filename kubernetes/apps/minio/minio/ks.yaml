@@ -8,6 +8,7 @@ spec:
   interval: 10m0s
   dependsOn:
     - name: cluster-apps-minio-operator
+    - name: cluster-apps-kube-prometheus-stack
   path: ./kubernetes/apps/minio/minio/app
   prune: true
   sourceRef:
