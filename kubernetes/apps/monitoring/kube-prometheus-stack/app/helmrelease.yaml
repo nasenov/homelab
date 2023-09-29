@@ -164,10 +164,8 @@ spec:
               - alertmanager.nasenov.dev
 
       alertmanagerSpec:
-        alertmanagerConfigSelector:
-          matchLabels:
-            alertmanager-config: discord
-
+        useExistingSecret: true
+        configSecret: alertmanager-configuration
         storage:
           volumeClaimTemplate:
             spec:
