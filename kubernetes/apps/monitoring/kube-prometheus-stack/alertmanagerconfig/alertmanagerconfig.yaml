@@ -3,6 +3,7 @@ apiVersion: monitoring.coreos.com/v1alpha1
 kind: AlertmanagerConfig
 metadata:
   name: alertmanager-config-discord
+  namespace: monitoring
   labels:
     alertmanager-config: discord
 spec:
