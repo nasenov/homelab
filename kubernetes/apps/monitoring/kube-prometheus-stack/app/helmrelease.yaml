@@ -164,6 +164,10 @@ spec:
               - alertmanager.nasenov.dev
 
       alertmanagerSpec:
+        alertmanagerConfigSelector:
+          matchLabels:
+            alertmanager-config: discord
+
         storage:
           volumeClaimTemplate:
             spec:
