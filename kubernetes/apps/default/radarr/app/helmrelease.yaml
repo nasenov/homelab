@@ -22,15 +22,26 @@ spec:
     remediation:
       retries: 3
   values:
-    controller:
-      type: statefulset
+    controllers:
+      main:
+        type: statefulset
 
-    image:
-      repository: linuxserver/radarr
-      tag: 4.7.5
-      
-    env:
-      TZ: Europe/Sofia
+        statefulset:
+          volumeClaimTemplates:
+            - name: config
+              mountPath: /config
+              accessMode: ReadWriteOnce
+              size: 1Gi
+              storageClass: longhorn
+
+        containers:
+          main:
+            image:
+              repository: linuxserver/radarr
+              tag: 4.7.5
+
+            env:
+              TZ: Europe/Sofia
 
     service:
       main:
@@ -45,7 +56,7 @@ spec:
         annotations:
           hajimari.io/group: "Media"
           hajimari.io/icon: "mdi:filmstrip"
-        ingressClassName: nginx
+        className: nginx
         hosts:
           - host: radarr.nasenov.dev
             paths:
@@ -55,17 +66,11 @@ spec:
           - hosts:
               - radarr.nasenov.dev
 
-    volumeClaimTemplates:
-      - name: config
-        mountPath: /config
-        accessMode: ReadWriteOnce
-        size: 1Gi
-        storageClass: longhorn
-
     persistence:
       media:
         enabled: true
         type: nfs
         server: 192.168.1.100
         path: /mnt/tank/media
-        mountPath: /data
+        globalMounts:
+          - path: /data

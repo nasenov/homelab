@@ -22,18 +22,36 @@ spec:
     remediation:
       retries: 3
   values:
-    controller:
-      type: statefulset
+    controllers:
+      main:
+        type: statefulset
 
-    image:
-      repository: jellyfin/jellyfin
-      tag: 10.8.11
+        statefulset:
+          volumeClaimTemplates:
+            - name: config
+              mountPath: /config
+              accessMode: ReadWriteOnce
+              size: 50Gi
+              storageClass: longhorn
 
-    nodeSelector:
-      intel.feature.node.kubernetes.io/gpu: "true"
+        containers:
+          main:
+            image:
+              repository: jellyfin/jellyfin
+              tag: 10.8.11
 
-    env:
-      TZ: Europe/Sofia
+            env:
+              TZ: Europe/Sofia
+
+            resources:
+              requests:
+                gpu.intel.com/i915: 1
+              limits:
+                gpu.intel.com/i915: 1
+
+    defaultPodOptions:
+      nodeSelector:
+        intel.feature.node.kubernetes.io/gpu: "true"
 
     service:
       main:
@@ -48,7 +66,7 @@ spec:
         annotations:
           hajimari.io/group: "Media"
           hajimari.io/icon: "mdi:multimedia"
-        ingressClassName: nginx
+        className: nginx
         hosts:
           - host: media.nasenov.dev
             paths:
@@ -58,28 +76,16 @@ spec:
           - hosts:
               - media.nasenov.dev
 
-    volumeClaimTemplates:
-      - name: config
-        mountPath: /config
-        accessMode: ReadWriteOnce
-        size: 50Gi
-        storageClass: longhorn
-
     persistence:
       media:
         enabled: true
         type: nfs
         server: 192.168.1.100
         path: /mnt/tank/media
-        mountPath: /data/media
-        subPath: media
-        readOnly: true
+        globalMounts:
+          - path: /data/media
+            subPath: media
+            readOnly: true
       transcode:
         enabled: true
         type: emptyDir
-
-    resources:
-      requests:
-        gpu.intel.com/i915: 1
-      limits:
-        gpu.intel.com/i915: 1

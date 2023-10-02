@@ -21,15 +21,42 @@ spec:
     remediation:
       retries: 3
   values:
-    controller:
-      type: statefulset
+    controllers:
+      main:
+        type: statefulset
 
-    image:
-      repository: homeassistant/home-assistant
-      tag: 2023.9.3
-      
-    env:
-      TZ: Europe/Sofia
+        statefulset:
+          volumeClaimTemplates:
+            - name: config
+              mountPath: /config
+              accessMode: ReadWriteOnce
+              size: 1Gi
+              storageClass: longhorn
+
+        containers:
+          main:
+            image:
+              repository: homeassistant/home-assistant
+              tag: 2023.9.3
+
+            env:
+              TZ: Europe/Sofia
+
+          codeserver:
+            image:
+              repository: ghcr.io/coder/code-server
+              tag: 4.17.1
+
+            args:
+              - --auth
+              - "none"
+              - --user-data-dir
+              - "/config/.vscode"
+              - --extensions-dir
+              - "/config/.vscode"
+
+            env:
+              TZ: Europe/Sofia
 
     service:
       main:
@@ -37,6 +64,13 @@ spec:
           http:
             port: 80
             targetPort: 8123
+      codeserver:
+        primary: false
+        ports:
+          primary: false
+          http:
+            port: 80
+            targetPort: 12321
 
     ingress:
       main:
@@ -44,7 +78,7 @@ spec:
         annotations:
           hajimari.io/group: "IoT"
           hajimari.io/icon: "mdi:home-assistant"
-        ingressClassName: nginx
+        className: nginx
         hosts:
           - host: hass.nasenov.dev
             paths:
@@ -53,40 +87,17 @@ spec:
         tls:
           - hosts:
               - hass.nasenov.dev
-
-    volumeClaimTemplates:
-      - name: config
-        mountPath: /config
-        accessMode: ReadWriteOnce
-        size: 1Gi
-        storageClass: longhorn
-
-    addons:
       codeserver:
         enabled: true
-        image:
-          repository: ghcr.io/coder/code-server
-          tag: 4.17.1
-        env:
-          TZ: Europe/Sofia
-        args:
-          - --auth
-          - "none"
-          - --user-data-dir
-          - "/config/.vscode"
-          - --extensions-dir
-          - "/config/.vscode"
-        ingress:
-          enabled: true
-          ingressClassName: nginx
-          hosts:
-            - host: hass-code.nasenov.dev
-              paths:
-                - path: /
-                  pathType: Prefix
-          tls:
-            - hosts:
-                - hass-code.nasenov.dev
-        volumeMounts:
-          - name: config
-            mountPath: /config
+        primary: false
+        className: nginx
+        hosts:
+          - host: hass-code.nasenov.dev
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  name: codeserver
+        tls:
+          - hosts:
+              - hass-code.nasenov.dev
