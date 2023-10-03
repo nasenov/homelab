@@ -94,7 +94,8 @@ spec:
                 pathType: Prefix
                 service:
                   name: main
-                  port: 12321
+                  port: 
+                    number: 12321
         tls:
           - hosts:
               - hass-code.nasenov.dev
