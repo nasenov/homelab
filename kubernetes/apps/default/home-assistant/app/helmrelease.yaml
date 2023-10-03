@@ -63,7 +63,7 @@ spec:
             targetPort: 8123
           codeserver:
             primary: false
-            ports: 12321
+            port: 12321
             targetPort: 12321
 
     ingress:
