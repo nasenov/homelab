@@ -14,7 +14,7 @@ spec:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-      version: 1.5.1
+      version: 2.0.1
   install:
     remediation:
       retries: 3
@@ -22,15 +22,25 @@ spec:
     remediation:
       retries: 3
   values:
-    controller:
-      type: statefulset
+    controllers:
+      main:
+        type: statefulset
 
-    image:
-      repository: linuxserver/sonarr
-      tag: 3.0.10
-      
-    env:
-      TZ: Europe/Sofia
+        statefulset:
+          volumeClaimTemplates:
+            - name: config
+              mountPath: /config
+              accessMode: ReadWriteOnce
+              size: 1Gi
+              storageClass: longhorn
+
+        containers:
+          main:
+            image:
+              repository: linuxserver/sonarr
+              tag: 3.0.10
+            env:
+              TZ: Europe/Sofia
 
     service:
       main:
@@ -45,22 +55,17 @@ spec:
         annotations:
           hajimari.io/group: "Media"
           hajimari.io/icon: "mdi:television-classic"
-        ingressClassName: nginx
+        className: nginx
         hosts:
           - host: sonarr.nasenov.dev
             paths:
               - path: /
                 pathType: Prefix
+                service:
+                  name: main
         tls:
           - hosts:
               - sonarr.nasenov.dev
-
-    volumeClaimTemplates:
-      - name: config
-        mountPath: /config
-        accessMode: ReadWriteOnce
-        size: 1Gi
-        storageClass: longhorn
 
     persistence:
       media:
@@ -68,4 +73,5 @@ spec:
         type: nfs
         server: 192.168.1.100
         path: /mnt/tank/media
-        mountPath: /data
+        globalMounts:
+          - path: /data
