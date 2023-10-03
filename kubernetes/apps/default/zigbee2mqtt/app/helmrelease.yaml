@@ -26,6 +26,7 @@ spec:
       main:
         type: statefulset
 
+<<<<<<< HEAD
         statefulset:
           volumeClaimTemplates:
             - name: config
@@ -33,6 +34,11 @@ spec:
               accessMode: ReadWriteOnce
               size: 1Gi
               storageClass: longhorn
+=======
+    image:
+      repository: ghcr.io/koenkk/zigbee2mqtt
+      tag: 1.33.1
+>>>>>>> main
 
         containers:
           main:
