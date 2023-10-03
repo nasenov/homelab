@@ -21,29 +21,32 @@ spec:
     remediation:
       retries: 3
   values:
-    image:
-      repository: ghcr.io/0xerr0r/blocky
-      tag: v0.22
-      pullPolicy: IfNotPresent
+    controllers:
+      main:
+        replicas: 2
+        strategy: RollingUpdate
 
-    controller:
-      replicas: 2
-      strategy: RollingUpdate
+        containers:
+          main:
+            image:
+              repository: ghcr.io/0xerr0r/blocky
+              tag: v0.22
+            env:
+              TZ: Europe/Sofia
 
-    podAnnotations:
-      configmap.reloader.stakater.com/reload: "blocky-config"
-
-    env:
-      TZ: Europe/Sofia
+    defaultPodOptions:
+      annotations:
+        configmap.reloader.stakater.com/reload: "blocky-config"
 
     service:
       main:
         enabled: true
         ports:
-          http: 
+          http:
             port: 4000
       dns-tcp:
         enabled: true
+        controller: main
         primary: false
         annotations:
           metallb.universe.tf/allow-shared-ip: blocky
@@ -60,6 +63,7 @@ spec:
             targetPort: 53
       dns-udp:
         enabled: true
+        controller: main
         primary: false
         annotations:
           metallb.universe.tf/allow-shared-ip: blocky
@@ -68,7 +72,7 @@ spec:
         externalTrafficPolicy: Local
         ports:
           http:
-            enabled: false        
+            enabled: false
           dns-udp:
             enabled: true
             port: 53
@@ -111,9 +115,10 @@ spec:
     persistence:
       config:
         enabled: true
-        mountPath: /app/config.yml
-        subPath: config.yml
         type: custom
         volumeSpec:
           configMap:
             name: blocky-config
+        globalMounts:
+          - path:  /app/config.yml
+            subPath: config.yml
