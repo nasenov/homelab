@@ -197,6 +197,9 @@ spec:
       endpoints:
         - 192.168.1.121
 
+    nodeExporter:
+      enabled: false
+
     kube-state-metrics:
       rbac:
         extraRules:

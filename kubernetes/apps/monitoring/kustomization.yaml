@@ -7,4 +7,5 @@ resources:
   # Flux-Kustomizations
   - ./kube-prometheus-stack/ks.yaml
   - ./loki/ks.yaml
+  - ./prometheus-node-exporter/ks.yaml
   - ./promtail/ks.yaml
