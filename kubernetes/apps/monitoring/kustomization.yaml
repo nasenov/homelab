@@ -6,6 +6,7 @@ resources:
   - ./namespace.yaml
   # Flux-Kustomizations
   - ./kube-prometheus-stack/ks.yaml
+  - ./kube-state-metrics/ks.yaml
   - ./loki/ks.yaml
   - ./prometheus-node-exporter/ks.yaml
   - ./promtail/ks.yaml
