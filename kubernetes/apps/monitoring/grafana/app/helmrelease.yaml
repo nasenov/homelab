@@ -21,6 +21,9 @@ spec:
     remediation:
       retries: 3
   values:
+    admin:
+      existingSecret: grafana-admin
+
     dashboardProviders:
       dashboardproviders.yaml:
         apiVersion: 1
