@@ -25,96 +25,6 @@ spec:
   values:
     cleanPrometheusOperatorObjectNames: true
 
-    grafana:
-      ingress:
-        enabled: true
-        annotations:
-          hajimari.io/appName: "grafana"
-          hajimari.io/icon: "mdi:chart-timeline-variant"
-        ingressClassName: nginx
-        hosts:
-          - grafana.nasenov.dev
-        tls:
-          - hosts:
-              - grafana.nasenov.dev
-
-      dashboardProviders:
-        dashboardproviders.yaml:
-          apiVersion: 1
-          providers:
-            - name: "default"
-              orgId: 1
-              folder: ""
-              type: file
-              disableDeletion: false
-              editable: true
-              options:
-                path: /var/lib/grafana/dashboards/default
-            - name: flux
-              orgId: 1
-              folder: Flux
-              type: file
-              disableDeletion: false
-              editable: true
-              options:
-                path: /var/lib/grafana/dashboards/flux
-            - name: minio
-              orgId: 1
-              folder: MinIO
-              type: file
-              disableDeletion: false
-              editable: true
-              options:
-                path: /var/lib/grafana/dashboards/minio
-
-      dashboards:
-        default:
-          blocky:
-            url: https://raw.githubusercontent.com/0xERR0R/blocky/v0.19/docs/blocky-grafana.json
-            datasource:
-              - name: DS_PROMETHEUS
-                value: Prometheus
-        flux:
-          flux-cluster:
-            url: https://raw.githubusercontent.com/fluxcd/flux2-monitoring-example/main/monitoring/configs/dashboards/cluster.json
-            datasource: Prometheus
-          flux-control-plane:
-            url: https://raw.githubusercontent.com/fluxcd/flux2-monitoring-example/main/monitoring/configs/dashboards/control-plane.json
-            datasource: Prometheus
-          flux-logs:
-            url: https://raw.githubusercontent.com/fluxcd/flux2-monitoring-example/main/monitoring/configs/dashboards/logs.json
-            datasource: Loki
-        minio:
-          minio-dashboard:
-            gnetId: 13502 # https://grafana.com/grafana/dashboards/13502-minio-dashboard/?tab=revisions
-            revision: 24
-            datasource:
-              - name: DS_PROMETHEUS
-                value: Prometheus
-          minio-bucket-dashboard:
-            gnetId: 19237 # https://grafana.com/grafana/dashboards/19237-minio-bucket-dashboard/?tab=revisions
-            revision: 1
-            datasource:
-              - name: DS_PROMETHEUS
-                value: Prometheus
-          minio-cluster-replication-dashboard:
-            gnetId: 15305 # https://grafana.com/grafana/dashboards/15305-minio-cluster-replication-dashboard/?tab=revisions
-            revision: 4
-            datasource:
-              - name: DS_PROMETHEUS
-                value: Prometheus
-
-      datasources:
-        datasources.yaml:
-          apiVersion: 1
-          datasources:
-            - name: Loki
-              type: loki
-              url: http://loki-gateway
-              access: proxy
-              jsonData:
-                maxLines: 1000
-
     prometheus:
       ingress:
         enabled: true
@@ -196,6 +106,10 @@ spec:
       enabled: true
       endpoints:
         - 192.168.1.121
+
+    grafana:
+      enabled: false
+      forceDeployDashboards: true
 
     kubeStateMetrics:
       enabled: false
