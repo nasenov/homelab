@@ -112,12 +112,12 @@ spec:
       dashboards:
         enabled: true
         label: grafana_dashboard
-        labelValue: "1"
+        labelValue: ""
         searchNamespace: ALL
       datasources:
         enabled: true
         label: grafana_datasource
-        labelValue: "1"
+        labelValue: ""
         searchNamespace: ALL
 
     serviceMonitor:
