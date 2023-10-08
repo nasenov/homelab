@@ -21,12 +21,6 @@ spec:
     remediation:
       retries: 3
   values:
-    extraEnvVars:
-      - name: notifyUrl
-        valueFrom:
-          secretKeyRef:
-            name: kured
-            key: notifyUrl
     configuration:
       period: 1m
     #   startTime: "01:00"
@@ -35,3 +29,7 @@ spec:
     tolerations:
       - key: "node-role.kubernetes.io/control-plane"
         operator: "Exists"
+  valuesFrom:
+    - kind: Secret
+      name: "kured"
+      optional: false
