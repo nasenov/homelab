@@ -27,7 +27,8 @@ spec:
           secretKeyRef:
             name: kured
             key: notifyUrl
-    # configuration:
+    configuration:
+      period: 1m
     #   startTime: "01:00"
     #   endTime: "05:00"
     #   timeZone: "Europe/Sofia"
