@@ -22,10 +22,9 @@ spec:
       retries: 3
   values:
     configuration:
-      period: 1m
-    #   startTime: "01:00"
-    #   endTime: "05:00"
-    #   timeZone: "Europe/Sofia"
+      startTime: "00:00"
+      endTime: "06:00"
+      timeZone: "Europe/Sofia"
     tolerations:
       - key: "node-role.kubernetes.io/control-plane"
         operator: "Exists"
