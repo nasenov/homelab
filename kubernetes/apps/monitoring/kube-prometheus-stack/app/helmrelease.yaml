@@ -13,7 +13,7 @@ spec:
         kind: HelmRepository
         name: prometheus
         namespace: flux-system
-      version: 51.6.1
+      version: 51.7.0
   install:
     crds: Create
     remediation:
