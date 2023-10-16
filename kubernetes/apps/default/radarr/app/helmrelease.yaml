@@ -52,9 +52,6 @@ spec:
     ingress:
       main:
         enabled: true
-        annotations:
-          hajimari.io/group: "Media"
-          hajimari.io/icon: "mdi:filmstrip"
         className: nginx
         hosts:
           - host: radarr.nasenov.dev

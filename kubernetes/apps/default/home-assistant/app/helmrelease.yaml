@@ -69,9 +69,6 @@ spec:
     ingress:
       main:
         enabled: true
-        annotations:
-          hajimari.io/group: "IoT"
-          hajimari.io/icon: "mdi:home-assistant"
         className: nginx
         hosts:
           - host: hass.nasenov.dev

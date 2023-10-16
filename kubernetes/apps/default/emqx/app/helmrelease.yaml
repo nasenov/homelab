@@ -47,9 +47,6 @@ spec:
     ingress:
       dashboard:
         enabled: true
-        annotations:
-          hajimari.io/group: "Storage"
-          hajimari.io/icon: "mdi:tray-full"
         ingressClassName: nginx
         hosts:
           - mqtt.nasenov.dev

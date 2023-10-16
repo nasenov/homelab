@@ -125,9 +125,6 @@ spec:
 
     ingress:
       enabled: true
-      annotations:
-        hajimari.io/appName: "grafana"
-        hajimari.io/icon: "mdi:chart-timeline-variant"
       ingressClassName: nginx
       hosts:
         - grafana.nasenov.dev

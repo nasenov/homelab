@@ -68,9 +68,6 @@ spec:
     ingress:
       main:
         enabled: true
-        annotations:
-          hajimari.io/group: "IoT"
-          hajimari.io/icon: "mdi:zigbee"
         className: nginx
         hosts:
           - host: zigbee.nasenov.dev

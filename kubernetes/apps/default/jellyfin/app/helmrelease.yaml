@@ -61,9 +61,6 @@ spec:
     ingress:
       main:
         enabled: true
-        annotations:
-          hajimari.io/group: "Media"
-          hajimari.io/icon: "mdi:multimedia"
         className: nginx
         hosts:
           - host: media.nasenov.dev
