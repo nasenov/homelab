@@ -14,7 +14,7 @@ spec:
         kind: HelmRepository
         name: minio-operator
         namespace: flux-system
-      version: 5.0.9
+      version: 5.0.10
   install:
     remediation:
       retries: 3
