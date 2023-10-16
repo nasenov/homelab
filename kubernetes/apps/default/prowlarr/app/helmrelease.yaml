@@ -38,7 +38,7 @@ spec:
           main:
             image:
               repository: linuxserver/prowlarr
-              tag: 1.9.3-develop
+              tag: 1.9.4-develop
             env:
               TZ: Europe/Sofia
 
