@@ -1,0 +1,53 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: homepage
+  namespace: default
+spec:
+  interval: 10m0s
+  chart:
+    spec:
+      chart: app-template
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+      version: 2.0.3
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+  values:
+    controllers:
+      main:
+        replicas: 3
+        containers:
+          main:
+            image:
+              repository: ghcr.io/gethomepage/homepage
+              tag: v0.7.3
+
+    service:
+      main:
+        ports:
+          http:
+            port: 80
+            targetPort: 3000
+
+    ingress:
+      main:
+        enabled: true
+        className: nginx
+        hosts:
+          - host: homepage.nasenov.dev
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  name: main
+        tls:
+          - hosts:
+              - homepage.nasenov.dev
