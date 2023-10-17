@@ -23,12 +23,18 @@ spec:
   values:
     controllers:
       main:
-        replicas: 3
         containers:
           main:
             image:
               repository: ghcr.io/gethomepage/homepage
               tag: v0.7.3
+
+    configMaps:
+      config:
+        enabled: true
+        data:
+          kubernetes.yaml: |
+            mode: disabled
 
     service:
       main:
@@ -55,7 +61,7 @@ spec:
     persistence:
       config:
         enabled: true
-        storageClass: longhorn
-        accessMode: ReadWriteMany
+        type: configMap
+        name: homepage-config
         globalMounts:
           - path: /app/config
