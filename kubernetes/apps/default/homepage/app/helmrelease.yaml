@@ -64,4 +64,5 @@ spec:
         type: configMap
         name: homepage-config
         globalMounts:
-          - path: /app/config
+          - path: /app/config/kubernetes.yaml
+            subPath: kubernetes.yaml
