@@ -51,3 +51,10 @@ spec:
         tls:
           - hosts:
               - homepage.nasenov.dev
+
+    persistence:
+      config:
+        enabled: true
+        storageClass: longhorn
+        globalMounts:
+          - path: /app/config
