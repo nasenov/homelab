@@ -33,8 +33,51 @@ spec:
       config:
         enabled: true
         data:
+          bookmarks.yaml: |
+            - Developer:
+                - Github:
+                    - abbr: GH
+                      href: https://github.com/
+
+            - Social:
+                - Reddit:
+                    - abbr: RE
+                      href: https://reddit.com/
+
+            - Entertainment:
+                - YouTube:
+                    - abbr: YT
+                      href: https://youtube.com/
           kubernetes.yaml: |
             mode: disabled
+          services.yaml: |
+            - My First Group:
+                - My First Service:
+                    href: http://localhost/
+                    description: Homepage is awesome
+
+            - My Second Group:
+                - My Second Service:
+                    href: http://localhost/
+                    description: Homepage is the best
+
+            - My Third Group:
+                - My Third Service:
+                    href: http://localhost/
+                    description: Homepage is 😎
+          settings.yaml: |
+            providers:
+              openweathermap: openweathermapapikey
+              weatherapi: weatherapiapikey
+          widgets.yaml: |
+            - resources:
+                cpu: true
+                memory: true
+                disk: /
+
+            - search:
+                provider: duckduckgo
+                target: _blank
 
     service:
       main:
@@ -64,5 +107,13 @@ spec:
         type: configMap
         name: homepage-config
         globalMounts:
+          - path: /app/config/bookmarks.yaml
+            subPath: bookmarks.yaml
           - path: /app/config/kubernetes.yaml
             subPath: kubernetes.yaml
+          - path: /app/config/services.yaml
+            subPath: services.yaml
+          - path: /app/config/settings.yaml
+            subPath: settings.yaml
+          - path: /app/config/widgets.yaml
+            subPath: widgets.yaml
