@@ -30,7 +30,7 @@ spec:
           volumeClaimTemplates:
             - name: config
               globalMounts:
-                - path: /app/data
+                - path: /app/config
               accessMode: ReadWriteOnce
               size: 1Gi
               storageClass: longhorn
