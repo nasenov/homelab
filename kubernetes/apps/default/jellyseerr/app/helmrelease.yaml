@@ -29,7 +29,8 @@ spec:
         statefulset:
           volumeClaimTemplates:
             - name: config
-              mountPath: /app/config
+              globalMounts:
+                - path: /app/data
               accessMode: ReadWriteOnce
               size: 1Gi
               storageClass: longhorn
