@@ -52,6 +52,14 @@ spec:
             editable: true
             options:
               path: /var/lib/grafana/dashboards/minio
+          - name: nginx
+            orgId: 1
+            folder: Nginx
+            type: file
+            disableDeletion: false
+            editable: true
+            options:
+              path: /var/lib/grafana/dashboards/nginx
 
     dashboards:
       default:
@@ -89,6 +97,13 @@ spec:
           datasource:
             - name: DS_PROMETHEUS
               value: Prometheus
+      nginx:
+        nginx:
+          url: https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/grafana/dashboards/nginx.json
+          datasource: Prometheus
+        nginx-request-handling-performance:
+          url: https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/grafana/dashboards/request-handling-performance.json
+          datasource: Prometheus
 
     datasources:
       datasources.yaml:

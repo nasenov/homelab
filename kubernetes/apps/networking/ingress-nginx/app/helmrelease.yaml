@@ -22,5 +22,11 @@ spec:
       retries: 3
   values:
     controller:
+      metrics:
+        enabled: true
+        serviceMonitor:
+          enabled: true    
+          additionalLabels:
+            release: kube-prometheus-stack
       extraArgs:
         default-ssl-certificate: networking/nasenov-dev-tls
