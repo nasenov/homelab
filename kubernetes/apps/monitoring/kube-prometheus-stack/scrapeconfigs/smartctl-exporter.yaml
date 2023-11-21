@@ -1,0 +1,11 @@
+---
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: ScrapeConfig
+metadata:
+  name: smartctl-exporter
+  namespace: monitoring
+spec:
+  staticConfigs:
+    - targets:
+        - proxmox.nasenov.dev:9633
+  metricsPath: /metrics
