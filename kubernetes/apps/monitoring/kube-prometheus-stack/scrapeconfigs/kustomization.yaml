@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - ./minio.yaml
   - ./node-exporter.yaml
+  - ./smartctl-exporter.yaml
