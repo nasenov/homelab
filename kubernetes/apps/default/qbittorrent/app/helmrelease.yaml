@@ -39,7 +39,7 @@ spec:
           main:
             image:
               repository: linuxserver/qbittorrent
-              tag: 4.6.1
+              tag: 4.6.0
             env:
               TZ: Europe/Sofia
 
