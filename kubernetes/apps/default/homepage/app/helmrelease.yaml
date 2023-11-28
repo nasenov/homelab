@@ -29,55 +29,55 @@ spec:
               repository: ghcr.io/gethomepage/homepage
               tag: v0.8.2
 
-    configMaps:
-      config:
-        enabled: true
-        data:
-          bookmarks.yaml: |
-            - Developer:
-                - Github:
-                    - abbr: GH
-                      href: https://github.com/
+    # configMaps:
+    #   config:
+    #     enabled: true
+    #     data:
+    #       bookmarks.yaml: |
+    #         - Developer:
+    #             - Github:
+    #                 - abbr: GH
+    #                   href: https://github.com/
 
-            - Social:
-                - Reddit:
-                    - abbr: RE
-                      href: https://reddit.com/
+    #         - Social:
+    #             - Reddit:
+    #                 - abbr: RE
+    #                   href: https://reddit.com/
 
-            - Entertainment:
-                - YouTube:
-                    - abbr: YT
-                      href: https://youtube.com/
-          kubernetes.yaml: |
-            mode: disabled
-          services.yaml: |
-            - My First Group:
-                - My First Service:
-                    href: http://localhost/
-                    description: Homepage is awesome
+    #         - Entertainment:
+    #             - YouTube:
+    #                 - abbr: YT
+    #                   href: https://youtube.com/
+    #       kubernetes.yaml: |
+    #         mode: disabled
+    #       services.yaml: |
+    #         - My First Group:
+    #             - My First Service:
+    #                 href: http://localhost/
+    #                 description: Homepage is awesome
 
-            - My Second Group:
-                - My Second Service:
-                    href: http://localhost/
-                    description: Homepage is the best
+    #         - My Second Group:
+    #             - My Second Service:
+    #                 href: http://localhost/
+    #                 description: Homepage is the best
 
-            - My Third Group:
-                - My Third Service:
-                    href: http://localhost/
-                    description: Homepage is 😎
-          settings.yaml: |
-            providers:
-              openweathermap: openweathermapapikey
-              weatherapi: weatherapiapikey
-          widgets.yaml: |
-            - resources:
-                cpu: true
-                memory: true
-                disk: /
+    #         - My Third Group:
+    #             - My Third Service:
+    #                 href: http://localhost/
+    #                 description: Homepage is 😎
+    #       settings.yaml: |
+    #         providers:
+    #           openweathermap: openweathermapapikey
+    #           weatherapi: weatherapiapikey
+    #       widgets.yaml: |
+    #         - resources:
+    #             cpu: true
+    #             memory: true
+    #             disk: /
 
-            - search:
-                provider: duckduckgo
-                target: _blank
+    #         - search:
+    #             provider: duckduckgo
+    #             target: _blank
 
     service:
       main:
@@ -104,16 +104,24 @@ spec:
     persistence:
       config:
         enabled: true
-        type: configMap
-        name: homepage-config
+        type: persistentVolumeClaim
+        storageClass: longhorn
+        accessMode: ReadWriteOnce
+        size: 1Gi
         globalMounts:
-          - path: /app/config/bookmarks.yaml
-            subPath: bookmarks.yaml
-          - path: /app/config/kubernetes.yaml
-            subPath: kubernetes.yaml
-          - path: /app/config/services.yaml
-            subPath: services.yaml
-          - path: /app/config/settings.yaml
-            subPath: settings.yaml
-          - path: /app/config/widgets.yaml
-            subPath: widgets.yaml
+          - path: /app/config
+      # config:
+      #   enabled: true
+      #   type: configMap
+      #   name: homepage-config
+      #   globalMounts:
+      #     - path: /app/config/bookmarks.yaml
+      #       subPath: bookmarks.yaml
+      #     - path: /app/config/kubernetes.yaml
+      #       subPath: kubernetes.yaml
+      #     - path: /app/config/services.yaml
+      #       subPath: services.yaml
+      #     - path: /app/config/settings.yaml
+      #       subPath: settings.yaml
+      #     - path: /app/config/widgets.yaml
+      #       subPath: widgets.yaml
