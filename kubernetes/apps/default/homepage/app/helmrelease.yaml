@@ -86,6 +86,9 @@ spec:
                 service:
                   name: codeserver
                   port: http
+        tls:
+          - hosts:
+              - homepage-code.nasenov.dev
 
     persistence:
       config:
