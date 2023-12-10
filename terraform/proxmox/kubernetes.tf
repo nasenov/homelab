@@ -104,7 +104,7 @@ resource "proxmox_vm_qemu" "k3s-4" {
   name        = "k3s-4"
   target_node = "debian"
 
-  memory  = 8192
+  memory  = 12288
   sockets = 1
   cores   = 4
   cpu     = "host"
@@ -149,7 +149,7 @@ resource "proxmox_vm_qemu" "k3s-5" {
   name        = "k3s-5"
   target_node = "debian"
 
-  memory  = 8192
+  memory  = 12288
   sockets = 1
   cores   = 4
   cpu     = "host"
@@ -193,7 +193,7 @@ resource "proxmox_vm_qemu" "k3s-6" {
   name        = "k3s-6"
   target_node = "debian"
 
-  memory  = 8192
+  memory  = 12288
   sockets = 1
   cores   = 4
   cpu     = "host"
