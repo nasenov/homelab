@@ -29,6 +29,9 @@ spec:
         statefulset:
           volumeClaimTemplates:
             - name: config
+              labels:
+                recurring-job.longhorn.io/source: enabled
+                recurring-job.longhorn.io/backup: enabled
               globalMounts:
                 - path: /config
               accessMode: ReadWriteOnce
