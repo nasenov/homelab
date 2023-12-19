@@ -10,3 +10,5 @@ spec:
   cron: "0 9 * * *"
   retain: 1
   concurrency: 1
+  groups:
+    - default
