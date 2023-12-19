@@ -5,7 +5,8 @@ metadata:
   name: backup
   namespace: longhorn-system
 spec:
-  task: "backup"
+  name: backup
+  task: backup
   cron: "0 9 * * *"
   retain: 1
   concurrency: 1
