@@ -8,6 +8,7 @@
     ":separatePatchReleases",
     "github>n-asenov/bramble//.github/renovate/autoMerge.json5",
     "github>n-asenov/bramble//.github/renovate/commitMessage.json5",
+    "github>n-asenov/homelab//.github/renovate/customManagers.json5",
     "github>n-asenov/bramble//.github/renovate/labels.json5",
     "github>n-asenov/bramble//.github/renovate/semanticCommits.json5"
   ],
