@@ -5,7 +5,8 @@ metadata:
   name: server
   namespace: system-upgrade
 spec:
-  channel: https://update.k3s.io/v1-release/channels/v1.28
+  # renovate: datasource=github-releases depName=k3s-io/k3s
+  version: "v1.28.4+k3s2"
   concurrency: 1
   cordon: true
   nodeSelector:
