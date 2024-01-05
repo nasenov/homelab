@@ -23,7 +23,7 @@ spec:
       retries: 3
   values:
     defaultSettings:
-      backupTarget: nfs://192.168.1.100:/mnt/tank/longhorn
+      backupTarget: nfs://192.168.1.100:/mnt/tank2/longhorn
       createDefaultDiskLabeledNodes: true
       storageReservedPercentageForDefaultDisk: 0
 
