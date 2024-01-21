@@ -3,14 +3,14 @@ terraform {
     organization = "nasenov"
 
     workspaces {
-      name = "proxmox"
+      name = "proxmox-bpg"
     }
   }
 
   required_providers {
     proxmox = {
-      source  = "telmate/proxmox"
-      version = "2.9.14"
+      source = "bpg/proxmox"
+      version = "0.40.0"
     }
   }
 }

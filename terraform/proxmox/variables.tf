@@ -2,7 +2,7 @@ variable "proxmox_api_url" {
   type = string
 }
 
-variable "proxmox_user" {
+variable "proxmox_username" {
   type      = string
   sensitive = true
 }
@@ -22,5 +22,5 @@ variable "ci_password" {
 }
 
 variable "sshkeys" {
-  type = string
+  type = list(string)
 }
