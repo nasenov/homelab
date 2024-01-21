@@ -6,7 +6,7 @@ k3s_become: true
 k3s_etcd_datastore: true
 k3s_registration_address: 192.168.1.120
 k3s_server_manifests_urls:
-  - url: https://raw.githubusercontent.com/kube-vip/kube-vip/main/docs/manifests/rbac.yaml
+  - url: https://raw.githubusercontent.com/kube-vip/website/main/content/manifests/rbac.yaml
     filename: kube-vip-rbac.yaml
 k3s_server_pod_manifests_templates:
   - kube-vip.yaml.j2
