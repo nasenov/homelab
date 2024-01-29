@@ -1,0 +1,33 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: snapshot-controller
+  namespace: storage
+spec:
+  interval: 10m0s
+  chart:
+    spec:
+      chart: snapshot-controller
+      version: 2.0.4
+      sourceRef:
+        kind: HelmRepository
+        name: piraeus
+        namespace: flux-system
+  install:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  values:
+    controller:
+      serviceMonitor:
+        create: true
+    webhook:
+      tls:
+        certManagerIssuerRef:
+          name: snapshot-controller-webhook-ca
+          kind: Issuer
