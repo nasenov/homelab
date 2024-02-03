@@ -1,0 +1,7 @@
+---
+- name: Cluster Nuke
+  hosts: all
+  roles:
+    - role: xanmanning.k3s
+  vars:
+    k3s_state: uninstalled
