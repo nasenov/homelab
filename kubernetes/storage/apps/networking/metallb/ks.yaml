@@ -1,0 +1,29 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: metallb
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  path: ./kubernetes/storage/apps/networking/metallb/app
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  wait: true
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: metallb-config
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  dependsOn:
+    - name: metallb
+  path: ./kubernetes/storage/apps/networking/metallb/config
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
