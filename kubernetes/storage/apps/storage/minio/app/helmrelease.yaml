@@ -41,6 +41,9 @@ spec:
       certificate:
         requestAutoCert: false
 
+      buckets:
+        - name: volsync
+
       liveness: &probes
         httpGet:
           port: 9000
