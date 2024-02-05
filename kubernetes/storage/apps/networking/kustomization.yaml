@@ -5,4 +5,5 @@ resources:
   # Pre Flux-Kustomizations
   - ./namespace.yaml
   # Flux-Kustomizations
+  - ./ingress-nginx/ks.yaml
   - ./metallb/ks.yaml
