@@ -24,3 +24,11 @@ spec:
   values:
     operator:
       replicaCount: 1
+    console:
+      ingress:
+        enabled: true
+        ingressClassName: nginx
+        host: minio-operator.storage.nasenov.dev
+        tls:
+          - hosts:
+              - minio-operator.storage.nasenov.dev

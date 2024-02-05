@@ -46,3 +46,19 @@ spec:
           port: 9000
           path: /minio/health/live
       readiness: *probes
+
+    ingress:
+      api:
+        enabled: true
+        ingressClassName: nginx
+        host: minio.storage.nasenov.dev
+        tls:
+          - hosts:
+              - minio.storage.nasenov.dev
+      console:
+        enabled: true
+        ingressClassName: nginx
+        host: minio-console.storage.nasenov.dev
+        tls:
+          - hosts:
+              - minio-console.storage.nasenov.dev
