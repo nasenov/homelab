@@ -30,5 +30,5 @@ spec:
     ingress:
       enabled: true
       ingressClassName: nginx
-      host: storage.nasenov.dev
+      host: longhorn.nasenov.dev
       tls: true
