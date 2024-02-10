@@ -30,3 +30,7 @@ spec:
     repository: bazarr-volsync
     accessModes: ["ReadWriteOnce"]
     capacity: 1Gi
+    moverSecurityContext:
+      runAsUser: 911
+      runAsGroup: 911
+      fsGroup: 911
