@@ -8,9 +8,14 @@ spec:
   interval: 10m0s
   dependsOn:
     - name: cluster-apps-longhorn
+    - name: cluster-apps-volsync
   path: ./kubernetes/apps/default/radarr/app
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
   wait: true
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age

@@ -32,6 +32,10 @@ spec:
               globalMounts:
                 - path: /config
               accessMode: ReadWriteOnce
+              dataSourceRef:
+                apiGroup: volsync.backube
+                kind: ReplicationDestination
+                name: radarr-dst
               size: 1Gi
               storageClass: longhorn
 
