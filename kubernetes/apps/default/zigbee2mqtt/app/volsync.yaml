@@ -1,0 +1,28 @@
+---
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationSource
+metadata:
+  name: zigbee2mqtt
+  namespace: default
+spec:
+  sourcePVC: config-zigbee2mqtt-0
+  trigger:
+    schedule: "0 * * * *"
+  restic:
+    copyMethod: Snapshot
+    pruneIntervalDays: 7
+    repository: zigbee2mqtt-volsync
+---
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationDestination
+metadata:
+  name: zigbee2mqtt-dst
+  namespace: default
+spec:
+  trigger:
+    manual: restore-once
+  restic:
+    copyMethod: Snapshot
+    repository: zigbee2mqtt-volsync
+    accessModes: ["ReadWriteOnce"]
+    capacity: 1Gi

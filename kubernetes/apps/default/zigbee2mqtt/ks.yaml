@@ -8,6 +8,7 @@ spec:
   interval: 10m0s
   dependsOn:
     - name: cluster-apps-longhorn
+    - name: cluster-apps-volsync
   path: ./kubernetes/apps/default/zigbee2mqtt/app
   prune: true
   sourceRef:

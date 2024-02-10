@@ -32,6 +32,10 @@ spec:
               globalMounts:
                 - path: /app/data
               accessMode: ReadWriteOnce
+              dataSourceRef:
+                apiGroup: volsync.backube
+                kind: ReplicationDestination
+                name: zigbee2mqtt-dst
               size: 1Gi
               storageClass: longhorn
 
