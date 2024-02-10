@@ -25,4 +25,4 @@ spec:
     copyMethod: Snapshot
     repository: jellyfin-volsync
     accessModes: ["ReadWriteOnce"]
-    capacity: 1Gi
+    capacity: 50Gi
