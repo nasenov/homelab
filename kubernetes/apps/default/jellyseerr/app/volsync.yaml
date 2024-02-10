@@ -1,0 +1,28 @@
+---
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationSource
+metadata:
+  name: jellyseerr
+  namespace: default
+spec:
+  sourcePVC: config-jellyseerr-0
+  trigger:
+    schedule: "0 * * * *"
+  restic:
+    copyMethod: Snapshot
+    pruneIntervalDays: 7
+    repository: jellyseerr-volsync
+---
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationDestination
+metadata:
+  name: jellyseerr-dst
+  namespace: default
+spec:
+  trigger:
+    manual: restore-once
+  restic:
+    copyMethod: Snapshot
+    repository: jellyseerr-volsync
+    accessModes: ["ReadWriteOnce"]
+    capacity: 1Gi
