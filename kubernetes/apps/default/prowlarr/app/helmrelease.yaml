@@ -35,7 +35,7 @@ spec:
               dataSourceRef:
                 apiGroup: volsync.backube
                 kind: ReplicationDestination
-                name: prowlarr
+                name: prowlarr-dst
               size: 1Gi
               storageClass: longhorn
 

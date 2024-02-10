@@ -20,7 +20,7 @@ spec:
 apiVersion: volsync.backube/v1alpha1
 kind: ReplicationDestination
 metadata:
-  name: prowlarr
+  name: prowlarr-dst
   namespace: default
 spec:
   trigger:
@@ -28,6 +28,8 @@ spec:
   restic:
     copyMethod: Snapshot
     repository: prowlarr-volsync
+    accessModes: ["ReadWriteOnce"]
+    capacity: 1Gi
     moverSecurityContext:
       runAsUser: 911
       runAsGroup: 911
