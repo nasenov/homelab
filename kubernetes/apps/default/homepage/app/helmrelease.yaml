@@ -103,6 +103,10 @@ spec:
         type: persistentVolumeClaim
         storageClass: longhorn
         accessMode: ReadWriteOnce
+        dataSourceRef:
+          apiGroup: volsync.backube
+          kind: ReplicationDestination
+          name: homepage-dst
         size: 1Gi
         globalMounts:
           - path: /app/config
