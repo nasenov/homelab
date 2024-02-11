@@ -1,11 +1,11 @@
 ---
 - hosts: all
-  become: yes
+  become: true
   roles:
     - role: prereq/packages
 
 - hosts: workers
-  become: yes
+  become: true
   roles:
     - role: prereq/longhorn
 
