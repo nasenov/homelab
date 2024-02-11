@@ -29,13 +29,11 @@ spec:
       
       storage:
         bucketNames:
-          chunks: chunks
-          ruler: ruler
-          admin: admin
+          chunks: loki
         type: s3
         s3:
           s3: null
-          endpoint: http://minio.minio.svc.cluster.local
+          endpoint: http://192.168.1.201
           region: null
           s3ForcePathStyle: true
           insecure: true
