@@ -15,5 +15,5 @@ k3s_server:
     - bind-address=0.0.0.0
   kube-proxy-arg:
     - metrics-bind-address=0.0.0.0
-  # node-taint:
-  #   - node-role.kubernetes.io/control-plane=true:NoSchedule
+  node-taint:
+    - node-role.kubernetes.io/control-plane=true:NoSchedule
