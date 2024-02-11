@@ -43,6 +43,7 @@ spec:
 
       buckets:
         - name: volsync
+        - name: loki
 
       liveness: &probes
         httpGet:
