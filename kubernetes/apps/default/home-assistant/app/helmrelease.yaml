@@ -38,10 +38,10 @@ spec:
               globalMounts:
                 - path: /config
               accessMode: ReadWriteOnce
-              dataSourceRef:
-                apiGroup: volsync.backube
-                kind: ReplicationDestination
-                name: home-assistant-dst
+              # dataSourceRef:
+              #   apiGroup: volsync.backube
+              #   kind: ReplicationDestination
+              #   name: home-assistant-dst
               size: 1Gi
               storageClass: longhorn
 
