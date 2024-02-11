@@ -12,18 +12,3 @@ spec:
     kind: GitRepository
     name: flux-system
   wait: true
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: cluster-apps-longhorn-recurring-jobs
-  namespace: flux-system
-spec:
-  interval: 10m0s
-  dependsOn:
-    - name: cluster-apps-longhorn
-  path: ./kubernetes/apps/longhorn-system/longhorn/recurring-jobs
-  prune: true
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
