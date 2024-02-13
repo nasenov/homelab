@@ -9,6 +9,11 @@
   roles:
     - role: prereq/longhorn
 
+- hosts: all
+  become: true
+  roles:
+    - role: dns
+
 - name: Cluster Installation
   hosts: all
   roles:
