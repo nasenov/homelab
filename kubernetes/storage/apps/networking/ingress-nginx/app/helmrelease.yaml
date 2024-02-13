@@ -21,6 +21,6 @@ spec:
     remediation:
       retries: 3
   values:
-    controller:
-      extraArgs:
-        default-ssl-certificate: networking/nasenov-dev-tls
+    # controller:
+    #   extraArgs:
+    #     default-ssl-certificate: networking/nasenov-dev-tls
