@@ -65,10 +65,7 @@ spec:
       console:
         enabled: true
         ingressClassName: nginx
-        annotations:
-          cert-manager.io/cluster-issuer: "letsencrypt-production"
         host: minio-console.storage.nasenov.dev
         tls:
           - hosts:
               - minio-console.storage.nasenov.dev
-            secretName: s3-console-tls
