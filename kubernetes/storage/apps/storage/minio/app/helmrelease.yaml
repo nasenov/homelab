@@ -59,6 +59,7 @@ spec:
         tls:
           - hosts:
               - minio.storage.nasenov.dev
+            secretName: s3-tls
       console:
         enabled: true
         ingressClassName: nginx
