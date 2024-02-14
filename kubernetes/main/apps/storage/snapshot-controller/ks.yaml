@@ -8,7 +8,6 @@ spec:
   interval: 10m0s
   dependsOn:
     - name: cluster-apps-cert-manager
-    - name: cluster-apps-kube-prometheus-stack
   path: ./kubernetes/main/apps/storage/snapshot-controller/app
   prune: true
   sourceRef:

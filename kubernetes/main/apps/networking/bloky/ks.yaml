@@ -8,7 +8,6 @@ spec:
   interval: 10m0s
   dependsOn:
     - name: cluster-apps-metallb-config
-    - name: cluster-apps-kube-prometheus-stack
   path: ./kubernetes/main/apps/networking/bloky/app
   prune: true
   sourceRef:

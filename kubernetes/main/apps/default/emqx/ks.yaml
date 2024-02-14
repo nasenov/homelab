@@ -8,7 +8,6 @@ spec:
   interval: 10m0s
   dependsOn:
     - name: cluster-apps-longhorn
-    - name: cluster-apps-kube-prometheus-stack
   path: ./kubernetes/main/apps/default/emqx/app
   prune: true
   sourceRef:
