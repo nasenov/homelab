@@ -58,10 +58,10 @@ spec:
         annotations:
           cert-manager.io/cluster-issuer: "letsencrypt-production"
           nginx.ingress.kubernetes.io/proxy-body-size: 8m
-        host: minio.storage.nasenov.dev
+        host: s3.nasenov.dev
         tls:
           - hosts:
-              - minio.storage.nasenov.dev
+              - s3.nasenov.dev
             secretName: s3-tls
       console:
         enabled: true
