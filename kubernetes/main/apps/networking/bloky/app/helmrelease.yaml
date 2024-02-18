@@ -101,7 +101,7 @@ spec:
                 proxmox.nasenov.dev: 192.168.1.208
                 s3.nasenov.dev: 192.168.1.200
                 minio-console.nasenov.dev: 192.168.1.200
-                storage.nasenov.dev: 192.168.1.200
+                minio-operator.nasenov.dev: 192.168.1.200
                 nasenov.dev: 192.168.1.150
             blocking:
               blackLists:

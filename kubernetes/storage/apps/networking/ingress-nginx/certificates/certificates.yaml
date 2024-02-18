@@ -9,7 +9,7 @@ spec:
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
-  commonName: storage.nasenov.dev
+  commonName: nasenov.dev
   dnsNames:
-    - storage.nasenov.dev
-    - "*.storage.nasenov.dev"
+    - nasenov.dev
+    - "*.nasenov.dev"
