@@ -7,7 +7,6 @@ metadata:
 spec:
   interval: 10m0s
   dependsOn:
-    - name: cluster-apps-longhorn
     - name: cluster-apps-volsync
   path: ./kubernetes/main/apps/default/sonarr/app
   prune: true
