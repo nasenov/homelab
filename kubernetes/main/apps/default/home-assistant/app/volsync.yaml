@@ -16,6 +16,10 @@ spec:
       runAsUser: 1000
       runAsGroup: 1000
       fsGroup: 1000
+    retain:
+      hourly: 24
+      daily: 7
+      weekly: 5
 ---
 apiVersion: volsync.backube/v1alpha1
 kind: ReplicationDestination
