@@ -8,12 +8,9 @@ spec:
   interval: 10m0s
   dependsOn:
     - name: cluster-apps-volsync
+    - name: external-secrets-stores
   path: ./kubernetes/main/apps/default/jellyseerr/app
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
-  decryption:
-    provider: sops
-    secretRef:
-      name: sops-age
