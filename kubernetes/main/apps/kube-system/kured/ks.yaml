@@ -6,13 +6,11 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m0s
+  dependsOn:
+    - name: external-secrets-stores
   path: ./kubernetes/main/apps/kube-system/kured/app
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
   wait: true
-  decryption:
-    provider: sops
-    secretRef:
-      name: sops-age
