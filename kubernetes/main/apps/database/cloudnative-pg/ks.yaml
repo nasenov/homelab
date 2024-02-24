@@ -2,7 +2,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: cluster-apps-cloudnative-pg
+  name: cloudnative-pg
   namespace: flux-system
 spec:
   targetNamespace: database
@@ -17,13 +17,13 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: cluster-apps-cloudnative-pg-cluster
+  name: cloudnative-pg-cluster
   namespace: flux-system
 spec:
   targetNamespace: database
   interval: 10m0s
   dependsOn:
-    - name: cluster-apps-cloudnative-pg
+    - name: cloudnative-pg
   path: ./kubernetes/main/apps/database/cloudnative-pg/cluster
   prune: true
   sourceRef:
