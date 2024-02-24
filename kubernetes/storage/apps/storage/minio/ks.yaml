@@ -8,12 +8,9 @@ spec:
   interval: 10m0s
   dependsOn:
     - name: minio-operator
+    - name: external-secrets-stores
   path: ./kubernetes/storage/apps/storage/minio/app
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
-  decryption:
-    provider: sops
-    secretRef:
-      name: sops-age
