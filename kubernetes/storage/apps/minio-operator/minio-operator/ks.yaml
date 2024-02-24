@@ -5,6 +5,7 @@ metadata:
   name: minio-operator
   namespace: flux-system
 spec:
+  targetNamespace: minio-operator
   interval: 10m0s
   path: ./kubernetes/storage/apps/minio-operator/minio-operator/app
   prune: true

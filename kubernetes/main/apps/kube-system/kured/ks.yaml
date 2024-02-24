@@ -5,6 +5,7 @@ metadata:
   name: cluster-apps-kured
   namespace: flux-system
 spec:
+  targetNamespace: kube-system
   interval: 10m0s
   dependsOn:
     - name: external-secrets-stores

@@ -3,7 +3,6 @@ apiVersion: volsync.backube/v1alpha1
 kind: ReplicationSource
 metadata:
   name: jellyseerr
-  namespace: default
 spec:
   sourcePVC: config-jellyseerr-0
   trigger:
@@ -21,7 +20,6 @@ apiVersion: volsync.backube/v1alpha1
 kind: ReplicationDestination
 metadata:
   name: jellyseerr-dst
-  namespace: default
 spec:
   trigger:
     manual: restore-once

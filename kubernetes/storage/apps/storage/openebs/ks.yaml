@@ -5,6 +5,7 @@ metadata:
   name: openebs
   namespace: flux-system
 spec:
+  targetNamespace: storage
   interval: 10m0s
   path: ./kubernetes/storage/apps/storage/openebs/app
   prune: true

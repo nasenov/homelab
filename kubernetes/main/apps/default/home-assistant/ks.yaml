@@ -5,6 +5,7 @@ metadata:
   name: cluster-apps-home-assistant
   namespace: flux-system
 spec:
+  targetNamespace: default
   interval: 10m0s
   dependsOn:
     - name: cluster-apps-volsync

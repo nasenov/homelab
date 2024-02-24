@@ -5,6 +5,7 @@ metadata:
   name: cluster-apps-flux-addons
   namespace: flux-system
 spec:
+  targetNamespace: flux-system
   interval: 10m0s
   dependsOn:
     - name: external-secrets-stores

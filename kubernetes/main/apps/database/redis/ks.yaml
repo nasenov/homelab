@@ -5,6 +5,7 @@ metadata:
   name: cluster-apps-redis
   namespace: flux-system
 spec:
+  targetNamespace: database
   interval: 10m0s
   path: ./kubernetes/main/apps/database/redis/app
   prune: true

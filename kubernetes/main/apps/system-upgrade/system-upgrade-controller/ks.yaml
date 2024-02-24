@@ -5,6 +5,7 @@ metadata:
   name: cluster-apps-system-upgrade-controller
   namespace: flux-system
 spec:
+  targetNamespace: system-upgrade
   interval: 10m0s
   path: ./kubernetes/main/apps/system-upgrade/system-upgrade-controller/app
   prune: true
@@ -19,6 +20,7 @@ metadata:
   name: cluster-apps-system-upgrade-controller-plans
   namespace: flux-system
 spec:
+  targetNamespace: system-upgrade
   interval: 10m0s
   dependsOn:
     - name: cluster-apps-system-upgrade-controller

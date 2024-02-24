@@ -5,6 +5,7 @@ metadata:
   name: cluster-apps-cloudnative-pg
   namespace: flux-system
 spec:
+  targetNamespace: database
   interval: 10m0s
   path: ./kubernetes/main/apps/database/cloudnative-pg/app
   prune: true
@@ -19,6 +20,7 @@ metadata:
   name: cluster-apps-cloudnative-pg-cluster
   namespace: flux-system
 spec:
+  targetNamespace: database
   interval: 10m0s
   dependsOn:
     - name: cluster-apps-cloudnative-pg

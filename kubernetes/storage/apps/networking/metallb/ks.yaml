@@ -5,6 +5,7 @@ metadata:
   name: metallb
   namespace: flux-system
 spec:
+  targetNamespace: networking
   interval: 10m0s
   path: ./kubernetes/storage/apps/networking/metallb/app
   prune: true
@@ -19,6 +20,7 @@ metadata:
   name: metallb-config
   namespace: flux-system
 spec:
+  targetNamespace: networking
   interval: 10m0s
   dependsOn:
     - name: metallb

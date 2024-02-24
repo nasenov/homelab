@@ -3,7 +3,6 @@ apiVersion: volsync.backube/v1alpha1
 kind: ReplicationSource
 metadata:
   name: homepage
-  namespace: default
 spec:
   sourcePVC: homepage-config
   trigger:
@@ -25,7 +24,6 @@ apiVersion: volsync.backube/v1alpha1
 kind: ReplicationDestination
 metadata:
   name: homepage-dst
-  namespace: default
 spec:
   trigger:
     manual: restore-once

@@ -5,6 +5,7 @@ metadata:
   name: cluster-apps-prometheus-node-exporter
   namespace: flux-system
 spec:
+  targetNamespace: monitoring
   interval: 10m0s
   path: ./kubernetes/main/apps/monitoring/prometheus-node-exporter/app
   prune: true

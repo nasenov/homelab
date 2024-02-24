@@ -3,7 +3,6 @@ apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
   name: snapshot-controller-webhook-selfsign
-  namespace: storage
 spec:
   selfSigned: {}
 ---
@@ -11,7 +10,6 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: snapshot-controller-webhook-ca
-  namespace: storage
 spec:
   secretName: snapshot-controller-webhook-ca
   duration: 43800h # 5y
@@ -25,7 +23,6 @@ apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
   name: snapshot-controller-webhook-ca
-  namespace: storage
 spec:
   ca:
     secretName: snapshot-controller-webhook-ca

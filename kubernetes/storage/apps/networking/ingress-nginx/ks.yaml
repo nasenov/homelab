@@ -5,6 +5,7 @@ metadata:
   name: ingress-nginx-certificates
   namespace: flux-system
 spec:
+  targetNamespace: networking
   interval: 10m0s
   dependsOn:
     - name: cert-manager-issuers
@@ -21,6 +22,7 @@ metadata:
   name: ingress-nginx
   namespace: flux-system
 spec:
+  targetNamespace: networking
   interval: 10m0s
   dependsOn:
     - name: ingress-nginx-certificates

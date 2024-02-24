@@ -5,6 +5,7 @@ metadata:
   name: cluster-apps-emqx
   namespace: flux-system
 spec:
+  targetNamespace: default
   interval: 10m0s
   path: ./kubernetes/main/apps/default/emqx/app
   prune: true

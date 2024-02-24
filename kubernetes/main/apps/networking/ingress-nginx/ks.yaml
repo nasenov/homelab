@@ -5,6 +5,7 @@ metadata:
   name: cluster-apps-ingress-nginx-certificates
   namespace: flux-system
 spec:
+  targetNamespace: networking
   interval: 10m0s
   dependsOn:
     - name: cluster-apps-cert-manager-issuers
@@ -21,6 +22,7 @@ metadata:
   name: cluster-apps-ingress-nginx
   namespace: flux-system
 spec:
+  targetNamespace: networking
   interval: 10m0s
   dependsOn:
     - name: cluster-apps-ingress-nginx-certificates

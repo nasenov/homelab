@@ -5,6 +5,7 @@ metadata:
   name: cluster-apps-volsync
   namespace: flux-system
 spec:
+  targetNamespace: storage
   interval: 10m0s
   dependsOn:
     - name: cluster-apps-snapshot-controller

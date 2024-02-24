@@ -5,6 +5,7 @@ metadata:
   name: external-secrets
   namespace: flux-system
 spec:
+  targetNamespace: external-secrets
   interval: 10m0s
   path: ./kubernetes/main/apps/external-secrets/external-secrets/app
   prune: true
@@ -19,6 +20,7 @@ metadata:
   name: external-secrets-stores
   namespace: flux-system
 spec:
+  targetNamespace: external-secrets
   interval: 10m0s
   dependsOn:
     - name: external-secrets

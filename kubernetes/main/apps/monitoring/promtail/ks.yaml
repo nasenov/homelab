@@ -5,6 +5,7 @@ metadata:
   name: cluster-apps-promtail
   namespace: flux-system
 spec:
+  targetNamespace: monitoring
   interval: 10m0s
   path: ./kubernetes/main/apps/monitoring/promtail/app
   prune: true

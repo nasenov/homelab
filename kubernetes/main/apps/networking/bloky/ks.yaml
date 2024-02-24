@@ -5,6 +5,7 @@ metadata:
   name: cluster-apps-bloky
   namespace: flux-system
 spec:
+  targetNamespace: networking
   interval: 10m0s
   path: ./kubernetes/main/apps/networking/bloky/app
   prune: true

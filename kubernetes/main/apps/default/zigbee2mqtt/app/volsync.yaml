@@ -3,7 +3,6 @@ apiVersion: volsync.backube/v1alpha1
 kind: ReplicationSource
 metadata:
   name: zigbee2mqtt
-  namespace: default
 spec:
   sourcePVC: config-zigbee2mqtt-0
   trigger:
@@ -21,7 +20,6 @@ apiVersion: volsync.backube/v1alpha1
 kind: ReplicationDestination
 metadata:
   name: zigbee2mqtt-dst
-  namespace: default
 spec:
   trigger:
     manual: restore-once

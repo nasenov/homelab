@@ -5,6 +5,7 @@ metadata:
   name: cluster-apps-cert-manager
   namespace: flux-system
 spec:
+  targetNamespace: cert-manager
   interval: 10m0s
   path: ./kubernetes/main/apps/cert-manager/cert-manager/app
   prune: true
@@ -19,6 +20,7 @@ metadata:
   name: cluster-apps-cert-manager-issuers
   namespace: flux-system
 spec:
+  targetNamespace: cert-manager
   interval: 10m0s
   dependsOn:
     - name: cluster-apps-cert-manager

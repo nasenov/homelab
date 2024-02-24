@@ -5,6 +5,7 @@ metadata:
   name: cluster-apps-intel-device-plugin
   namespace: flux-system
 spec:
+  targetNamespace: kube-system
   interval: 10m0s
   dependsOn:
     - name: cluster-apps-node-feature-discovery
