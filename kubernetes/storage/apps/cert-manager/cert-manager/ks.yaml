@@ -22,13 +22,11 @@ spec:
   interval: 10m0s
   dependsOn:
     - name: cert-manager
+    - name: external-secrets-stores
   path: ./kubernetes/storage/apps/cert-manager/cert-manager/issuers
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
   wait: true
-  decryption:
-    provider: sops
-    secretRef:
-      name: sops-age
+
