@@ -5,6 +5,7 @@ metadata:
   name: cluster-apps-actions-runner-controller
   namespace: flux-system
 spec:
+  targetNamespace: actions-runner-system
   interval: 10m0s
   dependsOn:
     - name: external-secrets-stores
@@ -21,6 +22,7 @@ metadata:
   name: cluster-apps-actions-runner-controller-runners
   namespace: flux-system
 spec:
+  targetNamespace: actions-runner-system
   interval: 10m0s
   dependsOn:
     - name: cluster-apps-actions-runner-controller
