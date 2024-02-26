@@ -1,5 +1,2 @@
 ---
 k3s_control_node: false
-k3s_agent:
-  node-label:
-    - node.longhorn.io/create-default-disk=true
