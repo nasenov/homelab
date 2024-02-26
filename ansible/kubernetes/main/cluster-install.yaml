@@ -4,11 +4,6 @@
   roles:
     - role: prereq/packages
 
-- hosts: workers
-  become: true
-  roles:
-    - role: prereq/longhorn
-
 - hosts: all
   become: true
   roles:

@@ -6,12 +6,6 @@
     state: present
   register: linux_generic_package
 
-# Longhorn RWX support requirement
-- name: Install nfs-common package
-  ansible.builtin.apt:
-    name: nfs-common
-    state: present
-
 - name: Reboot hosts if linux-generic package was installed
   ansible.builtin.reboot:
   when: linux_generic_package.changed == true
