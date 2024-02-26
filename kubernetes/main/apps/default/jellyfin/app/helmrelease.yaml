@@ -36,7 +36,7 @@ spec:
                 kind: ReplicationDestination
                 name: jellyfin-dst
               size: 50Gi
-              storageClass: longhorn
+              storageClass: ceph-block
 
         containers:
           main:

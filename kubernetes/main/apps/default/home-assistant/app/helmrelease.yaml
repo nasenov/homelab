@@ -42,7 +42,7 @@ spec:
                 kind: ReplicationDestination
                 name: home-assistant-dst
               size: 1Gi
-              storageClass: longhorn
+              storageClass: ceph-block
 
         containers:
           main:

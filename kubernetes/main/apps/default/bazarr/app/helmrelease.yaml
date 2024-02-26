@@ -36,7 +36,7 @@ spec:
                 kind: ReplicationDestination
                 name: bazarr-dst
               size: 1Gi
-              storageClass: longhorn
+              storageClass: ceph-block
 
         containers:
           main:

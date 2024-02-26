@@ -36,7 +36,7 @@ spec:
                 kind: ReplicationDestination
                 name: qbittorrent-dst
               size: 1Gi
-              storageClass: longhorn
+              storageClass: ceph-block
 
         containers:
           main:
