@@ -202,7 +202,6 @@ resource "proxmox_virtual_environment_vm" "k3s_3" {
 
 }
 
-
 resource "proxmox_virtual_environment_vm" "k3s_4" {
   name      = "k3s-4"
   node_name = "debian"
@@ -233,15 +232,15 @@ resource "proxmox_virtual_environment_vm" "k3s_4" {
     size         = 64
   }
 
-  disk {
-    datastore_id = "longhorn-1"
-    interface    = "scsi1"
-    file_format = "raw"
-    size         = 953
+  hostpci {
+    device = "hostpci0"
+    id     = "0000:02:00"
+    pcie   = true
+    rombar = true
   }
 
   hostpci {
-    device = "hostpci0"
+    device = "hostpci1"
     id     = "0000:00:02"
     pcie   = true
     rombar = false
@@ -310,11 +309,11 @@ resource "proxmox_virtual_environment_vm" "k3s_5" {
     size         = 64
   }
 
-  disk {
-    datastore_id = "longhorn-2"
-    interface    = "scsi1"
-    file_format = "raw"
-    size         = 953
+  hostpci {
+    device = "hostpci0"
+    id     = "0000:04:00"
+    pcie   = true
+    rombar = true
   }
 
   operating_system {
@@ -376,11 +375,11 @@ resource "proxmox_virtual_environment_vm" "k3s_6" {
     size         = 64
   }
 
-  disk {
-    datastore_id = "longhorn-3"
-    interface    = "scsi1"
-    file_format = "raw"
-    size         = 953
+  hostpci {
+    device = "hostpci0"
+    id     = "0000:09:00"
+    pcie   = true
+    rombar = true
   }
 
   operating_system {
