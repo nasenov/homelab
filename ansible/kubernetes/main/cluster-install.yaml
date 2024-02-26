@@ -2,7 +2,7 @@
 - hosts: all
   become: true
   roles:
-    - role: prereq/packages
+    - role: packages
 
 - hosts: all
   become: true
