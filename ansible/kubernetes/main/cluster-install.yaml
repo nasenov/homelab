@@ -9,6 +9,11 @@
   roles:
     - role: dns
 
+- hosts: all
+  become: true
+  roles:
+    - role: rook-ceph
+
 - name: Cluster Installation
   hosts: all
   roles:

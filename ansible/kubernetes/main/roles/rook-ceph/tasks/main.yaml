@@ -1,0 +1,14 @@
+---
+- name: Copy modprobe script
+  ansible.builtin.copy:
+    src: modprobe.sh
+    dest: /root/modprobe.sh
+    owner: root
+    group: root
+    mode: '0700'
+
+- name: Add cron for modprobe script
+  ansible.builtin.cron:
+    name: modprobe
+    special_time: reboot
+    job: /root/modprobe.sh
