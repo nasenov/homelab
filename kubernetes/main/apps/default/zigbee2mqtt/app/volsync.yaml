@@ -28,3 +28,4 @@ spec:
     repository: zigbee2mqtt-volsync
     accessModes: ["ReadWriteOnce"]
     capacity: 1Gi
+    restoreAsOf: "2024-02-25T20:00:00-00:00"
