@@ -50,6 +50,9 @@ spec:
           path: /minio/health/live
       readiness: *probes
 
+      exposeServices: 
+        minio: true
+
     ingress:
       api:
         enabled: true
