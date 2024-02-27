@@ -28,4 +28,3 @@ spec:
     repository: jellyfin-volsync
     accessModes: ["ReadWriteOnce"]
     capacity: 50Gi
-    restoreAsOf: "2024-02-25T20:00:00-00:00"
