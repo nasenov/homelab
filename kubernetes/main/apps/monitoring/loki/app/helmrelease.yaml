@@ -32,7 +32,7 @@ spec:
         type: s3
         s3:
           s3: null
-          endpoint: https://s3.nasenov.dev
+          endpoint: http://192.168.1.201
           region: null
           s3ForcePathStyle: true
           insecure: true
