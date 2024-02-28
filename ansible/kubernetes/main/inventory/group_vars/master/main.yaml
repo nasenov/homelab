@@ -8,6 +8,7 @@ k3s_server:
     - local-storage
     - servicelb
     - traefik
+    - metrics-server
   write-kubeconfig-mode: "0644"
   kube-controller-manager-arg:
     - bind-address=0.0.0.0
