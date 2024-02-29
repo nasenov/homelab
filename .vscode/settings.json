@@ -1,5 +1,0 @@
-{
-    "yaml.schemas": {
-        "https://kubernetes-schemas.pages.dev/cert-manager.io/certificate_v1.json": "file:///home/nasenov/Development/homelab/kubernetes/main/apps/networking/metallb/config/config.yaml"
-    }
-}
