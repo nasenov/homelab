@@ -19,3 +19,5 @@ k3s_server_manifests_urls:
     filename: custom-prometheus-servicemonitors.yaml
 k3s_server_pod_manifests_templates:
   - kube-vip.yaml.j2
+k3s_server_manifests_templates:
+  - custom-coredns-helmchart.yaml.j2

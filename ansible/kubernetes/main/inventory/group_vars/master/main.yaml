@@ -5,6 +5,7 @@ k3s_server:
     - "{{ k3s_registration_address }}"
   disable-cloud-controller: true
   disable:
+    - coredns
     - local-storage
     - servicelb
     - traefik
