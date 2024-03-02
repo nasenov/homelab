@@ -1,14 +1,14 @@
 ---
-- name: Copy modprobe script
+- name: System Configuration | Create Kernel modules
   ansible.builtin.copy:
-    src: modprobe.sh
-    dest: /root/modprobe.sh
-    owner: root
-    group: root
-    mode: '0700'
+    dest: "/etc/modules-load.d/{{ item }}.conf"
+    mode: "0644"
+    content: "{{ item }}"
+  loop: ["rbd", "nbd"]
+  register: modules_status
 
-- name: Add cron for modprobe script
-  ansible.builtin.cron:
-    name: modprobe
-    special_time: reboot
-    job: /root/modprobe.sh
+- name: System Configuration | Reload Kernel modules
+  when: modules_status.changed
+  ansible.builtin.systemd:
+    name: systemd-modules-load
+    state: restarted
