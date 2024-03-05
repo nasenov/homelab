@@ -23,10 +23,10 @@ spec:
   values:
     analytics:
       enabled: false
-    crd:
-      enableInstall: false
     localprovisioner:
       deviceClass:
         enabled: false
     ndm:
+      enabled: false
+    ndmOperator:
       enabled: false
