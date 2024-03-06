@@ -28,10 +28,7 @@ spec:
       ingress:
         enabled: true
         ingressClassName: nginx
-        annotations:
-          cert-manager.io/cluster-issuer: "letsencrypt-production"
         host: minio-operator.nasenov.dev
         tls:
           - hosts:
               - minio-operator.nasenov.dev
-            secretName: minio-operator-tls
