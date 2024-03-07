@@ -4,12 +4,14 @@ k3s_server:
   tls-san:
     - "{{ k3s_registration_address }}"
   disable-cloud-controller: true
+  disable-network-policy: true
   disable:
     - coredns
     - local-storage
     - servicelb
     - traefik
     - metrics-server
+  flannel-backend: "none"
   write-kubeconfig-mode: "0644"
   kube-controller-manager-arg:
     - bind-address=0.0.0.0
