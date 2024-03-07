@@ -10,6 +10,7 @@ spec:
   interval: 10m0s
   dependsOn:
     - name: volsync
+    - name: rook-ceph-cluster
     - name: external-secrets-stores
   path: ./kubernetes/main/apps/default/radarr/app
   prune: true
