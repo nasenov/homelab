@@ -8,6 +8,8 @@ metadata:
 spec:
   targetNamespace: default
   interval: 10m0s
+  dependsOn:
+    - name: rook-ceph-cluster
   path: ./kubernetes/main/apps/default/emqx/app
   prune: true
   sourceRef:
