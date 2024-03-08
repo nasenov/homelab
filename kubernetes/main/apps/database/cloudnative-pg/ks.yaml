@@ -26,6 +26,7 @@ spec:
   interval: 10m0s
   dependsOn:
     - name: cloudnative-pg
+    - name: rook-ceph-cluster
   path: ./kubernetes/main/apps/database/cloudnative-pg/cluster
   prune: true
   sourceRef:
