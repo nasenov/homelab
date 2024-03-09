@@ -1,0 +1,23 @@
+---
+- name: Reset Ceph Drives
+  hosts: workers
+  become: true
+  gather_facts: true
+  any_errors_fatal: true
+  tasks:
+    - name: Reset Ceph Drives # noqa: ignore-errors
+      ignore_errors: true
+      when: ceph_drives | default([]) | length > 0
+      block:
+        - name: Wipe (sgdisk) # noqa: no-changed-when
+          ansible.builtin.command: "sgdisk --zap-all {{ item }}"
+          loop: "{{ ceph_drives }}"
+        - name: Wipe (dd) # noqa: no-changed-when
+          ansible.builtin.command: "dd if=/dev/zero of={{ item }} bs=1M count=100 oflag=direct,dsync"
+          loop: "{{ ceph_drives }}"
+        - name: Wipe (blkdiscard) # noqa: no-changed-when
+          ansible.builtin.command: "blkdiscard {{ item }}"
+          loop: "{{ ceph_drives }}"
+        - name: Wipe (partprobe) # noqa: no-changed-when
+          ansible.builtin.command: "partprobe {{ item }}"
+          loop: "{{ ceph_drives }}"

@@ -15,7 +15,13 @@ kubernetes:
       hosts:
         k3s-4:
           ansible_host: 192.168.1.124
+          ceph_drives:
+            - /dev/disk/by-id/nvme-KINGSTON_SKC3000S1024G_50026B76864169DE
         k3s-5:
           ansible_host: 192.168.1.125
+          ceph_drives:
+            - /dev/disk/by-id/nvme-KINGSTON_SKC3000S1024G_50026B7686571684
         k3s-6:
           ansible_host: 192.168.1.126
+          ceph_drives:
+            - /dev/disk/by-id/nvme-KINGSTON_SKC3000S1024G_50026B76865C81A7
