@@ -13,7 +13,7 @@ spec:
         kind: HelmRepository
         name: actions-runner-controller
         namespace: flux-system
-      version: 0.8.3
+      version: 0.9.0
   install:
     remediation:
       retries: 3
