@@ -89,7 +89,6 @@ spec:
 
     ingress:
       app:
-        primary: true
         className: nginx
         hosts:
           - host: hass.nasenov.dev
@@ -103,7 +102,6 @@ spec:
           - hosts:
               - hass.nasenov.dev
       codeserver:
-        primary: false
         className: nginx
         hosts:
           - host: hass-code.nasenov.dev

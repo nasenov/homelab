@@ -72,7 +72,6 @@ spec:
 
     ingress:
       app:
-        primary: true
         className: nginx
         hosts:
           - host: homepage.nasenov.dev
@@ -85,7 +84,6 @@ spec:
           - hosts:
               - homepage.nasenov.dev
       codeserver:
-        primary: false
         className: nginx
         hosts:
           - host: homepage-code.nasenov.dev
