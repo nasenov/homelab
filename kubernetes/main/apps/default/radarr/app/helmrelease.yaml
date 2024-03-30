@@ -23,7 +23,7 @@ spec:
       retries: 3
   values:
     controllers:
-      main:
+      radarr:
         type: statefulset
 
         statefulset:
@@ -40,7 +40,7 @@ spec:
               storageClass: ceph-block
 
         containers:
-          main:
+          app:
             image:
               repository: linuxserver/radarr
               tag: 5.3.6
@@ -48,15 +48,15 @@ spec:
               TZ: Europe/Sofia
 
     service:
-      main:
+      app:
+        controller: radarr
         ports:
           http:
             port: 80
             targetPort: 7878
 
     ingress:
-      main:
-        enabled: true
+      app:
         className: nginx
         hosts:
           - host: radarr.nasenov.dev
@@ -64,7 +64,7 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  name: main
+                  identifier: app
         tls:
           - hosts:
               - radarr.nasenov.dev

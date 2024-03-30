@@ -22,7 +22,7 @@ spec:
       retries: 3
   values:
     controllers:
-      main:
+      lldap:
         type: statefulset
 
         statefulset:
@@ -39,7 +39,7 @@ spec:
               storageClass: ceph-block
 
         containers:
-          main:
+          app:
             image:
               repository: ghcr.io/lldap/lldap
               tag: v0.5.0
@@ -54,7 +54,8 @@ spec:
                   name: lldap-secret
 
     service:
-      main:
+      app:
+        controller: lldap
         ports:
           http:
             port: *port
@@ -62,15 +63,14 @@ spec:
             port: *ldapPort
 
     ingress:
-      main:
-        enabled: true
+      app:
         className: nginx
         hosts:
           - host: lldap.nasenov.dev
             paths:
               - path: /
                 service:
-                  name: main
+                  identifier: app
                   port: http
         tls:
           - hosts:

@@ -22,6 +22,7 @@ spec:
       retries: 3
   values:
     defaultPodOptions:
+      enableServiceLinks: true
       securityContext:
         runAsUser: 1000
         runAsGroup: 1000
@@ -29,7 +30,7 @@ spec:
         fsGroupChangePolicy: "OnRootMismatch"
 
     controllers:
-      main:
+      home-assistant:
         type: statefulset
 
         statefulset:
@@ -46,7 +47,7 @@ spec:
               storageClass: ceph-block
 
         containers:
-          main:
+          app:
             image:
               repository: homeassistant/home-assistant
               tag: 2024.3.3
@@ -70,13 +71,15 @@ spec:
               - "/config"
 
     service:
-      main:
+      app:
+        controller: home-assistant
+        primary: true
         ports:
           http:
             port: 80
             targetPort: 8123
       codeserver:
-        controller: main
+        controller: home-assistant
         primary: false
         type: ClusterIP
         ports:
@@ -85,8 +88,8 @@ spec:
             targetPort: 8080
 
     ingress:
-      main:
-        enabled: true
+      app:
+        primary: true
         className: nginx
         hosts:
           - host: hass.nasenov.dev
@@ -94,13 +97,12 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  name: main
+                  identifier: app
                   port: http
         tls:
           - hosts:
               - hass.nasenov.dev
       codeserver:
-        enabled: true
         primary: false
         className: nginx
         hosts:
@@ -109,7 +111,7 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  name: codeserver
+                  identifier: codeserver
                   port: http
         tls:
           - hosts:
