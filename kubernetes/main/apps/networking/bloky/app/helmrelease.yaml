@@ -56,8 +56,6 @@ spec:
         loadBalancerIP: 192.168.1.155
         externalTrafficPolicy: Local
         ports:
-          http:
-            enabled: false
           dns-tcp:
             enabled: true
             port: 53
@@ -73,8 +71,6 @@ spec:
         loadBalancerIP: 192.168.1.155
         externalTrafficPolicy: Local
         ports:
-          http:
-            enabled: false
           dns-udp:
             enabled: true
             port: 53
@@ -83,7 +79,13 @@ spec:
 
     serviceMonitor:
       app:
-        enabled: true
+        serviceName: blocky
+        endpoints:
+          - port: http
+            scheme: http
+            path: /metrics
+            interval: 1m
+            scrapeTimeout: 10s
 
     configMaps:
       config:
