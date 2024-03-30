@@ -13,7 +13,7 @@ spec:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-      version: 2.6.0
+      version: 3.0.4
   install:
     remediation:
       retries: 3
@@ -22,12 +22,12 @@ spec:
       retries: 3
   values:
     controllers:
-      main:
+      blocky:
         replicas: 2
         strategy: RollingUpdate
 
         containers:
-          main:
+          app:
             image:
               repository: ghcr.io/0xerr0r/blocky
               tag: v0.23
@@ -39,14 +39,16 @@ spec:
         configmap.reloader.stakater.com/reload: "blocky-config"
 
     service:
-      main:
+      app:
         enabled: true
+        controller: blocky
+        primary: true
         ports:
           http:
             port: 4000
       dns-tcp:
         enabled: true
-        controller: main
+        controller: blocky
         primary: false
         annotations:
           metallb.universe.tf/allow-shared-ip: blocky
@@ -63,7 +65,7 @@ spec:
             targetPort: 53
       dns-udp:
         enabled: true
-        controller: main
+        controller: blocky
         primary: false
         annotations:
           metallb.universe.tf/allow-shared-ip: blocky
@@ -80,7 +82,7 @@ spec:
             targetPort: 53
 
     serviceMonitor:
-      main:
+      app:
         enabled: true
 
     configMaps:

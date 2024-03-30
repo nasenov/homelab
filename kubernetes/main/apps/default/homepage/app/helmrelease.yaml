@@ -13,7 +13,7 @@ spec:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-      version: 2.6.0
+      version: 3.0.4
   install:
     remediation:
       retries: 3
@@ -22,6 +22,7 @@ spec:
       retries: 3
   values:
     defaultPodOptions:
+      enableServiceLinks: true
       securityContext:
         runAsUser: 568
         runAsGroup: 568
@@ -29,9 +30,9 @@ spec:
         fsGroupChangePolicy: "OnRootMismatch"
 
     controllers:
-      main:
+      homepage:
         containers:
-          main:
+          app:
             image:
               repository: ghcr.io/gethomepage/homepage
               tag: v0.8.10
@@ -53,13 +54,15 @@ spec:
               - "/app/config"
 
     service:
-      main:
+      app:
+        controller: homepage
+        primary: true
         ports:
           http:
             port: 80
             targetPort: 3000
       codeserver:
-        controller: main
+        controller: homepage
         primary: false
         type: ClusterIP
         ports:
@@ -68,8 +71,8 @@ spec:
             targetPort: 8080
 
     ingress:
-      main:
-        enabled: true
+      app:
+        primary: true
         className: nginx
         hosts:
           - host: homepage.nasenov.dev
@@ -77,12 +80,11 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  name: main
+                  identifier: app
         tls:
           - hosts:
               - homepage.nasenov.dev
       codeserver:
-        enabled: true
         primary: false
         className: nginx
         hosts:
@@ -91,7 +93,7 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  name: codeserver
+                  identifier: codeserver
                   port: http
         tls:
           - hosts:

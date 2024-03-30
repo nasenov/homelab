@@ -14,7 +14,7 @@ spec:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-      version: 2.6.0
+      version: 3.0.4
   install:
     remediation:
       retries: 3
@@ -23,7 +23,7 @@ spec:
       retries: 3
   values:
     controllers:
-      main:
+      jellyfin:
         type: statefulset
 
         statefulset:
@@ -40,7 +40,7 @@ spec:
               storageClass: ceph-block
 
         containers:
-          main:
+          app:
             image:
               repository: jellyfin/jellyfin
               tag: 10.8.13
@@ -57,15 +57,15 @@ spec:
         intel.feature.node.kubernetes.io/gpu: "true"
 
     service:
-      main:
+      app:
+        controller: jellyfin
         ports:
           http:
             port: 80
             targetPort: 8096
 
     ingress:
-      main:
-        enabled: true
+      app:
         className: nginx
         hosts:
           - host: media.nasenov.dev
@@ -73,7 +73,7 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  name: main
+                  identifier: app
         tls:
           - hosts:
               - media.nasenov.dev
