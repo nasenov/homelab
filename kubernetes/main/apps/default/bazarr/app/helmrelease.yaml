@@ -23,7 +23,7 @@ spec:
       retries: 3
   values:
     controllers:
-      main:
+      bazarr:
         type: statefulset
 
         statefulset:
@@ -40,7 +40,7 @@ spec:
               storageClass: ceph-block
 
         containers:
-          main:
+          app:
             image:
               repository: linuxserver/bazarr
               tag: 1.4.2
@@ -48,15 +48,15 @@ spec:
               TZ: Europe/Sofia
 
     service:
-      main:
+      app:
+        controller: bazarr
         ports:
           http:
             port: 80
             targetPort: 6767
 
     ingress:
-      main:
-        enabled: true
+      app:
         className: nginx
         hosts:
           - host: bazarr.nasenov.dev
@@ -64,7 +64,7 @@ spec:
               - path: /
                 pathType: Prefix
                 service:
-                  name: main
+                  identifier: app
         tls:
           - hosts:
               - bazarr.nasenov.dev
