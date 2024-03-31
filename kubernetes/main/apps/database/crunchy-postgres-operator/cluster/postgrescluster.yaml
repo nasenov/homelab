@@ -5,3 +5,27 @@ metadata:
   name: postgres
 spec:
   postgresVersion: 16
+
+  instances:
+    - name: postgres
+      replicas: 3
+      dataVolumeClaimSpec:
+        storageClassName: openebs-hostpath
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 16Gi
+
+  backups:
+    pgbackrest:
+      repos:
+        - name: repo1
+          volume:
+            storageClassName: ceph-block
+            volumeClaimSpec:
+              accessModes:
+                - ReadWriteOnce
+              resources:
+                requests:
+                  storage: 16Gi
