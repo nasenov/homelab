@@ -22,8 +22,8 @@ spec:
       repos:
         - name: repo1
           volume:
-            storageClassName: ceph-block
             volumeClaimSpec:
+              storageClassName: ceph-block
               accessModes:
                 - ReadWriteOnce
               resources:
