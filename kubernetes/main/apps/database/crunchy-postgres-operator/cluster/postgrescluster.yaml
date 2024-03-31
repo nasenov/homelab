@@ -19,13 +19,15 @@ spec:
 
   backups:
     pgbackrest:
+      configuration:
+        - secret:
+            name: crunchy-postgres-secret
+      global:
+        repo1-path: /pgbackrest/database/postgres/repo1
+        repo1-s3-uri-style: path
       repos:
         - name: repo1
-          volume:
-            volumeClaimSpec:
-              storageClassName: ceph-block
-              accessModes:
-                - ReadWriteOnce
-              resources:
-                requests:
-                  storage: 16Gi
+          s3:
+            bucket: postgres
+            endpoint: 192.168.1.201
+            region: eu-central-1
