@@ -26,6 +26,7 @@ spec:
   interval: 10m0s
   dependsOn:
     - name: crunchy-postgres-operator
+    - name: external-secrets-stores
   path: ./kubernetes/main/apps/database/crunchy-postgres-operator/cluster
   prune: true
   sourceRef:
