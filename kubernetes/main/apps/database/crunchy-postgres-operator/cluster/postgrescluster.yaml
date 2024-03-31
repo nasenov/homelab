@@ -29,5 +29,5 @@ spec:
         - name: repo1
           s3:
             bucket: postgres
-            endpoint: 192.168.1.201
+            endpoint: s3.nasenov.dev
             region: eu-central-1
