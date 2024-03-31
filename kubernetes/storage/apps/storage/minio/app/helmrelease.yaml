@@ -42,8 +42,9 @@ spec:
         requestAutoCert: false
 
       buckets:
-        - name: volsync
+        - name: postgres
         - name: loki
+        - name: volsync
 
       liveness: &probes
         httpGet:
