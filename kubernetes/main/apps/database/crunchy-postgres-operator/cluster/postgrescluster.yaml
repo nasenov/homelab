@@ -38,3 +38,8 @@ spec:
             bucket: postgres
             endpoint: s3.nasenov.dev
             region: eu-central-1
+
+  monitoring:
+    pgmonitor:
+      exporter:
+        image: registry.developers.crunchydata.com/crunchydata/crunchy-postgres-exporter:ubi8-5.5.1-0              
