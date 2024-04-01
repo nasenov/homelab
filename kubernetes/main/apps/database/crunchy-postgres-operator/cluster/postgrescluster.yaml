@@ -24,6 +24,15 @@ spec:
           requests:
             storage: 16Gi
 
+  users:
+    # Superuser
+    - name: postgres
+      databases:
+        - postgres
+      options: "SUPERUSER"
+      password:
+        type: AlphaNumeric
+
   backups:
     pgbackrest:
       configuration:
