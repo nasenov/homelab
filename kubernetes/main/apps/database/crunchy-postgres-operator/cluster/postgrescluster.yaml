@@ -39,6 +39,17 @@ spec:
             endpoint: s3.nasenov.dev
             region: eu-central-1
 
+  proxy:
+    pgBouncer:
+      replicas: 3
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: DoNotSchedule
+          labelSelector:
+            matchLabels:
+              postgres-operator.crunchydata.com/role: pgbouncer
+
   monitoring:
     pgmonitor:
       exporter:
