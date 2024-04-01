@@ -8,7 +8,14 @@ spec:
 
   instances:
     - name: postgres
-      replicas: 1
+      replicas: 2
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: DoNotSchedule
+          labelSelector:
+            matchLabels:
+              postgres-operator.crunchydata.com/instance-set: postgres
       dataVolumeClaimSpec:
         storageClassName: openebs-hostpath
         accessModes:
