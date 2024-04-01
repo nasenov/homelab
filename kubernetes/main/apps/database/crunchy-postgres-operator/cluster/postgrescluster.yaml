@@ -29,6 +29,12 @@ spec:
     - name: postgres
       password:
         type: AlphaNumeric
+    # Applications
+    - name: lldap
+      databases:
+        - lldap
+      password:
+        type: AlphaNumeric
 
   backups:
     pgbackrest:
