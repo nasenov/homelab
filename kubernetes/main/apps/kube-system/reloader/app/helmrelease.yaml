@@ -14,7 +14,7 @@ spec:
         kind: HelmRepository
         name: stakater
         namespace: flux-system
-      version: 1.0.72
+      version: 1.0.73
   install:
     remediation:
       retries: 3
