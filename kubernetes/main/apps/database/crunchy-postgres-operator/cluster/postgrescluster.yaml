@@ -38,10 +38,10 @@ spec:
 
   backups:
     pgbackrest:
-      configuration:
+      configuration: &backupConfig
         - secret:
             name: crunchy-postgres-secret
-      global:
+      global: &backupFlag
         repo1-path: /pgbackrest/database/postgres/repo1
         repo1-s3-uri-style: path
         repo1-retention-full-type: time
@@ -52,13 +52,22 @@ spec:
          - --type=full
       repos:
         - name: repo1
-          s3:
+          s3: &minio
             bucket: postgres
             endpoint: s3.nasenov.dev
             region: eu-central-1
           schedules:
             full: "0 1 * * 0" # Sunday at 01:00
             differential: "0 1 * * 1-6" # Mon-Sat at 01:00
+
+  dataSource:
+    pgbackrest:
+      stanza: db
+      configuration: *backupConfig
+      global: *backupFlag
+      repo:
+        name: repo1
+        s3: *minio
 
   proxy:
     pgBouncer:
