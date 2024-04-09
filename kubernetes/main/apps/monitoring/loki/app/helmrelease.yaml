@@ -43,14 +43,6 @@ spec:
         enable_alertmanager_v2: true
         alertmanager_url: http://kube-prometheus-stack-alertmanager:9093
     
-    monitoring:
-      dashboards:
-        labels:
-          grafana_dashboard: "1"
-
-      serviceMonitor:
-        enabled: false
-    
     write:
       replicas: 1
     
