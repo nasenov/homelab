@@ -62,6 +62,12 @@ spec:
     backend:
       replicas: 1
 
+    chunksCache:
+      enabled: false
+      
+    resultsCache:
+      enabled: false
+
   valuesFrom:
     - kind: Secret
       name: loki-minio-credentials
