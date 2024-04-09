@@ -13,7 +13,7 @@ spec:
         kind: HelmRepository
         name: grafana
         namespace: flux-system
-      version: 5.47.2
+      version: 6.0.0
   install:
     remediation:
       retries: 3
@@ -42,14 +42,6 @@ spec:
         enable_api: true
         enable_alertmanager_v2: true
         alertmanager_url: http://kube-prometheus-stack-alertmanager:9093
-    
-    monitoring:
-      dashboards:
-        labels:
-          grafana_dashboard: "1"
-
-      serviceMonitor:
-        enabled: false
     
     write:
       replicas: 1
