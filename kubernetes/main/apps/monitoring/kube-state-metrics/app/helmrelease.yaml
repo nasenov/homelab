@@ -13,7 +13,7 @@ spec:
         kind: HelmRepository
         name: prometheus
         namespace: flux-system
-      version: 5.18.1
+      version: 5.19.0
   install:
     remediation:
       retries: 3
