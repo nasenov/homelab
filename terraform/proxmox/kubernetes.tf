@@ -3,8 +3,8 @@ resource "proxmox_virtual_environment_file" "ubuntu_cloud_image" {
   datastore_id = "local"
 
   source_file {
-    path     = "https://cloud-images.ubuntu.com/releases/23.10/release-20231011/ubuntu-23.10-server-cloudimg-amd64.img"
-    checksum = "f6529be56da3429a56e4f5ef202bf4958201bc63f8541e478caa6e8eb712e635"
+    path     = "https://cloud-images.ubuntu.com/releases/24.04/release-20240423/ubuntu-24.04-server-cloudimg-amd64.img"
+    checksum = "32a9d30d18803da72f5936cf2b7b9efcb4d0bb63c67933f17e3bdfd1751de3f3"
   }
 }
 
@@ -415,7 +415,7 @@ resource "proxmox_virtual_environment_vm" "ubuntu_template" {
   template = true
   vm_id = 9000
 
-  name      = "ubuntu-mantic"
+  name      = "ubuntu-noble-numbat"
   node_name = "debian"
 
   machine = "q35"
