@@ -2,4 +2,5 @@
 version: "3"
 
 includes:
+  ssh: .taskfiles/SSH
   terraform: .taskfiles/Terraform
