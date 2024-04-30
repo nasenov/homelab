@@ -1,0 +1,15 @@
+---
+version: "3"
+
+tasks:
+  prepare:
+    dir: "{{.ROOT_DIR}}/ansible/kubernetes/main"
+    cmd: ansible-playbook -i inventory/hosts.yaml cluster-prepare.yaml
+
+  ceph-reset:
+    dir: "{{.ROOT_DIR}}/ansible/kubernetes/main"
+    cmd: ansible-playbook -i inventory/hosts.yaml cluster-ceph-reset.yaml
+
+  install:
+    dir: "{{.ROOT_DIR}}/ansible/kubernetes/main"
+    cmd: ansible-playbook -i inventory/hosts.yaml cluster-install.yaml
