@@ -3,5 +3,6 @@ version: "3"
 
 includes:
   ansible: .taskfiles/Ansible
+  flux: .taskfiles/Flux
   ssh: .taskfiles/SSH
   terraform: .taskfiles/Terraform
