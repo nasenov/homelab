@@ -5,7 +5,6 @@ tasks:
   main:
     cmds:
       - task: :terraform:apply
-      - task: :terraform:apply
       - task: :ssh:reset
       - task: :ansible:prepare
       - task: :ansible:ceph-reset
