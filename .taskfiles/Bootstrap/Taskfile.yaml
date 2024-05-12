@@ -1,0 +1,12 @@
+---
+version: "3"
+
+tasks:
+  main:
+    cmds:
+      - task: :terraform:apply
+      - task: :ssh:reset
+      - task: :ansible:prepare
+      - task: :ansible:ceph-reset
+      - task: :ansible:install
+      - task: :flux:bootstrap

@@ -3,6 +3,7 @@ version: "3"
 
 includes:
   ansible: .taskfiles/Ansible
+  bootstrap: .taskfiles/Bootstrap
   flux: .taskfiles/Flux
   ssh: .taskfiles/SSH
   terraform: .taskfiles/Terraform
