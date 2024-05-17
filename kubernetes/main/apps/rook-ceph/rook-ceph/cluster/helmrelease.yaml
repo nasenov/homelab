@@ -21,6 +21,16 @@ spec:
     remediation:
       retries: 3
   values:
+    ingress:
+      dashboard:
+        ingressClassName: nginx
+        host:
+          name: rook.nasenov.dev
+          path: /
+        tls:
+          - hosts:
+              - rook.nasenov.dev
+
     cephClusterSpec:
       dashboard:
         enabled: true
@@ -60,15 +70,6 @@ spec:
         useAllDevices: true
         config:
           osdsPerDevice: "1"
-    # ingress:
-    #   dashboard:
-    #     ingressClassName: nginx
-    #     host:
-    #       name: rook.nasenov.dev
-    #       path: /
-    #     tls:
-    #       - hosts:
-    #           - rook.nasenov.dev
 
     cephBlockPools:
       - name: ceph-blockpool
