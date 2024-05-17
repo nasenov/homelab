@@ -26,8 +26,10 @@ spec:
   interval: 10m0s
   dependsOn:
     - name: rook-ceph
+    - name: snapshot-controller
   path: ./kubernetes/main/apps/rook-ceph/rook-ceph/cluster
   prune: false
   sourceRef:
     kind: GitRepository
     name: flux-system
+  wait: true
