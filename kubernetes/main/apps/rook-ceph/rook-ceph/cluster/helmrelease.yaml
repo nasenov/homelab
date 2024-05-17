@@ -31,6 +31,9 @@ spec:
           - hosts:
               - rook.nasenov.dev
 
+    toolbox:
+      enabled: true
+
     cephClusterSpec:
       dashboard:
         enabled: true
