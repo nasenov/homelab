@@ -6,15 +6,15 @@ resources:
   # Pre Flux-Kustomizations
   - ./namespace.yaml
   # Flux-Kustomizations
-  # - ./bazarr/ks.yaml
-  # - ./emqx/ks.yaml
-  # - ./home-assistant/ks.yaml
-  # - ./homepage/ks.yaml
-  # - ./jellyfin/ks.yaml
-  # - ./jellyseerr/ks.yaml
-  # - ./lldap/ks.yaml
-  # - ./prowlarr/ks.yaml
-  # - ./qbittorrent/ks.yaml
-  # - ./radarr/ks.yaml
-  # - ./sonarr/ks.yaml
-  # - ./zigbee2mqtt/ks.yaml
+  - ./bazarr/ks.yaml
+  - ./emqx/ks.yaml
+  - ./home-assistant/ks.yaml
+  - ./homepage/ks.yaml
+  - ./jellyfin/ks.yaml
+  - ./jellyseerr/ks.yaml
+  - ./lldap/ks.yaml
+  - ./prowlarr/ks.yaml
+  - ./qbittorrent/ks.yaml
+  - ./radarr/ks.yaml
+  - ./sonarr/ks.yaml
+  - ./zigbee2mqtt/ks.yaml
