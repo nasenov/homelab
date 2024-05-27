@@ -13,7 +13,7 @@ spec:
         kind: HelmRepository
         name: emqx
         namespace: flux-system
-      version: 5.6.1
+      version: 5.7.0
   install:
     remediation:
       retries: 3
