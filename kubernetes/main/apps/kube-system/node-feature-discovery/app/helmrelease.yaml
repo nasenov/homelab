@@ -13,7 +13,7 @@ spec:
         kind: HelmRepository
         name: node-feature-discovery
         namespace: flux-system
-      version: 0.15.4
+      version: 0.16.0
   install:
     remediation:
       retries: 3
