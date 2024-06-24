@@ -229,7 +229,7 @@ resource "proxmox_virtual_environment_vm" "k3s_4" {
     datastore_id = "fast"
     file_id      = proxmox_virtual_environment_file.ubuntu_cloud_image.id
     interface    = "scsi0"
-    size         = 64
+    size         = 128
   }
 
   hostpci {
@@ -306,7 +306,7 @@ resource "proxmox_virtual_environment_vm" "k3s_5" {
     datastore_id = "fast"
     file_id      = proxmox_virtual_environment_file.ubuntu_cloud_image.id
     interface    = "scsi0"
-    size         = 64
+    size         = 128
   }
 
   hostpci {
@@ -372,7 +372,7 @@ resource "proxmox_virtual_environment_vm" "k3s_6" {
     datastore_id = "fast"
     file_id      = proxmox_virtual_environment_file.ubuntu_cloud_image.id
     interface    = "scsi0"
-    size         = 64
+    size         = 128
   }
 
   hostpci {
