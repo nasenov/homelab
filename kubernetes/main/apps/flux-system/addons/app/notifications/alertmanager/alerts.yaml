@@ -15,5 +15,7 @@ spec:
     name: '*'
   - kind: Kustomization
     name: "*"
+  exclusionList:
+    - "dial.*tcp.*timeout"
   providerRef:
     name: alertmanager
