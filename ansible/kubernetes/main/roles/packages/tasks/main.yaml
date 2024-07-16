@@ -11,6 +11,11 @@
     name: nfs-common
     state: present
 
+- name: Install chrony package
+  ansible.builtin.apt:
+    name: chrony
+    state: present
+
 - name: Reboot hosts if linux-generic package was installed
   ansible.builtin.reboot:
   when: linux_generic_package.changed == true
