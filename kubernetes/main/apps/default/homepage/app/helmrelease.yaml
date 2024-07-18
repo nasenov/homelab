@@ -35,7 +35,7 @@ spec:
           app:
             image:
               repository: ghcr.io/gethomepage/homepage
-              tag: v0.9.4
+              tag: v0.9.5
 
           codeserver:
             dependsOn: app
