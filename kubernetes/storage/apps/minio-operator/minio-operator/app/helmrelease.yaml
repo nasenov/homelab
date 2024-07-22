@@ -14,7 +14,7 @@ spec:
         kind: HelmRepository
         name: minio-operator
         namespace: flux-system
-      version: 5.0.15
+      version: 6.0.0
   install:
     remediation:
       retries: 3
@@ -24,11 +24,3 @@ spec:
   values:
     operator:
       replicaCount: 1
-    console:
-      ingress:
-        enabled: true
-        ingressClassName: nginx
-        host: minio-operator.nasenov.dev
-        tls:
-          - hosts:
-              - minio-operator.nasenov.dev
