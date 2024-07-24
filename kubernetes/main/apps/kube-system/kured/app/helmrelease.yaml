@@ -13,7 +13,7 @@ spec:
         kind: HelmRepository
         name: kured
         namespace: flux-system
-      version: 5.4.5
+      version: 5.5.0
   install:
     remediation:
       retries: 3
