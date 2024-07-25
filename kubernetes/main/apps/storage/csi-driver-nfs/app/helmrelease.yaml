@@ -20,3 +20,14 @@ spec:
   upgrade:
     remediation:
       retries: 3
+  values:
+    storageClass:
+      create: true
+      name: nfs-csi
+      parameters:
+        server: 192.168.1.100
+        share: /mnt/tank/kubernetes
+      reclaimPolicy: Delete
+      volumeBindingMode: Immediate
+      mountOptions:
+        - nfsvers=4.1
