@@ -4,9 +4,9 @@ version: "3"
 tasks:
   bootstrap:
     cmds:
-      - scp nasenov@192.168.1.121:/etc/rancher/k3s/k3s.yaml ~/.kube/config-main
+      - scp nasenov@192.168.1.121:/etc/rancher/k3s/k3s.yaml ~/.kube/config
       - chmod 0600 ~/.kube/config-main
-      - kubectl --kubeconfig ~/.kube/config-main config set-cluster default --server=https://192.168.1.120:6443
-      - kubectl --kubeconfig ~/.kube/config-main create ns flux-system
-      - cat ./age.agekey | kubectl --kubeconfig ~/.kube/config-main create secret generic sops-age --namespace=flux-system --from-file=age.agekey=/dev/stdin
-      - flux --kubeconfig ~/.kube/config-main bootstrap github --owner=n-asenov --repository=homelab --personal --path=kubernetes/main/cluster
+      - kubectl config set-cluster default --server=https://192.168.1.120:6443
+      - kubectl create ns flux-system
+      - cat ./age.agekey | kubectl create secret generic sops-age --namespace=flux-system --from-file=age.agekey=/dev/stdin
+      - flux bootstrap github --owner=n-asenov --repository=homelab --personal --path=kubernetes/main/cluster
