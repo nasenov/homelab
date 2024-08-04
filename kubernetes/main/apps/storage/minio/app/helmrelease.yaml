@@ -37,6 +37,13 @@ spec:
           volumesPerServer: 1
           storageClassName: nfs-csi
           size: 64Gi
+          # TODO: nfs temp fix
+          securityContext:
+            runAsUser: 0
+            runAsGroup: 0
+            fsGroup: 0
+            fsGroupChangePolicy: "OnRootMismatch"
+            runAsNonRoot: false
 
       certificate:
         requestAutoCert: false
@@ -52,7 +59,7 @@ spec:
           path: /minio/health/live
       readiness: *probes
 
-      exposeServices: 
+      exposeServices:
         minio: true
 
     ingress:
