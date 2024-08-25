@@ -212,7 +212,7 @@ resource "proxmox_virtual_environment_vm" "k3s_4" {
   cpu {
     type    = "x86-64-v2-AES"
     sockets = 1
-    cores   = 4
+    cores   = 8
     units   = 100
   }
 
@@ -289,7 +289,7 @@ resource "proxmox_virtual_environment_vm" "k3s_5" {
   cpu {
     type    = "x86-64-v2-AES"
     sockets = 1
-    cores   = 4
+    cores   = 8
     units   = 100
   }
 
@@ -355,7 +355,7 @@ resource "proxmox_virtual_environment_vm" "k3s_6" {
   cpu {
     type    = "x86-64-v2-AES"
     sockets = 1
-    cores   = 4
+    cores   = 8
     units   = 100
   }
 
