@@ -6,3 +6,6 @@ metadata:
   name: emqx
 spec:
   image: emqx:5.7.2
+  coreTemplate:
+    spec:
+      replicas: 3
