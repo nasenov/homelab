@@ -9,3 +9,13 @@ spec:
   coreTemplate:
     spec:
       replicas: 3
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: "apps.emqx.io/instance"
+                    operator: In
+                    values:
+                      - emqx
+              topologyKey: "kubernetes.io/hostname"
