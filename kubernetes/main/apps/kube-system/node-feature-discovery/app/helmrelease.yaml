@@ -46,3 +46,9 @@ spec:
               - class
               - vendor
               - device
+          pci:
+            deviceClassWhitelist:
+              - "01"
+              - "03"
+              - "0b40"
+              - "12"
