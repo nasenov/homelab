@@ -22,9 +22,6 @@ spec:
     remediation:
       retries: 3
   values:
-    secrets:
-      existingSecret: minio-env-configuration
-
     tenant:
       name: minio
 
