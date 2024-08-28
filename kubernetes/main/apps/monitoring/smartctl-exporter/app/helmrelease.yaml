@@ -31,4 +31,6 @@ spec:
     prometheusRules:
       enabled: true
 
-    tolerations: []
+    nodeSelector:
+      # Kingston NVMe label
+      feature.node.kubernetes.io/pci-0108_2646.present: true 

@@ -48,7 +48,7 @@ spec:
               - device
           pci:
             deviceClassWhitelist:
-              - "01"
+              - "0108" # NVMe device class id
               - "03"
               - "0b40"
               - "12"
