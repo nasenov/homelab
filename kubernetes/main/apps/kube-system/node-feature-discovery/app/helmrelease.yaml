@@ -52,3 +52,5 @@ spec:
               - "03"
               - "0b40"
               - "12"
+            deviceLabelFields: 
+              - class

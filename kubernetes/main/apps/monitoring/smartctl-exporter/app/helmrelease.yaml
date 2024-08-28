@@ -32,5 +32,5 @@ spec:
       enabled: true
 
     nodeSelector:
-      # Kingston NVMe label
-      feature.node.kubernetes.io/pci-0108_2646.present: true 
+      # NVMe label
+      feature.node.kubernetes.io/pci-0108.present: true 
