@@ -33,4 +33,4 @@ spec:
 
     nodeSelector:
       # NVMe label
-      feature.node.kubernetes.io/pci-0108.present: true 
+      feature.node.kubernetes.io/pci-0108.present: "true"
