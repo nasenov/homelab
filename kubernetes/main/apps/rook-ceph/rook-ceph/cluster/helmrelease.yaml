@@ -77,6 +77,16 @@ spec:
         useAllDevices: true
         config:
           osdsPerDevice: "1"
+      placement:
+        osd:
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+                - matchExpressions:
+                    - key: feature.node.kubernetes.io/pci-0108.present
+                      operator: In
+                      values:
+                        - "true"
 
     cephBlockPools:
       - name: ceph-blockpool
