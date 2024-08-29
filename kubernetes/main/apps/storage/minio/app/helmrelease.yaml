@@ -55,13 +55,13 @@ spec:
       app:
         className: nginx
         hosts:
-          - host: minio-new.nasenov.dev
+          - host: minio.nasenov.dev
             paths:
               - path: /
                 service:
                   identifier: app
                   port: http
-          - host: s3-new.nasenov.dev
+          - host: s3.nasenov.dev
             paths:
               - path: /
                 service:
