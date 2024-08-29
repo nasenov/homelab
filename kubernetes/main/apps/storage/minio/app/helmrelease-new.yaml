@@ -31,7 +31,7 @@ spec:
             envFrom:
               - secretRef:
                   name: minio-env-configuration
-            args: ["server", "/data"]
+            args: ["server", "/data", "--console-address", ":9090"]
 
     # TODO: nfs temp fix
     defaultPodOptions:
