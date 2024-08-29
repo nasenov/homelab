@@ -8,13 +8,12 @@ spec:
   interval: 10m0s
   chart:
     spec:
-      chart: tenant
-      reconcileStrategy: ChartVersion
+      chart: app-template
+      version: 3.4.0
       sourceRef:
         kind: HelmRepository
-        name: minio-operator
+        name: bjw-s
         namespace: flux-system
-      version: 6.0.3
   install:
     remediation:
       retries: 3
@@ -22,57 +21,57 @@ spec:
     remediation:
       retries: 3
   values:
-    tenant:
-      name: minio
+    controllers:
+      minio:
+        containers:
+          app:
+            image:
+              repository: quay.io/minio/minio
+              tag: RELEASE.2024-08-26T15-33-07Z
+            envFrom:
+              - secretRef:
+                  name: minio-env-configuration
+            args: ["server", "/data", "--console-address", ":9090"]
 
-      configuration:
-        name: minio-env-configuration
+    # TODO: nfs temp fix
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: false
+        runAsUser: 0
+        runAsGroup: 0
+        fsGroup: 0
+        fsGroupChangePolicy: OnRootMismatch
 
-      pools:
-        - name: pool
-          servers: 1
-          volumesPerServer: 1
-          storageClassName: nfs-csi
-          size: 64Gi
-          # TODO: nfs temp fix
-          securityContext:
-            runAsUser: 0
-            runAsGroup: 0
-            fsGroup: 0
-            fsGroupChangePolicy: "OnRootMismatch"
-            runAsNonRoot: false
-
-      certificate:
-        requestAutoCert: false
-
-      buckets:
-        - name: loki
-        - name: postgres
-        - name: volsync
-
-      liveness: &probes
-        httpGet:
-          port: 9000
-          path: /minio/health/live
-      readiness: *probes
-
-      exposeServices:
-        minio: true
+    service:
+      app:
+        controller: minio
+        ports:
+          http:
+            port: 9090
+          s3:
+            port: 9000
 
     ingress:
-      api:
-        enabled: true
-        ingressClassName: nginx
-        annotations:
-          nginx.ingress.kubernetes.io/proxy-body-size: 32m
-        host: s3.nasenov.dev
-        tls:
-          - hosts:
-              - s3.nasenov.dev
-      console:
-        enabled: true
-        ingressClassName: nginx
-        host: minio-console.nasenov.dev
-        tls:
-          - hosts:
-              - minio-console.nasenov.dev
+      app:
+        className: nginx
+        hosts:
+          - host: minio-new.nasenov.dev
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: http
+          - host: s3-new.nasenov.dev
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: s3
+
+    persistence:
+      config:
+        type: nfs
+        server: 192.168.1.100
+        path: /mnt/tank/minio
+        globalMounts:
+          - path: /data
