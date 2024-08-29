@@ -9,9 +9,7 @@ spec:
   targetNamespace: storage
   interval: 10m0s
   dependsOn:
-    - name: minio-operator
     - name: external-secrets-stores
-    - name: csi-driver-nfs
   path: ./kubernetes/main/apps/storage/minio/app
   prune: true
   sourceRef:
