@@ -47,7 +47,7 @@ spec:
             env:
               TZ: "Europe/Sofia"
               ZIGBEE2MQTT_CONFIG_PERMIT_JOIN: "false"
-              ZIGBEE2MQTT_CONFIG_MQTT_SERVER: mqtt://emqx
+              ZIGBEE2MQTT_CONFIG_MQTT_SERVER: mqtt://emqx-listeners.database.svc.cluster.local
               ZIGBEE2MQTT_CONFIG_SERIAL_PORT: /dev/ttyACM0
               ZIGBEE2MQTT_CONFIG_FRONTEND_URL: https://zigbee.nasenov.dev
               ZIGBEE2MQTT_CONFIG_HOMEASSISTANT: "true"
