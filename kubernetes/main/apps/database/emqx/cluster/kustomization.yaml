@@ -5,3 +5,4 @@ kind: Kustomization
 resources:
   - ./emqx.yaml
   - ./ingress.yaml
+  - ./podmonitor.yaml
