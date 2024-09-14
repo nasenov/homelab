@@ -17,5 +17,6 @@ spec:
     name: "*"
   exclusionList:
     - "dial.*tcp.*timeout"
+    - "ssh.*handshake.*failed"
   providerRef:
     name: alertmanager
