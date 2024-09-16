@@ -7,8 +7,8 @@ provider "proxmox" {
   ssh {
     agent = true
     node {
-      name    = "debian"
-      address = "192.168.1.208"
+      name    = "pve"
+      address = "192.168.1.10"
     }
   }
 }
