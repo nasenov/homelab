@@ -1,30 +1,3 @@
-resource "proxmox_virtual_environment_file" "ubuntu_cloud_image" {
-  node_name    = "debian"
-  datastore_id = "local"
-
-  source_file {
-    path     = "https://cloud-images.ubuntu.com/releases/24.04/release-20240423/ubuntu-24.04-server-cloudimg-amd64.img"
-    checksum = "32a9d30d18803da72f5936cf2b7b9efcb4d0bb63c67933f17e3bdfd1751de3f3"
-  }
-}
-
-resource "proxmox_virtual_environment_file" "vendor_config" {
-  node_name    = "debian"
-  datastore_id = "local"
-  content_type = "snippets"
-
-  source_raw {
-    file_name = "vendorconfig.yaml"
-    data = <<EOF
-#cloud-config
-runcmd:
-  - apt install -y qemu-guest-agent
-  - systemctl enable qemu-guest-agent
-  - systemctl start qemu-guest-agent
-EOF
-  }
-}
-
 resource "proxmox_virtual_environment_vm" "k3s_1" {
   name      = "k3s-1"
   node_name = "debian"
