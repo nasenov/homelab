@@ -23,3 +23,12 @@ runcmd:
 EOF
   }
 }
+
+resource "proxmox_virtual_environment_download_file" "truenas" {
+  node_name          = "pve"
+  datastore_id       = "local"
+  content_type       = "iso"
+  url                = "https://download.sys.truenas.net/TrueNAS-SCALE-Dragonfish/24.04.2.2/TrueNAS-SCALE-24.04.2.2.iso"
+  checksum_algorithm = "sha256"
+  checksum           = "1ba1805a7a579a7d8313764b1e11b4b10d00e861def45ba2880f3049a6b0e354"
+}
