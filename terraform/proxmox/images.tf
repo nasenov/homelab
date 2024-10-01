@@ -14,7 +14,7 @@ resource "proxmox_virtual_environment_file" "vendor_config" {
 
   source_raw {
     file_name = "vendorconfig.yaml"
-    data = <<EOF
+    data      = <<EOF
 #cloud-config
 runcmd:
   - apt install -y qemu-guest-agent
@@ -34,8 +34,11 @@ resource "proxmox_virtual_environment_download_file" "truenas" {
 }
 
 resource "proxmox_virtual_environment_download_file" "talos" {
-  node_name          = "pve"
-  datastore_id       = "local"
-  content_type       = "iso"
-  url                = "https://factory.talos.dev/image/ce4c980550dd2ab1b17bbf2b08801c7eb59418eafe8f279833297925d67c7515/v1.8.0/metal-amd64.iso"
+  node_name               = "pve"
+  datastore_id            = "local"
+  content_type            = "iso"
+  file_name               = "nocloud-amd64.img"
+  url                     = "https://factory.talos.dev/image/ce4c980550dd2ab1b17bbf2b08801c7eb59418eafe8f279833297925d67c7515/v1.8.0/nocloud-amd64.raw.gz"
+  decompression_algorithm = "gz"
+  overwrite               = false
 }
