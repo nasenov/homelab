@@ -1,7 +1,7 @@
 ---
 collections:
   - name: prometheus.prometheus
-    version: 0.18.0
+    version: 0.19.0
 
 roles:
   - name: xanmanning.k3s
