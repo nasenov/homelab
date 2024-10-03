@@ -13,7 +13,7 @@ spec:
         kind: HelmRepository
         name: cert-manager
         namespace: flux-system
-      version: v1.15.3
+      version: v1.16.0
   install:
     remediation:
       retries: 3
