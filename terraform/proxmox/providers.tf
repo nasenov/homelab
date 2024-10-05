@@ -12,3 +12,5 @@ provider "proxmox" {
     }
   }
 }
+
+provider "talos" {}
