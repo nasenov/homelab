@@ -1,0 +1,66 @@
+resource "talos_machine_secrets" "this" {}
+
+data "talos_machine_configuration" "controlplane" {
+  cluster_name     = "homelab"
+  machine_type     = "controlplane"
+  cluster_endpoint = "https://192.168.1.21:6443"
+  machine_secrets  = talos_machine_secrets.this.machine_secrets
+}
+
+# data "talos_machine_configuration" "worker" {
+#   cluster_name     = "homelab"
+#   machine_type     = "worker"
+#   cluster_endpoint = "https://192.168.1.21:6443"
+#   machine_secrets  = talos_machine_secrets.this.machine_secrets
+# }
+
+data "talos_client_configuration" "this" {
+  cluster_name         = "homelab"
+  client_configuration = talos_machine_secrets.this.client_configuration
+  nodes                = ["192.168.1.21"]
+}
+
+resource "talos_machine_configuration_apply" "this" {
+  depends_on = [
+    proxmox_virtual_environment_vm.k8s_1
+  ]
+  client_configuration        = talos_machine_secrets.this.client_configuration
+  machine_configuration_input = data.talos_machine_configuration.controlplane.machine_configuration
+  node                        = "192.168.1.21"
+  config_patches = [
+    yamlencode({
+      machine = {
+        install = {
+          disk  = "/dev/vda"
+          image = "factory.talos.dev/installer/ce4c980550dd2ab1b17bbf2b08801c7eb59418eafe8f279833297925d67c7515:v1.8.0"
+        }
+      }
+    })
+  ]
+}
+
+resource "talos_machine_bootstrap" "this" {
+  depends_on = [
+    talos_machine_configuration_apply.this
+  ]
+  node                 = "192.168.1.21"
+  client_configuration = talos_machine_secrets.this.client_configuration
+}
+
+resource "talos_cluster_kubeconfig" "this" {
+  depends_on = [
+    talos_machine_bootstrap.this
+  ]
+  client_configuration = talos_machine_secrets.this.client_configuration
+  node                 = "192.168.1.21"
+}
+
+resource "local_file" "kubeconfig" {
+  content  = talos_cluster_kubeconfig.this.kubeconfig_raw
+  filename = pathexpand("~/.kube/config")
+}
+
+# resource "local_file" "talosconfig" {
+#   content  = data.talos_client_configuration.this.talos_config
+#   filename = "talosconfig"
+# }
