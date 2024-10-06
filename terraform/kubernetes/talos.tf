@@ -29,6 +29,7 @@ data "talos_client_configuration" "this" {
     "192.168.1.29",
     "192.168.1.30",
   ]
+  endpoints = ["192.168.1.21"]
 }
 
 resource "talos_machine_configuration_apply" "k8s-1" {
