@@ -319,3 +319,211 @@ resource "proxmox_virtual_environment_vm" "k8s_6" {
   }
 
 }
+
+resource "proxmox_virtual_environment_vm" "k8s_7" {
+  name      = "k8s-7"
+  node_name = "pve"
+
+  machine = "q35"
+  started = true
+
+  cpu {
+    type    = "x86-64-v2-AES"
+    sockets = 1
+    cores   = 1
+    units   = 100
+  }
+
+  memory {
+    dedicated = 1024
+    floating  = 1024
+  }
+
+  network_device {
+
+  }
+
+  disk {
+    datastore_id = "fast"
+    file_id      = proxmox_virtual_environment_download_file.talos.id
+    file_format  = "raw"
+    interface    = "virtio0"
+    size         = 10
+  }
+
+  operating_system {
+    type = "l26"
+  }
+
+  agent {
+    enabled = true
+  }
+
+  initialization {
+    datastore_id = "fast"
+
+    ip_config {
+      ipv4 {
+        address = "192.168.1.27/24"
+        gateway = "192.168.1.1"
+      }
+    }
+  }
+
+}
+
+resource "proxmox_virtual_environment_vm" "k8s_8" {
+  name      = "k8s-8"
+  node_name = "pve"
+
+  machine = "q35"
+  started = true
+
+  cpu {
+    type    = "x86-64-v2-AES"
+    sockets = 1
+    cores   = 1
+    units   = 100
+  }
+
+  memory {
+    dedicated = 1024
+    floating  = 1024
+  }
+
+  network_device {
+
+  }
+
+  disk {
+    datastore_id = "fast"
+    file_id      = proxmox_virtual_environment_download_file.talos.id
+    file_format  = "raw"
+    interface    = "virtio0"
+    size         = 10
+  }
+
+  operating_system {
+    type = "l26"
+  }
+
+  agent {
+    enabled = true
+  }
+
+  initialization {
+    datastore_id = "fast"
+
+    ip_config {
+      ipv4 {
+        address = "192.168.1.28/24"
+        gateway = "192.168.1.1"
+      }
+    }
+  }
+
+}
+
+resource "proxmox_virtual_environment_vm" "k8s_9" {
+  name      = "k8s-9"
+  node_name = "pve"
+
+  machine = "q35"
+  started = true
+
+  cpu {
+    type    = "x86-64-v2-AES"
+    sockets = 1
+    cores   = 1
+    units   = 100
+  }
+
+  memory {
+    dedicated = 1024
+    floating  = 1024
+  }
+
+  network_device {
+
+  }
+
+  disk {
+    datastore_id = "fast"
+    file_id      = proxmox_virtual_environment_download_file.talos.id
+    file_format  = "raw"
+    interface    = "virtio0"
+    size         = 10
+  }
+
+  operating_system {
+    type = "l26"
+  }
+
+  agent {
+    enabled = true
+  }
+
+  initialization {
+    datastore_id = "fast"
+
+    ip_config {
+      ipv4 {
+        address = "192.168.1.29/24"
+        gateway = "192.168.1.1"
+      }
+    }
+  }
+
+}
+
+resource "proxmox_virtual_environment_vm" "k8s_10" {
+  name      = "k8s-10"
+  node_name = "pve"
+
+  machine = "q35"
+  started = true
+
+  cpu {
+    type    = "x86-64-v2-AES"
+    sockets = 1
+    cores   = 1
+    units   = 100
+  }
+
+  memory {
+    dedicated = 1024
+    floating  = 1024
+  }
+
+  network_device {
+
+  }
+
+  disk {
+    datastore_id = "fast"
+    file_id      = proxmox_virtual_environment_download_file.talos.id
+    file_format  = "raw"
+    interface    = "virtio0"
+    size         = 10
+  }
+
+  operating_system {
+    type = "l26"
+  }
+
+  agent {
+    enabled = true
+  }
+
+  initialization {
+    datastore_id = "fast"
+
+    ip_config {
+      ipv4 {
+        address = "192.168.1.30/24"
+        gateway = "192.168.1.1"
+      }
+    }
+  }
+
+}

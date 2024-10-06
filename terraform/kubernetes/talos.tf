@@ -134,6 +134,82 @@ resource "talos_machine_configuration_apply" "k8s-6" {
   ]
 }
 
+resource "talos_machine_configuration_apply" "k8s-7" {
+  depends_on = [
+    proxmox_virtual_environment_vm.k8s_7
+  ]
+  client_configuration        = talos_machine_secrets.this.client_configuration
+  machine_configuration_input = data.talos_machine_configuration.worker.machine_configuration
+  node                        = "192.168.1.27"
+  config_patches = [
+    yamlencode({
+      machine = {
+        install = {
+          disk  = "/dev/vda"
+          image = "factory.talos.dev/installer/ce4c980550dd2ab1b17bbf2b08801c7eb59418eafe8f279833297925d67c7515:v1.8.0"
+        }
+      }
+    })
+  ]
+}
+
+resource "talos_machine_configuration_apply" "k8s-8" {
+  depends_on = [
+    proxmox_virtual_environment_vm.k8s_8
+  ]
+  client_configuration        = talos_machine_secrets.this.client_configuration
+  machine_configuration_input = data.talos_machine_configuration.worker.machine_configuration
+  node                        = "192.168.1.28"
+  config_patches = [
+    yamlencode({
+      machine = {
+        install = {
+          disk  = "/dev/vda"
+          image = "factory.talos.dev/installer/ce4c980550dd2ab1b17bbf2b08801c7eb59418eafe8f279833297925d67c7515:v1.8.0"
+        }
+      }
+    })
+  ]
+}
+
+resource "talos_machine_configuration_apply" "k8s-9" {
+  depends_on = [
+    proxmox_virtual_environment_vm.k8s_9
+  ]
+  client_configuration        = talos_machine_secrets.this.client_configuration
+  machine_configuration_input = data.talos_machine_configuration.worker.machine_configuration
+  node                        = "192.168.1.29"
+  config_patches = [
+    yamlencode({
+      machine = {
+        install = {
+          disk  = "/dev/vda"
+          image = "factory.talos.dev/installer/ce4c980550dd2ab1b17bbf2b08801c7eb59418eafe8f279833297925d67c7515:v1.8.0"
+        }
+      }
+    })
+  ]
+}
+
+resource "talos_machine_configuration_apply" "k8s-10" {
+  depends_on = [
+    proxmox_virtual_environment_vm.k8s_10
+  ]
+  client_configuration        = talos_machine_secrets.this.client_configuration
+  machine_configuration_input = data.talos_machine_configuration.worker.machine_configuration
+  node                        = "192.168.1.30"
+  config_patches = [
+    yamlencode({
+      machine = {
+        install = {
+          disk  = "/dev/vda"
+          image = "factory.talos.dev/installer/ce4c980550dd2ab1b17bbf2b08801c7eb59418eafe8f279833297925d67c7515:v1.8.0"
+        }
+      }
+    })
+  ]
+}
+
 resource "talos_machine_bootstrap" "this" {
   depends_on = [
     talos_machine_configuration_apply.k8s-1,
@@ -141,7 +217,11 @@ resource "talos_machine_bootstrap" "this" {
     talos_machine_configuration_apply.k8s-3,
     talos_machine_configuration_apply.k8s-4,
     talos_machine_configuration_apply.k8s-5,
-    talos_machine_configuration_apply.k8s-6
+    talos_machine_configuration_apply.k8s-6,
+    talos_machine_configuration_apply.k8s-7,
+    talos_machine_configuration_apply.k8s-8,
+    talos_machine_configuration_apply.k8s-9,
+    talos_machine_configuration_apply.k8s-10
   ]
   node                 = "192.168.1.21"
   client_configuration = talos_machine_secrets.this.client_configuration
