@@ -17,7 +17,18 @@ data "talos_machine_configuration" "worker" {
 data "talos_client_configuration" "this" {
   cluster_name         = "homelab"
   client_configuration = talos_machine_secrets.this.client_configuration
-  nodes                = ["192.168.1.21", "192.168.1.22", "192.168.1.23"]
+  nodes = [
+    "192.168.1.21",
+    "192.168.1.22",
+    "192.168.1.23",
+    "192.168.1.24",
+    "192.168.1.25",
+    "192.168.1.26",
+    "192.168.1.27",
+    "192.168.1.28",
+    "192.168.1.29",
+    "192.168.1.30",
+  ]
 }
 
 resource "talos_machine_configuration_apply" "k8s-1" {
@@ -240,7 +251,7 @@ resource "local_file" "kubeconfig" {
   filename = pathexpand("~/.kube/config")
 }
 
-# resource "local_file" "talosconfig" {
-#   content  = data.talos_client_configuration.this.talos_config
-#   filename = "talosconfig"
-# }
+resource "local_file" "talosconfig" {
+  content  = data.talos_client_configuration.this.talos_config
+  filename = pathexpand("~/.talos/config")
+}
