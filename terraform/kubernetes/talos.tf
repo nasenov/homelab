@@ -42,7 +42,7 @@ resource "talos_machine_configuration_apply" "k8s-1" {
     yamlencode({
       machine = {
         install = {
-          disk  = "/dev/vda"
+          
           image = "factory.talos.dev/installer/ce4c980550dd2ab1b17bbf2b08801c7eb59418eafe8f279833297925d67c7515:v1.8.0"
         }
       }
@@ -61,7 +61,6 @@ resource "talos_machine_configuration_apply" "k8s-2" {
     yamlencode({
       machine = {
         install = {
-          disk  = "/dev/vda"
           image = "factory.talos.dev/installer/ce4c980550dd2ab1b17bbf2b08801c7eb59418eafe8f279833297925d67c7515:v1.8.0"
         }
       }
@@ -80,7 +79,6 @@ resource "talos_machine_configuration_apply" "k8s-3" {
     yamlencode({
       machine = {
         install = {
-          disk  = "/dev/vda"
           image = "factory.talos.dev/installer/ce4c980550dd2ab1b17bbf2b08801c7eb59418eafe8f279833297925d67c7515:v1.8.0"
         }
       }
@@ -99,7 +97,6 @@ resource "talos_machine_configuration_apply" "k8s-4" {
     yamlencode({
       machine = {
         install = {
-          disk  = "/dev/vda"
           image = "factory.talos.dev/installer/ce4c980550dd2ab1b17bbf2b08801c7eb59418eafe8f279833297925d67c7515:v1.8.0"
         }
       }
@@ -118,7 +115,6 @@ resource "talos_machine_configuration_apply" "k8s-5" {
     yamlencode({
       machine = {
         install = {
-          disk  = "/dev/vda"
           image = "factory.talos.dev/installer/ce4c980550dd2ab1b17bbf2b08801c7eb59418eafe8f279833297925d67c7515:v1.8.0"
         }
       }
@@ -137,7 +133,6 @@ resource "talos_machine_configuration_apply" "k8s-6" {
     yamlencode({
       machine = {
         install = {
-          disk  = "/dev/vda"
           image = "factory.talos.dev/installer/ce4c980550dd2ab1b17bbf2b08801c7eb59418eafe8f279833297925d67c7515:v1.8.0"
         }
       }
@@ -156,7 +151,6 @@ resource "talos_machine_configuration_apply" "k8s-7" {
     yamlencode({
       machine = {
         install = {
-          disk  = "/dev/vda"
           image = "factory.talos.dev/installer/ce4c980550dd2ab1b17bbf2b08801c7eb59418eafe8f279833297925d67c7515:v1.8.0"
         }
       }
@@ -175,7 +169,6 @@ resource "talos_machine_configuration_apply" "k8s-8" {
     yamlencode({
       machine = {
         install = {
-          disk  = "/dev/vda"
           image = "factory.talos.dev/installer/ce4c980550dd2ab1b17bbf2b08801c7eb59418eafe8f279833297925d67c7515:v1.8.0"
         }
       }
@@ -194,7 +187,6 @@ resource "talos_machine_configuration_apply" "k8s-9" {
     yamlencode({
       machine = {
         install = {
-          disk  = "/dev/vda"
           image = "factory.talos.dev/installer/ce4c980550dd2ab1b17bbf2b08801c7eb59418eafe8f279833297925d67c7515:v1.8.0"
         }
       }
@@ -213,7 +205,6 @@ resource "talos_machine_configuration_apply" "k8s-10" {
     yamlencode({
       machine = {
         install = {
-          disk  = "/dev/vda"
           image = "factory.talos.dev/installer/ce4c980550dd2ab1b17bbf2b08801c7eb59418eafe8f279833297925d67c7515:v1.8.0"
         }
       }

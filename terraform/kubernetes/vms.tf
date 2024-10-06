@@ -1,17 +1,18 @@
 resource "proxmox_virtual_environment_download_file" "talos" {
-  node_name               = "pve"
-  datastore_id            = "local"
-  content_type            = "iso"
-  file_name               = "nocloud-amd64.img"
-  url                     = "https://factory.talos.dev/image/ce4c980550dd2ab1b17bbf2b08801c7eb59418eafe8f279833297925d67c7515/v1.8.0/nocloud-amd64.raw"
+  node_name    = "pve"
+  datastore_id = "local"
+  content_type = "iso"
+  file_name    = "nocloud-amd64.img"
+  url          = "https://factory.talos.dev/image/ce4c980550dd2ab1b17bbf2b08801c7eb59418eafe8f279833297925d67c7515/v1.8.0/nocloud-amd64.raw"
 }
 
 resource "proxmox_virtual_environment_vm" "k8s_1" {
   name      = "k8s-1"
   node_name = "pve"
 
-  machine = "q35"
-  started = true
+  machine       = "q35"
+  scsi_hardware = "virtio-scsi-single"
+  started       = true
 
   cpu {
     type    = "x86-64-v2-AES"
@@ -33,7 +34,8 @@ resource "proxmox_virtual_environment_vm" "k8s_1" {
     datastore_id = "fast"
     file_id      = proxmox_virtual_environment_download_file.talos.id
     file_format  = "raw"
-    interface    = "virtio0"
+    interface    = "scsi0"
+    iothread     = true
     size         = 10
   }
 
@@ -46,7 +48,7 @@ resource "proxmox_virtual_environment_vm" "k8s_1" {
   }
 
   initialization {
-    datastore_id = "fast"
+    datastore_id = "local-lvm"
 
     ip_config {
       ipv4 {
@@ -62,8 +64,9 @@ resource "proxmox_virtual_environment_vm" "k8s_2" {
   name      = "k8s-2"
   node_name = "pve"
 
-  machine = "q35"
-  started = true
+  machine       = "q35"
+  scsi_hardware = "virtio-scsi-single"
+  started       = true
 
   cpu {
     type    = "x86-64-v2-AES"
@@ -85,7 +88,8 @@ resource "proxmox_virtual_environment_vm" "k8s_2" {
     datastore_id = "fast"
     file_id      = proxmox_virtual_environment_download_file.talos.id
     file_format  = "raw"
-    interface    = "virtio0"
+    interface    = "scsi0"
+    iothread     = true
     size         = 10
   }
 
@@ -98,7 +102,7 @@ resource "proxmox_virtual_environment_vm" "k8s_2" {
   }
 
   initialization {
-    datastore_id = "fast"
+    datastore_id = "local-lvm"
 
     ip_config {
       ipv4 {
@@ -114,8 +118,9 @@ resource "proxmox_virtual_environment_vm" "k8s_3" {
   name      = "k8s-3"
   node_name = "pve"
 
-  machine = "q35"
-  started = true
+  machine       = "q35"
+  scsi_hardware = "virtio-scsi-single"
+  started       = true
 
   cpu {
     type    = "x86-64-v2-AES"
@@ -137,7 +142,8 @@ resource "proxmox_virtual_environment_vm" "k8s_3" {
     datastore_id = "fast"
     file_id      = proxmox_virtual_environment_download_file.talos.id
     file_format  = "raw"
-    interface    = "virtio0"
+    interface    = "scsi0"
+    iothread     = true
     size         = 10
   }
 
@@ -150,7 +156,7 @@ resource "proxmox_virtual_environment_vm" "k8s_3" {
   }
 
   initialization {
-    datastore_id = "fast"
+    datastore_id = "local-lvm"
 
     ip_config {
       ipv4 {
@@ -166,8 +172,9 @@ resource "proxmox_virtual_environment_vm" "k8s_4" {
   name      = "k8s-4"
   node_name = "pve"
 
-  machine = "q35"
-  started = true
+  machine       = "q35"
+  scsi_hardware = "virtio-scsi-single"
+  started       = true
 
   cpu {
     type    = "x86-64-v2-AES"
@@ -189,7 +196,8 @@ resource "proxmox_virtual_environment_vm" "k8s_4" {
     datastore_id = "fast"
     file_id      = proxmox_virtual_environment_download_file.talos.id
     file_format  = "raw"
-    interface    = "virtio0"
+    interface    = "scsi0"
+    iothread     = true
     size         = 10
   }
 
@@ -202,7 +210,7 @@ resource "proxmox_virtual_environment_vm" "k8s_4" {
   }
 
   initialization {
-    datastore_id = "fast"
+    datastore_id = "local-lvm"
 
     ip_config {
       ipv4 {
@@ -218,8 +226,9 @@ resource "proxmox_virtual_environment_vm" "k8s_5" {
   name      = "k8s-5"
   node_name = "pve"
 
-  machine = "q35"
-  started = true
+  machine       = "q35"
+  scsi_hardware = "virtio-scsi-single"
+  started       = true
 
   cpu {
     type    = "x86-64-v2-AES"
@@ -241,7 +250,8 @@ resource "proxmox_virtual_environment_vm" "k8s_5" {
     datastore_id = "fast"
     file_id      = proxmox_virtual_environment_download_file.talos.id
     file_format  = "raw"
-    interface    = "virtio0"
+    interface    = "scsi0"
+    iothread     = true
     size         = 10
   }
 
@@ -254,7 +264,7 @@ resource "proxmox_virtual_environment_vm" "k8s_5" {
   }
 
   initialization {
-    datastore_id = "fast"
+    datastore_id = "local-lvm"
 
     ip_config {
       ipv4 {
@@ -270,8 +280,9 @@ resource "proxmox_virtual_environment_vm" "k8s_6" {
   name      = "k8s-6"
   node_name = "pve"
 
-  machine = "q35"
-  started = true
+  machine       = "q35"
+  scsi_hardware = "virtio-scsi-single"
+  started       = true
 
   cpu {
     type    = "x86-64-v2-AES"
@@ -293,7 +304,8 @@ resource "proxmox_virtual_environment_vm" "k8s_6" {
     datastore_id = "fast"
     file_id      = proxmox_virtual_environment_download_file.talos.id
     file_format  = "raw"
-    interface    = "virtio0"
+    interface    = "scsi0"
+    iothread     = true
     size         = 10
   }
 
@@ -306,7 +318,7 @@ resource "proxmox_virtual_environment_vm" "k8s_6" {
   }
 
   initialization {
-    datastore_id = "fast"
+    datastore_id = "local-lvm"
 
     ip_config {
       ipv4 {
@@ -322,8 +334,9 @@ resource "proxmox_virtual_environment_vm" "k8s_7" {
   name      = "k8s-7"
   node_name = "pve"
 
-  machine = "q35"
-  started = true
+  machine       = "q35"
+  scsi_hardware = "virtio-scsi-single"
+  started       = true
 
   cpu {
     type    = "x86-64-v2-AES"
@@ -345,7 +358,8 @@ resource "proxmox_virtual_environment_vm" "k8s_7" {
     datastore_id = "fast"
     file_id      = proxmox_virtual_environment_download_file.talos.id
     file_format  = "raw"
-    interface    = "virtio0"
+    interface    = "scsi0"
+    iothread     = true
     size         = 10
   }
 
@@ -358,7 +372,7 @@ resource "proxmox_virtual_environment_vm" "k8s_7" {
   }
 
   initialization {
-    datastore_id = "fast"
+    datastore_id = "local-lvm"
 
     ip_config {
       ipv4 {
@@ -374,8 +388,9 @@ resource "proxmox_virtual_environment_vm" "k8s_8" {
   name      = "k8s-8"
   node_name = "pve"
 
-  machine = "q35"
-  started = true
+  machine       = "q35"
+  scsi_hardware = "virtio-scsi-single"
+  started       = true
 
   cpu {
     type    = "x86-64-v2-AES"
@@ -397,7 +412,8 @@ resource "proxmox_virtual_environment_vm" "k8s_8" {
     datastore_id = "fast"
     file_id      = proxmox_virtual_environment_download_file.talos.id
     file_format  = "raw"
-    interface    = "virtio0"
+    interface    = "scsi0"
+    iothread     = true
     size         = 10
   }
 
@@ -410,7 +426,7 @@ resource "proxmox_virtual_environment_vm" "k8s_8" {
   }
 
   initialization {
-    datastore_id = "fast"
+    datastore_id = "local-lvm"
 
     ip_config {
       ipv4 {
@@ -426,8 +442,9 @@ resource "proxmox_virtual_environment_vm" "k8s_9" {
   name      = "k8s-9"
   node_name = "pve"
 
-  machine = "q35"
-  started = true
+  machine       = "q35"
+  scsi_hardware = "virtio-scsi-single"
+  started       = true
 
   cpu {
     type    = "x86-64-v2-AES"
@@ -449,7 +466,8 @@ resource "proxmox_virtual_environment_vm" "k8s_9" {
     datastore_id = "fast"
     file_id      = proxmox_virtual_environment_download_file.talos.id
     file_format  = "raw"
-    interface    = "virtio0"
+    interface    = "scsi0"
+    iothread     = true
     size         = 10
   }
 
@@ -462,7 +480,7 @@ resource "proxmox_virtual_environment_vm" "k8s_9" {
   }
 
   initialization {
-    datastore_id = "fast"
+    datastore_id = "local-lvm"
 
     ip_config {
       ipv4 {
@@ -478,8 +496,9 @@ resource "proxmox_virtual_environment_vm" "k8s_10" {
   name      = "k8s-10"
   node_name = "pve"
 
-  machine = "q35"
-  started = true
+  machine       = "q35"
+  scsi_hardware = "virtio-scsi-single"
+  started       = true
 
   cpu {
     type    = "x86-64-v2-AES"
@@ -499,9 +518,10 @@ resource "proxmox_virtual_environment_vm" "k8s_10" {
 
   disk {
     datastore_id = "fast"
-    file_id      = proxmox_virtual_environment_download_file.talos.id
     file_format  = "raw"
-    interface    = "virtio0"
+    file_id      = proxmox_virtual_environment_download_file.talos.id
+    interface    = "scsi0"
+    iothread     = true
     size         = 10
   }
 
@@ -514,7 +534,7 @@ resource "proxmox_virtual_environment_vm" "k8s_10" {
   }
 
   initialization {
-    datastore_id = "fast"
+    datastore_id = "local-lvm"
 
     ip_config {
       ipv4 {
