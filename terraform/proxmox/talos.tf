@@ -20,7 +20,7 @@ data "talos_client_configuration" "this" {
   nodes                = ["192.168.1.21", "192.168.1.22", "192.168.1.23"]
 }
 
-resource "talos_machine_configuration_apply" "this" {
+resource "talos_machine_configuration_apply" "k8s-1" {
   depends_on = [
     proxmox_virtual_environment_vm.k8s_1
   ]
@@ -79,7 +79,9 @@ resource "talos_machine_configuration_apply" "k8s-3" {
 
 resource "talos_machine_bootstrap" "this" {
   depends_on = [
-    talos_machine_configuration_apply.this
+    talos_machine_configuration_apply.k8s-1,
+    talos_machine_configuration_apply.k8s-2,
+    talos_machine_configuration_apply.k8s-3
   ]
   node                 = "192.168.1.21"
   client_configuration = talos_machine_secrets.this.client_configuration
