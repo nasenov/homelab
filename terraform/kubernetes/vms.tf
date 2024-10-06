@@ -1,11 +1,3 @@
-resource "proxmox_virtual_environment_download_file" "talos" {
-  node_name    = "pve"
-  datastore_id = "local"
-  content_type = "iso"
-  file_name    = "nocloud-amd64.img"
-  url          = "https://factory.talos.dev/image/ce4c980550dd2ab1b17bbf2b08801c7eb59418eafe8f279833297925d67c7515/v1.8.0/nocloud-amd64.raw"
-}
-
 resource "proxmox_virtual_environment_vm" "k8s_1" {
   name      = "k8s-1"
   node_name = "pve"
@@ -32,7 +24,7 @@ resource "proxmox_virtual_environment_vm" "k8s_1" {
 
   disk {
     datastore_id = "fast"
-    file_id      = proxmox_virtual_environment_download_file.talos.id
+    file_id      = "local:iso/nocloud-amd64.img"
     file_format  = "raw"
     interface    = "scsi0"
     iothread     = true
@@ -86,7 +78,7 @@ resource "proxmox_virtual_environment_vm" "k8s_2" {
 
   disk {
     datastore_id = "fast"
-    file_id      = proxmox_virtual_environment_download_file.talos.id
+    file_id      = "local:iso/nocloud-amd64.img"
     file_format  = "raw"
     interface    = "scsi0"
     iothread     = true
@@ -140,7 +132,7 @@ resource "proxmox_virtual_environment_vm" "k8s_3" {
 
   disk {
     datastore_id = "fast"
-    file_id      = proxmox_virtual_environment_download_file.talos.id
+    file_id      = "local:iso/nocloud-amd64.img"
     file_format  = "raw"
     interface    = "scsi0"
     iothread     = true
@@ -194,7 +186,7 @@ resource "proxmox_virtual_environment_vm" "k8s_4" {
 
   disk {
     datastore_id = "fast"
-    file_id      = proxmox_virtual_environment_download_file.talos.id
+    file_id      = "local:iso/nocloud-amd64.img"
     file_format  = "raw"
     interface    = "scsi0"
     iothread     = true
@@ -248,7 +240,7 @@ resource "proxmox_virtual_environment_vm" "k8s_5" {
 
   disk {
     datastore_id = "fast"
-    file_id      = proxmox_virtual_environment_download_file.talos.id
+    file_id      = "local:iso/nocloud-amd64.img"
     file_format  = "raw"
     interface    = "scsi0"
     iothread     = true
@@ -302,7 +294,7 @@ resource "proxmox_virtual_environment_vm" "k8s_6" {
 
   disk {
     datastore_id = "fast"
-    file_id      = proxmox_virtual_environment_download_file.talos.id
+    file_id      = "local:iso/nocloud-amd64.img"
     file_format  = "raw"
     interface    = "scsi0"
     iothread     = true
@@ -356,7 +348,7 @@ resource "proxmox_virtual_environment_vm" "k8s_7" {
 
   disk {
     datastore_id = "fast"
-    file_id      = proxmox_virtual_environment_download_file.talos.id
+    file_id      = "local:iso/nocloud-amd64.img"
     file_format  = "raw"
     interface    = "scsi0"
     iothread     = true
@@ -410,7 +402,7 @@ resource "proxmox_virtual_environment_vm" "k8s_8" {
 
   disk {
     datastore_id = "fast"
-    file_id      = proxmox_virtual_environment_download_file.talos.id
+    file_id      = "local:iso/nocloud-amd64.img"
     file_format  = "raw"
     interface    = "scsi0"
     iothread     = true
@@ -464,7 +456,7 @@ resource "proxmox_virtual_environment_vm" "k8s_9" {
 
   disk {
     datastore_id = "fast"
-    file_id      = proxmox_virtual_environment_download_file.talos.id
+    file_id      = "local:iso/nocloud-amd64.img"
     file_format  = "raw"
     interface    = "scsi0"
     iothread     = true
@@ -519,7 +511,7 @@ resource "proxmox_virtual_environment_vm" "k8s_10" {
   disk {
     datastore_id = "fast"
     file_format  = "raw"
-    file_id      = proxmox_virtual_environment_download_file.talos.id
+    file_id      = "local:iso/nocloud-amd64.img"
     interface    = "scsi0"
     iothread     = true
     size         = 10
