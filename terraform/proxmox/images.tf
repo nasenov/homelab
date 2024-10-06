@@ -32,3 +32,11 @@ resource "proxmox_virtual_environment_download_file" "truenas" {
   checksum_algorithm = "sha256"
   checksum           = "1ba1805a7a579a7d8313764b1e11b4b10d00e861def45ba2880f3049a6b0e354"
 }
+
+resource "proxmox_virtual_environment_download_file" "talos" {
+  node_name    = "pve"
+  datastore_id = "local"
+  content_type = "iso"
+  file_name    = "nocloud-amd64.img"
+  url          = "https://factory.talos.dev/image/ce4c980550dd2ab1b17bbf2b08801c7eb59418eafe8f279833297925d67c7515/v1.8.0/nocloud-amd64.raw"
+}
