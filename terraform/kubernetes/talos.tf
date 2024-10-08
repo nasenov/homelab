@@ -43,8 +43,17 @@ resource "talos_machine_configuration_apply" "k8s-1" {
     yamlencode({
       machine = {
         install = {
-          
           image = "factory.talos.dev/installer/ce4c980550dd2ab1b17bbf2b08801c7eb59418eafe8f279833297925d67c7515:v1.8.0"
+        }
+        network = {
+          interfaces = [
+            {
+              interface = "eth0"
+              vip = {
+                ip = "192.168.1.20"
+              }
+            }
+          ]
         }
       }
     })
@@ -64,6 +73,16 @@ resource "talos_machine_configuration_apply" "k8s-2" {
         install = {
           image = "factory.talos.dev/installer/ce4c980550dd2ab1b17bbf2b08801c7eb59418eafe8f279833297925d67c7515:v1.8.0"
         }
+        network = {
+          interfaces = [
+            {
+              interface = "eth0"
+              vip = {
+                ip = "192.168.1.20"
+              }
+            }
+          ]
+        }        
       }
     })
   ]
@@ -82,6 +101,16 @@ resource "talos_machine_configuration_apply" "k8s-3" {
         install = {
           image = "factory.talos.dev/installer/ce4c980550dd2ab1b17bbf2b08801c7eb59418eafe8f279833297925d67c7515:v1.8.0"
         }
+        network = {
+          interfaces = [
+            {
+              interface = "eth0"
+              vip = {
+                ip = "192.168.1.20"
+              }
+            }
+          ]
+        }        
       }
     })
   ]
