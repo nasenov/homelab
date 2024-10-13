@@ -86,6 +86,16 @@ locals {
       }
     }
   })
+
+  talos_kubelet_config_patch = yamlencode({
+    machine = {
+      kubelet = {
+        extraArgs = {
+          rotate-server-certificates = true
+        }
+      }
+    }
+  })
 }
 
 locals {
