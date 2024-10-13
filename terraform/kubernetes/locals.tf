@@ -76,6 +76,16 @@ locals {
       }
     }
   })
+
+  talos_sysctls_config_patch = yamlencode({
+    machine = {
+      sysctls = {
+        "fs.inotify.max_queued_events"  = "65536"
+        "fs.inotify.max_user_watches"   = "524288"
+        "fs.inotify.max_user_instances" = "8192"
+      }
+    }
+  })
 }
 
 locals {

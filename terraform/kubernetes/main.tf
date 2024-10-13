@@ -71,7 +71,8 @@ resource "talos_machine_configuration_apply" "controlplane" {
   endpoint                    = each.value.endpoint
   config_patches = [
     local.talos_install_image_config_patch,
-    local.talos_vip_config_patch
+    local.talos_vip_config_patch,
+    local.talos_sysctls_config_patch
   ]
 }
 
@@ -89,7 +90,10 @@ resource "talos_machine_configuration_apply" "worker" {
   machine_configuration_input = data.talos_machine_configuration.worker.machine_configuration
   node                        = each.value.node
   endpoint                    = each.value.endpoint
-  config_patches              = [local.talos_install_image_config_patch]
+  config_patches = [
+    local.talos_install_image_config_patch,
+    local.talos_sysctls_config_patch
+  ]
 }
 
 resource "talos_machine_bootstrap" "this" {
