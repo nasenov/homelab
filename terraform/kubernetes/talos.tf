@@ -126,7 +126,7 @@ resource "talos_cluster_kubeconfig" "this" {
   node                 = "192.168.1.21"
 }
 
-resource "local_file" "kubeconfig" {
+resource "local_sensitive_file" "kubeconfig" {
   content  = talos_cluster_kubeconfig.this.kubeconfig_raw
   filename = pathexpand("~/.kube/config")
 }
@@ -153,7 +153,7 @@ data "talos_client_configuration" "this" {
   ]
 }
 
-resource "local_file" "talosconfig" {
+resource "local_sensitive_file" "talosconfig" {
   content  = data.talos_client_configuration.this.talos_config
   filename = pathexpand("~/.talos/config")
 }
