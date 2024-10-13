@@ -9,7 +9,7 @@ spec:
   targetNamespace: kube-system
   interval: 10m0s
   dependsOn:
-    - name: prometheus-operator-crds  
+    - name: prometheus-operator-crds
   path: ./kubernetes/main/apps/kube-system/metrics-server/app
   prune: true
   sourceRef:
