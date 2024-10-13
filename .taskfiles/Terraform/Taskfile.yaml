@@ -4,5 +4,9 @@ version: "3"
 
 tasks:
   apply:
-    dir: "{{.ROOT_DIR}}/terraform/proxmox"
+    dir: "{{.ROOT_DIR}}/terraform/kubernetes"
     cmd: terraform apply
+
+  destroy:
+    dir: "{{.ROOT_DIR}}/terraform/kubernetes"
+    cmd: terraform destroy
