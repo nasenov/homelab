@@ -80,35 +80,6 @@ data "talos_machine_configuration" "controlplane" {
   machine_secrets  = talos_machine_secrets.this.machine_secrets
 }
 
-data "talos_machine_configuration" "worker" {
-  cluster_name     = "homelab"
-  machine_type     = "worker"
-  cluster_endpoint = "https://192.168.1.20:6443"
-  machine_secrets  = talos_machine_secrets.this.machine_secrets
-}
-
-data "talos_client_configuration" "this" {
-  cluster_name         = "homelab"
-  client_configuration = talos_machine_secrets.this.client_configuration
-  endpoints = [
-    "192.168.1.21",
-    "192.168.1.22",
-    "192.168.1.23"
-  ]
-  nodes = [
-    "192.168.1.21",
-    "192.168.1.22",
-    "192.168.1.23",
-    "192.168.1.24",
-    "192.168.1.25",
-    "192.168.1.26",
-    "192.168.1.27",
-    "192.168.1.28",
-    "192.168.1.29",
-    "192.168.1.30"
-  ]
-}
-
 resource "talos_machine_configuration_apply" "controlplane" {
   for_each = local.controlplane_virtual_machines
 
@@ -120,6 +91,13 @@ resource "talos_machine_configuration_apply" "controlplane" {
     local.talos_install_image_config_patch,
     local.talos_vip_config_patch
   ]
+}
+
+data "talos_machine_configuration" "worker" {
+  cluster_name     = "homelab"
+  machine_type     = "worker"
+  cluster_endpoint = "https://192.168.1.20:6443"
+  machine_secrets  = talos_machine_secrets.this.machine_secrets
 }
 
 resource "talos_machine_configuration_apply" "worker" {
@@ -151,6 +129,28 @@ resource "talos_cluster_kubeconfig" "this" {
 resource "local_file" "kubeconfig" {
   content  = talos_cluster_kubeconfig.this.kubeconfig_raw
   filename = pathexpand("~/.kube/config")
+}
+
+data "talos_client_configuration" "this" {
+  cluster_name         = "homelab"
+  client_configuration = talos_machine_secrets.this.client_configuration
+  endpoints = [
+    "192.168.1.21",
+    "192.168.1.22",
+    "192.168.1.23"
+  ]
+  nodes = [
+    "192.168.1.21",
+    "192.168.1.22",
+    "192.168.1.23",
+    "192.168.1.24",
+    "192.168.1.25",
+    "192.168.1.26",
+    "192.168.1.27",
+    "192.168.1.28",
+    "192.168.1.29",
+    "192.168.1.30"
+  ]
 }
 
 resource "local_file" "talosconfig" {
