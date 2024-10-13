@@ -30,7 +30,7 @@ resource "proxmox_virtual_environment_vm" "k8s" {
     file_format  = "raw"
     interface    = "scsi0"
     iothread     = true
-    size         = 10
+    size         = 64
   }
 
   operating_system {
