@@ -6,10 +6,11 @@ resources:
   # Pre Flux-Kustomizations
   - ./namespace.yaml
   # Flux-Kustomizations
-  - ./grafana/ks.yaml
-  - ./kube-prometheus-stack/ks.yaml
-  - ./kube-state-metrics/ks.yaml
+  # - ./grafana/ks.yaml
+  # - ./kube-prometheus-stack/ks.yaml
+  # - ./kube-state-metrics/ks.yaml
   # - ./loki/ks.yaml
-  - ./prometheus-node-exporter/ks.yaml
-  - ./promtail/ks.yaml
-  - ./smartctl-exporter/ks.yaml
+  # - ./prometheus-node-exporter/ks.yaml
+  - ./prometheus-operator-crds/ks.yaml
+  # - ./promtail/ks.yaml
+  # - ./smartctl-exporter/ks.yaml
