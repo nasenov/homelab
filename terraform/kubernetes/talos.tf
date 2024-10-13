@@ -3,20 +3,25 @@ resource "talos_machine_secrets" "this" {}
 data "talos_machine_configuration" "controlplane" {
   cluster_name     = "homelab"
   machine_type     = "controlplane"
-  cluster_endpoint = "https://192.168.1.21:6443"
+  cluster_endpoint = "https://192.168.1.20:6443"
   machine_secrets  = talos_machine_secrets.this.machine_secrets
 }
 
 data "talos_machine_configuration" "worker" {
   cluster_name     = "homelab"
   machine_type     = "worker"
-  cluster_endpoint = "https://192.168.1.21:6443"
+  cluster_endpoint = "https://192.168.1.20:6443"
   machine_secrets  = talos_machine_secrets.this.machine_secrets
 }
 
 data "talos_client_configuration" "this" {
   cluster_name         = "homelab"
   client_configuration = talos_machine_secrets.this.client_configuration
+  endpoints = [
+    "192.168.1.21",
+    "192.168.1.22",
+    "192.168.1.23"
+  ]
   nodes = [
     "192.168.1.21",
     "192.168.1.22",
@@ -27,9 +32,8 @@ data "talos_client_configuration" "this" {
     "192.168.1.27",
     "192.168.1.28",
     "192.168.1.29",
-    "192.168.1.30",
+    "192.168.1.30"
   ]
-  endpoints = ["192.168.1.21"]
 }
 
 resource "talos_machine_configuration_apply" "k8s-1" {
@@ -82,7 +86,7 @@ resource "talos_machine_configuration_apply" "k8s-2" {
               }
             }
           ]
-        }        
+        }
       }
     })
   ]
@@ -110,7 +114,7 @@ resource "talos_machine_configuration_apply" "k8s-3" {
               }
             }
           ]
-        }        
+        }
       }
     })
   ]
@@ -246,14 +250,7 @@ resource "talos_machine_bootstrap" "this" {
   depends_on = [
     talos_machine_configuration_apply.k8s-1,
     talos_machine_configuration_apply.k8s-2,
-    talos_machine_configuration_apply.k8s-3,
-    talos_machine_configuration_apply.k8s-4,
-    talos_machine_configuration_apply.k8s-5,
-    talos_machine_configuration_apply.k8s-6,
-    talos_machine_configuration_apply.k8s-7,
-    talos_machine_configuration_apply.k8s-8,
-    talos_machine_configuration_apply.k8s-9,
-    talos_machine_configuration_apply.k8s-10
+    talos_machine_configuration_apply.k8s-3
   ]
   node                 = "192.168.1.21"
   client_configuration = talos_machine_secrets.this.client_configuration
