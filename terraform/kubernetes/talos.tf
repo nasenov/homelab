@@ -26,46 +26,46 @@ locals {
 locals {
   controlplane_virtual_machines = {
     k8s_1 = {
-      node     = proxmox_virtual_environment_vm.k8s_1.name
+      node     = proxmox_virtual_environment_vm.k8s["k8s-1"].name
       endpoint = "192.168.1.21"
     }
     k8s_2 = {
-      node     = proxmox_virtual_environment_vm.k8s_2.name
+      node     = proxmox_virtual_environment_vm.k8s["k8s-2"].name
       endpoint = "192.168.1.22"
     }
     k8s_3 = {
-      node     = proxmox_virtual_environment_vm.k8s_3.name
+      node     = proxmox_virtual_environment_vm.k8s["k8s-3"].name
       endpoint = "192.168.1.23"
     }
   }
 
   worker_virtual_machines = {
     k8s_4 = {
-      node     = proxmox_virtual_environment_vm.k8s_4.name
+      node     = proxmox_virtual_environment_vm.k8s["k8s-4"].name
       endpoint = "192.168.1.24"
     }
     k8s_5 = {
-      node     = proxmox_virtual_environment_vm.k8s_5.name
+      node     = proxmox_virtual_environment_vm.k8s["k8s-5"].name
       endpoint = "192.168.1.25"
     }
     k8s_6 = {
-      node     = proxmox_virtual_environment_vm.k8s_6.name
+      node     = proxmox_virtual_environment_vm.k8s["k8s-6"].name
       endpoint = "192.168.1.26"
     }
     k8s_7 = {
-      node     = proxmox_virtual_environment_vm.k8s_7.name
+      node     = proxmox_virtual_environment_vm.k8s["k8s-7"].name
       endpoint = "192.168.1.27"
     }
     k8s_8 = {
-      node     = proxmox_virtual_environment_vm.k8s_8.name
+      node     = proxmox_virtual_environment_vm.k8s["k8s-8"].name
       endpoint = "192.168.1.28"
     }
     k8s_9 = {
-      node     = proxmox_virtual_environment_vm.k8s_9.name
+      node     = proxmox_virtual_environment_vm.k8s["k8s-9"].name
       endpoint = "192.168.1.29"
     }
     k8s_10 = {
-      node     = proxmox_virtual_environment_vm.k8s_10.name
+      node     = proxmox_virtual_environment_vm.k8s["k8s-10"].name
       endpoint = "192.168.1.30"
     }
   }
