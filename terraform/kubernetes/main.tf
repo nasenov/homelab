@@ -30,7 +30,7 @@ resource "proxmox_virtual_environment_vm" "k8s" {
     file_format  = "raw"
     interface    = "scsi0"
     iothread     = true
-    size         = 64
+    size         = 100
   }
 
   operating_system {
@@ -74,6 +74,8 @@ resource "talos_machine_configuration_apply" "controlplane" {
     local.talos_vip_config_patch,
     local.talos_sysctls_config_patch,
     local.talos_kubelet_config_patch
+    # local.talos_cluster_network_config_patch,
+    # local.talos_cilium_install_config_patch
   ]
 }
 
@@ -95,12 +97,20 @@ resource "talos_machine_configuration_apply" "worker" {
     local.talos_install_image_config_patch,
     local.talos_sysctls_config_patch,
     local.talos_kubelet_config_patch
+    # local.talos_cluster_network_config_patch
   ]
+}
+
+resource "time_sleep" "this" {
+  depends_on = [talos_machine_configuration_apply.controlplane]
+
+  create_duration = "30s"
 }
 
 resource "talos_machine_bootstrap" "this" {
   depends_on = [
-    talos_machine_configuration_apply.controlplane
+    talos_machine_configuration_apply.controlplane,
+    time_sleep.this
   ]
   node                 = "192.168.1.21"
   client_configuration = talos_machine_secrets.this.client_configuration
@@ -136,8 +146,7 @@ data "talos_client_configuration" "this" {
     "192.168.1.26",
     "192.168.1.27",
     "192.168.1.28",
-    "192.168.1.29",
-    "192.168.1.30"
+    "192.168.1.29"
   ]
 }
 
