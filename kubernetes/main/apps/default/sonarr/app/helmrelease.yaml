@@ -43,7 +43,7 @@ spec:
           app:
             image:
               repository: linuxserver/sonarr
-              tag: 4.0.9
+              tag: 4.0.10
             env:
               TZ: Europe/Sofia
 
