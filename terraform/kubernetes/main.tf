@@ -53,6 +53,32 @@ resource "proxmox_virtual_environment_vm" "k8s" {
   }
 }
 
+data "talos_image_factory_extensions_versions" "this" {
+  talos_version = "v1.8.0"
+  filters = {
+    names = [
+      "qemu-guest-agent"
+    ]
+  }
+}
+
+resource "talos_image_factory_schematic" "this" {
+  schematic = yamlencode({
+      customization = {
+        systemExtensions = {
+          officialExtensions = data.talos_image_factory_extensions_versions.this.extensions_info.*.name
+        }
+      }
+    }
+  )
+}
+
+data "talos_image_factory_urls" "this" {
+  talos_version = "v1.8.0"
+  schematic_id  = talos_image_factory_schematic.this.id
+  platform      = "nocloud"
+}
+
 resource "talos_machine_secrets" "this" {}
 
 data "talos_machine_configuration" "controlplane" {
