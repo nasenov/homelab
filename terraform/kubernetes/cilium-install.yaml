@@ -76,13 +76,13 @@ cluster:
                 command:
                   - cilium
                   - install
-                  - --set 
+                  - --set
                   - ipam.mode=kubernetes
-                  - --set 
+                  - --set
                   - kubeProxyReplacement=true
                   - --set
                   - securityContext.privileged=true
-                  - --set 
+                  - --set
                   - securityContext.capabilities.ciliumAgent={"CHOWN"\,"KILL"\,"NET_ADMIN"\,"NET_RAW"\,"IPC_LOCK"\,"SYS_ADMIN"\,"SYS_RESOURCE"\,"DAC_OVERRIDE"\,"FOWNER"\,"SETGID"\,"SETUID"}
                   - --set
                   - securityContext.capabilities.cleanCiliumState={"NET_ADMIN"\,"SYS_ADMIN"\,"SYS_RESOURCE"}
@@ -90,7 +90,7 @@ cluster:
                   - cgroup.autoMount.enabled=false
                   - --set
                   - cgroup.hostRoot=/sys/fs/cgroup
-                  - --set 
+                  - --set
                   - k8sServiceHost=localhost
-                  - --set 
+                  - --set
                   - k8sServicePort=7445
