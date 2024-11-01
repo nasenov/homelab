@@ -8,4 +8,3 @@ resources:
   # Flux-Kustomizations
   # - ./bloky/ks.yaml
   # - ./ingress-nginx/ks.yaml
-  # - ./metallb/ks.yaml
