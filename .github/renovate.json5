@@ -9,9 +9,7 @@
     ":separatePatchReleases",
     "github>n-asenov/homelab//.github/renovate/autoMerge.json5",
     "github>n-asenov/homelab//.github/renovate/commitMessage.json5",
-    "github>n-asenov/homelab//.github/renovate/customManagers.json5",
     "github>n-asenov/homelab//.github/renovate/labels.json5",
-    "github>n-asenov/homelab//.github/renovate/packageRules.json5",
     "github>n-asenov/homelab//.github/renovate/semanticCommits.json5"
   ],
   "enabled": true,
