@@ -28,6 +28,7 @@ spec:
   interval: 10m0s
   dependsOn:
     - name: emqx-operator
+    - name: prometheus-operator-crds
   path: ./kubernetes/main/apps/database/emqx/cluster
   prune: true
   sourceRef:
