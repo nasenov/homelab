@@ -22,11 +22,12 @@ spec:
       retries: 3
   values:
     controller:
+      service:
+        annotations:
+          lbipam.cilium.io/ips: 192.168.1.40
       metrics:
         enabled: true
         serviceMonitor:
-          enabled: true    
-          additionalLabels:
-            release: kube-prometheus-stack
+          enabled: true
       extraArgs:
         default-ssl-certificate: networking/nasenov-dev-tls

@@ -28,6 +28,7 @@ spec:
   interval: 10m0s
   dependsOn:
     - name: ingress-nginx-certificates
+    - name: prometheus-operator-crds
   path: ./kubernetes/main/apps/networking/ingress-nginx/app
   prune: true
   sourceRef:
