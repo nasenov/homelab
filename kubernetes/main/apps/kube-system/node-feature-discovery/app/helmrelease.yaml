@@ -8,12 +8,11 @@ spec:
   chart:
     spec:
       chart: node-feature-discovery
-      reconcileStrategy: ChartVersion
+      version: 0.16.6
       sourceRef:
         kind: HelmRepository
         name: node-feature-discovery
         namespace: flux-system
-      version: 0.16.6
   install:
     remediation:
       retries: 3
