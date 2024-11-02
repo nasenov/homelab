@@ -8,6 +8,8 @@ metadata:
 spec:
   targetNamespace: cert-manager
   interval: 10m0s
+  dependsOn:
+    - name: prometheus-operator-crds  
   path: ./kubernetes/main/apps/cert-manager/cert-manager/app
   prune: true
   sourceRef:
