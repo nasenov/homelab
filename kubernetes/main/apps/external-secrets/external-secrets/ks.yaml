@@ -28,6 +28,7 @@ spec:
   interval: 10m0s
   dependsOn:
     - name: external-secrets
+    - name: 1password
   path: ./kubernetes/main/apps/external-secrets/external-secrets/stores
   prune: true
   sourceRef:

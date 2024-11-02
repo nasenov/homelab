@@ -8,6 +8,8 @@ metadata:
 spec:
   targetNamespace: external-secrets
   interval: 10m0s
+  dependsOn:
+    - name: prometheus-operator-crds  
   path: ./kubernetes/main/apps/external-secrets/1password-connect/app
   prune: true
   sourceRef:
