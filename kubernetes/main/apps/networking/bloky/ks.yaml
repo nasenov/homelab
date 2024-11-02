@@ -8,6 +8,8 @@ metadata:
 spec:
   targetNamespace: networking
   interval: 10m0s
+  dependsOn:
+    - name: prometheus-operator-crds  
   path: ./kubernetes/main/apps/networking/bloky/app
   prune: true
   sourceRef:
