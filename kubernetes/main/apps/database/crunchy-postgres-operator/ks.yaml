@@ -27,6 +27,7 @@ spec:
   dependsOn:
     - name: crunchy-postgres-operator
     - name: external-secrets-stores
+    - name: prometheus-operator-crds
   path: ./kubernetes/main/apps/database/crunchy-postgres-operator/cluster
   prune: true
   sourceRef:

@@ -54,7 +54,7 @@ spec:
         - name: repo1
           s3: &minio
             bucket: postgres
-            endpoint: s3.nasenov.dev
+            endpoint: minio.storage.svc.cluster.local:9000
             region: eu-central-1
           schedules:
             full: "0 1 * * 0" # Sunday at 01:00
