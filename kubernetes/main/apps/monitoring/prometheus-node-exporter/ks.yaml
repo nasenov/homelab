@@ -8,6 +8,8 @@ metadata:
 spec:
   targetNamespace: monitoring
   interval: 10m0s
+  dependsOn:
+    - name: prometheus-operator-crds  
   path: ./kubernetes/main/apps/monitoring/prometheus-node-exporter/app
   prune: true
   sourceRef:
