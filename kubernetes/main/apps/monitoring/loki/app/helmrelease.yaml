@@ -54,12 +54,16 @@ spec:
     
     write:
       replicas: 1
+      persistence:
+        volumeClaimsEnabled: false
     
     read:
       replicas: 1
 
     backend:
       replicas: 1
+      persistence:
+        volumeClaimsEnabled: false      
 
     chunksCache:
       enabled: false
