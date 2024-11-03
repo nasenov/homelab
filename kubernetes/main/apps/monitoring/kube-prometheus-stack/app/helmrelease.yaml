@@ -8,22 +8,24 @@ spec:
   chart:
     spec:
       chart: kube-prometheus-stack
-      reconcileStrategy: ChartVersion
+      version: 65.5.1
       sourceRef:
         kind: HelmRepository
         name: prometheus
         namespace: flux-system
-      version: 65.5.1
   install:
-    crds: Create
+    crds: Skip
     remediation:
       retries: 3
   upgrade:
-    crds: CreateReplace
+    crds: Skip
     remediation:
       retries: 3
   values:
     cleanPrometheusOperatorObjectNames: true
+
+    crds:
+      enabled: false
 
     prometheus:
       ingress:
@@ -41,18 +43,11 @@ spec:
         podMonitorSelectorNilUsesHelmValues: false
         scrapeConfigSelectorNilUsesHelmValues: false
         retention: 3d
-        retentionSize: 5GB
-        affinity:
-          nodeAffinity:
-            requiredDuringSchedulingIgnoredDuringExecution:
-              nodeSelectorTerms:
-                - matchExpressions:
-                    - key: node-role.kubernetes.io/control-plane
-                      operator: DoesNotExist
+        retentionSize: 20GB
         storageSpec:
           volumeClaimTemplate:
             spec:
-              storageClassName: ceph-block
+              storageClassName: openebs-hostpath
               resources:
                 requests:
                   storage: 25Gi
@@ -73,40 +68,41 @@ spec:
         storage:
           volumeClaimTemplate:
             spec:
-              storageClassName: ceph-block
+              storageClassName: openebs-hostpath
               resources:
                 requests:
                   storage: 1Gi
-
-    kubeControllerManager:
-      enabled: true
-      endpoints:
-        - 192.168.1.121
-      serviceMonitor:
-        enabled: true
-        https: true
-        insecureSkipVerify: true
-
-    kubeScheduler:
-      enabled: true
-      endpoints:
-        - 192.168.1.121
-      serviceMonitor:
-        enabled: true
-        https: true
-        insecureSkipVerify: true
-
-    kubeProxy:
-      enabled: true
-      endpoints:
-        - 192.168.1.121
 
     grafana:
       enabled: false
       forceDeployDashboards: true
 
+    nodeExporter:
+      enabled: false
+
     kubeStateMetrics:
       enabled: false
 
-    nodeExporter:
+    kubeApiServer:
+      serviceMonitor:
+        selector:
+          matchLabels:
+            k8s-app: kube-apiserver
+
+    kubeControllerManager:
+      service:
+        selector:
+          k8s-app: kube-controller-manager
+
+    kubeEtcd:
+      service:
+        selector:
+          k8s-app: kube-controller-manager
+
+    kubeScheduler:
+      service:
+        selector:
+          k8s-app: kube-scheduler
+
+    kubeProxy:
       enabled: false

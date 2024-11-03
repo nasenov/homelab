@@ -9,7 +9,7 @@ spec:
   targetNamespace: monitoring
   interval: 10m0s
   dependsOn:
-    - name: prometheus-operator-crds  
+    - name: prometheus-operator-crds
   path: ./kubernetes/main/apps/monitoring/kube-state-metrics/app
   prune: true
   sourceRef:
