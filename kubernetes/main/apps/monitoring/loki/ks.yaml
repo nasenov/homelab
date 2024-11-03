@@ -10,7 +10,6 @@ spec:
   interval: 10m0s
   dependsOn:
     - name: external-secrets-stores
-    - name: rook-ceph-cluster
   path: ./kubernetes/main/apps/monitoring/loki/app
   prune: true
   sourceRef:
