@@ -88,6 +88,12 @@ locals {
         extraArgs = {
           rotate-server-certificates = true
         }
+        extraMounts = [{
+          destination = "/var/openebs/local"
+          type        = "bind"
+          source      = "/var/openebs/local"
+          options     = ["bind", "rshared", "rw"]
+        }]
       }
     }
   })
