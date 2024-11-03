@@ -11,6 +11,7 @@ spec:
   dependsOn:
     - name: snapshot-controller
     - name: minio
+    - name: prometheus-operator-crds
   path: ./kubernetes/main/apps/storage/volsync/app
   prune: true
   sourceRef:
