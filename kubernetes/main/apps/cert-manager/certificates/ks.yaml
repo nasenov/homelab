@@ -3,14 +3,13 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: ingress-nginx-certificates
+  name: certificates-import
   namespace: flux-system
 spec:
-  targetNamespace: networking
-  interval: 10m0s
+  targetNamespace: cert-manager
   dependsOn:
     - name: external-secrets-stores
-  path: ./kubernetes/main/apps/networking/ingress-nginx/certificates
+  path: ./kubernetes/main/apps/cert-manager/certificates/import
   prune: true
   sourceRef:
     kind: GitRepository
@@ -21,15 +20,15 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: ingress-nginx
+  name: certificates-export
   namespace: flux-system
 spec:
-  targetNamespace: networking
-  interval: 10m0s
+  targetNamespace: cert-manager
   dependsOn:
-    - name: ingress-nginx-certificates
-    - name: prometheus-operator-crds
-  path: ./kubernetes/main/apps/networking/ingress-nginx/app
+    - name: certificates-import
+    - name: cert-manager-issuers
+    - name: external-secrets-stores
+  path: ./kubernetes/main/apps/cert-manager/certificates/export
   prune: true
   sourceRef:
     kind: GitRepository
