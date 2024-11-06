@@ -130,7 +130,7 @@ resource "talos_machine_configuration_apply" "worker" {
 resource "time_sleep" "this" {
   depends_on = [talos_machine_configuration_apply.controlplane]
 
-  create_duration = "30s"
+  create_duration = "60s"
 }
 
 resource "talos_machine_bootstrap" "this" {
