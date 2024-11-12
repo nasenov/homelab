@@ -91,7 +91,7 @@ locals {
     machine = {
       kubelet = {
         extraArgs = {
-          rotate-server-certificates = true
+          rotate-server-certificates = false
         }
         extraMounts = [{
           destination = "/var/openebs/local"
@@ -115,8 +115,6 @@ locals {
       }
     }
   })
-
-  talos_cilium_install_config_patch = file("${path.module}/cilium-install.yaml")
 }
 
 locals {

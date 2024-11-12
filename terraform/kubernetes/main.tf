@@ -100,8 +100,7 @@ resource "talos_machine_configuration_apply" "controlplane" {
     local.talos_vip_config_patch,
     local.talos_sysctls_config_patch,
     local.talos_kubelet_config_patch,
-    local.talos_cluster_network_config_patch,
-    local.talos_cilium_install_config_patch
+    local.talos_cluster_network_config_patch
   ]
 }
 
@@ -130,7 +129,7 @@ resource "talos_machine_configuration_apply" "worker" {
 resource "time_sleep" "this" {
   depends_on = [talos_machine_configuration_apply.controlplane]
 
-  create_duration = "60s"
+  create_duration = "120s"
 }
 
 resource "talos_machine_bootstrap" "this" {
@@ -140,6 +139,12 @@ resource "talos_machine_bootstrap" "this" {
   ]
   node                 = "192.168.1.21"
   client_configuration = talos_machine_secrets.this.client_configuration
+}
+
+resource "time_sleep" "this2" {
+  depends_on = [talos_machine_bootstrap.this]
+
+  create_duration = "300s"
 }
 
 resource "talos_cluster_kubeconfig" "this" {
