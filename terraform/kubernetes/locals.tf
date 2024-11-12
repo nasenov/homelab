@@ -45,6 +45,11 @@ locals {
       cpu_cores    = 2
       memory       = 2048
     }
+    k8s-10 = {
+      ipv4_address = "192.168.1.30/24"
+      cpu_cores    = 2
+      memory       = 2048
+    }
   }
 }
 
@@ -154,6 +159,10 @@ locals {
     k8s_9 = {
       node     = proxmox_virtual_environment_vm.k8s["k8s-9"].name
       endpoint = "192.168.1.29"
+    }
+    k8s_10 = {
+      node     = proxmox_virtual_environment_vm.k8s["k8s-10"].name
+      endpoint = "192.168.1.30"
     }
   }
 }

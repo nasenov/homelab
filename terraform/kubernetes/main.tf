@@ -64,11 +64,11 @@ data "talos_image_factory_extensions_versions" "this" {
 
 resource "talos_image_factory_schematic" "this" {
   schematic = yamlencode({
-      customization = {
-        systemExtensions = {
-          officialExtensions = data.talos_image_factory_extensions_versions.this.extensions_info.*.name
-        }
+    customization = {
+      systemExtensions = {
+        officialExtensions = data.talos_image_factory_extensions_versions.this.extensions_info.*.name
       }
+    }
     }
   )
 }
@@ -172,7 +172,8 @@ data "talos_client_configuration" "this" {
     "192.168.1.26",
     "192.168.1.27",
     "192.168.1.28",
-    "192.168.1.29"
+    "192.168.1.29",
+    "192.168.1.30"
   ]
 }
 
