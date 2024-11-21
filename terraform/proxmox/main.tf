@@ -57,5 +57,94 @@ resource "proxmox_virtual_environment_download_file" "talos" {
   datastore_id = "local"
   content_type = "iso"
   file_name    = "nocloud-amd64.img"
-  url          = "https://factory.talos.dev/image/ce4c980550dd2ab1b17bbf2b08801c7eb59418eafe8f279833297925d67c7515/v1.8.0/nocloud-amd64.raw"
+  url          = "https://factory.talos.dev/image/ce4c980550dd2ab1b17bbf2b08801c7eb59418eafe8f279833297925d67c7515/v1.7.7/nocloud-amd64.raw"
+  # url          = "https://factory.talos.dev/image/ce4c980550dd2ab1b17bbf2b08801c7eb59418eafe8f279833297925d67c7515/v1.8.0/nocloud-amd64.raw"
+}
+
+resource "proxmox_virtual_environment_download_file" "ubuntu_cloud_image" {
+  node_name          = "pve"
+  datastore_id       = "local"
+  content_type       = "iso"
+  file_name          = "ubuntu-24.04-server-cloudimg-amd64.img"
+  url                = "https://cloud-images.ubuntu.com/releases/24.04/release-20241119/ubuntu-24.04-server-cloudimg-amd64.img"
+  checksum_algorithm = "sha256"
+  checksum           = "b63f266fa4bdf146dea5b0938fceac694cb3393688fb12a048ba2fc72e7bfe1b"
+}
+
+resource "proxmox_virtual_environment_file" "vendor_config" {
+  node_name    = "pve"
+  datastore_id = "local"
+  content_type = "snippets"
+
+  source_raw {
+    file_name = "vendorconfig.yaml"
+    data      = <<EOF
+#cloud-config
+runcmd:
+  - apt install -y qemu-guest-agent
+  - systemctl enable qemu-guest-agent
+  - systemctl start qemu-guest-agent
+EOF
+  }
+}
+
+resource "proxmox_virtual_environment_vm" "ubuntu_template" {
+  template = true
+  vm_id    = 9000
+
+  name      = "ubuntu-noble-numbat"
+  node_name = "pve"
+
+  machine = "q35"
+  started = false
+
+  cpu {
+    type    = "x86-64-v2-AES"
+    sockets = 1
+    cores   = 4
+    units   = 100
+  }
+
+  memory {
+    dedicated = 8192
+    floating  = 8192
+  }
+
+  network_device {
+
+  }
+
+  disk {
+    datastore_id = "fast"
+    file_id      = proxmox_virtual_environment_download_file.ubuntu_cloud_image.id
+    interface    = "scsi0"
+    size         = 4
+  }
+
+  operating_system {
+    type = "l26"
+  }
+
+  agent {
+    enabled = true
+  }
+
+  initialization {
+    datastore_id = "fast"
+
+    ip_config {
+      ipv4 {
+        address = "dhcp"
+      }
+    }
+
+    user_account {
+      username = var.ci_user
+      password = var.ci_password
+      keys     = var.sshkeys
+    }
+
+    vendor_data_file_id = proxmox_virtual_environment_file.vendor_config.id
+  }
+
 }
