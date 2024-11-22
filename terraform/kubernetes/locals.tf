@@ -18,37 +18,37 @@ locals {
     k8s-4 = {
       ipv4_address = "192.168.1.24/24"
       cpu_cores    = 2
-      memory       = 2048
+      memory       = 4096
     }
     k8s-5 = {
       ipv4_address = "192.168.1.25/24"
       cpu_cores    = 2
-      memory       = 2048
+      memory       = 4096
     }
     k8s-6 = {
       ipv4_address = "192.168.1.26/24"
       cpu_cores    = 2
-      memory       = 2048
+      memory       = 4096
     }
     k8s-7 = {
       ipv4_address = "192.168.1.27/24"
       cpu_cores    = 2
-      memory       = 2048
+      memory       = 4096
     }
     k8s-8 = {
       ipv4_address = "192.168.1.28/24"
       cpu_cores    = 2
-      memory       = 2048
+      memory       = 4096
     }
     k8s-9 = {
       ipv4_address = "192.168.1.29/24"
       cpu_cores    = 2
-      memory       = 2048
+      memory       = 4096
     }
     k8s-10 = {
       ipv4_address = "192.168.1.30/24"
       cpu_cores    = 2
-      memory       = 2048
+      memory       = 4096
     }
   }
 }
@@ -112,6 +112,22 @@ locals {
       }
       proxy = {
         disabled = true
+      }
+    }
+  })
+
+  talos_discovery_service_patch = yamlencode({
+    cluster = {
+      discovery = {
+        enabled = true
+        registries = {
+          service = {
+            disabled = true
+          }
+          kubernetes = {
+            disabled = false
+          }
+        }
       }
     }
   })

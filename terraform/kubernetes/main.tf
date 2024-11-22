@@ -31,6 +31,7 @@ resource "proxmox_virtual_environment_vm" "k8s" {
     interface    = "scsi0"
     iothread     = true
     size         = 100
+    cache        = "writeback"
   }
 
   operating_system {
@@ -54,7 +55,7 @@ resource "proxmox_virtual_environment_vm" "k8s" {
 }
 
 data "talos_image_factory_extensions_versions" "this" {
-  talos_version = "v1.8.0"
+  talos_version = "v1.7.7"
   filters = {
     names = [
       "qemu-guest-agent"
@@ -74,14 +75,17 @@ resource "talos_image_factory_schematic" "this" {
 }
 
 data "talos_image_factory_urls" "this" {
-  talos_version = "v1.8.0"
+  talos_version = "v1.7.7"
   schematic_id  = talos_image_factory_schematic.this.id
   platform      = "nocloud"
 }
 
-resource "talos_machine_secrets" "this" {}
+resource "talos_machine_secrets" "this" {
+  talos_version = "v1.7.7"
+}
 
 data "talos_machine_configuration" "controlplane" {
+  talos_version    = "v1.7.7"
   cluster_name     = "homelab"
   machine_type     = "controlplane"
   cluster_endpoint = "https://192.168.1.20:6443"
@@ -100,11 +104,13 @@ resource "talos_machine_configuration_apply" "controlplane" {
     local.talos_vip_config_patch,
     local.talos_sysctls_config_patch,
     local.talos_kubelet_config_patch,
-    local.talos_cluster_network_config_patch
+    local.talos_cluster_network_config_patch,
+    local.talos_discovery_service_patch
   ]
 }
 
 data "talos_machine_configuration" "worker" {
+  talos_version    = "v1.7.7"
   cluster_name     = "homelab"
   machine_type     = "worker"
   cluster_endpoint = "https://192.168.1.20:6443"
@@ -112,6 +118,11 @@ data "talos_machine_configuration" "worker" {
 }
 
 resource "talos_machine_configuration_apply" "worker" {
+  depends_on = [
+    talos_machine_configuration_apply.controlplane,
+    talos_machine_bootstrap.this
+  ]
+
   for_each = local.worker_virtual_machines
 
   client_configuration        = talos_machine_secrets.this.client_configuration
@@ -122,29 +133,17 @@ resource "talos_machine_configuration_apply" "worker" {
     local.talos_install_image_config_patch,
     local.talos_sysctls_config_patch,
     local.talos_kubelet_config_patch,
-    local.talos_cluster_network_config_patch
+    local.talos_cluster_network_config_patch,
+    local.talos_discovery_service_patch
   ]
-}
-
-resource "time_sleep" "this" {
-  depends_on = [talos_machine_configuration_apply.controlplane]
-
-  create_duration = "120s"
 }
 
 resource "talos_machine_bootstrap" "this" {
   depends_on = [
     talos_machine_configuration_apply.controlplane,
-    time_sleep.this
   ]
   node                 = "192.168.1.21"
   client_configuration = talos_machine_secrets.this.client_configuration
-}
-
-resource "time_sleep" "this2" {
-  depends_on = [talos_machine_bootstrap.this]
-
-  create_duration = "300s"
 }
 
 resource "talos_cluster_kubeconfig" "this" {
