@@ -91,7 +91,7 @@ locals {
     machine = {
       kubelet = {
         extraArgs = {
-          rotate-server-certificates = false
+          rotate-server-certificates = true
         }
         extraMounts = [{
           destination = "/var/openebs/local"
