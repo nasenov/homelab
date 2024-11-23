@@ -9,7 +9,7 @@ resources:
   - ./grafana/ks.yaml
   - ./kube-prometheus-stack/ks.yaml
   - ./kube-state-metrics/ks.yaml
-  - ./loki/ks.yaml
+  # - ./loki/ks.yaml
   - ./prometheus-node-exporter/ks.yaml
   - ./prometheus-operator-crds/ks.yaml
   - ./promtail/ks.yaml
