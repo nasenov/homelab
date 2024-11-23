@@ -84,10 +84,9 @@ spec:
       enabled: false
 
     kubeApiServer:
-      serviceMonitor:
+      service:
         selector:
-          matchLabels:
-            k8s-app: kube-apiserver
+          k8s-app: kube-apiserver
 
     kubeControllerManager:
       service:
