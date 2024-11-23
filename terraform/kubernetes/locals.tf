@@ -131,6 +131,36 @@ locals {
       }
     }
   })
+
+  talos_cluster_controller_manager_config_patch = yamlencode({
+    cluster = {
+      controllerManager = {
+        extraArgs = {
+          bind-address = "0.0.0.0"
+        }
+      }
+    }
+  })
+
+  talos_cluster_scheduler_config_patch = yamlencode({
+    cluster = {
+      scheduler = {
+        extraArgs = {
+          bind-address = "0.0.0.0"
+        }
+      }
+    }
+  })
+
+  talos_cluster_etcd_config_patch = yamlencode({
+    cluster = {
+      etcd = {
+        extraArgs = {
+          listen-metrics-urls = "http://0.0.0.0:2381"
+        }
+      }
+    }
+  })
 }
 
 locals {

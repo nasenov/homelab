@@ -105,7 +105,10 @@ resource "talos_machine_configuration_apply" "controlplane" {
     local.talos_sysctls_config_patch,
     local.talos_kubelet_config_patch,
     local.talos_cluster_network_config_patch,
-    local.talos_discovery_service_patch
+    local.talos_discovery_service_patch,
+    local.talos_cluster_controller_manager_config_patch,
+    local.talos_cluster_scheduler_config_patch,
+    local.talos_cluster_etcd_config_patch
   ]
 }
 
