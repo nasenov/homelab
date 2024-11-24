@@ -1,3 +1,4 @@
+---
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2.json
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
@@ -20,58 +21,60 @@ spec:
     remediation:
       retries: 3
   values:
+    deploymentMode: SingleBinary
+
     loki:
       auth_enabled: false
-
+      limits_config:
+        retention_period: 7d
       commonConfig:
         replication_factor: 1
-      
       storage:
-        bucketNames:
-          chunks: loki
-        type: s3
-        s3:
-          s3: null
-          endpoint: http://minio.storage.svc.cluster.local:9000
-          region: null
-          s3ForcePathStyle: true
-          insecure: true
-
+        type: filesystem
       schemaConfig:
         configs:
-          - from: "2024-04-08"
-            object_store: s3
+          - from: "2024-11-01"
             store: tsdb
+            object_store: filesystem
             schema: v13
             index:
               prefix: index_
               period: 24h
+      compactor:
+        working_directory: /var/loki/compactor/retention
+        delete_request_store: filesystem
+        retention_enabled: true
+      analytics:
+        reporting_enabled: false
+      ingester:
+        chunk_encoding: snappy
 
-      rulerConfig:
-        enable_api: true
-        enable_alertmanager_v2: true
-        alertmanager_url: http://kube-prometheus-stack-alertmanager:9093
-    
-    write:
+    singleBinary:
       replicas: 1
       persistence:
-        volumeClaimsEnabled: false
-    
+        storageClass: openebs-hostpath
+        size: 50Gi
+
+    gateway:
+      replicas: 0
+
+    write:
+      replicas: 0
+
     read:
-      replicas: 1
+      replicas: 0
 
     backend:
-      replicas: 1
-      persistence:
-        volumeClaimsEnabled: false      
+      replicas: 0
 
     chunksCache:
       enabled: false
-      
+
     resultsCache:
       enabled: false
 
-  valuesFrom:
-    - kind: Secret
-      name: loki-minio-credentials
-      optional: false
+    test:
+      enabled: false
+
+    lokiCanary:
+      enabled: false

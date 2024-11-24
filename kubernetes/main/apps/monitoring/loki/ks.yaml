@@ -9,7 +9,7 @@ spec:
   targetNamespace: monitoring
   interval: 10m0s
   dependsOn:
-    - name: external-secrets-stores
+    - name: openebs
   path: ./kubernetes/main/apps/monitoring/loki/app
   prune: true
   sourceRef:
