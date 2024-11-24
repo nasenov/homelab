@@ -5,6 +5,7 @@ metadata:
   name: promtail
 spec:
   interval: 10m0s
+  timeout: 10m0s
   chart:
     spec:
       chart: promtail
