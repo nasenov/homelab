@@ -19,3 +19,7 @@ spec:
   upgrade:
     remediation:
       retries: 3
+  values:
+    config:
+      clients:
+        - url: http://loki-headless.monitoring.svc.cluster.local:3100/loki/api/v1/push
