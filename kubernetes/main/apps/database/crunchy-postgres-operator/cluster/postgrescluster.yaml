@@ -36,29 +36,29 @@ spec:
       password:
         type: AlphaNumeric
 
-  backups:
-    pgbackrest:
-      configuration: &backupConfig
-        - secret:
-            name: crunchy-postgres-secret
-      global: &backupFlag
-        repo1-path: /pgbackrest/database/postgres/repo1
-        repo1-s3-uri-style: path
-        repo1-retention-full-type: time
-        repo1-retention-full: "14"
-      manual:
-        repoName: repo1
-        options:
-          - --type=full
-      repos:
-        - name: repo1
-          s3: &minio
-            bucket: postgres
-            endpoint: minio.storage.svc.cluster.local:9000
-            region: eu-central-1
-          schedules:
-            full: "0 1 * * 0" # Sunday at 01:00
-            differential: "0 1 * * 1-6" # Mon-Sat at 01:00
+  # backups:
+  #   pgbackrest:
+  #     configuration: &backupConfig
+  #       - secret:
+  #           name: crunchy-postgres-secret
+  #     global: &backupFlag
+  #       repo1-path: /pgbackrest/database/postgres/repo1
+  #       repo1-s3-uri-style: path
+  #       repo1-retention-full-type: time
+  #       repo1-retention-full: "14"
+  #     manual:
+  #       repoName: repo1
+  #       options:
+  #         - --type=full
+  #     repos:
+  #       - name: repo1
+  #         s3: &minio
+  #           bucket: postgres
+  #           endpoint: minio.storage.svc.cluster.local:9000
+  #           region: eu-central-1
+  #         schedules:
+  #           full: "0 1 * * 0" # Sunday at 01:00
+  #           differential: "0 1 * * 1-6" # Mon-Sat at 01:00
 
   # dataSource:
   #   pgbackrest:
