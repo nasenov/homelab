@@ -2,7 +2,7 @@
 apiVersion: postgres-operator.crunchydata.com/v1beta1
 kind: PostgresCluster
 metadata:
-  name: postgres
+  name: &name postgres
 spec:
   postgresVersion: 16
 
@@ -30,7 +30,16 @@ spec:
                   storage: 16Gi
 
   proxy:
-    pgBouncer: {}
+    pgBouncer:
+      replicas: 2
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - topologyKey: kubernetes.io/hostname
+              labelSelector:
+                matchLabels:
+                  postgres-operator.crunchydata.com/cluster: *name
+                  postgres-operator.crunchydata.com/role: pgbouncer
 
   # instances:
   #   - name: postgres
@@ -94,17 +103,6 @@ spec:
   #     repo:
   #       name: repo1
   #       s3: *minio
-
-  # proxy:
-  #   pgBouncer:
-  #     replicas: 3
-  #     topologySpreadConstraints:
-  #       - maxSkew: 1
-  #         topologyKey: kubernetes.io/hostname
-  #         whenUnsatisfiable: DoNotSchedule
-  #         labelSelector:
-  #           matchLabels:
-  #             postgres-operator.crunchydata.com/role: pgbouncer
 
   # monitoring:
   #   pgmonitor:
