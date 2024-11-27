@@ -18,16 +18,33 @@ spec:
 
   backups:
     pgbackrest:
+      configuration:
+        - secret:
+            name: crunchy-postgres-secret
+      global:
+        compress-type: "bz2"
+        compress-level: "9"
+        # Minio
+        repo1-block: "y"
+        repo1-bundle: "y"
+        repo1-path: /pgbackrest/database/postgres/repo1
+        repo1-retention-full: "30" # days
+        repo1-retention-full-type: time
+        repo1-s3-uri-style: path
+      manual:
+        repoName: repo1
+        options:
+          - --type=full
       repos:
         - name: repo1
-          volume:
-            volumeClaimSpec:
-              storageClassName: openebs-hostpath
-              accessModes:
-                - ReadWriteOnce
-              resources:
-                requests:
-                  storage: 16Gi
+          s3:
+            bucket: postgres
+            endpoint: minio.storage.svc.cluster.local:9000
+            region: eu-central-1
+          schedules:
+            full: "0 1 * * 0" # Sunday at 01:00
+            differential: "0 1 * * 1-6" # Mon-Sat at 01:00
+            incremental: "0 2-23 * * *" # Every hour except 01:00
 
   proxy:
     pgBouncer:
@@ -70,30 +87,6 @@ spec:
   #       - lldap
   #     password:
   #       type: AlphaNumeric
-
-  # backups:
-  #   pgbackrest:
-  #     configuration: &backupConfig
-  #       - secret:
-  #           name: crunchy-postgres-secret
-  #     global: &backupFlag
-  #       repo1-path: /pgbackrest/database/postgres/repo1
-  #       repo1-s3-uri-style: path
-  #       repo1-retention-full-type: time
-  #       repo1-retention-full: "14"
-  #     manual:
-  #       repoName: repo1
-  #       options:
-  #         - --type=full
-  #     repos:
-  #       - name: repo1
-  #         s3: &minio
-  #           bucket: postgres
-  #           endpoint: minio.storage.svc.cluster.local:9000
-  #           region: eu-central-1
-  #         schedules:
-  #           full: "0 1 * * 0" # Sunday at 01:00
-  #           differential: "0 1 * * 1-6" # Mon-Sat at 01:00
 
   # dataSource:
   #   pgbackrest:
