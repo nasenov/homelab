@@ -24,6 +24,7 @@ spec:
       global:
         compress-type: "bz2"
         compress-level: "9"
+        log-level-console: "debug"
         # Minio
         repo1-block: "y"
         repo1-bundle: "y"
