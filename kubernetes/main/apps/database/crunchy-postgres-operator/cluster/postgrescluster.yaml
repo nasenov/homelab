@@ -27,6 +27,7 @@ spec:
         # Minio
         repo1-block: "y"
         repo1-bundle: "y"
+        repo1-storage-verify-tls: "n"
         repo1-path: /pgbackrest/database/postgres/repo1
         repo1-retention-full: "30" # days
         repo1-retention-full-type: time
