@@ -8,14 +8,6 @@ spec:
 
   instances:
     - name: postgres
-      replicas: 3
-      topologySpreadConstraints:
-        - maxSkew: 1
-          topologyKey: kubernetes.io/hostname
-          whenUnsatisfiable: DoNotSchedule
-          labelSelector:
-            matchLabels:
-              postgres-operator.crunchydata.com/instance-set: postgres
       dataVolumeClaimSpec:
         storageClassName: openebs-hostpath
         accessModes:
@@ -24,17 +16,47 @@ spec:
           requests:
             storage: 16Gi
 
-  users:
-    # Superuser
-    - name: postgres
-      password:
-        type: AlphaNumeric
-    # Applications
-    - name: lldap
-      databases:
-        - lldap
-      password:
-        type: AlphaNumeric
+  backups:
+    pgbackrest:
+      repos:
+        - name: repo1
+          volume:
+            volumeClaimSpec:
+              accessModes:
+                - ReadWriteOnce
+              resources:
+                requests:
+                  storage: 16Gi
+
+  # instances:
+  #   - name: postgres
+  #     replicas: 3
+  #     topologySpreadConstraints:
+  #       - maxSkew: 1
+  #         topologyKey: kubernetes.io/hostname
+  #         whenUnsatisfiable: DoNotSchedule
+  #         labelSelector:
+  #           matchLabels:
+  #             postgres-operator.crunchydata.com/instance-set: postgres
+  #     dataVolumeClaimSpec:
+  #       storageClassName: openebs-hostpath
+  #       accessModes:
+  #         - ReadWriteOnce
+  #       resources:
+  #         requests:
+  #           storage: 16Gi
+
+  # users:
+  #   # Superuser
+  #   - name: postgres
+  #     password:
+  #       type: AlphaNumeric
+  #   # Applications
+  #   - name: lldap
+  #     databases:
+  #       - lldap
+  #     password:
+  #       type: AlphaNumeric
 
   # backups:
   #   pgbackrest:
@@ -69,23 +91,23 @@ spec:
   #       name: repo1
   #       s3: *minio
 
-  proxy:
-    pgBouncer:
-      replicas: 3
-      topologySpreadConstraints:
-        - maxSkew: 1
-          topologyKey: kubernetes.io/hostname
-          whenUnsatisfiable: DoNotSchedule
-          labelSelector:
-            matchLabels:
-              postgres-operator.crunchydata.com/role: pgbouncer
+  # proxy:
+  #   pgBouncer:
+  #     replicas: 3
+  #     topologySpreadConstraints:
+  #       - maxSkew: 1
+  #         topologyKey: kubernetes.io/hostname
+  #         whenUnsatisfiable: DoNotSchedule
+  #         labelSelector:
+  #           matchLabels:
+  #             postgres-operator.crunchydata.com/role: pgbouncer
 
-  monitoring:
-    pgmonitor:
-      exporter:
-        resources:
-          requests:
-            cpu: 10m
-            memory: 64M
-          limits:
-            memory: 512M
+  # monitoring:
+  #   pgmonitor:
+  #     exporter:
+  #       resources:
+  #         requests:
+  #           cpu: 10m
+  #           memory: 64M
+  #         limits:
+  #           memory: 512M
