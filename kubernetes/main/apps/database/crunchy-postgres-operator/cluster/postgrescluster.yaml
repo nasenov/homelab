@@ -29,6 +29,9 @@ spec:
                 requests:
                   storage: 16Gi
 
+  proxy:
+    pgBouncer: {}
+
   # instances:
   #   - name: postgres
   #     replicas: 3
