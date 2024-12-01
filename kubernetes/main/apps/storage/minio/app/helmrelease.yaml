@@ -53,6 +53,8 @@ spec:
 
     ingress:
       app:
+        annotations:
+          nginx.ingress.kubernetes.io/proxy-body-size: 8m
         className: nginx
         hosts:
           - host: minio.nasenov.dev
