@@ -148,3 +148,65 @@ resource "proxmox_virtual_environment_vm" "ubuntu_template" {
   }
 
 }
+
+resource "proxmox_virtual_environment_vm" "dns" {
+  name      = "dns"
+  node_name = "pve"
+
+  machine       = "q35"
+  scsi_hardware = "virtio-scsi-single"
+  started       = true
+
+  cpu {
+    type    = "x86-64-v2-AES"
+    sockets = 1
+    cores   = 2
+    units   = 100
+  }
+
+  memory {
+    dedicated = 2048
+    floating  = 2048
+  }
+
+  network_device {
+
+  }
+
+  disk {
+    datastore_id = "fast"
+    file_id      = proxmox_virtual_environment_download_file.ubuntu_cloud_image.id
+    interface    = "scsi0"
+    iothread     = true
+    size         = 32
+    cache        = "writeback"
+  }
+
+  operating_system {
+    type = "l26"
+  }
+
+  agent {
+    enabled = true
+  }
+
+  initialization {
+    datastore_id = "local-lvm"
+
+    ip_config {
+      ipv4 {
+        address = "192.168.1.53/24"
+        gateway = "192.168.1.1"
+      }
+    }
+
+    user_account {
+      username = var.ci_user
+      password = var.ci_password
+      keys     = var.sshkeys
+    }
+
+    vendor_data_file_id = proxmox_virtual_environment_file.vendor_config.id
+  }
+
+}

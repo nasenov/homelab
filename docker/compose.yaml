@@ -1,0 +1,14 @@
+---
+services:
+  blocky:
+    container_name: blocky
+    image: ghcr.io/0xerr0r/blocky:v0.24
+    restart: unless-stopped
+    ports:
+      - "4000:4000/tcp"
+      - "53:53/tcp"
+      - "53:53/udp"
+    environment:
+      - TZ=Europe/Sofia
+    volumes:
+      - ./config.yaml:/app/config.yml
