@@ -45,6 +45,10 @@ resource "proxmox_virtual_environment_vm" "k8s" {
   initialization {
     datastore_id = "local-lvm"
 
+    dns {
+      servers = ["192.168.1.53"]
+    }
+
     ip_config {
       ipv4 {
         address = each.value.ipv4_address
