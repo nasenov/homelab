@@ -28,3 +28,10 @@ k8sServiceHost: localhost
 k8sServicePort: 7445
 l2announcements:
   enabled: true
+# https://github.com/cilium/cilium/issues/28549
+operator:
+  tolerations:
+    - key: node.kubernetes.io/not-ready
+      effect: NoSchedule
+    - key: node-role.kubernetes.io/control-plane
+      effect: NoSchedule
