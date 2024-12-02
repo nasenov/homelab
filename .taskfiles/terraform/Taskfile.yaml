@@ -15,4 +15,6 @@ tasks:
     dir: "{{.ROOT_DIR}}/terraform/kubernetes"
     cmds:
       - terraform output -raw kubeconfig > ~/.kube/config
+      - chmod 600 ~/.kube/config
       - terraform output -raw talosconfig > ~/.talos/config
+      - chmod 600 ~/.talos/config
