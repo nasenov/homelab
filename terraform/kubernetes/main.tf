@@ -157,13 +157,9 @@ resource "talos_cluster_kubeconfig" "this" {
   depends_on = [
     talos_machine_bootstrap.this
   ]
+
   client_configuration = talos_machine_secrets.this.client_configuration
   node                 = "192.168.1.21"
-}
-
-resource "local_sensitive_file" "kubeconfig" {
-  content  = talos_cluster_kubeconfig.this.kubeconfig_raw
-  filename = pathexpand("~/.kube/config")
 }
 
 data "talos_client_configuration" "this" {
@@ -186,9 +182,4 @@ data "talos_client_configuration" "this" {
     "192.168.1.29",
     "192.168.1.30"
   ]
-}
-
-resource "local_sensitive_file" "talosconfig" {
-  content  = data.talos_client_configuration.this.talos_config
-  filename = pathexpand("~/.talos/config")
 }

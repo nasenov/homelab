@@ -6,4 +6,5 @@ tasks:
   main:
     cmds:
       - task: :terraform:apply
+      - task: :terraform:output
       - task: :flux:bootstrap

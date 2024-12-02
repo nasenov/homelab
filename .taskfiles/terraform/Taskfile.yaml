@@ -10,3 +10,9 @@ tasks:
   destroy:
     dir: "{{.ROOT_DIR}}/terraform/kubernetes"
     cmd: terraform destroy
+
+  output:
+    dir: "{{.ROOT_DIR}}/terraform/kubernetes"
+    cmds:
+      - terraform output -raw kubeconfig > ~/.kube/config
+      - terraform output -raw talosconfig > ~/.talos/config
