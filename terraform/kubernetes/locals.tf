@@ -137,6 +137,7 @@ locals {
       controllerManager = {
         extraArgs = {
           bind-address = "0.0.0.0"
+          terminated-pod-gc-threshold = 1
         }
       }
     }
