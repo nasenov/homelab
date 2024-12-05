@@ -4,51 +4,61 @@ locals {
       ipv4_address = "192.168.1.21/24"
       cpu_cores    = 4
       memory       = 4096
+      hostpci      = []
     }
     k8s-2 = {
       ipv4_address = "192.168.1.22/24"
       cpu_cores    = 4
       memory       = 4096
+      hostpci      = []
     }
     k8s-3 = {
       ipv4_address = "192.168.1.23/24"
       cpu_cores    = 4
       memory       = 4096
+      hostpci      = []
     }
     k8s-4 = {
       ipv4_address = "192.168.1.24/24"
       cpu_cores    = 2
       memory       = 4096
+      hostpci      = ["0000:01:00"]
     }
     k8s-5 = {
       ipv4_address = "192.168.1.25/24"
       cpu_cores    = 2
       memory       = 4096
+      hostpci      = ["0000:02:00"]
     }
     k8s-6 = {
       ipv4_address = "192.168.1.26/24"
       cpu_cores    = 2
       memory       = 4096
+      hostpci      = ["0000:09:00"]
     }
     k8s-7 = {
       ipv4_address = "192.168.1.27/24"
       cpu_cores    = 2
       memory       = 4096
+      hostpci      = []
     }
     k8s-8 = {
       ipv4_address = "192.168.1.28/24"
       cpu_cores    = 2
       memory       = 4096
+      hostpci      = []
     }
     k8s-9 = {
       ipv4_address = "192.168.1.29/24"
       cpu_cores    = 2
       memory       = 4096
+      hostpci      = []
     }
     k8s-10 = {
       ipv4_address = "192.168.1.30/24"
       cpu_cores    = 2
       memory       = 4096
+      hostpci      = []
     }
   }
 }

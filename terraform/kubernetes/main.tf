@@ -34,6 +34,16 @@ resource "proxmox_virtual_environment_vm" "k8s" {
     cache        = "writeback"
   }
 
+  dynamic "hostpci" {
+    for_each = each.value.hostpci
+    content {
+      device = "hostpci0"
+      id     = hostpci.value
+      pcie   = true
+      rombar = true
+    }
+  }
+
   operating_system {
     type = "l26"
   }
