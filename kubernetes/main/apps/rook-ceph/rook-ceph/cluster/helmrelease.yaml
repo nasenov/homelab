@@ -6,6 +6,7 @@ metadata:
   name: rook-ceph-cluster
 spec:
   interval: 10m0s
+  timeout: 15m0s
   chart:
     spec:
       chart: rook-ceph-cluster
