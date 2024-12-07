@@ -36,11 +36,20 @@ resource "proxmox_virtual_environment_vm" "k8s" {
 
   dynamic "hostpci" {
     for_each = each.value.hostpci
+
     content {
       device = "hostpci0"
       id     = hostpci.value
       pcie   = true
       rombar = true
+    }
+  }
+
+  dynamic "usb" {
+    for_each = each.value.usb
+
+    content {
+      host = usb.value
     }
   }
 
