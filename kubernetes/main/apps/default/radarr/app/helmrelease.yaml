@@ -43,7 +43,7 @@ spec:
           app:
             image:
               repository: linuxserver/radarr
-              tag: 5.15.1
+              tag: 5.16.3
             env:
               TZ: Europe/Sofia
 
