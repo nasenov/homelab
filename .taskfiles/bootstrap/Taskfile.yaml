@@ -3,6 +3,13 @@
 version: "3"
 
 tasks:
+  rook:
+    cmds:
+      - kubectl apply -f ./.taskfiles/bootstrap/resources/wipe-rook.yaml
+      - until kubectl --namespace default get pods/disk-wipe-1 pods/disk-wipe-2 pods/disk-wipe-3 &>/dev/null; do sleep 5; done
+      - kubectl --namespace default wait pods/disk-wipe-1 pods/disk-wipe-2 pods/disk-wipe-3 --for=jsonpath='{.status.phase}'=Succeeded --timeout=5m
+      - kubectl delete -f ./.taskfiles/bootstrap/resources/wipe-rook.yaml
+
   main:
     cmds:
       - task: :terraform:apply
