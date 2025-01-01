@@ -46,15 +46,15 @@ spec:
               tag: 10.10.3
             env:
               TZ: Europe/Sofia
-            # resources:
-            #   requests:
-            #     gpu.intel.com/i915: 1
-            #   limits:
-            #     gpu.intel.com/i915: 1
+            resources:
+              requests:
+                gpu.intel.com/i915: 1
+              limits:
+                gpu.intel.com/i915: 1
 
-    # defaultPodOptions:
-    #   nodeSelector:
-    #     intel.feature.node.kubernetes.io/gpu: "true"
+    defaultPodOptions:
+      nodeSelector:
+        intel.feature.node.kubernetes.io/gpu: "true"
 
     service:
       app:

@@ -5,6 +5,7 @@ locals {
       cpu_cores    = 4
       memory       = 4096
       hostpci      = []
+      gpu          = []
       usb          = []
     }
     k8s-2 = {
@@ -12,6 +13,7 @@ locals {
       cpu_cores    = 4
       memory       = 4096
       hostpci      = []
+      gpu          = []
       usb          = []
     }
     k8s-3 = {
@@ -19,6 +21,7 @@ locals {
       cpu_cores    = 4
       memory       = 4096
       hostpci      = []
+      gpu          = []
       usb          = []
     }
     k8s-4 = {
@@ -26,6 +29,7 @@ locals {
       cpu_cores    = 4
       memory       = 8192
       hostpci      = ["0000:01:00"]
+      gpu          = []
       usb          = []
     }
     k8s-5 = {
@@ -33,6 +37,7 @@ locals {
       cpu_cores    = 4
       memory       = 8192
       hostpci      = ["0000:02:00"]
+      gpu          = []
       usb          = []
     }
     k8s-6 = {
@@ -40,6 +45,7 @@ locals {
       cpu_cores    = 4
       memory       = 8192
       hostpci      = ["0000:09:00"]
+      gpu          = []
       usb          = []
     }
     k8s-7 = {
@@ -47,6 +53,7 @@ locals {
       cpu_cores    = 4
       memory       = 8192
       hostpci      = []
+      gpu          = ["0000:00:02"]
       usb          = ["10c4:ea60"]
     }
     k8s-8 = {
@@ -54,6 +61,7 @@ locals {
       cpu_cores    = 4
       memory       = 12288
       hostpci      = []
+      gpu          = []
       usb          = []
     }
     k8s-9 = {
@@ -61,6 +69,7 @@ locals {
       cpu_cores    = 4
       memory       = 8192
       hostpci      = []
+      gpu          = []
       usb          = []
     }
     k8s-10 = {
@@ -68,6 +77,7 @@ locals {
       cpu_cores    = 4
       memory       = 8192
       hostpci      = []
+      gpu          = []
       usb          = []
     }
   }

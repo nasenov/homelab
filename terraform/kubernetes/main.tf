@@ -45,6 +45,17 @@ resource "proxmox_virtual_environment_vm" "k8s" {
     }
   }
 
+  dynamic "hostpci" {
+    for_each = each.value.gpu
+
+    content {
+      device = "hostpci0"
+      id     = hostpci.value
+      pcie   = true
+      rombar = false
+    }
+  }
+
   dynamic "usb" {
     for_each = each.value.usb
 
@@ -81,7 +92,8 @@ data "talos_image_factory_extensions_versions" "this" {
   talos_version = "v1.7.7"
   filters = {
     names = [
-      "qemu-guest-agent"
+      "qemu-guest-agent",
+      "i915-ucode"
     ]
   }
 }
