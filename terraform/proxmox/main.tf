@@ -57,7 +57,8 @@ resource "proxmox_virtual_environment_download_file" "talos" {
   datastore_id = "local"
   content_type = "iso"
   file_name    = "nocloud-amd64.img"
-  url          = "https://factory.talos.dev/image/ce4c980550dd2ab1b17bbf2b08801c7eb59418eafe8f279833297925d67c7515/v1.7.7/nocloud-amd64.raw"
+  url          = "https://factory.talos.dev/image/90015c0ada3ddd8b55e25342d736bbb1ef7c8e213883ec2ad1110cb44944503f/v1.7.7/nocloud-amd64.raw"
+  # url          = "https://factory.talos.dev/image/ce4c980550dd2ab1b17bbf2b08801c7eb59418eafe8f279833297925d67c7515/v1.7.7/nocloud-amd64.raw"
   # url          = "https://factory.talos.dev/image/ce4c980550dd2ab1b17bbf2b08801c7eb59418eafe8f279833297925d67c7515/v1.8.0/nocloud-amd64.raw"
 }
 

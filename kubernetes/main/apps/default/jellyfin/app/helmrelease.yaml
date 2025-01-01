@@ -45,9 +45,7 @@ spec:
               repository: jellyfin/jellyfin
               tag: 10.10.3
             env:
-              TZ: Europe/
-            securityContext:
-              privileged: true              
+              TZ: Europe/Sofia
             resources:
               requests:
                 gpu.intel.com/i915: 1
