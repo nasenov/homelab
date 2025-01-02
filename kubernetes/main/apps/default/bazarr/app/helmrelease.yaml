@@ -9,12 +9,11 @@ spec:
   chart:
     spec:
       chart: app-template
-      reconcileStrategy: ChartVersion
+      version: 3.6.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-      version: 3.6.0
   install:
     remediation:
       retries: 3
@@ -42,8 +41,8 @@ spec:
         containers:
           app:
             image:
-              repository: linuxserver/bazarr
-              tag: 1.5.1
+              repository: ghcr.io/onedr0p/bazarr
+              tag: 1.5.1@sha256:4f3f5f42e552979d75cf2f168d9f053134eefa11e9e42b4878bded3bb69978d4
             env:
               TZ: Europe/Sofia
 
