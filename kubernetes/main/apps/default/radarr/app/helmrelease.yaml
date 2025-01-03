@@ -9,12 +9,11 @@ spec:
   chart:
     spec:
       chart: app-template
-      reconcileStrategy: ChartVersion
+      version: 3.6.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-      version: 3.6.0
   install:
     remediation:
       retries: 3
@@ -42,10 +41,19 @@ spec:
         containers:
           app:
             image:
-              repository: linuxserver/radarr
-              tag: 5.16.3
+              repository: ghcr.io/onedr0p/radarr
+              tag: 5.16.3.9541@sha256:c486358da837234118d4d3bedb88269e6ad55919efc31aa84cb478780d59b93a
             env:
               TZ: Europe/Sofia
+
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 911
+        runAsGroup: 911
+        fsGroup: 911
+        fsGroupChangePolicy: OnRootMismatch
+        seccompProfile: { type: RuntimeDefault }
 
     service:
       app:
