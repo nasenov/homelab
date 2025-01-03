@@ -1,0 +1,17 @@
+---
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+version: "3"
+
+tasks:
+  upgrade-node:
+    cmds:
+      - talosctl --nodes {{.IP}} upgrade --image factory.talos.dev/installer/90015c0ada3ddd8b55e25342d736bbb1ef7c8e213883ec2ad1110cb44944503f:v1.8.4
+    requires:
+      vars: [IP]
+
+  upgrade-k8s:
+    cmds:
+      - talosctl --nodes {{.TALOS_CONTROLLER}} upgrade-k8s --to 1.31.4
+    vars:
+      TALOS_CONTROLLER:
+        sh: talosctl config info --output json | jq --raw-output '.endpoints[]' | shuf -n 1
