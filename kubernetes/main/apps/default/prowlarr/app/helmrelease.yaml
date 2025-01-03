@@ -9,12 +9,11 @@ spec:
   chart:
     spec:
       chart: app-template
-      reconcileStrategy: ChartVersion
+      version: 3.6.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-      version: 3.6.0
   install:
     remediation:
       retries: 3
@@ -42,10 +41,19 @@ spec:
         containers:
           app:
             image:
-              repository: linuxserver/prowlarr
-              tag: 1.29.1-develop
+              repository: ghcr.io/onedr0p/prowlarr
+              tag: 1.28.2.4885@sha256:5c31e562ce080c8bcb1bee9f320b69ab0c376dce2988dfd3f19bbaf7f08c6f07
             env:
               TZ: Europe/Sofia
+
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 911
+        runAsGroup: 911
+        fsGroup: 911
+        fsGroupChangePolicy: OnRootMismatch
+        seccompProfile: { type: RuntimeDefault }
 
     service:
       app:
