@@ -9,12 +9,11 @@ spec:
   chart:
     spec:
       chart: app-template
-      reconcileStrategy: ChartVersion
+      version: 3.6.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-      version: 3.6.0
   install:
     remediation:
       retries: 3
@@ -42,10 +41,19 @@ spec:
         containers:
           app:
             image:
-              repository: linuxserver/sonarr
-              tag: 4.0.11
+              repository: ghcr.io/onedr0p/sonarr
+              tag: 4.0.11.2680@sha256:be61367714d750b241eec33c10cafd89002564404c18706b3f3e93ea40c2e608
             env:
               TZ: Europe/Sofia
+
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 911
+        runAsGroup: 911
+        fsGroup: 911
+        fsGroupChangePolicy: OnRootMismatch
+        seccompProfile: { type: RuntimeDefault }
 
     service:
       app:
