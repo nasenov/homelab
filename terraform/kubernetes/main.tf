@@ -89,7 +89,7 @@ resource "proxmox_virtual_environment_vm" "k8s" {
 }
 
 data "talos_image_factory_extensions_versions" "this" {
-  talos_version = "v1.7.7"
+  talos_version = "v1.9.1"
   filters = {
     names = [
       "qemu-guest-agent",
@@ -110,17 +110,14 @@ resource "talos_image_factory_schematic" "this" {
 }
 
 data "talos_image_factory_urls" "this" {
-  talos_version = "v1.7.7"
+  talos_version = "v1.9.1"
   schematic_id  = talos_image_factory_schematic.this.id
   platform      = "nocloud"
 }
 
-resource "talos_machine_secrets" "this" {
-  talos_version = "v1.7.7"
-}
+resource "talos_machine_secrets" "this" {}
 
 data "talos_machine_configuration" "controlplane" {
-  talos_version    = "v1.7.7"
   cluster_name     = "homelab"
   machine_type     = "controlplane"
   cluster_endpoint = "https://192.168.1.20:6443"
@@ -148,7 +145,6 @@ resource "talos_machine_configuration_apply" "controlplane" {
 }
 
 data "talos_machine_configuration" "worker" {
-  talos_version    = "v1.7.7"
   cluster_name     = "homelab"
   machine_type     = "worker"
   cluster_endpoint = "https://192.168.1.20:6443"
