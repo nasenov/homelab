@@ -5,7 +5,7 @@ kind: EMQX
 metadata:
   name: emqx
 spec:
-  image: emqx:5.8.3
+  image: emqx:5.8.4
   coreTemplate:
     spec:
       replicas: 3
