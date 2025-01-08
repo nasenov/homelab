@@ -1,0 +1,12 @@
+{
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "packageRules": [
+        {
+            "description": ["Rook-Ceph Group"],
+            "matchDatasources": ["helm"],
+            "matchPackageNames": ["rook-ceph", "rook-ceph-cluster"],
+            "groupName": "Rook-Ceph",
+            "separateMinorPatch": true
+        }
+    ]
+}
