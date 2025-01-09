@@ -3,24 +3,27 @@
   "packageRules": [
     {
       "matchUpdateTypes": ["major"],
-      "semanticCommitType": "feat",
-      "commitMessagePrefix": "{{semanticCommitType}}({{semanticCommitScope}})!: "
+      "labels": ["type/major"]
     },
     {
       "matchUpdateTypes": ["minor"],
-      "semanticCommitType": "feat"
+      "labels": ["type/minor"]
     },
     {
       "matchUpdateTypes": ["patch"],
-      "semanticCommitType": "fix"
+      "labels": ["type/patch"]
+    },
+    {
+      "matchUpdateTypes": ["digest"],
+      "labels": ["type/digest"]
     },
     {
       "matchDatasources": ["docker"],
-      "semanticCommitScope": "image"
+      "addLabels": ["renovate/container"]
     },
     {
       "matchDatasources": ["helm"],
-      "semanticCommitScope": "chart"
+      "addLabels": ["renovate/helm"]
     }
   ]
 }

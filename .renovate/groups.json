@@ -1,0 +1,19 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "packageRules": [
+    {
+      "description": ["Intel Device Plugins Group"],
+      "matchDatasources": ["helm"],
+      "matchPackageNames": ["intel-device-plugins-operator", "intel-device-plugins-gpu"],
+      "groupName": "Intel-Device-Plugins",
+      "separateMinorPatch": true
+    },
+    {
+      "description": ["Rook-Ceph Group"],
+      "matchDatasources": ["helm"],
+      "matchPackageNames": ["rook-ceph", "rook-ceph-cluster"],
+      "groupName": "Rook-Ceph",
+      "separateMinorPatch": true
+    }
+  ]
+}
