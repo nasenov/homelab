@@ -5,15 +5,13 @@
       "description": ["Intel Device Plugins Group"],
       "matchDatasources": ["helm"],
       "matchPackageNames": ["intel-device-plugins-operator", "intel-device-plugins-gpu"],
-      "groupName": "Intel-Device-Plugins",
-      "separateMinorPatch": true
+      "groupName": "Intel-Device-Plugins"
     },
     {
       "description": ["Rook-Ceph Group"],
       "matchDatasources": ["helm"],
       "matchPackageNames": ["rook-ceph", "rook-ceph-cluster"],
-      "groupName": "Rook-Ceph",
-      "separateMinorPatch": true
+      "groupName": "Rook-Ceph"
     }
   ]
 }

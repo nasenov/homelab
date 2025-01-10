@@ -6,7 +6,7 @@
     ":disableRateLimiting",
     ":dependencyDashboard",
     ":semanticCommits",
-    "github>n-asenov/homelab//.renovate/commitMessage.json",
+    ":separatePatchReleases",
     "github>n-asenov/homelab//.renovate/groups.json",
     "github>n-asenov/homelab//.renovate/labels.json",
     "github>n-asenov/homelab//.renovate/semanticCommits.json"
