@@ -123,8 +123,8 @@ spec:
           datasource: Prometheus
         minio-bucket-dashboard:
           # renovate: depName="MinIO Bucket Dashboard"
-          gnetId: 19237
-          revision: 1
+          gnetId: 29237
+          revision: 2
           datasource: Prometheus
         minio-replication-dashboard:
           # renovate: depName="MinIO Replication Dashboard"
