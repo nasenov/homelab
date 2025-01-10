@@ -129,7 +129,7 @@ spec:
         minio-replication-dashboard:
           # renovate: depName="MinIO Replication Dashboard"
           gnetId: 15305
-          revision: 4
+          revision: 5
           datasource: Prometheus
       nginx:
         nginx:
