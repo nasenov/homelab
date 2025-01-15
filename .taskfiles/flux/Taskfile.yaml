@@ -7,4 +7,4 @@ tasks:
     cmds:
       - kubectl create ns flux-system
       - cat ./age.agekey | kubectl create secret generic sops-age --namespace=flux-system --from-file=age.agekey=/dev/stdin
-      - flux bootstrap github --owner=n-asenov --repository=homelab --personal --path=kubernetes/main/cluster
+      - flux bootstrap github --owner=n-asenov --repository=homelab --personal --path=kubernetes/cluster

@@ -1,0 +1,36 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: ingress-nginx-certificates
+  namespace: flux-system
+spec:
+  targetNamespace: networking
+  interval: 10m0s
+  dependsOn:
+    - name: external-secrets-stores
+  path: ./kubernetes/apps/networking/ingress-nginx/certificates
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  wait: true
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: ingress-nginx
+  namespace: flux-system
+spec:
+  targetNamespace: networking
+  interval: 10m0s
+  dependsOn:
+    - name: ingress-nginx-certificates
+    - name: prometheus-operator-crds
+  path: ./kubernetes/apps/networking/ingress-nginx/app
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
