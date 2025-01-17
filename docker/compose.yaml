@@ -2,7 +2,7 @@
 services:
   blocky:
     container_name: blocky
-    image: ghcr.io/0xerr0r/blocky:v0.24
+    image: ghcr.io/0xerr0r/blocky:v0.25
     restart: unless-stopped
     ports:
       - "4000:4000/tcp"
