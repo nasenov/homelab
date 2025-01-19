@@ -76,20 +76,20 @@ resource "proxmox_virtual_environment_vm" "k8s" {
     datastore_id = "local-lvm"
 
     dns {
-      servers = ["192.168.1.53"]
+      servers = ["192.168.0.53"]
     }
 
     ip_config {
       ipv4 {
         address = each.value.ipv4_address
-        gateway = "192.168.1.1"
+        gateway = "192.168.0.1"
       }
     }
   }
 }
 
 data "talos_image_factory_extensions_versions" "this" {
-  talos_version = "v1.9.1"
+  talos_version = "v1.9.2"
   filters = {
     names = [
       "qemu-guest-agent",
@@ -110,7 +110,7 @@ resource "talos_image_factory_schematic" "this" {
 }
 
 data "talos_image_factory_urls" "this" {
-  talos_version = "v1.9.1"
+  talos_version = "v1.9.2"
   schematic_id  = talos_image_factory_schematic.this.id
   platform      = "nocloud"
 }
@@ -120,7 +120,7 @@ resource "talos_machine_secrets" "this" {}
 data "talos_machine_configuration" "controlplane" {
   cluster_name     = "homelab"
   machine_type     = "controlplane"
-  cluster_endpoint = "https://192.168.1.20:6443"
+  cluster_endpoint = "https://192.168.0.20:6443"
   machine_secrets  = talos_machine_secrets.this.machine_secrets
 }
 
@@ -147,7 +147,7 @@ resource "talos_machine_configuration_apply" "controlplane" {
 data "talos_machine_configuration" "worker" {
   cluster_name     = "homelab"
   machine_type     = "worker"
-  cluster_endpoint = "https://192.168.1.20:6443"
+  cluster_endpoint = "https://192.168.0.20:6443"
   machine_secrets  = talos_machine_secrets.this.machine_secrets
 }
 
@@ -176,7 +176,7 @@ resource "talos_machine_bootstrap" "this" {
   depends_on = [
     talos_machine_configuration_apply.controlplane,
   ]
-  node                 = "192.168.1.21"
+  node                 = "192.168.0.21"
   client_configuration = talos_machine_secrets.this.client_configuration
 }
 
@@ -186,27 +186,27 @@ resource "talos_cluster_kubeconfig" "this" {
   ]
 
   client_configuration = talos_machine_secrets.this.client_configuration
-  node                 = "192.168.1.21"
+  node                 = "192.168.0.21"
 }
 
 data "talos_client_configuration" "this" {
   cluster_name         = "homelab"
   client_configuration = talos_machine_secrets.this.client_configuration
   endpoints = [
-    "192.168.1.21",
-    "192.168.1.22",
-    "192.168.1.23"
+    "192.168.0.21",
+    "192.168.0.22",
+    "192.168.0.23"
   ]
   nodes = [
-    "192.168.1.21",
-    "192.168.1.22",
-    "192.168.1.23",
-    "192.168.1.24",
-    "192.168.1.25",
-    "192.168.1.26",
-    "192.168.1.27",
-    "192.168.1.28",
-    "192.168.1.29",
-    "192.168.1.30"
+    "192.168.0.21",
+    "192.168.0.22",
+    "192.168.0.23",
+    "192.168.0.24",
+    "192.168.0.25",
+    "192.168.0.26",
+    "192.168.0.27",
+    "192.168.0.28",
+    "192.168.0.29",
+    "192.168.0.30"
   ]
 }

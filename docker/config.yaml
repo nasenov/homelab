@@ -9,9 +9,9 @@ upstreams:
       - tcp-tls:9.9.9.9
 customDNS:
   mapping:
-    pve.nasenov.dev: 192.168.1.10
-    truenas.nasenov.dev: 192.168.1.15
-    nasenov.dev: 192.168.1.40
+    pve.nasenov.dev: 192.168.0.10
+    truenas.nasenov.dev: 192.168.0.15
+    nasenov.dev: 192.168.0.40
 blocking:
   denylists:
     ads:

@@ -1,7 +1,7 @@
 locals {
   virtual_machines = {
     k8s-1 = {
-      ipv4_address = "192.168.1.21/24"
+      ipv4_address = "192.168.0.21/24"
       cpu_cores    = 4
       memory       = 4096
       hostpci      = []
@@ -9,7 +9,7 @@ locals {
       usb          = []
     }
     k8s-2 = {
-      ipv4_address = "192.168.1.22/24"
+      ipv4_address = "192.168.0.22/24"
       cpu_cores    = 4
       memory       = 4096
       hostpci      = []
@@ -17,7 +17,7 @@ locals {
       usb          = []
     }
     k8s-3 = {
-      ipv4_address = "192.168.1.23/24"
+      ipv4_address = "192.168.0.23/24"
       cpu_cores    = 4
       memory       = 4096
       hostpci      = []
@@ -25,7 +25,7 @@ locals {
       usb          = []
     }
     k8s-4 = {
-      ipv4_address = "192.168.1.24/24"
+      ipv4_address = "192.168.0.24/24"
       cpu_cores    = 4
       memory       = 8192
       hostpci      = ["0000:01:00"]
@@ -33,7 +33,7 @@ locals {
       usb          = []
     }
     k8s-5 = {
-      ipv4_address = "192.168.1.25/24"
+      ipv4_address = "192.168.0.25/24"
       cpu_cores    = 4
       memory       = 8192
       hostpci      = ["0000:02:00"]
@@ -41,7 +41,7 @@ locals {
       usb          = []
     }
     k8s-6 = {
-      ipv4_address = "192.168.1.26/24"
+      ipv4_address = "192.168.0.26/24"
       cpu_cores    = 4
       memory       = 8192
       hostpci      = ["0000:09:00"]
@@ -49,7 +49,7 @@ locals {
       usb          = []
     }
     k8s-7 = {
-      ipv4_address = "192.168.1.27/24"
+      ipv4_address = "192.168.0.27/24"
       cpu_cores    = 4
       memory       = 8192
       hostpci      = []
@@ -57,7 +57,7 @@ locals {
       usb          = ["10c4:ea60"]
     }
     k8s-8 = {
-      ipv4_address = "192.168.1.28/24"
+      ipv4_address = "192.168.0.28/24"
       cpu_cores    = 4
       memory       = 12288
       hostpci      = []
@@ -65,7 +65,7 @@ locals {
       usb          = []
     }
     k8s-9 = {
-      ipv4_address = "192.168.1.29/24"
+      ipv4_address = "192.168.0.29/24"
       cpu_cores    = 4
       memory       = 8192
       hostpci      = []
@@ -73,7 +73,7 @@ locals {
       usb          = []
     }
     k8s-10 = {
-      ipv4_address = "192.168.1.30/24"
+      ipv4_address = "192.168.0.30/24"
       cpu_cores    = 4
       memory       = 8192
       hostpci      = []
@@ -99,7 +99,7 @@ locals {
           {
             interface = "eth0"
             vip = {
-              ip = "192.168.1.20"
+              ip = "192.168.0.20"
             }
           }
         ]
@@ -197,46 +197,46 @@ locals {
   controlplane_virtual_machines = {
     k8s_1 = {
       node     = proxmox_virtual_environment_vm.k8s["k8s-1"].name
-      endpoint = "192.168.1.21"
+      endpoint = "192.168.0.21"
     }
     k8s_2 = {
       node     = proxmox_virtual_environment_vm.k8s["k8s-2"].name
-      endpoint = "192.168.1.22"
+      endpoint = "192.168.0.22"
     }
     k8s_3 = {
       node     = proxmox_virtual_environment_vm.k8s["k8s-3"].name
-      endpoint = "192.168.1.23"
+      endpoint = "192.168.0.23"
     }
   }
 
   worker_virtual_machines = {
     k8s_4 = {
       node     = proxmox_virtual_environment_vm.k8s["k8s-4"].name
-      endpoint = "192.168.1.24"
+      endpoint = "192.168.0.24"
     }
     k8s_5 = {
       node     = proxmox_virtual_environment_vm.k8s["k8s-5"].name
-      endpoint = "192.168.1.25"
+      endpoint = "192.168.0.25"
     }
     k8s_6 = {
       node     = proxmox_virtual_environment_vm.k8s["k8s-6"].name
-      endpoint = "192.168.1.26"
+      endpoint = "192.168.0.26"
     }
     k8s_7 = {
       node     = proxmox_virtual_environment_vm.k8s["k8s-7"].name
-      endpoint = "192.168.1.27"
+      endpoint = "192.168.0.27"
     }
     k8s_8 = {
       node     = proxmox_virtual_environment_vm.k8s["k8s-8"].name
-      endpoint = "192.168.1.28"
+      endpoint = "192.168.0.28"
     }
     k8s_9 = {
       node     = proxmox_virtual_environment_vm.k8s["k8s-9"].name
-      endpoint = "192.168.1.29"
+      endpoint = "192.168.0.29"
     }
     k8s_10 = {
       node     = proxmox_virtual_environment_vm.k8s["k8s-10"].name
-      endpoint = "192.168.1.30"
+      endpoint = "192.168.0.30"
     }
   }
 }

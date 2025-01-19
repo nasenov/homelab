@@ -14,5 +14,5 @@ metadata:
   name: l2-pool
 spec:
   blocks:
-    - start: 192.168.1.40
-      stop: 192.168.1.50
+    - start: 192.168.0.40
+      stop: 192.168.0.50

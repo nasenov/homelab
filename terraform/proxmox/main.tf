@@ -47,9 +47,9 @@ resource "proxmox_virtual_environment_download_file" "truenas" {
   node_name          = "pve"
   datastore_id       = "local"
   content_type       = "iso"
-  url                = "https://download.sys.truenas.net/TrueNAS-SCALE-Dragonfish/24.04.2.2/TrueNAS-SCALE-24.04.2.2.iso"
+  url                = "https://download.sys.truenas.net/TrueNAS-SCALE-ElectricEel/24.10.1/TrueNAS-SCALE-24.10.1.iso"
   checksum_algorithm = "sha256"
-  checksum           = "1ba1805a7a579a7d8313764b1e11b4b10d00e861def45ba2880f3049a6b0e354"
+  checksum           = "c1370c6c7bb4be27dac5957c76c9464d56eb2e3d57f68f1fc31f6905e34467de"
 }
 
 resource "proxmox_virtual_environment_download_file" "talos" {
@@ -57,7 +57,7 @@ resource "proxmox_virtual_environment_download_file" "talos" {
   datastore_id = "local"
   content_type = "iso"
   file_name    = "nocloud-amd64.img"
-  url          = "https://factory.talos.dev/image/90015c0ada3ddd8b55e25342d736bbb1ef7c8e213883ec2ad1110cb44944503f/v1.9.1/nocloud-amd64.raw"
+  url          = "https://factory.talos.dev/image/90015c0ada3ddd8b55e25342d736bbb1ef7c8e213883ec2ad1110cb44944503f/v1.9.2/nocloud-amd64.raw"
 }
 
 resource "proxmox_virtual_environment_download_file" "ubuntu_cloud_image" {
@@ -65,9 +65,9 @@ resource "proxmox_virtual_environment_download_file" "ubuntu_cloud_image" {
   datastore_id       = "local"
   content_type       = "iso"
   file_name          = "ubuntu-24.04-server-cloudimg-amd64.img"
-  url                = "https://cloud-images.ubuntu.com/releases/24.04/release-20241119/ubuntu-24.04-server-cloudimg-amd64.img"
+  url                = "https://cloud-images.ubuntu.com/releases/24.04/release-20250115/ubuntu-24.04-server-cloudimg-amd64.img"
   checksum_algorithm = "sha256"
-  checksum           = "b63f266fa4bdf146dea5b0938fceac694cb3393688fb12a048ba2fc72e7bfe1b"
+  checksum           = "28d2f9df3ac0d24440eaf6998507df3405142cf94a55e1f90802c78e43d2d9df"
 }
 
 resource "proxmox_virtual_environment_file" "vendor_config" {
@@ -194,8 +194,8 @@ resource "proxmox_virtual_environment_vm" "dns" {
 
     ip_config {
       ipv4 {
-        address = "192.168.1.53/24"
-        gateway = "192.168.1.1"
+        address = "192.168.0.53/24"
+        gateway = "192.168.0.1"
       }
     }
 

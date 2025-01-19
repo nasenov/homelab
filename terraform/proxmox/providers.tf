@@ -8,7 +8,7 @@ provider "proxmox" {
     agent = true
     node {
       name    = "pve"
-      address = "192.168.1.10"
+      address = "192.168.0.10"
     }
   }
 }
