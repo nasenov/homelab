@@ -2,15 +2,21 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "packageRules": [
     {
+      "description": ["Flux Operator Group"],
+      "matchDatasources": ["docker"],
+      "matchDepNames": ["flux-operator", "flux-instance"],
+      "groupName": "Flux-Operator"
+    },
+    {
       "description": ["Intel Device Plugins Group"],
       "matchDatasources": ["helm"],
-      "matchPackageNames": ["intel-device-plugins-operator", "intel-device-plugins-gpu"],
+      "matchDepNames": ["intel-device-plugins-operator", "intel-device-plugins-gpu"],
       "groupName": "Intel-Device-Plugins"
     },
     {
       "description": ["Rook-Ceph Group"],
       "matchDatasources": ["helm"],
-      "matchPackageNames": ["rook-ceph", "rook-ceph-cluster"],
+      "matchDepNames": ["rook-ceph", "rook-ceph-cluster"],
       "groupName": "Rook-Ceph"
     }
   ]
