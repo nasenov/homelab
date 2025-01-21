@@ -1,0 +1,35 @@
+---
+instance:
+  distribution:
+    version: 2.4.0
+  components:
+    - source-controller
+    - kustomize-controller
+    - helm-controller
+    - notification-controller
+  cluster:
+    networkPolicy: false
+  sync:
+    kind: GitRepository
+    url: https://github.com/n-asenov/homelab
+    ref: refs/heads/main
+    path: kubernetes/cluster
+  kustomize:
+    patches:
+      # Ref: https://fluxcd.io/flux/installation/configuration/helm-oom-detection/
+      - patch: |
+          # Enable OOM watch feature
+          - op: add
+            path: /spec/template/spec/containers/0/args/-
+            value: --feature-gates=OOMWatch=true
+          # Threshold at which to trigger a graceful shutdown (optional, default 95%)
+          - op: add
+            path: /spec/template/spec/containers/0/args/-
+            value: --oom-watch-memory-threshold=95
+          # Interval at which to check memory usage (optional, default 500ms)
+          - op: add
+            path: /spec/template/spec/containers/0/args/-
+            value: --oom-watch-interval=500ms
+        target:
+          kind: Deployment
+          name: helm-controller
