@@ -7,6 +7,7 @@
     ":dependencyDashboard",
     ":semanticCommits",
     ":separatePatchReleases",
+    "github>n-asenov/homelab//.renovate/customManagers.json",
     "github>n-asenov/homelab//.renovate/grafanaDashboards.json",
     "github>n-asenov/homelab//.renovate/groups.json",
     "github>n-asenov/homelab//.renovate/labels.json",
