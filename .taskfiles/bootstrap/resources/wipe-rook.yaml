@@ -6,12 +6,21 @@ metadata:
 spec:
   restartPolicy: Never
   nodeName: k8s-4
+  hostNetwork: true
   containers:
   - name: disk-wipe
-    image: busybox
+    image: alpine
     securityContext:
       privileged: true
-    command: ["/bin/sh", "-c", "dd if=/dev/zero bs=1M count=100 oflag=direct of=/dev/nvme0n1"]
+    command:
+      - /bin/sh
+      - -c
+    args:
+      - |
+        apk add --no-cache findutils nvme-cli;
+        echo "=== Wiping /dev/nvme0n1 ===";
+        nvme format --lbaf=1 /dev/nvme0n1 --force;
+        nvme format --block-size=4096 /dev/nvme0n1 --force;
 ---
 apiVersion: v1
 kind: Pod
@@ -20,12 +29,21 @@ metadata:
 spec:
   restartPolicy: Never
   nodeName: k8s-5
+  hostNetwork: true
   containers:
   - name: disk-wipe
-    image: busybox
+    image: alpine
     securityContext:
       privileged: true
-    command: ["/bin/sh", "-c", "dd if=/dev/zero bs=1M count=100 oflag=direct of=/dev/nvme0n1"]
+    command:
+      - /bin/sh
+      - -c
+    args:
+      - |
+        apk add --no-cache findutils nvme-cli;
+        echo "=== Wiping /dev/nvme0n1 ===";
+        nvme format --lbaf=1 /dev/nvme0n1 --force;
+        nvme format --block-size=4096 /dev/nvme0n1 --force;
 ---
 apiVersion: v1
 kind: Pod
@@ -34,9 +52,18 @@ metadata:
 spec:
   restartPolicy: Never
   nodeName: k8s-6
+  hostNetwork: true
   containers:
   - name: disk-wipe
-    image: busybox
+    image: alpine
     securityContext:
       privileged: true
-    command: ["/bin/sh", "-c", "dd if=/dev/zero bs=1M count=100 oflag=direct of=/dev/nvme0n1"]
+    command:
+      - /bin/sh
+      - -c
+    args:
+      - |
+        apk add --no-cache findutils nvme-cli;
+        echo "=== Wiping /dev/nvme0n1 ===";
+        nvme format --lbaf=1 /dev/nvme0n1 --force;
+        nvme format --block-size=4096 /dev/nvme0n1 --force;
