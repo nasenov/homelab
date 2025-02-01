@@ -59,10 +59,9 @@ spec:
               privileged: true
             resources:
               requests:
-                cpu: 10m
-                memory: 100Mi
+                cpu: 100m
               limits:
-                memory: 500Mi
+                memory: 256Mi
 
     service:
       app:

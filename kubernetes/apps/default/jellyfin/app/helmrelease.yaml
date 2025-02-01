@@ -48,8 +48,10 @@ spec:
               TZ: Europe/Sofia
             resources:
               requests:
+                cpu: 100m
                 gpu.intel.com/i915: 1
               limits:
+                memory: 1Gi
                 gpu.intel.com/i915: 1
 
     defaultPodOptions:

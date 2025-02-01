@@ -36,6 +36,11 @@ spec:
             image:
               repository: ghcr.io/gethomepage/homepage
               tag: v0.10.9
+            resources:
+              requests:
+                cpu: 100m
+              limits:
+                memory: 512Mi
 
           codeserver:
             dependsOn: app
@@ -52,6 +57,11 @@ spec:
               - --extensions-dir
               - "/app/config/.vscode"
               - "/app/config"
+            resources:
+              requests:
+                cpu: 100m
+              limits:
+                memory: 128Mi
 
     service:
       app:

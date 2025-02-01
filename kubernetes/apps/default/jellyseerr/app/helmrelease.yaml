@@ -46,6 +46,11 @@ spec:
               tag: 2.3.0
             env:
               TZ: Europe/Sofia
+            resources:
+              requests:
+                cpu: 100m
+              limits:
+                memory: 256Mi
 
     service:
       app:

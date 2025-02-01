@@ -53,6 +53,11 @@ spec:
               tag: 2025.1.4
             env:
               TZ: Europe/Sofia
+            resources:
+              requests:
+                cpu: 100m
+              limits:
+                memory: 512Mi
 
           codeserver:
             dependsOn: app
@@ -69,6 +74,11 @@ spec:
               - --extensions-dir
               - "/config/.vscode"
               - "/config"
+            resources:
+              requests:
+                cpu: 100m
+              limits:
+                memory: 128Mi
 
     service:
       app:
