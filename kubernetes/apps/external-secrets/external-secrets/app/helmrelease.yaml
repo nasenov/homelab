@@ -21,5 +21,8 @@ spec:
     remediation:
       retries: 3
   values:
+    bitwarden-sdk-server:
+      enabled: true
+
     serviceMonitor:
       enabled: true
