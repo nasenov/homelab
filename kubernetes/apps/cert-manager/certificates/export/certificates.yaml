@@ -12,4 +12,5 @@ spec:
   commonName: nasenov.dev
   dnsNames:
     - nasenov.dev
+    - "flux.nasenov.dev"
     - "*.nasenov.dev"
