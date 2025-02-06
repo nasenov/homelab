@@ -4,6 +4,6 @@
 
 | Service                                 | Use                                                           | Cost          |
 |-----------------------------------------|-------------------------------------------------------------- |---------------|
-| [1Password](https://1password.com/)     | Secrets with [External Secrets](https://external-secrets.io/) | ~$45/yr       |
+| [Bitwarden](https://bitwarden.com/)     | Secrets with [External Secrets](https://external-secrets.io/) | Free          |
 | [Namecheap](https://www.namecheap.com/) | Domain                                                        | ~$20/yr       |
-|                                         |                                                               | Total: ~$5/mo |
+|                                         |                                                               | Total: ~$2/mo |
