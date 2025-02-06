@@ -12,5 +12,4 @@ spec:
   commonName: nasenov.dev
   dnsNames:
     - nasenov.dev
-    - "homepage.nasenov.dev"
-    # - "*.nasenov.dev"
+    - "*.nasenov.dev"
