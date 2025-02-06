@@ -23,6 +23,9 @@ spec:
   values:
     bitwarden-sdk-server:
       enabled: true
+      image: 
+        tls:
+          enabled: false
 
     serviceMonitor:
       enabled: true
