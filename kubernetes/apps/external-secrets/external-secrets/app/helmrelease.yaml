@@ -23,9 +23,20 @@ spec:
   values:
     bitwarden-sdk-server:
       enabled: true
-      image: 
+      image:
         tls:
           enabled: false
+      securityContext:
+        capabilities:
+          drop:
+            - ALL
+        readOnlyRootFilesystem: true
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch        
+        seccompProfile: { type: RuntimeDefault }
 
     serviceMonitor:
       enabled: true
