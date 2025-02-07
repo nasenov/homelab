@@ -10,6 +10,7 @@ spec:
   interval: 10m0s
   dependsOn:
     - name: prometheus-operator-crds
+    - name: cert-manager
   path: ./kubernetes/apps/external-secrets/external-secrets/app
   prune: true
   sourceRef:
