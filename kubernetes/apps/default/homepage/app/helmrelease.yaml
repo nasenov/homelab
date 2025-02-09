@@ -155,7 +155,7 @@ spec:
                   widget:
                     type: homeassistant
                     url: http://home-assistant.default.svc.cluster.local
-                    key: {{ "{{" }} HOMEPAGE_VAR_HOME_ASSISTANT_TOKEN {{ "}}" }}
+                    key: {{ "{{" }}HOMEPAGE_VAR_HOME_ASSISTANT_TOKEN{{ "}}" }}
                     fields: ["people_home", "lights_on", "switches_on"] # supports custom fields
               - Zigbee2MQTT:
                   icon: zigbee2mqtt.png
