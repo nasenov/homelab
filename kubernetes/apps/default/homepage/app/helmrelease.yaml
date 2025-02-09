@@ -223,7 +223,7 @@ spec:
                     href: https://pve.nasenov.dev:8006
                     widget:
                       type: proxmox
-                      url: http://192.168.0.10:8006
+                      url: https://192.168.0.10:8006
                       username: {{ "{{" }}HOMEPAGE_VAR_PROXMOX_USERNAME{{ "}}" }}
                       password: {{ "{{" }}HOMEPAGE_VAR_PROXMOX_PASSWORD{{ "}}" }}
                       fields: ["vms", "resources.cpu", "resources.mem"]
