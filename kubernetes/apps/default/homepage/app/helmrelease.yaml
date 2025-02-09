@@ -157,12 +157,12 @@ spec:
                     url: http://home-assistant.default.svc.cluster.local
                     key: {{ "{{" }} HOMEPAGE_VAR_XXX {{ "}}" }}
                     fields: ["people_home", "lights_on", "switches_on"] # supports custom fields
-                - Zigbee2MQTT:
-                    icon: zigbee2mqtt.png
-                    href: https://zigbee.nasenov.dev
-                - EMQX:
-                    icon: emqx.png
-                    href: https://emqx.nasenov.dev
+              - Zigbee2MQTT:
+                  icon: zigbee2mqtt.png
+                  href: https://zigbee.nasenov.dev
+              - EMQX:
+                  icon: emqx.png
+                  href: https://emqx.nasenov.dev
           settings.yaml: |
             ---
             background: https://images.unsplash.com/photo-1502790671504-542ad42d5189?auto=format&fit=crop&w=2560&q=80
