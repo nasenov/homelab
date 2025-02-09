@@ -148,6 +148,26 @@ spec:
             mode: disabled
           services.yaml: |
             ---
+            - Monitoring:
+                - Grafana:
+                    icon: grafana.png
+                    href: https://grafana.nasenov.dev
+                    widget:
+                      type: grafana
+                      url: http://grafana.monitoring.svc.cluster.local
+                      username: {{ "{{" }}HOMEPAGE_VAR_GRAFANA_ADMIN_USER{{ "}}" }}
+                      password: {{ "{{" }}HOMEPAGE_VAR_GRAFANA_ADMIN_PASSWORD{{ "}}" }}
+                      fields: ["dashboards", "datasources"]
+                - Prometheus:
+                    icon: prometheus.png
+                    href: https://prometheus.nasenov.dev
+                    widget:
+                      type: prometheus
+                      url: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090
+                      fields: ["targets_up", "targets_down"]
+                - Alertmanager:
+                    icon: alertmanager.png
+                    href: https://alertmanager.nasenov.dev
             - Automation:
               - Home Assistant:
                   icon: home-assistant.png
