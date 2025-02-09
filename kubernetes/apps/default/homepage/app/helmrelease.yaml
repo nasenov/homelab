@@ -119,7 +119,7 @@ spec:
       logs:
         type: emptyDir
         globalMounts:
-          - path: /app/config/logs   
+          - path: /app/config/logs
       # config:
       #   enabled: true
       #   type: persistentVolumeClaim
@@ -216,6 +216,32 @@ spec:
                       url: http://autobrr.default.svc.cluster.local
                       key:  {{ "{{" }}HOMEPAGE_VAR_AUTOBRR_KEY{{ "}}" }}
                       fields: ["approvedPushes", "rejectedPushes", "filters", "indexers"]
+
+            - Infrastructure:
+                - Proxmox:
+                    icon: proxmox.png
+                    href: https://pve.nasenov.dev:8006
+                    widget:
+                      type: proxmox
+                      url: http://192.168.0.10:8006
+                      username: {{ "{{" }}HOMEPAGE_VAR_PROXMOX_USERNAME{{ "}}" }}
+                      password: {{ "{{" }}HOMEPAGE_VAR_PROXMOX_PASSWORD{{ "}}" }}
+                      fields: ["vms", "resources.cpu", "resources.mem"]
+                - TrueNAS:
+                    icon: truenas-scale.png
+                    href: https://truenas.nasenov.dev
+                    widget:
+                      type: truenas
+                      url: http://192.168.0.15
+                      key: {{ "{{" }}HOMEPAGE_VAR_TRUENAS_KEY{{ "}}" }}
+                      fields: ["load", "uptime", "alerts"]
+                - Rook:
+                    icon: rook.png
+                    href: https://rook.nasenov.dev
+                - MinIO:
+                    icon: minio.png
+                    href: https://minio.nasenov.dev
+
             - Monitoring:
                 - Grafana:
                     icon: grafana.png
@@ -236,6 +262,7 @@ spec:
                 - Alertmanager:
                     icon: alertmanager.png
                     href: https://alertmanager.nasenov.dev
+
             - Automation:
               - Home Assistant:
                   icon: home-assistant.png
