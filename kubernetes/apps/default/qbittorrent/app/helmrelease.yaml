@@ -63,10 +63,18 @@ spec:
     service:
       app:
         controller: qbittorrent
+        type: LoadBalancer
+        annotations:
+          lbipam.cilium.io/ips: 192.168.0.41
         ports:
           http:
             port: 80
             targetPort: 8080
+          bittorrent:
+            enabled: true
+            port: 50413
+            targetPort: 50413
+            protocol: TCP
 
     ingress:
       app:
