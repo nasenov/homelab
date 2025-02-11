@@ -86,6 +86,7 @@ spec:
                 pathType: Prefix
                 service:
                   identifier: app
+                  port: http
         tls:
           - hosts:
               - torrent.nasenov.dev
