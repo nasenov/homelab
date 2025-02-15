@@ -25,7 +25,7 @@ spec:
       recyclarr:
         type: cronjob
         cronjob:
-          schedule: "*/5 * * * *"
+          schedule: 0 0 * * *
           backoffLimit: 0
           concurrencyPolicy: Forbid
           successfulJobsHistory: 1
@@ -71,10 +71,10 @@ spec:
         size: 1Gi
         globalMounts:
           - path: /config
-        # dataSourceRef:
-        #   apiGroup: volsync.backube
-        #   kind: ReplicationDestination
-        #   name: recyclarr-dst
+        dataSourceRef:
+          apiGroup: volsync.backube
+          kind: ReplicationDestination
+          name: recyclarr-dst
       config-file:
         type: configMap
         name: recyclarr-configmap
