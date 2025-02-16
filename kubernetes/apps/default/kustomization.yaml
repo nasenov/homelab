@@ -8,6 +8,7 @@ resources:
   # Flux-Kustomizations
   - ./autobrr/ks.yaml
   - ./bazarr/ks.yaml
+  - ./cross-seed/ks.yaml
   - ./home-assistant/ks.yaml
   - ./homepage/ks.yaml
   - ./jellyfin/ks.yaml

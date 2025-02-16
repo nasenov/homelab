@@ -1,0 +1,90 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: cross-seed
+spec:
+  interval: 10m0s
+  chart:
+    spec:
+      chart: app-template
+      version: 3.7.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+  values:
+    controllers:
+      cross-seed:
+        type: statefulset
+
+        statefulset:
+          volumeClaimTemplates:
+            - name: config
+              globalMounts:
+                - path: /config
+              accessMode: ReadWriteOnce
+              dataSourceRef:
+                apiGroup: volsync.backube
+                kind: ReplicationDestination
+                name: cross-seed-dst
+              size: 5Gi
+              storageClass: ceph-block
+
+        containers:
+          app:
+            image:
+              repository: ghcr.io/cross-seed/cross-seed
+              tag: 6.10.1@sha256:f8a1e9b66fab89198bf5ac6b242ba75873b9c8e8409107c6f9d455f1f8c10bba
+            env:
+              TZ: Europe/Sofia
+            args: ["daemon"]
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
+            resources:
+              requests:
+                cpu: 10m
+              limits:
+                memory: 512Mi
+
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+
+    service:
+      app:
+        controller: cross-seed
+        ports:
+          http:
+            port: 80
+            targetPort: 2468
+
+    persistence:
+      secret-file:
+        type: secret
+        name: cross-seed
+        globalMounts:
+          - path: /config/config.js
+            subPath: config.js
+            readOnly: true
+      media:
+        enabled: true
+        type: nfs
+        server: 192.168.0.15
+        path: /mnt/tank/media
+        globalMounts:
+          - path: /data/downloads
+            subPath: downloads
