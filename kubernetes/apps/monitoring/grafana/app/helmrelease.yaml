@@ -78,6 +78,11 @@ spec:
 
     dashboards:
       default:
+        node-exporter-full:
+          # renovate: depName="Node Exporter Full"
+          gnetId: 1860
+          revision: 37
+          datasource: Prometheus      
         blocky:
           url: https://raw.githubusercontent.com/0xERR0R/blocky/v0.19/docs/blocky-grafana.json
           datasource:
