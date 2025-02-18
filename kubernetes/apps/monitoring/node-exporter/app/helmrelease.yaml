@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: prometheus-node-exporter
+  name: node-exporter
 spec:
   interval: 10m0s
   chart:
@@ -20,19 +20,25 @@ spec:
     remediation:
       retries: 3
   values:
-    podLabels:
-      jobLabel: node-exporter
-    service:
-      portName: http-metrics
-      labels:
-        jobLabel: node-exporter      
+    fullnameOverride: node-exporter
+
     prometheus:
       monitor:
         enabled: true
-        jobLabel: jobLabel
-    rbac:
-      pspEnabled: false
-    releaseLabel: true
+        relabelings:
+          - action: replace
+            regex: ^(.*)$
+            replacement: $1
+            sourceLabels: [__meta_kubernetes_pod_node_name]
+            targetLabel: kubernetes_node
+
+    resources:
+      requests:
+        cpu: 10m
+        memory: 64Mi
+      limits:
+        memory: 64Mi
+
     extraArgs:
       - --collector.filesystem.mount-points-exclude=^/(dev|proc|sys|var/lib/docker/.+|var/lib/kubelet/.+)($|/)
       - --collector.filesystem.fs-types-exclude=^(autofs|binfmt_misc|bpf|cgroup2?|configfs|debugfs|devpts|devtmpfs|fusectl|hugetlbfs|iso9660|mqueue|nsfs|overlay|proc|procfs|pstore|rpc_pipefs|securityfs|selinuxfs|squashfs|sysfs|tracefs)$
