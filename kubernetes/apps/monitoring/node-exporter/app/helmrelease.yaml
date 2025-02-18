@@ -25,6 +25,7 @@ spec:
     prometheus:
       monitor:
         enabled: true
+        jobLabel: app.kubernetes.io/instance
         relabelings:
           - action: replace
             regex: ^(.*)$
