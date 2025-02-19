@@ -87,7 +87,8 @@ spec:
           # renovate: depName="SMARTctl Exporter Dashboard"
           gnetId: 22604
           revision: 2
-          datasource: Prometheus
+          datasource:
+            - { name: DS_PROMETHEUS, value: Prometheus }
         blocky:
           url: https://raw.githubusercontent.com/0xERR0R/blocky/v0.19/docs/blocky-grafana.json
           datasource:
