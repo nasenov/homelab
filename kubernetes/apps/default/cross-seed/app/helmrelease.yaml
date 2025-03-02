@@ -38,6 +38,9 @@ spec:
               size: 5Gi
               storageClass: ceph-block
 
+        annotations:
+          reloader.stakater.com/auto: "true"
+
         containers:
           app:
             image:
