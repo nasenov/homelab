@@ -50,7 +50,7 @@ spec:
               "--added-on",
               # "--expired",
               "--last-activity",
-              # "--sites",
+              "--sites",
               "--unregistered"
             ]
             securityContext:
@@ -121,6 +121,13 @@ spec:
         fsGroupChangePolicy: OnRootMismatch
 
     persistence:
+      secret-file:
+        type: secret
+        name: qbtools-config
+        globalMounts:
+          - path: /config/config.yaml
+            subPath: config.yaml
+            readOnly: true    
       media:
         enabled: true
         type: nfs
