@@ -147,7 +147,7 @@ spec:
                       fields: ["numberOfGrabs", "numberOfQueries"]
                 - qBittorrent:
                     icon: qbittorrent.png
-                    href: https://torrent.nasenov.dev
+                    href: https://qb.nasenov.dev
                     widget:
                       type: qbittorrent
                       url: http://qbittorrent.default.svc.cluster.local

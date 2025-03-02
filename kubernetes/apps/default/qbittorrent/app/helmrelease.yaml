@@ -80,7 +80,7 @@ spec:
       app:
         className: nginx
         hosts:
-          - host: torrent.nasenov.dev
+          - host: qb.nasenov.dev
             paths:
               - path: /
                 pathType: Prefix
@@ -89,7 +89,7 @@ spec:
                   port: http
         tls:
           - hosts:
-              - torrent.nasenov.dev
+              - qb.nasenov.dev
 
     persistence:
       media:
