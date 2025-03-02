@@ -15,6 +15,7 @@ resources:
   - ./jellyseerr/ks.yaml
   - ./prowlarr/ks.yaml
   - ./qbittorrent/ks.yaml
+  - ./qbtools/ks.yaml
   - ./radarr/ks.yaml
   - ./recyclarr/ks.yaml
   - ./sonarr/ks.yaml
