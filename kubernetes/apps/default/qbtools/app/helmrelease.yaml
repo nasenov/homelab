@@ -71,7 +71,7 @@ spec:
               "--exclude-tag", "added:1d",
               "--include-tag", "unregistered",
               "--with-data",
-              "--dry-run"
+              # "--dry-run"
             ]
           expired:
             <<: *container
@@ -90,15 +90,15 @@ spec:
         type: cronjob
         cronjob:
           <<: *cronJobSpec
-          # schedule: 0 0 * * 0
-          schedule: "*/5 * * * *"
-          # suspend: true
+          schedule: 0 0 * * 0
         containers:
           app:
             <<: *container
             args: [
               "orphaned",
-              "--dry-run"
+              "--exclude-pattern", "*_unpackerred*",
+              "--exclude-pattern", "*/manual/*",
+              # "--dry-run"
             ]
         pod:
           restartPolicy: Never
