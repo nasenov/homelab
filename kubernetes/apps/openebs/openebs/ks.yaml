@@ -7,7 +7,9 @@ metadata:
   namespace: flux-system
 spec:
   targetNamespace: openebs
-  interval: 10m0s
+  interval: 30m
+  retryInterval: 2m
+  timeout: 5m
   path: ./kubernetes/apps/openebs/openebs/app
   prune: true
   sourceRef:

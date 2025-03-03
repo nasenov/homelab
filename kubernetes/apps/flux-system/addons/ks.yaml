@@ -7,7 +7,9 @@ metadata:
   namespace: flux-system
 spec:
   targetNamespace: flux-system
-  interval: 10m0s
+  interval: 30m
+  retryInterval: 2m
+  timeout: 5m
   dependsOn:
     - name: external-secrets-stores
     - name: prometheus-operator-crds

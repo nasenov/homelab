@@ -4,7 +4,7 @@ kind: HelmRelease
 metadata:
   name: kube-state-metrics
 spec:
-  interval: 10m0s
+  interval: 30m
   chart:
     spec:
       chart: kube-state-metrics

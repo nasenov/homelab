@@ -7,7 +7,9 @@ metadata:
   namespace: flux-system
 spec:
   targetNamespace: storage
-  interval: 10m0s
+  interval: 30m
+  retryInterval: 2m
+  timeout: 5m
   dependsOn:
     - name: external-secrets-stores
   path: ./kubernetes/apps/storage/minio/app

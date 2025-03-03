@@ -7,7 +7,9 @@ metadata:
   namespace: flux-system
 spec:
   targetNamespace: cert-manager
-  interval: 10m0s
+  interval: 30m
+  retryInterval: 2m
+  timeout: 5m
   dependsOn:
     - name: prometheus-operator-crds
   path: ./kubernetes/apps/cert-manager/cert-manager/app
@@ -25,7 +27,9 @@ metadata:
   namespace: flux-system
 spec:
   targetNamespace: cert-manager
-  interval: 10m0s
+  interval: 30m
+  retryInterval: 2m
+  timeout: 5m
   dependsOn:
     - name: cert-manager
     - name: external-secrets-stores

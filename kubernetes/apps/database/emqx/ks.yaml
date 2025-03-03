@@ -7,7 +7,9 @@ metadata:
   namespace: flux-system
 spec:
   targetNamespace: database
-  interval: 10m0s
+  interval: 30m
+  retryInterval: 2m
+  timeout: 5m
   dependsOn:
     - name: cert-manager
   path: ./kubernetes/apps/database/emqx/app
@@ -25,7 +27,9 @@ metadata:
   namespace: flux-system
 spec:
   targetNamespace: database
-  interval: 10m0s
+  interval: 30m
+  retryInterval: 2m
+  timeout: 5m
   dependsOn:
     - name: emqx-operator
     - name: prometheus-operator-crds

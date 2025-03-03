@@ -4,8 +4,8 @@ kind: HelmRelease
 metadata:
   name: promtail
 spec:
-  interval: 10m0s
-  timeout: 10m0s
+  interval: 30m
+  timeout: 10m
   chart:
     spec:
       chart: promtail

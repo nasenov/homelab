@@ -7,7 +7,9 @@ metadata:
   namespace: flux-system
 spec:
   targetNamespace: database
-  interval: 10m0s
+  interval: 30m
+  retryInterval: 2m
+  timeout: 5m
   path: ./kubernetes/apps/database/crunchy-postgres-operator/app
   prune: true
   sourceRef:
@@ -23,7 +25,9 @@ metadata:
   namespace: flux-system
 spec:
   targetNamespace: database
-  interval: 10m0s
+  interval: 30m
+  retryInterval: 2m
+  timeout: 5m
   dependsOn:
     - name: crunchy-postgres-operator
     - name: external-secrets-stores

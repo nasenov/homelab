@@ -7,7 +7,9 @@ metadata:
   namespace: flux-system
 spec:
   targetNamespace: kube-system
-  interval: 10m0s
+  interval: 30m
+  retryInterval: 2m
+  timeout: 5m
   path: ./kubernetes/apps/kube-system/node-feature-discovery/app
   prune: true
   sourceRef:

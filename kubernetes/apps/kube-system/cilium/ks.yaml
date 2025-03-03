@@ -7,7 +7,9 @@ metadata:
   namespace: flux-system
 spec:
   targetNamespace: kube-system
-  interval: 10m0s
+  interval: 30m
+  retryInterval: 2m
+  timeout: 5m
   dependsOn:
     - name: prometheus-operator-crds
   path: ./kubernetes/apps/kube-system/cilium/app
@@ -25,7 +27,9 @@ metadata:
   namespace: flux-system
 spec:
   targetNamespace: kube-system
-  interval: 10m0s
+  interval: 30m
+  retryInterval: 2m
+  timeout: 5m
   dependsOn:
     - name: cilium
   path: ./kubernetes/apps/kube-system/cilium/config
