@@ -204,6 +204,14 @@ locals {
       }
     }
   })
+
+  talos_cluster_apiserver_config_patch = yamlencode({
+    cluster = {
+      apiServer = {
+        disablePodSecurityPolicy = true
+      }
+    }
+  })
 }
 
 locals {
