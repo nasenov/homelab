@@ -29,7 +29,9 @@ spec:
   timeout: 5m
   dependsOn:
     - name: rook-ceph
+      namespace: rook-ceph
     - name: snapshot-controller
+      namespace: storage
   path: ./kubernetes/apps/rook-ceph/rook-ceph/cluster
   prune: false
   sourceRef:
