@@ -11,8 +11,11 @@ spec:
   timeout: 5m
   dependsOn:
     - name: volsync
+      namespace: storage
     - name: rook-ceph-cluster
+      namespace: rook-ceph
     - name: external-secrets-stores
+      namespace: external-secrets
   path: ./kubernetes/apps/default/qbittorrent/app
   prune: true
   sourceRef:

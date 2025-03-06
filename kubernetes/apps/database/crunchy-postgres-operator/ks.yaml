@@ -29,8 +29,11 @@ spec:
   timeout: 5m
   dependsOn:
     - name: crunchy-postgres-operator
+      namespace: database
     - name: external-secrets-stores
+      namespace: external-secrets
     - name: prometheus-operator-crds
+      namespace: monitoring
   path: ./kubernetes/apps/database/crunchy-postgres-operator/cluster
   prune: true
   sourceRef:

@@ -11,8 +11,11 @@ spec:
   timeout: 5m
   dependsOn:
     - name: external-secrets-stores
+      namespace: external-secrets
     - name: prometheus-operator-crds
+      namespace: monitoring
     - name: openebs
+      namespace: openebs
   path: ./kubernetes/apps/monitoring/kube-prometheus-stack/app
   prune: true
   sourceRef:

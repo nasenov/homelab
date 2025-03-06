@@ -10,7 +10,8 @@ spec:
   retryInterval: 2m
   timeout: 5m
   dependsOn:
-    - name: prometheus-operator-crds  
+    - name: prometheus-operator-crds
+      namespace: monitoring  
   path: ./kubernetes/apps/monitoring/node-exporter/app
   prune: true
   sourceRef:

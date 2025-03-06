@@ -11,7 +11,9 @@ spec:
   timeout: 5m
   dependsOn:
     - name: external-secrets-stores
+      namespace: external-secrets
     - name: prometheus-operator-crds
+      namespace: monitoring
   path: ./kubernetes/apps/monitoring/grafana/app
   prune: true
   sourceRef:

@@ -11,6 +11,7 @@ spec:
   timeout: 5m
   dependsOn:
     - name: openebs
+      namespace: openebs
   path: ./kubernetes/apps/monitoring/loki/app
   prune: true
   sourceRef:

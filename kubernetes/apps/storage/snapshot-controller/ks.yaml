@@ -11,7 +11,9 @@ spec:
   timeout: 5m
   dependsOn:
     - name: cert-manager
+      namespace: cert-manager
     - name: prometheus-operator-crds
+      namespace: monitoring
   path: ./kubernetes/apps/storage/snapshot-controller/app
   prune: true
   sourceRef:

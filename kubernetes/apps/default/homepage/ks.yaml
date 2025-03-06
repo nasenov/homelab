@@ -11,6 +11,7 @@ spec:
   timeout: 5m
   dependsOn:
     - name: external-secrets-stores
+      namespace: external-secrets
   path: ./kubernetes/apps/default/homepage/app
   prune: true
   sourceRef:

@@ -11,7 +11,9 @@ spec:
   timeout: 5m
   dependsOn:
     - name: prometheus-operator-crds
+      namespace: monitoring
     - name: cert-manager
+      namespace: cert-manager
   path: ./kubernetes/apps/external-secrets/external-secrets/app
   prune: true
   sourceRef:
@@ -32,6 +34,7 @@ spec:
   timeout: 5m
   dependsOn:
     - name: external-secrets
+      namespace: external-secrets
   path: ./kubernetes/apps/external-secrets/external-secrets/stores
   prune: true
   sourceRef:

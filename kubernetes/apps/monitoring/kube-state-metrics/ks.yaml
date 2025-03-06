@@ -11,6 +11,7 @@ spec:
   timeout: 5m
   dependsOn:
     - name: prometheus-operator-crds
+      namespace: monitoring
   path: ./kubernetes/apps/monitoring/kube-state-metrics/app
   prune: true
   sourceRef:

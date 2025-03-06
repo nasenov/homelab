@@ -11,6 +11,7 @@ spec:
   timeout: 5m
   dependsOn:
     - name: external-secrets-stores
+      namespace: external-secrets
   path: ./kubernetes/apps/networking/ingress-nginx/certificates
   prune: true
   sourceRef:
@@ -31,7 +32,9 @@ spec:
   timeout: 5m
   dependsOn:
     - name: ingress-nginx-certificates
+      namespace: networking
     - name: prometheus-operator-crds
+      namespace: monitoring
   path: ./kubernetes/apps/networking/ingress-nginx/app
   prune: true
   sourceRef:
