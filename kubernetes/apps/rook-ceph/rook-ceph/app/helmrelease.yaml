@@ -21,8 +21,8 @@ spec:
     remediation:
       retries: 3
   values:
-    csi:
-      enableVolumeGroupSnapshot: false # TODO: enable this when v1beta1 CRDs are available
+    image:
+      repository: ghcr.io/rook/ceph  
   
     monitoring:
       enabled: true
