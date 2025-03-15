@@ -3,7 +3,7 @@ resource "helm_release" "prometheus_operator_crds" {
   namespace        = "monitoring"
   repository       = "https://prometheus-community.github.io/helm-charts"
   chart            = "prometheus-operator-crds"
-  version          = "18.0.1"
+  version          = "19.0.0"
   create_namespace = true
 }
 
