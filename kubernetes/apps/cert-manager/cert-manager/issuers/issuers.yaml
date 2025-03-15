@@ -7,7 +7,6 @@ metadata:
 spec:
   acme:
     server: https://acme-staging-v02.api.letsencrypt.org/directory
-    email: asenov.nikolay98@gmail.com
     privateKeySecretRef:
       name: letsencrypt-staging
     solvers:
@@ -28,7 +27,6 @@ metadata:
 spec:
   acme:
     server: https://acme-v02.api.letsencrypt.org/directory
-    email: asenov.nikolay98@gmail.com
     privateKeySecretRef:
       name: letsencrypt-production
     solvers:
