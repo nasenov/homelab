@@ -36,6 +36,8 @@ spec:
             image:
               repository: ghcr.io/gethomepage/homepage
               tag: v0.10.9
+            env:
+              HOMEPAGE_ALLOWED_HOSTS: nasenov.dev
             envFrom:
               - secretRef:
                   name: homepage
