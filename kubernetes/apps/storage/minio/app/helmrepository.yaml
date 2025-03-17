@@ -2,8 +2,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
-  name: prometheus
-  namespace: flux-system
+  name: bjw-s
 spec:
   interval: 30m
-  url: https://prometheus-community.github.io/helm-charts
+  url: https://bjw-s.github.io/helm-charts/

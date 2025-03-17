@@ -1,9 +1,9 @@
+---
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/source.toolkit.fluxcd.io/helmrepository_v1.json
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
-  name: emqx
-  namespace: flux-system
+  name: rook-ceph
 spec:
   interval: 30m
-  url: https://repos.emqx.io/charts
+  url: https://charts.rook.io/release

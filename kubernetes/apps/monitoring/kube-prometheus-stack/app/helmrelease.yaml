@@ -12,7 +12,6 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: prometheus
-        namespace: flux-system
   install:
     crds: Skip
     remediation:

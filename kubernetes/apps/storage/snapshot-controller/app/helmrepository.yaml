@@ -3,8 +3,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
-  name: grafana
-  namespace: flux-system
+  name: piraeus
 spec:
   interval: 30m
-  url: https://grafana.github.io/helm-charts
+  url: https://piraeus.io/helm-charts/

@@ -3,8 +3,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
-  name: controlplaneio
-  namespace: flux-system
+  name: grafana
 spec:
-  type: oci
-  url: oci://ghcr.io/controlplaneio-fluxcd/charts
+  interval: 30m
+  url: https://grafana.github.io/helm-charts

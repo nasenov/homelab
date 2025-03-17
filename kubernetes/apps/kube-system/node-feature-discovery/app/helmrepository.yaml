@@ -1,10 +1,8 @@
----
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/source.toolkit.fluxcd.io/helmrepository_v1.json
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
-  name: postfinance
-  namespace: flux-system
+  name: node-feature-discovery
 spec:
   interval: 30m
-  url: https://postfinance.github.io/kubelet-csr-approver
+  url: https://kubernetes-sigs.github.io/node-feature-discovery/charts

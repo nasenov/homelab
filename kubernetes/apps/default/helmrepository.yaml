@@ -2,8 +2,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
-  name: stakater
-  namespace: flux-system
+  name: bjw-s
 spec:
   interval: 30m
-  url: https://stakater.github.io/stakater-charts
+  url: https://bjw-s.github.io/helm-charts/

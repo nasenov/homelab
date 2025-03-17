@@ -2,8 +2,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
-  name: node-feature-discovery
-  namespace: flux-system
+  name: external-secrets
 spec:
   interval: 30m
-  url: https://kubernetes-sigs.github.io/node-feature-discovery/charts
+  url: https://charts.external-secrets.io

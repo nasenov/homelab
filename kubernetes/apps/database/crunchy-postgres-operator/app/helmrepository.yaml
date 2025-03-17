@@ -3,8 +3,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
-  name: metrics-server
-  namespace: flux-system
+  name: crunchydata
 spec:
-  interval: 30m
-  url: https://kubernetes-sigs.github.io/metrics-server
+  type: oci
+  url: oci://registry.developers.crunchydata.com/crunchydata
