@@ -6,7 +6,7 @@ namespace: default
 components:
   - ../../components/common
 resources:
-  - ./helmrepository.yaml
+  - ./ocirepository.yaml
   - ./autobrr/ks.yaml
   - ./bazarr/ks.yaml
   - ./cross-seed/ks.yaml
