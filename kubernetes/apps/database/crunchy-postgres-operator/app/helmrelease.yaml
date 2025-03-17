@@ -6,13 +6,9 @@ metadata:
   name: crunchy-postgres-operator
 spec:
   interval: 30m
-  chart:
-    spec:
-      chart: pgo
-      version: 5.7.4
-      sourceRef:
-        kind: HelmRepository
-        name: crunchydata
+  chartRef:
+    kind: OCIRepository
+    name: pgo
   install:
     crds: CreateReplace
     remediation:
