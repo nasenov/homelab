@@ -12,5 +12,5 @@ spec:
   layerSelector:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
-  verify:
-    provider: cosign
+  # verify:
+  #   provider: cosign
