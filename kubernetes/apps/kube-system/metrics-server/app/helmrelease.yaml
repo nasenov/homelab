@@ -5,9 +5,13 @@ metadata:
   name: metrics-server
 spec:
   interval: 30m
-  chartRef:
-    kind: OCIRepository
-    name: metrics-server
+  chart:
+    spec:
+      chart: metrics-server
+      version: 3.12.2
+      sourceRef:
+        kind: HelmRepository
+        name: metrics-server
   install:
     remediation:
       retries: 3
