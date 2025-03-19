@@ -36,8 +36,8 @@ spec:
         containers:
           app:
             image:
-              repository: ghcr.io/onedr0p/radarr
-              tag: 5.20.1.9773@sha256:4fa8fc7dcf3b38dbed279125330a8b9bd7be6e68e317e685089d3b03774aeeab
+              repository: ghcr.io/home-operations/radarr
+              tag: 5.20.2.9777@sha256:e23ae79f0c88aa988aacaf9df34cf626632bed0205c51e7ba34bcc508d2f38a6
             env:
               TZ: Europe/Sofia
             resources:
