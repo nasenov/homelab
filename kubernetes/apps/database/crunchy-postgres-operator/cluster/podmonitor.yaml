@@ -7,4 +7,29 @@ spec:
     matchLabels:
       postgres-operator.crunchydata.com/crunchy-postgres-exporter: "true"
   podMetricsEndpoints:
-  - port: exporter
+    - port: exporter
+      relabelings:
+        # Keep exporter port and drop all others
+        - source_labels: [__meta_kubernetes_pod_container_port_number]
+          action: keep
+          regex: 9187
+        # Set label for namespace
+        - source_labels: [__meta_kubernetes_namespace]
+          target_label: kubernetes_namespace
+        # Set label for pod name
+        - source_labels: [__meta_kubernetes_pod_name]
+          target_label: pod
+        # Convert namespace and cluster name to pg_cluster=namespace:cluster
+        - source_labels: [__meta_kubernetes_namespace,__meta_kubernetes_pod_label_postgres_operator_crunchydata_com_cluster]
+          target_label: pg_cluster
+          separator: ":"
+          replacement: '$1$2'
+        # Convert kubernetes pod ip to ip
+        - source_labels: [__meta_kubernetes_pod_ip]
+          target_label: ip
+        # Convert postgres-operator.crunchydata.com/instance to deployment
+        - source_labels: [__meta_kubernetes_pod_label_postgres_operator_crunchydata_com_instance]
+          target_label: deployment
+        # Convert postgres-operator.crunchydata.com/role to role
+        - source_labels: [__meta_kubernetes_pod_label_postgres_operator_crunchydata_com_role]
+          target_label: role
