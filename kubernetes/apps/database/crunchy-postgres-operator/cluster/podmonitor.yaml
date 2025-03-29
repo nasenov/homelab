@@ -10,26 +10,26 @@ spec:
     - port: exporter
       relabelings:
         # Keep exporter port and drop all others
-        - source_labels: [__meta_kubernetes_pod_container_port_number]
+        - sourceLabels: [__meta_kubernetes_pod_container_port_number]
           action: keep
-          regex: 9187
+          regex: "9187"
         # Set label for namespace
-        - source_labels: [__meta_kubernetes_namespace]
-          target_label: kubernetes_namespace
+        - sourceLabels: [__meta_kubernetes_namespace]
+          targetLabel: kubernetes_namespace
         # Set label for pod name
-        - source_labels: [__meta_kubernetes_pod_name]
-          target_label: pod
+        - sourceLabels: [__meta_kubernetes_pod_name]
+          targetLabel: pod
         # Convert namespace and cluster name to pg_cluster=namespace:cluster
-        - source_labels: [__meta_kubernetes_namespace,__meta_kubernetes_pod_label_postgres_operator_crunchydata_com_cluster]
-          target_label: pg_cluster
+        - sourceLabels: [__meta_kubernetes_namespace,__meta_kubernetes_pod_label_postgres_operator_crunchydata_com_cluster]
+          targetLabel: pg_cluster
           separator: ":"
           replacement: '$1$2'
         # Convert kubernetes pod ip to ip
-        - source_labels: [__meta_kubernetes_pod_ip]
-          target_label: ip
+        - sourceLabels: [__meta_kubernetes_pod_ip]
+          targetLabel: ip
         # Convert postgres-operator.crunchydata.com/instance to deployment
-        - source_labels: [__meta_kubernetes_pod_label_postgres_operator_crunchydata_com_instance]
-          target_label: deployment
+        - sourceLabels: [__meta_kubernetes_pod_label_postgres_operator_crunchydata_com_instance]
+          targetLabel: deployment
         # Convert postgres-operator.crunchydata.com/role to role
-        - source_labels: [__meta_kubernetes_pod_label_postgres_operator_crunchydata_com_role]
-          target_label: role
+        - sourceLabels: [__meta_kubernetes_pod_label_postgres_operator_crunchydata_com_role]
+          targetLabel: role
