@@ -10,7 +10,7 @@ spec:
   secrets:
     - name: system-upgrade
       path: /var/run/secrets/talos.dev
-      ignoreUpdates: true  
+      ignoreUpdates: true
   concurrency: 1
   exclusive: true
   postCompleteDelay: 2m
