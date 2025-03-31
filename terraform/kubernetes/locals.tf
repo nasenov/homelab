@@ -146,6 +146,18 @@ locals {
     }
   })
 
+  talos_kubernetes_talos_api_access_config_patch = yamlencode({
+    machine = {
+      features = {
+        kubernetesTalosAPIAccess = {
+          enabled                     = true
+          allowedRoles                = ["os:admin"]
+          allowedKubernetesNamespaces = ["system-upgrade"]
+        }
+      }
+    }
+  })
+
   talos_cluster_network_config_patch = yamlencode({
     cluster = {
       network = {
