@@ -3,11 +3,8 @@
   "customManagers": [
     {
       "customType": "regex",
-      "description": "Process annotated dependencies",
-      "fileMatch": [
-        "\\.tf$",
-        "\\.ya?ml$"
-      ],
+      "description": "Process various dependencies in YAML files",
+      "fileMatch": ["\\.ya?ml$"],
       "matchStrings": [
         "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( repository=(?<registryUrl>\\S+))?\\n.+(:\\s|=)(&\\S+\\s)?(?<currentValue>\\S+)"
       ],
