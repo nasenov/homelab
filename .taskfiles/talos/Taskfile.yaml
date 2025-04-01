@@ -7,7 +7,7 @@ tasks:
     desc: Upgrade Talos on a single node [IP=required]
     cmds:
       - task: down
-      - talosctl --nodes {{.IP}} upgrade --image factory.talos.dev/installer/90015c0ada3ddd8b55e25342d736bbb1ef7c8e213883ec2ad1110cb44944503f:v1.9.2
+      - talosctl --nodes {{.IP}} upgrade --image factory.talos.dev/installer/d3dc673627e9b94c6cd4122289aa52c2484cddb31017ae21b75309846e257d30:v1.9.4
       - talosctl --nodes {{.IP}} health --wait-timeout=10m --server=false
       - task: up
     requires:

@@ -89,7 +89,7 @@ resource "proxmox_virtual_environment_vm" "k8s" {
 }
 
 data "talos_image_factory_extensions_versions" "this" {
-  talos_version = "v1.9.3"
+  talos_version = "v1.9.4"
   filters = {
     names = [
       "qemu-guest-agent",
@@ -110,7 +110,7 @@ resource "talos_image_factory_schematic" "this" {
 }
 
 data "talos_image_factory_urls" "this" {
-  talos_version = "v1.9.3"
+  talos_version = "v1.9.4"
   schematic_id  = talos_image_factory_schematic.this.id
   platform      = "nocloud"
 }
