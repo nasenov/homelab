@@ -89,6 +89,7 @@ resource "proxmox_virtual_environment_vm" "k8s" {
 }
 
 data "talos_image_factory_extensions_versions" "this" {
+  # renovate: datasource=docker depName=ghcr.io/siderolabs/installer
   talos_version = "v1.9.4"
   filters = {
     names = [
@@ -110,6 +111,7 @@ resource "talos_image_factory_schematic" "this" {
 }
 
 data "talos_image_factory_urls" "this" {
+  # renovate: datasource=docker depName=ghcr.io/siderolabs/installer
   talos_version = "v1.9.4"
   schematic_id  = talos_image_factory_schematic.this.id
   platform      = "nocloud"
