@@ -4,7 +4,7 @@
     {
       "customType": "regex",
       "description": "Process various dependencies in YAML files",
-      "fileMatch": ["(^|/)kubernetes/.+\\.ya?ml$"],
+      "fileMatch": ["\\.ya?ml$"],
       "matchStrings": [
         "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( repository=(?<registryUrl>\\S+))?\\n.+(:\\s|=)(&\\S+\\s)?(?<currentValue>\\S+)"
       ],

@@ -38,7 +38,7 @@ spec:
     namespace: flux-system
   postBuild:
     substitute:
-      # renovate: depName=ghcr.io/siderolabs/installer datasource=docker
+      # renovate: datasource=docker depName=ghcr.io/siderolabs/installer 
       TALOS_VERSION: v1.9.4
-      # renovate: depName=ghcr.io/siderolabs/kubelet datasource=docker
-      KUBERNETES_VERSION: v1.32.3
+      # renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet 
+      KUBERNETES_VERSION: v1.32.1
