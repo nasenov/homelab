@@ -5,5 +5,4 @@ version: "3"
 includes:
   bootstrap: .taskfiles/bootstrap
   flux: .taskfiles/flux
-  talos: .taskfiles/talos
   terraform: .taskfiles/terraform
