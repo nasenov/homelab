@@ -16,6 +16,14 @@ spec:
         resources:
           requests:
             storage: 16Gi
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - topologyKey: kubernetes.io/hostname
+              labelSelector:
+                matchLabels:
+                  postgres-operator.crunchydata.com/cluster: *name
+                  postgres-operator.crunchydata.com/instance-set: postgres
 
   backups:
     pgbackrest:
@@ -99,6 +107,14 @@ spec:
   #     repo:
   #       name: repo1
   #       s3: *minio
+
+  patroni:
+    dynamicConfiguration:
+      failsafe_mode: true
+      synchronous_mode: true
+      postgresql:
+        parameters:
+          synchronous_commit: "on"
 
   monitoring:
     pgmonitor:
