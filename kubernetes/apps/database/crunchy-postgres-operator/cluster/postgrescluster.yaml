@@ -28,6 +28,12 @@ spec:
                   postgres-operator.crunchydata.com/cluster: *name
                   postgres-operator.crunchydata.com/instance-set: postgres
 
+  service:
+    type: LoadBalancer
+    metadata:
+      annotations:
+        lbipam.cilium.io/ips: 192.168.0.42
+
   backups:
     pgbackrest:
       configuration:
@@ -72,11 +78,6 @@ spec:
                 matchLabels:
                   postgres-operator.crunchydata.com/cluster: *name
                   postgres-operator.crunchydata.com/role: pgbouncer
-      service:
-        type: LoadBalancer
-        metadata:
-          annotations:
-            lbipam.cilium.io/ips: 192.168.0.42
 
   users:
     # Superuser
