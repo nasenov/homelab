@@ -3,6 +3,8 @@ apiVersion: postgres-operator.crunchydata.com/v1beta1
 kind: PostgresCluster
 metadata:
   name: &name postgres
+  annotations:
+    postgres-operator.crunchydata.com/autoCreateUserSchema: "true"
 spec:
   postgresVersion: 17
 
@@ -71,11 +73,11 @@ spec:
                   postgres-operator.crunchydata.com/cluster: *name
                   postgres-operator.crunchydata.com/role: pgbouncer
 
-  # users:
-  #   # Superuser
-  #   - name: postgres
-  #     password:
-  #       type: AlphaNumeric
+  users:
+    # Superuser
+    - name: postgres
+      password:
+        type: AlphaNumeric
   #   # Applications
   #   - name: lldap
   #     databases:
