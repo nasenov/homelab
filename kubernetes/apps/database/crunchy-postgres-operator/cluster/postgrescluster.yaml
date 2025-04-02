@@ -9,6 +9,7 @@ spec:
   instances:
     - name: postgres
       replicas: 2
+      minAvailable: 1
       dataVolumeClaimSpec:
         storageClassName: openebs-hostpath
         accessModes:
@@ -60,6 +61,7 @@ spec:
   proxy:
     pgBouncer:
       replicas: 2
+      minAvailable: 1
       affinity:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
@@ -68,24 +70,6 @@ spec:
                 matchLabels:
                   postgres-operator.crunchydata.com/cluster: *name
                   postgres-operator.crunchydata.com/role: pgbouncer
-
-  # instances:
-  #   - name: postgres
-  #     replicas: 3
-  #     topologySpreadConstraints:
-  #       - maxSkew: 1
-  #         topologyKey: kubernetes.io/hostname
-  #         whenUnsatisfiable: DoNotSchedule
-  #         labelSelector:
-  #           matchLabels:
-  #             postgres-operator.crunchydata.com/instance-set: postgres
-  #     dataVolumeClaimSpec:
-  #       storageClassName: openebs-hostpath
-  #       accessModes:
-  #         - ReadWriteOnce
-  #       resources:
-  #         requests:
-  #           storage: 16Gi
 
   # users:
   #   # Superuser
