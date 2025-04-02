@@ -8,6 +8,7 @@ spec:
 
   instances:
     - name: postgres
+      replicas: 2
       dataVolumeClaimSpec:
         storageClassName: openebs-hostpath
         accessModes:
