@@ -1,0 +1,8 @@
+apiVersion: postgres-operator.crunchydata.com/v1beta1
+kind: PGUpgrade
+metadata:
+  name: postgres-upgrade
+spec:
+  postgresClusterName: postgres
+  fromPostgresVersion: 16
+  toPostgresVersion: 17
