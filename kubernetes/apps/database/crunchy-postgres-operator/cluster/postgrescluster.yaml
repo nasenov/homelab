@@ -78,12 +78,12 @@ spec:
     - name: postgres
       password:
         type: AlphaNumeric
-  #   # Applications
-  #   - name: lldap
-  #     databases:
-  #       - lldap
-  #     password:
-  #       type: AlphaNumeric
+    # Applications
+    - name: grafana
+      databases:
+        - grafana
+      password:
+        type: AlphaNumeric
 
   # dataSource:
   #   pgbackrest:
