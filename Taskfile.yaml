@@ -5,4 +5,10 @@ version: "3"
 includes:
   bootstrap: .taskfiles/bootstrap
   flux: .taskfiles/flux
+  kubernetes: .taskfiles/kubernetes
   terraform: .taskfiles/terraform
+
+tasks:
+  default:
+    cmd: task --list
+    silent: true
