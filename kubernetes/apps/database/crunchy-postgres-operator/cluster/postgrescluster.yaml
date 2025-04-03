@@ -107,8 +107,8 @@ spec:
   users:
     # Superuser
     - name: postgres
-      databases:
-        - postgres
+      # databases:
+      #   - postgres
       options: "SUPERUSER"
       password:
         type: AlphaNumeric
