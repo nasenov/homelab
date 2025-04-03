@@ -42,16 +42,15 @@ spec:
       global:
         compress-type: "bz2"
         compress-level: "9"
-        log-level-console: "debug"
         # Minio
-        repo1-block: "y"
         repo1-bundle: "y"
-        repo1-storage-verify-tls: "n"
+        repo1-block: "y"
+        repo1-cipher-type: aes-256-cbc
+        repo1-s3-uri-style: path
         repo1-path: /pgbackrest/database/postgres/repo1
         repo1-retention-full: "30" # days
         repo1-retention-full-type: time
-        repo1-s3-uri-style: path
-        repo1-cipher-type: aes-256-cbc
+        repo1-storage-verify-tls: "n"
       manual:
         repoName: repo1
         options:
