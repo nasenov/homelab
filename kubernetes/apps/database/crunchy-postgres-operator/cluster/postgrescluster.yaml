@@ -36,10 +36,10 @@ spec:
 
   backups:
     pgbackrest:
-      configuration:
+      configuration: &backupConfig
         - secret:
             name: crunchy-postgres-secret
-      global:
+      global: &backupGlobal
         compress-type: "bz2"
         compress-level: "9"
         # Minio
@@ -57,7 +57,7 @@ spec:
           - --type=full
       repos:
         - name: repo1
-          s3:
+          s3: &backupS3
             bucket: postgres
             endpoint: s3.nasenov.dev
             region: eu-central-1
@@ -65,6 +65,15 @@ spec:
             full: "0 1 * * 0" # Sunday at 01:00
             differential: "0 1 * * 1-6" # Mon-Sat at 01:00
             incremental: "0 2-23 * * *" # Every hour except 01:00
+
+  dataSource:
+    pgbackrest:
+      stanza: db
+      configuration: *backupConfig
+      global: *backupGlobal
+      repo:
+        name: repo1
+        s3: *backupS3
 
   proxy:
     pgBouncer:
@@ -93,15 +102,6 @@ spec:
         - grafana
       password:
         type: AlphaNumeric
-
-  # dataSource:
-  #   pgbackrest:
-  #     stanza: db
-  #     configuration: *backupConfig
-  #     global: *backupFlag
-  #     repo:
-  #       name: repo1
-  #       s3: *minio
 
   patroni:
     dynamicConfiguration:
