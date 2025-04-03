@@ -41,3 +41,8 @@ spec:
     name: flux-system
     namespace: flux-system
   wait: true
+  postBuild:
+    substituteFrom:
+      - kind: Secret
+        name: crunchy-postgres-r2
+        optional: false
