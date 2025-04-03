@@ -37,5 +37,8 @@ spec:
           keep: false
 
     localpv-provisioner:
+      hostpathClass:
+        xfsQuota:
+          enabled: true
       analytics:
         enabled: false
