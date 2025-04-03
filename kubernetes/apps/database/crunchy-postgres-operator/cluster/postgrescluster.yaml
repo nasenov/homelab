@@ -51,6 +51,7 @@ spec:
         repo1-retention-full: "30" # days
         repo1-retention-full-type: time
         repo1-s3-uri-style: path
+        repo1-cipher-type: aes-256-cbc
       manual:
         repoName: repo1
         options:

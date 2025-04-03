@@ -22,7 +22,7 @@ spec:
           app:
             image:
               repository: quay.io/minio/minio
-              tag: RELEASE.2024-08-26T15-33-07Z
+              tag: RELEASE.2025-03-12T18-04-18Z
             envFrom:
               - secretRef:
                   name: minio-env-configuration
