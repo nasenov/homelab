@@ -6,4 +6,5 @@ resources:
   - ./externalsecret.yaml
   - ./podmonitor.yaml
   - ./postgrescluster.yaml
+  - ./postgrescluster2.yaml
   - ./prometheusrule.yaml
