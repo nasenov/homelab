@@ -60,7 +60,7 @@ spec:
         repo2-retention-full: "7" # days
         repo2-retention-full-type: time
       manual:
-        repoName: repo2
+        repoName: repo1
         options:
           - --type=full
       repos:
