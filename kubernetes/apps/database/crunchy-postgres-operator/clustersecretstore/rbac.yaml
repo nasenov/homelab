@@ -7,7 +7,7 @@ metadata:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  name: external-secrets-read-postgres-secrets
+  name: external-secrets-postgres
 rules:
   - apiGroups:
       - ""
@@ -35,4 +35,4 @@ subjects:
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: external-secrets-read-postgres-secrets
+  name: external-secrets-postgres
