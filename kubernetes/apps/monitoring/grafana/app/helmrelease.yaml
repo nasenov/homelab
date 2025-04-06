@@ -47,6 +47,9 @@ spec:
     envFromSecrets:
       - name: grafana-postgres-configuration
 
+    plugins:
+      - yesoreyeram-infinity-datasource
+
     datasources:
       datasources.yaml:
         apiVersion: 1
@@ -225,4 +228,3 @@ spec:
         label: grafana_datasource
         labelValue: ""
         searchNamespace: ALL
-
