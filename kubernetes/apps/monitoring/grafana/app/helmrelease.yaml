@@ -67,6 +67,9 @@ spec:
             url: http://loki-headless.monitoring.svc.cluster.local:3100
             jsonData:
               maxLines: 1000
+          - name: Infinity
+            type: yesoreyeram-infinity-datasource
+            uid: yesoreyeram-infinity-datasource
 
     dashboardProviders:
       dashboardproviders.yaml:
