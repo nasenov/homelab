@@ -16,11 +16,54 @@ spec:
     remediation:
       retries: 3
   values:
+    replicas: 2
+
+    podDisruptionBudget:
+      minAvailable: 1
+
+    serviceMonitor:
+      enabled: true
+
+    ingress:
+      enabled: true
+      ingressClassName: nginx
+      hosts:
+        - grafana.nasenov.dev
+      tls:
+        - hosts:
+            - grafana.nasenov.dev
+
+    topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: kubernetes.io/hostname
+        whenUnsatisfiable: DoNotSchedule
+        labelSelector:
+          matchLabels:
+            app.kubernetes.io/name: grafana
+
     admin:
       existingSecret: grafana-admin
 
     envFromSecrets:
       - name: grafana-postgres-configuration
+
+    datasources:
+      datasources.yaml:
+        apiVersion: 1
+        datasources:
+          - name: Prometheus
+            type: prometheus
+            uid: prometheus
+            access: proxy
+            url: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090/
+            isDefault: true
+          - name: Loki
+            type: loki
+            uid: loki
+            access: proxy
+            url: http://loki-headless.monitoring.svc.cluster.local:3100
+            jsonData:
+              maxLines: 1000
 
     dashboardProviders:
       dashboardproviders.yaml:
@@ -171,24 +214,6 @@ spec:
           url: https://raw.githubusercontent.com/CrunchyData/postgres-operator-examples/main/kustomize/monitoring/grafana/dashboards/query_statistics.json
           datasource: Prometheus
 
-    datasources:
-      datasources.yaml:
-        apiVersion: 1
-        datasources:
-          - name: Prometheus
-            type: prometheus
-            uid: prometheus
-            access: proxy
-            url: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090/
-            isDefault: true
-          - name: Loki
-            type: loki
-            uid: loki
-            access: proxy
-            url: http://loki-headless.monitoring.svc.cluster.local:3100
-            jsonData:
-              maxLines: 1000
-
     sidecar:
       dashboards:
         enabled: true
@@ -201,14 +226,3 @@ spec:
         labelValue: ""
         searchNamespace: ALL
 
-    serviceMonitor:
-      enabled: true
-
-    ingress:
-      enabled: true
-      ingressClassName: nginx
-      hosts:
-        - grafana.nasenov.dev
-      tls:
-        - hosts:
-            - grafana.nasenov.dev
