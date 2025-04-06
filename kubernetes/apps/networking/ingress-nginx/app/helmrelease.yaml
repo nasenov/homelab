@@ -21,6 +21,8 @@ spec:
       retries: 3
   values:
     controller:
+      config:
+        enable-real-ip: "true"
       service:
         annotations:
           lbipam.cilium.io/ips: 192.168.0.40
