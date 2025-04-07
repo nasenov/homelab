@@ -204,6 +204,9 @@ spec:
                 - Alertmanager:
                     icon: alertmanager.png
                     href: https://alertmanager.nasenov.dev
+                - Hubble:
+                    icon: cilium.png
+                    href: https://hubble.nasenov.dev
 
             - Automation:
               - Home Assistant:
