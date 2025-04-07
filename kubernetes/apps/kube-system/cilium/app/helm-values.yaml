@@ -35,3 +35,8 @@ operator:
       effect: NoSchedule
     - key: node-role.kubernetes.io/control-plane
       effect: NoSchedule
+hubble:
+  relay:
+    enabled: true
+  ui:
+    enabled: true
