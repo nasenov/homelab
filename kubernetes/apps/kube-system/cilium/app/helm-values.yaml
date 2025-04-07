@@ -40,3 +40,11 @@ hubble:
     enabled: true
   ui:
     enabled: true
+    ingress:
+      enabled: true
+      className: nginx
+      hosts:
+        - hubble.nasenov.dev
+      tls:
+        - hosts:
+            - hubble.nasenov.dev
