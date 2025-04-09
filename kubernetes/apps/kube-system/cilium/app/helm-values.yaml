@@ -35,6 +35,8 @@ operator:
       enabled: true
   dashboards:
     enabled: true
+    annotations:
+      grafana_folder: cilium
   # https://github.com/cilium/cilium/issues/28549
   tolerations:
     - key: node.kubernetes.io/not-ready
@@ -55,6 +57,8 @@ hubble:
       enabled: true
     dashboards:
       enabled: true
+      annotations:
+        grafana_folder: cilium
   relay:
     enabled: true
     prometheus:
@@ -77,6 +81,8 @@ prometheus:
     enabled: true
 dashboards:
   enabled: true
+  annotations:
+    grafana_folder: cilium
 envoy:
   prometheus:
     enabled: true
