@@ -3,15 +3,16 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: httpsredirect
+  name: emqx-dashboard
 spec:
+  hostnames:
+    - emqx.nasenov.dev
   parentRefs:
     - name: internal
       namespace: kube-system
-      sectionName: http
+      sectionName: https
   rules:
-    - filters:
-        - requestRedirect:
-            scheme: https
-            statusCode: 301
-          type: RequestRedirect
+    - backendRefs:
+        - name: emqx-dashboard
+          namespace: database
+          port: 18083

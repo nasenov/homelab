@@ -63,19 +63,18 @@ spec:
             port: 80
             targetPort: 8989
 
-    ingress:
+    route:
       app:
-        className: nginx
-        hosts:
-          - host: sonarr.nasenov.dev
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  identifier: app
-        tls:
-          - hosts:
-              - sonarr.nasenov.dev
+        hostnames:
+          - sonarr.nasenov.dev
+        parentRefs:
+          - name: internal
+            namespace: kube-system
+            sectionName: https
+        rules:
+          - backendRefs:
+              - name: sonarr
+                port: 80
 
     persistence:
       media:

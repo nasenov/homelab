@@ -60,19 +60,18 @@ spec:
             port: 80
             targetPort: 8096
 
-    ingress:
+    route:
       app:
-        className: nginx
-        hosts:
-          - host: media.nasenov.dev
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  identifier: app
-        tls:
-          - hosts:
-              - media.nasenov.dev
+        hostnames:
+          - media.nasenov.dev
+        parentRefs:
+          - name: internal
+            namespace: kube-system
+            sectionName: https
+        rules:
+          - backendRefs:
+              - name: jellyfin
+                port: 80
 
     persistence:
       media:

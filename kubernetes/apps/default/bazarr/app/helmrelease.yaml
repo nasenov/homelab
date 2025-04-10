@@ -63,19 +63,18 @@ spec:
             port: 80
             targetPort: 6767
 
-    ingress:
+    route:
       app:
-        className: nginx
-        hosts:
-          - host: bazarr.nasenov.dev
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  identifier: app
-        tls:
-          - hosts:
-              - bazarr.nasenov.dev
+        hostnames:
+          - bazarr.nasenov.dev
+        parentRefs:
+          - name: internal
+            namespace: kube-system
+            sectionName: https
+        rules:
+          - backendRefs:
+              - name: bazarr
+                port: 80
 
     persistence:
       media:

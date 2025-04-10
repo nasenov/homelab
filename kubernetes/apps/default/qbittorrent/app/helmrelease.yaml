@@ -71,20 +71,18 @@ spec:
             targetPort: 50413
             protocol: TCP
 
-    ingress:
+    route:
       app:
-        className: nginx
-        hosts:
-          - host: qb.nasenov.dev
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  identifier: app
-                  port: http
-        tls:
-          - hosts:
-              - qb.nasenov.dev
+        hostnames:
+          - qb.nasenov.dev
+        parentRefs:
+          - name: internal
+            namespace: kube-system
+            sectionName: https
+        rules:
+          - backendRefs:
+              - name: qbittorrent
+                port: 80
 
     persistence:
       media:

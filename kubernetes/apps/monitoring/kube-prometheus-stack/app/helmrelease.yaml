@@ -23,14 +23,15 @@ spec:
       enabled: false
 
     prometheus:
-      ingress:
-        enabled: true
-        ingressClassName: nginx
-        hosts:
-          - prometheus.nasenov.dev
-        tls:
-          - hosts:
-              - prometheus.nasenov.dev
+      route:
+        main:
+          enabled: true
+          hostnames:
+            - prometheus.nasenov.dev
+          parentRefs:
+            - name: internal
+              namespace: kube-system
+              sectionName: https
 
       prometheusSpec:
         ruleSelectorNilUsesHelmValues: false
@@ -48,14 +49,15 @@ spec:
                   storage: 25Gi
 
     alertmanager:
-      ingress:
-        enabled: true
-        ingressClassName: nginx
-        hosts:
-          - alertmanager.nasenov.dev
-        tls:
-          - hosts:
-              - alertmanager.nasenov.dev
+      route:
+        main:
+          enabled: true
+          hostnames:
+            - alertmanager.nasenov.dev
+          parentRefs:
+            - name: internal
+              namespace: kube-system
+              sectionName: https
 
       alertmanagerSpec:
         useExistingSecret: true

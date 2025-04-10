@@ -91,30 +91,26 @@ spec:
             port: 80
             targetPort: 8080
 
-    ingress:
+    route:
       app:
-        className: nginx
-        hosts:
-          - host: hass.nasenov.dev
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  identifier: app
-                  port: http
-        tls:
-          - hosts:
-              - hass.nasenov.dev
+        hostnames:
+          - hass.nasenov.dev
+        parentRefs:
+          - name: internal
+            namespace: kube-system
+            sectionName: https
+        rules:
+          - backendRefs:
+              - name: home-assistant
+                port: 80
       codeserver:
-        className: nginx
-        hosts:
-          - host: hass-code.nasenov.dev
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  identifier: codeserver
-                  port: http
-        tls:
-          - hosts:
-              - hass-code.nasenov.dev
+        hostnames:
+          - hass-code.nasenov.dev
+        parentRefs:
+          - name: internal
+            namespace: kube-system
+            sectionName: https
+        rules:
+          - backendRefs:
+              - name: home-assistant-codeserver
+                port: 80

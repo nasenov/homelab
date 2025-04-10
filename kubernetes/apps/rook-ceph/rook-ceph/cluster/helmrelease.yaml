@@ -17,16 +17,6 @@ spec:
     remediation:
       retries: 3
   values:
-    ingress:
-      dashboard:
-        ingressClassName: nginx
-        host:
-          name: rook.nasenov.dev
-          path: /
-        tls:
-          - hosts:
-              - rook.nasenov.dev
-
     toolbox:
       enabled: true
 
@@ -188,12 +178,3 @@ spec:
           volumeBindingMode: Immediate
           parameters:
             region: us-east-1
-        ingress:
-          enabled: true
-          ingressClassName: nginx
-          annotations:
-            nginx.ingress.kubernetes.io/proxy-body-size: "0"
-            nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
-          host:
-            name: rgw.nasenov.dev
-            path: /

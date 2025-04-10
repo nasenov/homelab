@@ -5,5 +5,4 @@ kind: Kustomization
 namespace: networking
 components:
   - ../../components/common
-resources:
-  - ./ingress-nginx/ks.yaml
+resources: []

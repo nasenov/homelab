@@ -54,16 +54,15 @@ spec:
             port: 80
             targetPort: 5055
 
-    ingress:
+    route:
       app:
-        className: nginx
-        hosts:
-          - host: jellyseerr.nasenov.dev
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  identifier: app
-        tls:
-          - hosts:
-              - jellyseerr.nasenov.dev
+        hostnames:
+          - jellyseerr.nasenov.dev
+        parentRefs:
+          - name: internal
+            namespace: kube-system
+            sectionName: https
+        rules:
+          - backendRefs:
+              - name: jellyseerr
+                port: 80

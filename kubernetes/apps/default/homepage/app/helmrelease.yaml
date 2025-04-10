@@ -50,19 +50,18 @@ spec:
             port: 80
             targetPort: 3000
 
-    ingress:
+    route:
       app:
-        className: nginx
-        hosts:
-          - host: homepage.nasenov.dev
-            paths:
-              - path: /
-                pathType: Prefix
-                service:
-                  identifier: app
-        tls:
-          - hosts:
-              - homepage.nasenov.dev
+        hostnames:
+          - homepage.nasenov.dev
+        parentRefs:
+          - name: internal
+            namespace: kube-system
+            sectionName: https
+        rules:
+          - backendRefs:
+              - name: homepage
+                port: 80
 
     persistence:
       config:

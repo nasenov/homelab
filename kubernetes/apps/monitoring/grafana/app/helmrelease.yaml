@@ -24,14 +24,15 @@ spec:
     serviceMonitor:
       enabled: true
 
-    ingress:
-      enabled: true
-      ingressClassName: nginx
-      hosts:
-        - grafana.nasenov.dev
-      tls:
-        - hosts:
-            - grafana.nasenov.dev
+    route:
+      main:
+        enabled: true
+        hostnames: 
+          - grafana.nasenov.dev
+        parentRefs:
+          - name: internal
+            namespace: kube-system
+            sectionName: https
 
     topologySpreadConstraints:
       - maxSkew: 1
@@ -107,14 +108,6 @@ spec:
             editable: true
             options:
               path: /var/lib/grafana/dashboards/minio
-          - name: nginx
-            orgId: 1
-            folder: Nginx
-            type: file
-            disableDeletion: false
-            editable: true
-            options:
-              path: /var/lib/grafana/dashboards/nginx
           - name: postgresql
             orgId: 1
             folder: PostgreSQL
@@ -189,13 +182,6 @@ spec:
           # renovate: depName="MinIO Replication Dashboard"
           gnetId: 15305
           revision: 5
-          datasource: Prometheus
-      nginx:
-        nginx:
-          url: https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/grafana/dashboards/nginx.json
-          datasource: Prometheus
-        nginx-request-handling-performance:
-          url: https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/grafana/dashboards/request-handling-performance.json
           datasource: Prometheus
       postgresql:
         pgbackrest:
