@@ -3,4 +3,4 @@
 *.tfstate
 *.tfstate.backup
 *.agekey
-proxmox/
+/proxmox

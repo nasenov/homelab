@@ -47,6 +47,11 @@ spec:
               resources:
                 requests:
                   storage: 25Gi
+        additionalScrapeConfigs:
+          - job_name: pve-node-exporter
+            static_configs:
+              - targets:
+                  - pve.nasenov.dev:9100
 
     alertmanager:
       route:
