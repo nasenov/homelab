@@ -5,4 +5,5 @@ kind: Kustomization
 namespace: networking
 components:
   - ../../components/common
-resources: []
+resources:
+  - ./cloudflare-tunnel/ks.yaml

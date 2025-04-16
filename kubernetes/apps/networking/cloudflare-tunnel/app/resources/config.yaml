@@ -1,0 +1,10 @@
+---
+originRequest:
+  originServerName: external.nasenov.dev
+
+ingress:
+  - hostname: nasenov.dev
+    service: &svc https://cilium-gateway-external.kube-system.svc.cluster.local
+  - hostname: "*.nasenov.dev"
+    service: *svc
+  - service: http_status:404
