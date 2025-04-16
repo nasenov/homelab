@@ -15,8 +15,8 @@
     },
     {
       "description": ["Rook-Ceph Group"],
-      "matchDatasources": ["helm"],
-      "matchDepNames": ["rook-ceph", "rook-ceph-cluster"],
+      "matchDatasources": ["docker"],
+      "matchPackageName": ["ghcr.io/rook/rook-ceph", "ghcr.io/rook/rook-ceph-cluster"],
       "groupName": "Rook-Ceph"
     }
   ]
