@@ -113,6 +113,8 @@ locals {
         "fs.inotify.max_queued_events"  = "65536"
         "fs.inotify.max_user_watches"   = "524288"
         "fs.inotify.max_user_instances" = "8192"
+        "net.core.rmem_max"             = 7500000 # Cloudflared / QUIC
+        "net.core.wmem_max"             = 7500000 # Cloudflared / QUIC
       }
     }
   })
