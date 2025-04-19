@@ -72,11 +72,11 @@ spec:
             <<: *container
             args: [
               "prune",
-              "--exclude-category", "manual",
-              "--exclude-tag", "added:1d",
+              "--include-category", "autobrr",
+              "--include-category", "cross-seed",
               "--include-tag", "expired",
               "--with-data",
-              "--dry-run"
+              # "--dry-run"
             ]
         pod:
           restartPolicy: Never
