@@ -26,8 +26,6 @@ spec:
       cloudflare-tunnel:
         replicas: 2
         strategy: RollingUpdate
-        annotations:
-          reloader.stakater.com/auto: "true"
         containers:
           app:
             image:
@@ -36,9 +34,6 @@ spec:
             env:
               NO_AUTOUPDATE: true
               TUNNEL_METRICS: 0.0.0.0:8080
-              TUNNEL_ORIGIN_ENABLE_HTTP2: true
-              TUNNEL_POST_QUANTUM: true
-              TUNNEL_TRANSPORT_PROTOCOL: quic
             envFrom:
               - secretRef:
                   name: cloudflare-tunnel-secret
@@ -78,12 +73,3 @@ spec:
         serviceName: cloudflare-tunnel
         endpoints:
           - port: http
-
-    persistence:
-      config-file:
-        type: configMap
-        name: cloudflare-tunnel-configmap
-        globalMounts:
-          - path: /etc/cloudflared/config.yaml
-            subPath: config.yaml
-            readOnly: true
