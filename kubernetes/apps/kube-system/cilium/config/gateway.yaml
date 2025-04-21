@@ -34,11 +34,16 @@ apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
   name: external
+  annotations:
+    external-dns.alpha.kubernetes.io/target: external.nasenov.dev
 spec:
   gatewayClassName: cilium
   addresses:
     - type: IPAddress
       value: 192.168.0.43
+  infrastructure:
+    annotations:
+      external-dns.alpha.kubernetes.io/hostname: external.nasenov.dev
   listeners:
     - name: http
       protocol: HTTP
