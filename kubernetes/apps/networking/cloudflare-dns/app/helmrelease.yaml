@@ -39,8 +39,6 @@ spec:
       - --cloudflare-dns-records-per-page=1000
       - --cloudflare-proxied
       - --gateway-name=external
-      - --once
-      - --dry-run
     triggerLoopOnEvent: true
     policy: sync
     sources:
