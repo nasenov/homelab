@@ -6,7 +6,6 @@ namespace: default
 components:
   - ../../components/common
 resources:
-  - ./ocirepository.yaml
   - ./autobrr/ks.yaml
   - ./bazarr/ks.yaml
   - ./cross-seed/ks.yaml
