@@ -47,9 +47,9 @@ resource "proxmox_virtual_environment_download_file" "truenas" {
   node_name          = "pve"
   datastore_id       = "local"
   content_type       = "iso"
-  url                = "https://download.sys.truenas.net/TrueNAS-SCALE-ElectricEel/24.10.1/TrueNAS-SCALE-24.10.1.iso"
+  url                = "https://download.sys.truenas.net/TrueNAS-SCALE-Fangtooth/25.04.0/TrueNAS-SCALE-25.04.0.iso" 
   checksum_algorithm = "sha256"
-  checksum           = "c1370c6c7bb4be27dac5957c76c9464d56eb2e3d57f68f1fc31f6905e34467de"
+  checksum           = "ede23d4c70a7fde6674879346c1307517be9854dc79f6a5e016814226457f359"
 }
 
 resource "proxmox_virtual_environment_download_file" "talos" {
@@ -57,7 +57,7 @@ resource "proxmox_virtual_environment_download_file" "talos" {
   datastore_id = "local"
   content_type = "iso"
   file_name    = "nocloud-amd64.img"
-  url          = "https://factory.talos.dev/image/90015c0ada3ddd8b55e25342d736bbb1ef7c8e213883ec2ad1110cb44944503f/v1.9.2/nocloud-amd64.raw"
+  url          = "https://factory.talos.dev/image/d3dc673627e9b94c6cd4122289aa52c2484cddb31017ae21b75309846e257d30/v1.9.5/nocloud-amd64.raw"
 }
 
 resource "proxmox_virtual_environment_download_file" "ubuntu_cloud_image" {
@@ -65,9 +65,9 @@ resource "proxmox_virtual_environment_download_file" "ubuntu_cloud_image" {
   datastore_id       = "local"
   content_type       = "iso"
   file_name          = "ubuntu-24.04-server-cloudimg-amd64.img"
-  url                = "https://cloud-images.ubuntu.com/releases/24.04/release-20250115/ubuntu-24.04-server-cloudimg-amd64.img"
+  url                = "https://cloud-images.ubuntu.com/releases/noble/release-20250403/ubuntu-24.04-server-cloudimg-amd64.img"
   checksum_algorithm = "sha256"
-  checksum           = "28d2f9df3ac0d24440eaf6998507df3405142cf94a55e1f90802c78e43d2d9df"
+  checksum           = "071fceadf1ea57a388ff7a1ccb4127155d691a511f6a207b4c11b120563855e2"
 }
 
 resource "proxmox_virtual_environment_file" "vendor_config" {
@@ -115,7 +115,7 @@ resource "proxmox_virtual_environment_vm" "ubuntu_template" {
 
   disk {
     datastore_id = "fast"
-    file_id      = proxmox_virtual_environment_download_file.ubuntu_cloud_image.id
+    file_id      = "local:iso/ubuntu-24.04-server-cloudimg-amd64.img"
     interface    = "scsi0"
     size         = 4
   }
@@ -174,7 +174,7 @@ resource "proxmox_virtual_environment_vm" "dns" {
 
   disk {
     datastore_id = "fast"
-    file_id      = proxmox_virtual_environment_download_file.ubuntu_cloud_image.id
+    file_id      = "local:iso/ubuntu-24.04-server-cloudimg-amd64.img"
     interface    = "scsi0"
     iothread     = true
     size         = 32
