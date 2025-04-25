@@ -57,7 +57,8 @@ resource "proxmox_virtual_environment_download_file" "talos" {
   datastore_id = "local"
   content_type = "iso"
   file_name    = "nocloud-amd64.img"
-  url          = "https://factory.talos.dev/image/d3dc673627e9b94c6cd4122289aa52c2484cddb31017ae21b75309846e257d30/v1.9.5/nocloud-amd64.raw"
+  # renovate: datasource=docker depName=ghcr.io/siderolabs/installer
+  url          = "https://factory.talos.dev/image/d3dc673627e9b94c6cd4122289aa52c2484cddb31017ae21b75309846e257d30/v1.9.4/nocloud-amd64.raw"
 }
 
 resource "proxmox_virtual_environment_download_file" "ubuntu_cloud_image" {
