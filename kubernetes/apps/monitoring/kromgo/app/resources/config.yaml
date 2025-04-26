@@ -37,8 +37,8 @@ metrics:
     suffix: "%"
     colors:
       - { color: "green", min: 0, max: 35 }
-      - { color: "orange", min: 36, max: 75 }
-      - { color: "red", min: 76, max: 9999 }
+      - { color: "orange", min: 35, max: 75 }
+      - { color: "red", min: 75, max: 9999 }
     title: CPU
 
   - name: cluster_memory_usage
@@ -46,8 +46,8 @@ metrics:
     suffix: "%"
     colors:
       - { color: green, min: 0, max: 35 }
-      - { color: orange, min: 36, max: 75 }
-      - { color: red, min: 76, max: 9999 }
+      - { color: orange, min: 35, max: 75 }
+      - { color: red, min: 75, max: 9999 }
     title: Memory
 
   - name: cluster_power_usage
@@ -55,8 +55,8 @@ metrics:
     suffix: "w"
     colors:
       - { color: "green", min: 0, max: 400 }
-      - { color: "orange", min: 401, max: 750 }
-      - { color: "red", min: 751, max: 9999 }
+      - { color: "orange", min: 400, max: 750 }
+      - { color: "red", min: 750, max: 9999 }
     title: Power
 
   - name: cluster_age_days
