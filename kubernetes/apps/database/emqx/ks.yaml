@@ -47,3 +47,25 @@ spec:
       kind: EMQX
       current: status.conditions.filter(e, e.type == 'Available').all(e, e.status == 'True')
       failed: status.conditions.filter(e, e.type == 'Available').all(e, e.status == 'False')
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: emqx-exporter
+spec:
+  targetNamespace: database
+  interval: 30m
+  retryInterval: 2m
+  timeout: 5m
+  dependsOn:
+    - name: emqx-cluster
+      namespace: database
+    - name: prometheus-operator-crds
+      namespace: monitoring
+  path: ./kubernetes/apps/database/emqx/exporter
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+    namespace: flux-system

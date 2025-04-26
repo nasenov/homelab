@@ -1,0 +1,108 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: emqx-exporter
+spec:
+  interval: 30m
+  chartRef:
+    kind: OCIRepository
+    name: app-template
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+  values:
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+
+    controllers:
+      emqx-exporter:
+        replicas: 2
+        strategy: RollingUpdate
+        containers:
+          app:
+            image:
+              repository: ghcr.io/emqx/emqx-exporter
+              tag: 0.2.11@sha256:31173023132078a9243527ff1dbaae5facc77b8d3708a3b018634f8ba8862ec9
+            args:
+              - --config.file
+              - /etc/emqx-exporter/config.yaml
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
+            resources:
+              requests:
+                cpu: 10m
+              limits:
+                memory: 256Mi
+
+    service:
+      app:
+        controller: emqx-exporter
+        ports:
+          metrics:
+            port: 8085
+
+    serviceMonitor:
+      app:
+        serviceName: emqx-exporter
+        endpoints:
+          - port: metrics
+            path: /metrics
+            relabelings:
+              - action: replace
+                # user-defined cluster name, requires unique
+                replacement: emqx
+                targetLabel: cluster
+              - action: replace
+                # fix value, don't modify
+                replacement: exporter
+                targetLabel: from
+              - action: replace
+                # fix value, don't modify
+                sourceLabels: ["pod"]
+                regex: "(.*)-.*-.*"
+                replacement: $1
+                targetLabel: "instance"
+              - action: labeldrop
+                # fix value, don't modify
+                regex: "pod"
+          - port: metrics
+            path: /probe
+            params:
+              target:
+                - "emqx-listeners.database.svc.cluster.local:1883"
+            relabelings:
+              - action: replace
+                # user-defined cluster name, requires unique
+                replacement: emqx
+                targetLabel: cluster
+              - action: replace
+                # fix value, don't modify
+                replacement: exporter
+                targetLabel: from
+              - action: replace
+                # fix value, don't modify
+                sourceLabels: ["pod"]
+                regex: "(.*)-.*-.*"
+                replacement: $1
+                targetLabel: "instance"
+              - action: labeldrop
+                # fix value, don't modify
+                regex: "pod"
+
+    persistence:
+      config:
+        enabled: true
+        type: secret
+        name: emqx-exporter
+        globalMounts:
+          - path: /etc/emqx-exporter
