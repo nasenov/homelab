@@ -3,6 +3,7 @@
   roles:
     - prometheus.prometheus.smartctl_exporter
   vars:
+    # renovate: datasource=github-releases depName=prometheus-community/smartctl_exporter
     smartctl_exporter_version: 0.13.0
     smartctl_exporter_system_user: root
     smartctl_exporter_system_group: root
