@@ -56,6 +56,10 @@ spec:
             static_configs:
               - targets:
                   - pve.nasenov.dev:9633
+          - job_name: truenas-smartctl-exporter
+            static_configs:
+              - targets:
+                  - truenas.nasenov.dev:9633
 
     alertmanager:
       route:
