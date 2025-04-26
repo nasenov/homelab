@@ -36,27 +36,27 @@ metrics:
     query: round(avg(instance:node_cpu_utilisation:rate5m{kubernetes_node!=""}) * 100, 0.1)
     suffix: "%"
     colors:
-      - { color: "green", min: 0, max: 35 }
-      - { color: "orange", min: 35, max: 75 }
-      - { color: "red", min: 75, max: 9999 }
+      - { color: "green", min: 0, max: 35.0 }
+      - { color: "orange", min: 35.1, max: 75.0 }
+      - { color: "red", min: 75.1, max: 9999 }
     title: CPU
 
   - name: cluster_memory_usage
     query: round(sum(node_memory_MemTotal_bytes{kubernetes_node!=""} - node_memory_MemAvailable_bytes{kubernetes_node!=""}) / sum(node_memory_MemTotal_bytes{kubernetes_node!=""}) * 100, 0.1)
     suffix: "%"
     colors:
-      - { color: green, min: 0, max: 35 }
-      - { color: orange, min: 35, max: 75 }
-      - { color: red, min: 75, max: 9999 }
+      - { color: green, min: 0, max: 35.0 }
+      - { color: orange, min: 35.1, max: 75.0 }
+      - { color: red, min: 75.1, max: 9999 }
     title: Memory
 
   - name: cluster_power_usage
     query: round(node_hwmon_power_watt{sensor="power1"}, 0.1)
     suffix: "w"
     colors:
-      - { color: "green", min: 0, max: 400 }
-      - { color: "orange", min: 400, max: 750 }
-      - { color: "red", min: 750, max: 9999 }
+      - { color: "green", min: 0, max: 400.0 }
+      - { color: "orange", min: 400.1, max: 750.0 }
+      - { color: "red", min: 750.1, max: 9999 }
     title: Power
 
   - name: cluster_age_days
