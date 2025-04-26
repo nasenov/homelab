@@ -9,6 +9,11 @@ spec:
   interval: 30m
   retryInterval: 2m
   timeout: 5m
+  dependsOn:
+    - name: prometheus-operator-crds
+      namespace: monitoring
+    - name: external-secrets-stores
+      namespace: external-secrets
   path: ./kubernetes/apps/networking/cloudflare-tunnel/app
   prune: true
   sourceRef:
