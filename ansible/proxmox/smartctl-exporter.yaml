@@ -1,0 +1,8 @@
+---
+- hosts: all
+  roles:
+    - prometheus.prometheus.smartctl_exporter
+  vars:
+    smartctl_exporter_version: 0.13.0
+    smartctl_exporter_system_user: root
+    smartctl_exporter_system_group: root

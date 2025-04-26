@@ -52,6 +52,10 @@ spec:
             static_configs:
               - targets:
                   - pve.nasenov.dev:9100
+          - job_name: pve-smartctl-exporter
+            static_configs:
+              - targets:
+                  - pve.nasenov.dev:9633
 
     alertmanager:
       route:
