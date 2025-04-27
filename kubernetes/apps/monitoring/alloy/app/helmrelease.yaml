@@ -20,6 +20,12 @@ spec:
     remediation:
       retries: 3
   values:
+    alloy:
+      configMap:
+        create: false
+        name: alloy
+        key: config.alloy      
+
     controller:
       tolerations:
         - key: node-role.kubernetes.io/control-plane

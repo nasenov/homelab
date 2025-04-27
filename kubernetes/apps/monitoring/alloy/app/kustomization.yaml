@@ -5,3 +5,9 @@ kind: Kustomization
 resources:
   - ./helmrelease.yaml
   - ./helmrepository.yaml
+configMapGenerator:
+  - name: alloy
+    files:
+      - config.alloy=./resources/config.alloy
+generatorOptions:
+  disableNameSuffixHash: true
