@@ -9,6 +9,9 @@ spec:
   interval: 30m
   retryInterval: 2m
   timeout: 5m
+  dependsOn:
+    - name: prometheus-operator-crds
+      namespace: monitoring
   path: ./kubernetes/apps/monitoring/alloy/app
   prune: true
   sourceRef:
