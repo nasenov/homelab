@@ -27,9 +27,9 @@ spec:
         key: config.alloy
       mounts:
         varlog: true
-      # securityContext:
-      #   runAsUser: 473
-      #   runAsGroup: 473
+      securityContext:
+        runAsUser: 473
+        runAsGroup: 473
 
     controller:
       tolerations:
