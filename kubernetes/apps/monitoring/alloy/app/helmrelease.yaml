@@ -25,6 +25,8 @@ spec:
         create: false
         name: alloy
         key: config.alloy
+      mounts:
+        varlog: true
       # securityContext:
       #   runAsUser: 473
       #   runAsGroup: 473
