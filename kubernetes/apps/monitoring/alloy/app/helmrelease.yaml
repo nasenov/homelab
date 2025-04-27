@@ -24,7 +24,10 @@ spec:
       configMap:
         create: false
         name: alloy
-        key: config.alloy      
+        key: config.alloy
+      securityContext:
+        runAsUser: 473
+        runAsGroup: 473
 
     controller:
       tolerations:
