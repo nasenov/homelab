@@ -206,6 +206,9 @@ spec:
                 - Hubble:
                     icon: cilium.png
                     href: https://hubble.nasenov.dev
+                - Alloy:
+                    icon: alloy.png
+                    href: https://alloy.nasenov.dev
 
             - Automation:
               - Home Assistant:
