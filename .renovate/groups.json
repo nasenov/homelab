@@ -18,6 +18,12 @@
       "matchDatasources": ["docker"],
       "matchPackageNames": ["ghcr.io/rook/rook-ceph", "ghcr.io/rook/rook-ceph-cluster"],
       "groupName": "Rook-Ceph"
+    },
+    {
+      "description": ["Prometheus Operator CRDs Group"],
+      "matchDatasources": ["docker", "helm"],
+      "matchPackageNames": ["ghcr.io/prometheus-community/charts/prometheus-operator-crds", "prometheus-operator-crds"],
+      "groupName": "Prometheus-Operator-CRDs"
     }
   ]
 }
