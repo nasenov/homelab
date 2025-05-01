@@ -12,6 +12,9 @@ spec:
   coreTemplate:
     spec:
       replicas: 3
+      envFrom:
+        - secretRef:
+            name: emqx-admin-password
       affinity:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
