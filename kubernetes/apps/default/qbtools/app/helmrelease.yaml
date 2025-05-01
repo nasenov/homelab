@@ -40,14 +40,13 @@ spec:
             envFrom:
               - secretRef:
                   name: qbtools
-            args: [
-              "tagging",
-              "--added-on",
-              "--expired",
-              "--last-activity",
-              "--sites",
-              "--unregistered"
-            ]
+            args:
+              - "tagging"
+              - "--added-on"
+              - "--expired"
+              - "--last-activity"
+              - "--sites"
+              - "--unregistered"
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
@@ -60,27 +59,32 @@ spec:
         containers:
           unregistered:
             <<: *container
-            args: [
-              "prune",
-              "--exclude-category", "manual",
-              "--exclude-tag", "added:1d",
-              "--include-tag", "unregistered",
-              "--with-data",
-              # "--dry-run"
-            ]
+            args:
+              - "prune"
+              - "--exclude-category"
+              - "manual"
+              - "--exclude-tag"
+              - "added:1d"
+              - "--include-tag"
+              - "unregistered"
+              - "--with-data"
+              # - "--dry-run"
           expired:
             <<: *container
-            args: [
-              "prune",
-              "--include-category", "autobrr",
-              "--include-category", "cross-seed",
-              "--include-tag", "expired",
-              "--with-data",
-              # "--dry-run"
-            ]
+            args:
+              - "prune"
+              - "--include-category"
+              - "autobrr"
+              - "--include-category"
+              - "cross-seed"
+              - "--include-tag"
+              - "expired"
+              - "--with-data"
+              # - "--dry-run"
+
         pod:
           restartPolicy: Never
-      
+
       orphaned:
         type: cronjob
         cronjob:
@@ -89,24 +93,23 @@ spec:
         containers:
           app:
             <<: *container
-            args: [
-              "orphaned",
-              "--exclude-pattern", "*_unpackerred*",
-              "--exclude-pattern", "*/manual/*",
-              # "--dry-run"
-            ]
+            args:
+              - "orphaned"
+              - "--exclude-pattern"
+              - "*_unpackerred*"
+              - "--exclude-pattern"
+              - "*/manual/*"
+              # - "--dry-run"
+
         pod:
           restartPolicy: Never
-      
+
       reannounce:
         containers:
           app:
             <<: *container
-            args: [
-              "reannounce",
-              "--process-seeding"
-            ]
-    
+            args: ["reannounce", "--process-seeding"]
+
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
@@ -122,7 +125,7 @@ spec:
         globalMounts:
           - path: /config/config.yaml
             subPath: config.yaml
-            readOnly: true    
+            readOnly: true
       media:
         enabled: true
         type: nfs

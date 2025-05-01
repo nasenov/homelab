@@ -12,26 +12,34 @@ spec:
     - port: exporter
       relabelings:
         # Keep exporter port and drop all others
-        - sourceLabels: [__meta_kubernetes_pod_container_port_number]
+        - sourceLabels:
+            - __meta_kubernetes_pod_container_port_number
           action: keep
           regex: "9187"
         # Set label for namespace
-        - sourceLabels: [__meta_kubernetes_namespace]
+        - sourceLabels:
+            - __meta_kubernetes_namespace
           targetLabel: kubernetes_namespace
         # Set label for pod name
-        - sourceLabels: [__meta_kubernetes_pod_name]
+        - sourceLabels:
+            - __meta_kubernetes_pod_name
           targetLabel: pod
         # Convert namespace and cluster name to pg_cluster=namespace:cluster
-        - sourceLabels: [__meta_kubernetes_namespace,__meta_kubernetes_pod_label_postgres_operator_crunchydata_com_cluster]
+        - sourceLabels:
+            - __meta_kubernetes_namespace
+            - __meta_kubernetes_pod_label_postgres_operator_crunchydata_com_cluster
           targetLabel: pg_cluster
           separator: ":"
-          replacement: '$1$2'
+          replacement: "$1$2"
         # Convert kubernetes pod ip to ip
-        - sourceLabels: [__meta_kubernetes_pod_ip]
+        - sourceLabels:
+            - __meta_kubernetes_pod_ip
           targetLabel: ip
         # Convert postgres-operator.crunchydata.com/instance to deployment
-        - sourceLabels: [__meta_kubernetes_pod_label_postgres_operator_crunchydata_com_instance]
+        - sourceLabels:
+            - __meta_kubernetes_pod_label_postgres_operator_crunchydata_com_instance
           targetLabel: deployment
         # Convert postgres-operator.crunchydata.com/role to role
-        - sourceLabels: [__meta_kubernetes_pod_label_postgres_operator_crunchydata_com_role]
+        - sourceLabels:
+            - __meta_kubernetes_pod_label_postgres_operator_crunchydata_com_role
           targetLabel: role
