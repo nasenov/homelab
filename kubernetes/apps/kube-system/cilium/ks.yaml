@@ -33,6 +33,8 @@ spec:
   dependsOn:
     - name: cilium
       namespace: kube-system
+    - name: cert-manager-issuers
+      namespace: cert-manager
   path: ./kubernetes/apps/kube-system/cilium/config
   prune: false
   sourceRef:

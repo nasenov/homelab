@@ -16,6 +16,8 @@ spec:
       namespace: rook-ceph
     - name: external-secrets-stores
       namespace: external-secrets
+    - name: emqx-cluster
+      namespace: database
   path: ./kubernetes/apps/default/home-assistant/app
   prune: true
   sourceRef:

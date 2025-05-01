@@ -14,6 +14,10 @@ spec:
       namespace: external-secrets
     - name: prometheus-operator-crds
       namespace: monitoring
+    - name: crunchy-postgres-operator-cluster
+      namespace: database
+    - name: crunchy-postgres-operator-secretstore
+      namespace: database
   path: ./kubernetes/apps/monitoring/grafana/app
   prune: true
   sourceRef:

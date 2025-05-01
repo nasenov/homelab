@@ -19,9 +19,6 @@ spec:
   upgrade:
     remediation:
       retries: 3
-  dependsOn:
-    - name: intel-device-plugin-operator
-      namespace: kube-system
   values:
     name: intel-gpu-plugin
     nodeFeatureRule: true

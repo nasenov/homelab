@@ -9,6 +9,9 @@ spec:
   interval: 30m
   retryInterval: 2m
   timeout: 5m
+  dependsOn:
+    - name: external-secrets-stores
+      namespace: external-secrets
   path: ./kubernetes/apps/database/crunchy-postgres-operator/app
   prune: true
   sourceRef:
@@ -46,6 +49,11 @@ spec:
       - kind: Secret
         name: crunchy-postgres-r2
         optional: false
+  healthCheckExprs:
+    - apiVersion: postgres-operator.crunchydata.com/v1beta1
+      kind: PostgresCluster
+      current: status.conditions.filter(e, e.type == 'ProxyAvailable').all(e, e.status == 'True')
+      failed: status.conditions.filter(e, e.type == 'ProxyAvailable').all(e, e.status == 'False')
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
 apiVersion: kustomize.toolkit.fluxcd.io/v1
@@ -67,3 +75,8 @@ spec:
     name: flux-system
     namespace: flux-system
   wait: true
+  healthCheckExprs:
+    - apiVersion: external-secrets.io/v1
+      kind: ClusterSecretStore
+      current: status.conditions.filter(e, e.type == 'Ready').all(e, e.status == 'True')
+      failed: status.conditions.filter(e, e.type == 'Ready').all(e, e.status == 'False')
