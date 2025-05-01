@@ -54,43 +54,13 @@ spec:
               limits:
                 memory: 512Mi
 
-          codeserver:
-            dependsOn: app
-            image:
-              repository: ghcr.io/coder/code-server
-              tag: 4.99.3
-            env:
-              TZ: Europe/Sofia
-            args:
-              - --auth
-              - "none"
-              - --user-data-dir
-              - "/config/.vscode"
-              - --extensions-dir
-              - "/config/.vscode"
-              - "/config"
-            resources:
-              requests:
-                cpu: 100m
-              limits:
-                memory: 256Mi
-
     service:
       app:
         controller: home-assistant
-        primary: true
         ports:
           http:
             port: 80
             targetPort: 8123
-      codeserver:
-        controller: home-assistant
-        primary: false
-        type: ClusterIP
-        ports:
-          http:
-            port: 80
-            targetPort: 8080
 
     route:
       app:
@@ -103,15 +73,4 @@ spec:
         rules:
           - backendRefs:
               - name: home-assistant
-                port: 80
-      codeserver:
-        hostnames:
-          - hass-code.nasenov.dev
-        parentRefs:
-          - name: internal
-            namespace: kube-system
-            sectionName: https
-        rules:
-          - backendRefs:
-              - name: home-assistant-codeserver
                 port: 80
