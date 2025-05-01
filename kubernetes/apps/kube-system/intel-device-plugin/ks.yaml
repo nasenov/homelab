@@ -40,10 +40,6 @@ spec:
       kind: HelmRelease
       name: intel-device-plugin-gpu
       namespace: kube-system
-    - apiVersion: deviceplugin.intel.com/v1
-      kind: GpuDevicePlugin
-      name: intel-gpu-plugin
-      namespace: kube-system
   healthCheckExprs:
     - apiVersion: deviceplugin.intel.com/v1
       kind: GpuDevicePlugin
