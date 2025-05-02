@@ -17,6 +17,10 @@ spec:
     remediation:
       retries: 3
   values:
+    configOverride: |
+      [global]
+      mon_cluster_log_level = info
+
     toolbox:
       enabled: true
 
