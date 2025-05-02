@@ -40,6 +40,23 @@ spec:
               tag: 1.5.1@sha256:0ac96948fd8dbf1c9d8ffa83ed441d2e77c6fc79f81600c8ea160172cf66740e
             env:
               TZ: Europe/Sofia
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /health
+                    port: 6767
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
             resources:
               requests:
                 cpu: 100m
