@@ -27,7 +27,7 @@ spec:
     cephClusterSpec:
       cephConfig:
         global:
-          mon_cluster_log_level: "local"
+          mon_cluster_log_level: "info"
       dashboard:
         enabled: true
         urlPrefix: /
