@@ -40,24 +40,6 @@ spec:
               tag: 5.1.0@sha256:d28de21b80e231578b600ce47335733df55ca2058e75361becfb1b252569f0c8
             env:
               TZ: Europe/Sofia
-            probes:
-              liveness: &probes
-                enabled: false
-                custom: true
-                spec:
-                  httpGet:
-                    path: /api/v2/app/version
-                    port: 8080
-                  initialDelaySeconds: 0
-                  periodSeconds: 10
-                  timeoutSeconds: 1
-                  failureThreshold: 3
-              readiness: *probes
-              startup:
-                enabled: true
-                spec:
-                  failureThreshold: 30
-                  periodSeconds: 10
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
