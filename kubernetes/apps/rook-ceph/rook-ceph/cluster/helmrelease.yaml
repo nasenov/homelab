@@ -17,10 +17,6 @@ spec:
     remediation:
       retries: 3
   values:
-    configOverride: |
-      [global]
-      mon_cluster_log_level = info
-
     toolbox:
       enabled: true
 
@@ -29,6 +25,9 @@ spec:
       createPrometheusRules: true
 
     cephClusterSpec:
+      cephConfig:
+        global:
+          mon_cluster_log_level: "local"
       dashboard:
         enabled: true
         urlPrefix: /
