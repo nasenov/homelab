@@ -26,7 +26,7 @@ spec:
 
     cephClusterSpec:
       cephConfig:
-        global:
+        mon:
           mon_cluster_log_level: "info"
       dashboard:
         enabled: true
