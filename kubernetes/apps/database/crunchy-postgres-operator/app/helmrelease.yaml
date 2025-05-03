@@ -19,5 +19,5 @@ spec:
       retries: 3
   values:
     singleNamespace: true
-    debug: true
+    debug: false
     disable_check_for_upgrades: true
