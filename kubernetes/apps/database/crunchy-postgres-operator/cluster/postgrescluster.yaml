@@ -93,6 +93,10 @@ spec:
 
   proxy:
     pgBouncer:
+      config:
+        global:
+          log_connections: "0"
+          log_disconnections: "0"
       replicas: 2
       minAvailable: 1
       affinity:
