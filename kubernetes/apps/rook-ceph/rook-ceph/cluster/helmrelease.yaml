@@ -25,9 +25,11 @@ spec:
       createPrometheusRules: true
 
     cephClusterSpec:
-      # cephConfig:
-      #   mon:
-      #     mon_cluster_log_level: "info"
+      cephConfig:
+        mon:
+          mon_cluster_log_file_level: "info"
+          # TODO: replace mon_cluster_log_file_level with mon_cluster_log_level in next ceph release
+          # mon_cluster_log_level: "info"
       dashboard:
         enabled: true
         urlPrefix: /
