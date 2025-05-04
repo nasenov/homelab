@@ -26,8 +26,6 @@ spec:
 
     cephClusterSpec:
       cephConfig:
-        global:
-          debug_default: "0/0"
         mon:
           mon_cluster_log_file_level: "info"
           # TODO: replace mon_cluster_log_file_level with mon_cluster_log_level in next ceph release
