@@ -72,7 +72,7 @@ spec:
                     source_name: [spec, sourceRef, name]
             - groupVersionKind:
                 group: helm.toolkit.fluxcd.io
-                version: v2beta1
+                version: v2
                 kind: HelmRelease
               metricNamePrefix: gotk
               metrics:
@@ -111,7 +111,7 @@ spec:
                     url: [spec, url]
             - groupVersionKind:
                 group: source.toolkit.fluxcd.io
-                version: v1beta2
+                version: v1
                 kind: Bucket
               metricNamePrefix: gotk
               metrics:
@@ -131,7 +131,7 @@ spec:
                     bucket_name: [spec, bucketName]
             - groupVersionKind:
                 group: source.toolkit.fluxcd.io
-                version: v1beta2
+                version: v1
                 kind: HelmRepository
               metricNamePrefix: gotk
               metrics:
@@ -150,7 +150,7 @@ spec:
                     url: [spec, url]
             - groupVersionKind:
                 group: source.toolkit.fluxcd.io
-                version: v1beta2
+                version: v1
                 kind: HelmChart
               metricNamePrefix: gotk
               metrics:
@@ -189,7 +189,7 @@ spec:
                     url: [spec, url]
             - groupVersionKind:
                 group: notification.toolkit.fluxcd.io
-                version: v1beta2
+                version: v1beta3
                 kind: Alert
               metricNamePrefix: gotk
               metrics:
@@ -206,7 +206,7 @@ spec:
                     suspended: [spec, suspend]
             - groupVersionKind:
                 group: notification.toolkit.fluxcd.io
-                version: v1beta2
+                version: v1beta3
                 kind: Provider
               metricNamePrefix: gotk
               metrics:
