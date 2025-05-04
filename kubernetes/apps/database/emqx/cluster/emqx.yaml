@@ -6,9 +6,6 @@ metadata:
   name: emqx
 spec:
   image: public.ecr.aws/emqx/emqx:5.8.6
-  config:
-    data: |
-      api_key.bootstrap_file = "/opt/emqx/etc/api_keys.txt"
   coreTemplate:
     spec:
       replicas: 3
@@ -25,12 +22,3 @@ spec:
                     values:
                       - emqx
               topologyKey: "kubernetes.io/hostname"
-      extraVolumes:
-        - name: emqx-api-keys
-          secret:
-            secretName: emqx-api-keys
-      extraVolumeMounts:
-        - name: emqx-api-keys
-          mountPath: /opt/emqx/etc/api_keys.txt
-          subPath: api_keys.txt
-          readOnly: true
