@@ -6,6 +6,9 @@ metadata:
   name: emqx
 spec:
   image: public.ecr.aws/emqx/emqx:5.8.6
+  bootstrapAPIKeys:
+    - secret: emqx-bootstrap-api-keys
+      key: bootstrap_api_keys
   coreTemplate:
     spec:
       replicas: 3
