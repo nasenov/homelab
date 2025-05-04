@@ -40,6 +40,7 @@ spec:
               tag: 2.5.2
             env:
               TZ: Europe/Sofia
+              LOG_LEVEL: info
             probes:
               liveness: &probes
                 enabled: true
