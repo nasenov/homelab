@@ -226,6 +226,9 @@ spec:
               - EMQX:
                   icon: emqx.png
                   href: https://emqx.nasenov.dev
+              - n8n:
+                  icon: n8n.png
+                  href: https://n8n.nasenov.dev
           settings.yaml: |
             ---
             background: https://images.unsplash.com/photo-1502790671504-542ad42d5189?auto=format&fit=crop&w=2560&q=80
