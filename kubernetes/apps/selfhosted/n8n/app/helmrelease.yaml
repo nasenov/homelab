@@ -1,0 +1,75 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: n8n
+spec:
+  interval: 30m
+  chartRef:
+    kind: OCIRepository
+    name: app-template
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+  values:
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+        seccompProfile: { type: RuntimeDefault }
+
+    controllers:
+      n8n:
+        type: statefulset
+
+        statefulset:
+          volumeClaimTemplates:
+            - name: config
+              globalMounts:
+                - path: /home/node/.n8n
+              accessMode: ReadWriteOnce
+              size: 1Gi
+              storageClass: ceph-block
+
+        containers:
+          app:
+            image:
+              repository: ghcr.io/n8n-io/n8n
+              tag: 1.92.0
+            env:
+              GENERIC_TIMEZONE: Europe/Sofia
+              N8N_PROTOCOL: https
+              N8N_HOST: &hostName n8n.nasenov.dev
+              N8N_PORT: &port 5678
+            resources:
+              requests:
+                cpu: 10m
+              limits:
+                memory: 512Mi
+
+    service:
+      app:
+        controller: n8n
+        ports:
+          http:
+            port: *port
+
+    route:
+      app:
+        hostnames:
+          - *hostName
+        parentRefs:
+          - name: internal
+            namespace: kube-system
+            sectionName: https
+        rules:
+          - backendRefs:
+              - name: n8n
+                port: *port
