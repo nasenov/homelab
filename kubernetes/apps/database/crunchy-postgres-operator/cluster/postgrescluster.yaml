@@ -122,6 +122,11 @@ spec:
         - grafana
       password:
         type: AlphaNumeric
+    - name: fitness
+      databases:
+        - fitness
+      password:
+        type: AlphaNumeric
 
   patroni:
     dynamicConfiguration:
