@@ -57,7 +57,6 @@ spec:
         runAsGroup: 911
         fsGroup: 911
         fsGroupChangePolicy: OnRootMismatch
-        seccompProfile: { type: RuntimeDefault }
 
     service:
       app:
