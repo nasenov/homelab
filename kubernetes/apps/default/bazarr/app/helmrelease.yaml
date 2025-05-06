@@ -88,6 +88,14 @@ spec:
           name: bazarr-dst
         accessMode: ReadWriteOnce
         size: 1Gi
+      config-cache:
+        type: emptyDir
+        globalMounts:
+          - path: /config/cache
+      config-log:
+        type: emptyDir
+        globalMounts:
+          - path: /config/log
       media:
         enabled: true
         type: nfs
