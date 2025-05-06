@@ -18,21 +18,15 @@ spec:
   values:
     controllers:
       zigbee2mqtt:
-        type: statefulset
-
-        statefulset:
-          volumeClaimTemplates:
-            - name: config
-              globalMounts:
-                - path: /app/data
-              accessMode: ReadWriteOnce
-              dataSourceRef:
-                apiGroup: volsync.backube
-                kind: ReplicationDestination
-                name: zigbee2mqtt-dst
-              size: 1Gi
-              storageClass: ceph-block
-
+        pod:
+          affinity:
+            nodeAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+                nodeSelectorTerms:
+                  - matchExpressions:
+                      - key: feature.node.kubernetes.io/usb-ff_10c4_ea60.present
+                        operator: In
+                        values: ["true"]
         containers:
           app:
             image:
@@ -59,13 +53,13 @@ spec:
                 spec:
                   failureThreshold: 30
                   periodSeconds: 10
-            securityContext:
-              privileged: true
             resources:
               requests:
-                cpu: 100m
+                cpu: 10m
               limits:
                 memory: 256Mi
+            securityContext:
+              privileged: true
 
     service:
       app:
@@ -87,21 +81,21 @@ spec:
               - name: zigbee2mqtt
                 port: 8080
 
-    defaultPodOptions:
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-              - matchExpressions:
-                  - key: feature.node.kubernetes.io/usb-ff_10c4_ea60.present
-                    operator: In
-                    values: ["true"]
-
     persistence:
+      config:
+        type: persistentVolumeClaim
+        storageClass: ceph-block
+        dataSourceRef:
+          apiGroup: volsync.backube
+          kind: ReplicationDestination
+          name: zigbee2mqtt-dst
+        accessMode: ReadWriteOnce
+        size: 1Gi
+        globalMounts:
+          - path: /app/data
       usb:
-        enabled: true
         type: hostPath
         hostPath: /dev/serial/by-id/usb-ITead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_cc6b105fee12ec11945f20c7bd930c07-if00-port0
+        hostPathType: CharDevice
         globalMounts:
           - path: /dev/ttyACM0
-        hostPathType: CharDevice

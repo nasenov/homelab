@@ -18,24 +18,23 @@ spec:
   values:
     controllers:
       minio:
+        # TODO: nfs temp fix
+        pod:
+          securityContext:
+            runAsNonRoot: false
+            runAsUser: 0
+            runAsGroup: 0
+            fsGroup: 0
+            fsGroupChangePolicy: OnRootMismatch
         containers:
           app:
             image:
               repository: quay.io/minio/minio
               tag: RELEASE.2025-03-12T18-04-18Z
+            args: ["server", "/data", "--console-address", ":9090"]
             envFrom:
               - secretRef:
                   name: minio-env-configuration
-            args: ["server", "/data", "--console-address", ":9090"]
-
-    # TODO: nfs temp fix
-    defaultPodOptions:
-      securityContext:
-        runAsNonRoot: false
-        runAsUser: 0
-        runAsGroup: 0
-        fsGroup: 0
-        fsGroupChangePolicy: OnRootMismatch
 
     service:
       app:

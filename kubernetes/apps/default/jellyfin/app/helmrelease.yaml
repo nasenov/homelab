@@ -18,21 +18,9 @@ spec:
   values:
     controllers:
       jellyfin:
-        type: statefulset
-
-        statefulset:
-          volumeClaimTemplates:
-            - name: config
-              globalMounts:
-                - path: /config
-              accessMode: ReadWriteOnce
-              dataSourceRef:
-                apiGroup: volsync.backube
-                kind: ReplicationDestination
-                name: jellyfin-dst
-              size: 50Gi
-              storageClass: ceph-block
-
+        pod:
+          nodeSelector:
+            intel.feature.node.kubernetes.io/gpu: "true"
         containers:
           app:
             image:
@@ -55,15 +43,11 @@ spec:
               readiness: *probes
             resources:
               requests:
-                cpu: 100m
+                cpu: 10m
                 gpu.intel.com/i915: 1
               limits:
                 memory: 4Gi
                 gpu.intel.com/i915: 1
-
-    defaultPodOptions:
-      nodeSelector:
-        intel.feature.node.kubernetes.io/gpu: "true"
 
     service:
       app:
@@ -87,6 +71,18 @@ spec:
                 port: 80
 
     persistence:
+      config:
+        type: persistentVolumeClaim
+        storageClass: ceph-block
+        dataSourceRef:
+          apiGroup: volsync.backube
+          kind: ReplicationDestination
+          name: jellyfin-dst
+        accessMode: ReadWriteOnce
+        size: 50Gi
+      transcode:
+        enabled: true
+        type: emptyDir
       media:
         enabled: true
         type: nfs
@@ -95,6 +91,3 @@ spec:
         globalMounts:
           - path: /data/media
             subPath: media
-      transcode:
-        enabled: true
-        type: emptyDir

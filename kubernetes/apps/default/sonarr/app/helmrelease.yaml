@@ -18,21 +18,13 @@ spec:
   values:
     controllers:
       sonarr:
-        type: statefulset
-
-        statefulset:
-          volumeClaimTemplates:
-            - name: config
-              globalMounts:
-                - path: /config
-              accessMode: ReadWriteOnce
-              dataSourceRef:
-                apiGroup: volsync.backube
-                kind: ReplicationDestination
-                name: sonarr-dst
-              size: 1Gi
-              storageClass: ceph-block
-
+        pod:
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 911
+            runAsGroup: 911
+            fsGroup: 911
+            fsGroupChangePolicy: OnRootMismatch
         containers:
           app:
             image:
@@ -53,23 +45,17 @@ spec:
                   timeoutSeconds: 1
                   failureThreshold: 3
               readiness: *probes
+            resources:
+              requests:
+                cpu: 10m
+              limits:
+                memory: 512Mi
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
-              capabilities: { drop: ["ALL"] }
-            resources:
-              requests:
-                cpu: 100m
-              limits:
-                memory: 512Mi
-
-    defaultPodOptions:
-      securityContext:
-        runAsNonRoot: true
-        runAsUser: 911
-        runAsGroup: 911
-        fsGroup: 911
-        fsGroupChangePolicy: OnRootMismatch
+              capabilities:
+                drop:
+                  - ALL
 
     service:
       app:
@@ -93,6 +79,15 @@ spec:
                 port: 80
 
     persistence:
+      config:
+        type: persistentVolumeClaim
+        storageClass: ceph-block
+        dataSourceRef:
+          apiGroup: volsync.backube
+          kind: ReplicationDestination
+          name: sonarr-dst
+        accessMode: ReadWriteOnce
+        size: 1Gi
       media:
         enabled: true
         type: nfs

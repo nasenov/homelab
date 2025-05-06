@@ -16,31 +16,14 @@ spec:
     remediation:
       retries: 3
   values:
-    defaultPodOptions:
-      enableServiceLinks: true
-      securityContext:
-        runAsUser: 1000
-        runAsGroup: 1000
-        fsGroup: 1000
-        fsGroupChangePolicy: "OnRootMismatch"
-
     controllers:
       home-assistant:
-        type: statefulset
-
-        statefulset:
-          volumeClaimTemplates:
-            - name: config
-              globalMounts:
-                - path: /config
-              accessMode: ReadWriteOnce
-              dataSourceRef:
-                apiGroup: volsync.backube
-                kind: ReplicationDestination
-                name: home-assistant-dst
-              size: 1Gi
-              storageClass: ceph-block
-
+        pod:
+          securityContext:
+            runAsUser: 1000
+            runAsGroup: 1000
+            fsGroup: 1000
+            fsGroupChangePolicy: "OnRootMismatch"
         containers:
           app:
             image:
@@ -50,7 +33,7 @@ spec:
               TZ: Europe/Sofia
             resources:
               requests:
-                cpu: 100m
+                cpu: 10m
               limits:
                 memory: 512Mi
 
@@ -74,3 +57,14 @@ spec:
           - backendRefs:
               - name: home-assistant
                 port: 80
+
+    persistence:
+      config:
+        type: persistentVolumeClaim
+        storageClass: ceph-block
+        dataSourceRef:
+          apiGroup: volsync.backube
+          kind: ReplicationDestination
+          name: home-assistant-dst
+        accessMode: ReadWriteOnce
+        size: 1Gi

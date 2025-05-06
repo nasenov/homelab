@@ -15,10 +15,15 @@ spec:
   upgrade:
     remediation:
       retries: 3
-  dependsOn:
-    - name: qbittorrent
-      namespace: default
   values:
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+
     controllers:
       tagging:
         type: cronjob
@@ -29,17 +34,13 @@ spec:
           successfulJobsHistory: 1
           failedJobsHistory: 1
           ttlSecondsAfterFinished: 3600
+        pod:
+          restartPolicy: Never
         initContainers:
           tag: &container
             image:
               repository: ghcr.io/buroa/qbtools
               tag: v0.20.2@sha256:0c4a1388394746da1c1fea96dbc11f6bb5019294616689c7a3809b87062c3f2a
-            env:
-              QBITTORRENT_HOST: qbittorrent.default.svc.cluster.local
-              QBITTORRENT_PORT: 80
-            envFrom:
-              - secretRef:
-                  name: qbtools
             args:
               - "tagging"
               - "--added-on"
@@ -47,15 +48,23 @@ spec:
               - "--last-activity"
               - "--sites"
               - "--unregistered"
-            securityContext:
-              allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
-              capabilities: { drop: ["ALL"] }
+            env:
+              QBITTORRENT_HOST: qbittorrent.default.svc.cluster.local
+              QBITTORRENT_PORT: 80
+            envFrom:
+              - secretRef:
+                  name: qbtools
             resources:
               requests:
                 cpu: 10m
               limits:
                 memory: 256M
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities:
+                drop:
+                  - ALL
         containers:
           unregistered:
             <<: *container
@@ -82,14 +91,13 @@ spec:
               - "--with-data"
               # - "--dry-run"
 
-        pod:
-          restartPolicy: Never
-
       orphaned:
         type: cronjob
         cronjob:
           <<: *cronJobSpec
           schedule: 0 0 * * 0
+        pod:
+          restartPolicy: Never
         containers:
           app:
             <<: *container
@@ -101,22 +109,11 @@ spec:
               - "*/manual/*"
               # - "--dry-run"
 
-        pod:
-          restartPolicy: Never
-
       reannounce:
         containers:
           app:
             <<: *container
             args: ["reannounce", "--process-seeding"]
-
-    defaultPodOptions:
-      securityContext:
-        runAsNonRoot: true
-        runAsUser: 1000
-        runAsGroup: 1000
-        fsGroup: 1000
-        fsGroupChangePolicy: OnRootMismatch
 
     persistence:
       secret-file:

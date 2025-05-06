@@ -18,21 +18,13 @@ spec:
   values:
     controllers:
       qbittorrent:
-        type: statefulset
-
-        statefulset:
-          volumeClaimTemplates:
-            - name: config
-              globalMounts:
-                - path: /config
-              accessMode: ReadWriteOnce
-              dataSourceRef:
-                apiGroup: volsync.backube
-                kind: ReplicationDestination
-                name: qbittorrent-dst
-              size: 1Gi
-              storageClass: ceph-block
-
+        pod:
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 911
+            runAsGroup: 911
+            fsGroup: 911
+            fsGroupChangePolicy: OnRootMismatch
         containers:
           app:
             image:
@@ -40,23 +32,17 @@ spec:
               tag: 5.1.0@sha256:3e7c969139da1eaf8d3ccdebd473eefb4e2550d610b88f5a3c866bc34662d89a
             env:
               TZ: Europe/Sofia
+            resources:
+              requests:
+                cpu: 10m
+              limits:
+                memory: 4Gi
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
-              capabilities: { drop: ["ALL"] }
-            resources:
-              requests:
-                cpu: 100m
-              limits:
-                memory: 4Gi
-
-    defaultPodOptions:
-      securityContext:
-        runAsNonRoot: true
-        runAsUser: 911
-        runAsGroup: 911
-        fsGroup: 911
-        fsGroupChangePolicy: OnRootMismatch
+              capabilities:
+                drop:
+                  - ALL
 
     service:
       app:
@@ -88,6 +74,15 @@ spec:
                 port: 80
 
     persistence:
+      config:
+        type: persistentVolumeClaim
+        storageClass: ceph-block
+        dataSourceRef:
+          apiGroup: volsync.backube
+          kind: ReplicationDestination
+          name: qbittorrent-dst
+        accessMode: ReadWriteOnce
+        size: 1Gi
       media:
         enabled: true
         type: nfs

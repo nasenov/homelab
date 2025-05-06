@@ -18,32 +18,23 @@ spec:
   values:
     controllers:
       cross-seed:
-        type: statefulset
-
-        statefulset:
-          volumeClaimTemplates:
-            - name: config
-              globalMounts:
-                - path: /config
-              accessMode: ReadWriteOnce
-              dataSourceRef:
-                apiGroup: volsync.backube
-                kind: ReplicationDestination
-                name: cross-seed-dst
-              size: 5Gi
-              storageClass: ceph-block
-
         annotations:
           reloader.stakater.com/auto: "true"
-
+        pod:
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1000
+            runAsGroup: 1000
+            fsGroup: 1000
+            fsGroupChangePolicy: OnRootMismatch
         containers:
           app:
             image:
               repository: ghcr.io/cross-seed/cross-seed
               tag: 6.12.2@sha256:de4006e5f6c12500e2b07e3d121959c122c559269a5757477646af88fa3b1c7b
+            args: ["daemon"]
             env:
               TZ: Europe/Sofia
-            args: ["daemon"]
             probes:
               liveness: &probes
                 enabled: true
@@ -57,23 +48,17 @@ spec:
                   timeoutSeconds: 1
                   failureThreshold: 3
               readiness: *probes
-            securityContext:
-              allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
-              capabilities: { drop: ["ALL"] }
             resources:
               requests:
                 cpu: 10m
               limits:
                 memory: 512Mi
-
-    defaultPodOptions:
-      securityContext:
-        runAsNonRoot: true
-        runAsUser: 1000
-        runAsGroup: 1000
-        fsGroup: 1000
-        fsGroupChangePolicy: OnRootMismatch
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities:
+                drop:
+                  - ALL
 
     service:
       app:
@@ -84,6 +69,15 @@ spec:
             targetPort: 2468
 
     persistence:
+      config:
+        type: persistentVolumeClaim
+        storageClass: ceph-block
+        dataSourceRef:
+          apiGroup: volsync.backube
+          kind: ReplicationDestination
+          name: cross-seed-dst
+        accessMode: ReadWriteOnce
+        size: 5Gi
       secret-file:
         type: secret
         name: cross-seed
