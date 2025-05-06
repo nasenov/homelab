@@ -78,3 +78,11 @@ spec:
         size: 1Gi
         globalMounts:
           - path: /app/config
+      config-cache:
+        type: emptyDir
+        globalMounts:
+          - path: /app/config/cache
+      config-logs:
+        type: emptyDir
+        globalMounts:
+          - path: /app/config/logs
