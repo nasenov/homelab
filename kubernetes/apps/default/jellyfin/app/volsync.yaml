@@ -30,3 +30,6 @@ spec:
     repository: jellyfin-volsync
     accessModes: ["ReadWriteOnce"]
     capacity: 50Gi
+    enableFileDeletion: true
+    cleanupCachePVC: true
+    cleanupTempPVC: true

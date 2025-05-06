@@ -30,3 +30,6 @@ spec:
     repository: zigbee2mqtt-volsync
     accessModes: ["ReadWriteOnce"]
     capacity: 1Gi
+    enableFileDeletion: true
+    cleanupCachePVC: true
+    cleanupTempPVC: true

@@ -30,3 +30,6 @@ spec:
     repository: jellyseerr-volsync
     accessModes: ["ReadWriteOnce"]
     capacity: 1Gi
+    enableFileDeletion: true
+    cleanupCachePVC: true
+    cleanupTempPVC: true

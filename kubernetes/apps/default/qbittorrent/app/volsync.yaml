@@ -38,3 +38,6 @@ spec:
       runAsUser: 911
       runAsGroup: 911
       fsGroup: 911
+    enableFileDeletion: true
+    cleanupCachePVC: true
+    cleanupTempPVC: true
