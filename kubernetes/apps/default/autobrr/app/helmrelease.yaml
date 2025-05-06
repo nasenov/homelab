@@ -18,34 +18,26 @@ spec:
   values:
     controllers:
       autobrr:
-        type: statefulset
-
-        statefulset:
-          volumeClaimTemplates:
-            - name: config
-              globalMounts:
-                - path: /config
-              accessMode: ReadWriteOnce
-              dataSourceRef:
-                apiGroup: volsync.backube
-                kind: ReplicationDestination
-                name: autobrr-dst
-              size: 1Gi
-              storageClass: ceph-block
-
+        pod:
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1000
+            runAsGroup: 1000
+            fsGroup: 1000
+            fsGroupChangePolicy: OnRootMismatch
         containers:
           app:
             image:
               repository: ghcr.io/autobrr/autobrr
               tag: v1.62.0@sha256:e9bf07f15c36555f4c7d28df44f137d420d6188bab0a53eb7dfbdcb62238caa4
             env:
-              AUTOBRR__CHECK_FOR_UPDATES: "false"
               AUTOBRR__HOST: 0.0.0.0
               AUTOBRR__PORT: &port 80
-              AUTOBRR__METRICS_ENABLED: true
+              AUTOBRR__METRICS_ENABLED: "true"
               AUTOBRR__METRICS_HOST: 0.0.0.0
               AUTOBRR__METRICS_PORT: &metricsPort 9094
               AUTOBRR__LOG_LEVEL: INFO
+              AUTOBRR__CHECK_FOR_UPDATES: "false"
             probes:
               liveness: &probes
                 enabled: true
@@ -59,23 +51,17 @@ spec:
                   timeoutSeconds: 1
                   failureThreshold: 3
               readiness: *probes
+            resources:
+              requests:
+                cpu: 10m
+              limits:
+                memory: 256Mi
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
-              capabilities: { drop: ["ALL"] }
-            resources:
-              requests:
-                cpu: 100m
-              limits:
-                memory: 256Mi
-
-    defaultPodOptions:
-      securityContext:
-        runAsNonRoot: true
-        runAsUser: 1000
-        runAsGroup: 1000
-        fsGroup: 1000
-        fsGroupChangePolicy: OnRootMismatch
+              capabilities:
+                drop:
+                  - ALL
 
     service:
       app:
@@ -106,6 +92,17 @@ spec:
                 port: *port
 
     persistence:
+      config:
+        type: persistentVolumeClaim
+        storageClass: ceph-block
+        dataSourceRef:
+          apiGroup: volsync.backube
+          kind: ReplicationDestination
+          name: autobrr-dst
+        accessMode: ReadWriteOnce
+        size: 1Gi
+        globalMounts:
+          - path: /config
       config-log:
         type: emptyDir
         globalMounts:
