@@ -80,6 +80,10 @@ spec:
           name: jellyfin-dst
         accessMode: ReadWriteOnce
         size: 50Gi
+      config-log:
+        type: emptyDir
+        globalMounts:
+          - path: /config/log
       transcode:
         enabled: true
         type: emptyDir
