@@ -13,9 +13,9 @@ spec:
     pruneIntervalDays: 7
     repository: bazarr-volsync
     moverSecurityContext:
-      runAsUser: 911
-      runAsGroup: 911
-      fsGroup: 911
+      runAsUser: 1000
+      runAsGroup: 1000
+      fsGroup: 1000
     retain:
       hourly: 24
       daily: 7
@@ -35,9 +35,9 @@ spec:
     accessModes: ["ReadWriteOnce"]
     capacity: 1Gi
     moverSecurityContext:
-      runAsUser: 911
-      runAsGroup: 911
-      fsGroup: 911
+      runAsUser: 1000
+      runAsGroup: 1000
+      fsGroup: 1000
     enableFileDeletion: true
     cleanupCachePVC: true
     cleanupTempPVC: true
