@@ -5,7 +5,7 @@ kind: ReplicationSource
 metadata:
   name: qbittorrent
 spec:
-  sourcePVC: config-qbittorrent-0
+  sourcePVC: qbittorrent-config
   trigger:
     schedule: "0 * * * *"
   restic:

@@ -5,7 +5,7 @@ kind: ReplicationSource
 metadata:
   name: cross-seed
 spec:
-  sourcePVC: config-cross-seed-0
+  sourcePVC: cross-seed-config
   trigger:
     schedule: "0 * * * *"
   restic:

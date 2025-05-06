@@ -5,7 +5,7 @@ kind: ReplicationSource
 metadata:
   name: recyclarr
 spec:
-  sourcePVC: recyclarr-config
+  sourcePVC: config-recyclarr
   trigger:
     schedule: "0 * * * *"
   restic:

@@ -5,7 +5,7 @@ kind: ReplicationSource
 metadata:
   name: autobrr
 spec:
-  sourcePVC: config-autobrr-0
+  sourcePVC: autobrr-config
   trigger:
     schedule: "0 * * * *"
   restic:

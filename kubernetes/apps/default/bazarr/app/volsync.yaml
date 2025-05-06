@@ -5,7 +5,7 @@ kind: ReplicationSource
 metadata:
   name: bazarr
 spec:
-  sourcePVC: config-bazarr-0
+  sourcePVC: bazarr-config
   trigger:
     schedule: "0 * * * *"
   restic:

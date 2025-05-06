@@ -5,7 +5,7 @@ kind: ReplicationSource
 metadata:
   name: jellyfin
 spec:
-  sourcePVC: config-jellyfin-0
+  sourcePVC: jellyfin-config
   trigger:
     schedule: "0 * * * *"
   restic:
