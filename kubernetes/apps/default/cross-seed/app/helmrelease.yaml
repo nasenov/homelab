@@ -78,6 +78,14 @@ spec:
           name: cross-seed-dst
         accessMode: ReadWriteOnce
         size: 5Gi
+      config-cross-seeds:
+        type: emptyDir
+        globalMounts:
+          - path: /config/cross-seeds
+      config-logs:
+        type: emptyDir
+        globalMounts:
+          - path: /config/logs
       secret-file:
         type: secret
         name: cross-seed
