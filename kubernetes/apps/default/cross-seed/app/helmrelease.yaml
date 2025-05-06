@@ -70,14 +70,7 @@ spec:
 
     persistence:
       config:
-        type: persistentVolumeClaim
-        storageClass: ceph-block
-        dataSourceRef:
-          apiGroup: volsync.backube
-          kind: ReplicationDestination
-          name: cross-seed-dst
-        accessMode: ReadWriteOnce
-        size: 5Gi
+        existingClaim: cross-seed
       config-cross-seeds:
         type: emptyDir
         globalMounts:

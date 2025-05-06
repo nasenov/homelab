@@ -60,11 +60,4 @@ spec:
 
     persistence:
       config:
-        type: persistentVolumeClaim
-        storageClass: ceph-block
-        dataSourceRef:
-          apiGroup: volsync.backube
-          kind: ReplicationDestination
-          name: home-assistant-dst
-        accessMode: ReadWriteOnce
-        size: 1Gi
+        existingClaim: home-assistant

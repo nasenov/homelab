@@ -75,14 +75,7 @@ spec:
 
     persistence:
       config:
-        type: persistentVolumeClaim
-        storageClass: ceph-block
-        dataSourceRef:
-          apiGroup: volsync.backube
-          kind: ReplicationDestination
-          name: qbittorrent-dst
-        accessMode: ReadWriteOnce
-        size: 1Gi
+        existingClaim: qbittorrent
       media:
         enabled: true
         type: nfs

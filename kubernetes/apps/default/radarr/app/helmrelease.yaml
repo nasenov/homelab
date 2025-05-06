@@ -80,14 +80,7 @@ spec:
 
     persistence:
       config:
-        type: persistentVolumeClaim
-        storageClass: ceph-block
-        dataSourceRef:
-          apiGroup: volsync.backube
-          kind: ReplicationDestination
-          name: radarr-dst
-        accessMode: ReadWriteOnce
-        size: 1Gi
+        existingClaim: radarr
       media:
         enabled: true
         type: nfs

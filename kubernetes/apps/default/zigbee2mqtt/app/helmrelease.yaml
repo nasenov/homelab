@@ -83,14 +83,7 @@ spec:
 
     persistence:
       config:
-        type: persistentVolumeClaim
-        storageClass: ceph-block
-        dataSourceRef:
-          apiGroup: volsync.backube
-          kind: ReplicationDestination
-          name: zigbee2mqtt-dst
-        accessMode: ReadWriteOnce
-        size: 1Gi
+        existingClaim: zigbee2mqtt
         globalMounts:
           - path: /app/data
       usb:

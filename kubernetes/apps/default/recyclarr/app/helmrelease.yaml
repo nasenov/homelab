@@ -59,14 +59,7 @@ spec:
 
     persistence:
       config:
-        type: persistentVolumeClaim
-        storageClass: ceph-block
-        dataSourceRef:
-          apiGroup: volsync.backube
-          kind: ReplicationDestination
-          name: recyclarr-dst
-        accessMode: ReadWriteOnce
-        size: 1Gi
+        existingClaim: recyclarr
       config-file:
         type: configMap
         name: recyclarr-configmap

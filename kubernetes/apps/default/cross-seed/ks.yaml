@@ -3,12 +3,14 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: cross-seed
+  name: &app cross-seed
 spec:
   targetNamespace: default
   interval: 30m
   retryInterval: 2m
   timeout: 5m
+  components:
+    - ../../../../components/volsync
   dependsOn:
     - name: volsync
       namespace: storage
@@ -22,3 +24,7 @@ spec:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
+  postBuild:
+    substitute:
+      APP: *app
+      VOLSYNC_CAPACITY: 5Gi
