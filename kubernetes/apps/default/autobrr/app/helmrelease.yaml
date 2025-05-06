@@ -101,8 +101,6 @@ spec:
           name: autobrr-dst
         accessMode: ReadWriteOnce
         size: 1Gi
-        globalMounts:
-          - path: /config
       config-log:
         type: emptyDir
         globalMounts:
