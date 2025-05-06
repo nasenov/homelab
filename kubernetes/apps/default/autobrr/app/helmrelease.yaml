@@ -93,14 +93,7 @@ spec:
 
     persistence:
       config:
-        type: persistentVolumeClaim
-        storageClass: ceph-block
-        dataSourceRef:
-          apiGroup: volsync.backube
-          kind: ReplicationDestination
-          name: autobrr-dst
-        accessMode: ReadWriteOnce
-        size: 1Gi
+        existingClaim: autobrr
       config-log:
         type: emptyDir
         globalMounts:
