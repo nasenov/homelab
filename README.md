@@ -27,8 +27,11 @@
 
 ## ☁️ Cloud Dependencies
 
-| Service                                 | Use                                                           | Cost          |
-|-----------------------------------------|-------------------------------------------------------------- |---------------|
-| [Bitwarden](https://bitwarden.com/)     | Secrets with [External Secrets](https://external-secrets.io/) | Free          |
-| [Namecheap](https://www.namecheap.com/) | Domain                                                        | ~$20/yr       |
-|                                         |                                                               | Total: ~$2/mo |
+| Service                                      | Use                                                           | Cost          |
+|----------------------------------------------|---------------------------------------------------------------|---------------|
+| [Bitwarden](https://bitwarden.com/)          | Secrets with [External Secrets](https://external-secrets.io/) | Free          |
+| [Cloudflare](https://cloudflare.com/)        | S3 and Tunnel                                                 | Free          |
+| [Github](https://github.com/)                | Github Actions                                                | Free          |
+| [Namecheap](https://www.namecheap.com/)      | Domain                                                        | ~$20/yr       |
+| [Terraform Cloud](https://app.terraform.io/) | Terraform State                                               | Free          |
+|                                              |                                                               | Total: ~$2/mo |
