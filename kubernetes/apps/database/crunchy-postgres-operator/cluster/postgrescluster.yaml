@@ -67,7 +67,7 @@ spec:
         - name: repo1
           s3: &backupS3
             bucket: postgres
-            endpoint: 192.168.0.15:9000
+            endpoint: truenas.nasenov.dev:9000
             region: eu-central-1
           schedules:
             full: "0 1 * * 0" # Sunday at 01:00
