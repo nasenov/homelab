@@ -12,8 +12,6 @@ spec:
   dependsOn:
     - name: snapshot-controller
       namespace: storage
-    - name: minio
-      namespace: storage
     - name: prometheus-operator-crds
       namespace: monitoring
   path: ./kubernetes/apps/storage/volsync/app
