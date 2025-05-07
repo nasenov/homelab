@@ -148,7 +148,7 @@ spec:
                     href: https://rook.nasenov.dev
                 - MinIO:
                     icon: minio.png
-                    href: https://minio.nasenov.dev
+                    href: https://minio.nasenov.dev:9002
 
             - Monitoring:
                 - Grafana:
