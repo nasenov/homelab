@@ -53,16 +53,17 @@ resource "cloudflare_dns_record" "external" {
   ttl     = 1
 }
 
-resource "cloudflare_r2_bucket" "volsync" {
-  account_id    = var.cloudflare_account_id
-  name          = "volsync"
-  location      = "eeur"
-  storage_class = "Standard"
-}
+# https://github.com/cloudflare/terraform-provider-cloudflare/issues/5373
+# resource "cloudflare_r2_bucket" "volsync" {
+#   account_id    = var.cloudflare_account_id
+#   name          = "volsync"
+#   location      = "eeur"
+#   storage_class = "Standard"
+# }
 
-resource "cloudflare_r2_bucket" "postgres" {
-  account_id    = var.cloudflare_account_id
-  name          = "postgres"
-  location      = "eeur"
-  storage_class = "Standard"
-}
+# resource "cloudflare_r2_bucket" "postgres" {
+#   account_id    = var.cloudflare_account_id
+#   name          = "postgres"
+#   location      = "eeur"
+#   storage_class = "Standard"
+# }
