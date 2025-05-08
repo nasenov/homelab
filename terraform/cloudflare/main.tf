@@ -59,6 +59,10 @@ resource "cloudflare_dns_record" "external" {
 #   name          = "volsync"
 #   location      = "eeur"
 #   storage_class = "Standard"
+
+#   lifecycle {
+#     prevent_destroy = true
+#   }
 # }
 
 # resource "cloudflare_r2_bucket" "postgres" {
@@ -66,4 +70,8 @@ resource "cloudflare_dns_record" "external" {
 #   name          = "postgres"
 #   location      = "eeur"
 #   storage_class = "Standard"
+
+#   lifecycle {
+#     prevent_destroy = true
+#   }
 # }
