@@ -21,6 +21,9 @@ spec:
     podDisruptionBudget:
       minAvailable: 1
 
+    annotations:
+      reloader.stakater.com/auto: "true"
+
     serviceMonitor:
       enabled: true
 
