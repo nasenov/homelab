@@ -29,6 +29,9 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 env:
   LOG_LEVEL: "${{ inputs.logLevel || 'debug' }}"
   RENOVATE_AUTODISCOVER: true
@@ -42,6 +45,8 @@ jobs:
   renovate:
     name: Renovate
     runs-on: ubuntu-latest
+    permissions:
+      packages: read
     steps:
       - name: Generate Token
         uses: actions/create-github-app-token@v2
@@ -53,6 +58,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
+          persist-credentials: false
           token: "${{ steps.app-token.outputs.token }}"
 
       - name: Renovate
