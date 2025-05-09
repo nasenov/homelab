@@ -28,9 +28,9 @@ k8sServiceHost: localhost
 k8sServicePort: 7445
 l2announcements:
   enabled: true
-loadBalancer:
-  mode: dsr
-routingMode: native
+# loadBalancer:
+#   mode: dsr
+# routingMode: native
 rollOutCiliumPods: true
 operator:
   rollOutPods: true
