@@ -28,6 +28,9 @@ k8sServiceHost: localhost
 k8sServicePort: 7445
 l2announcements:
   enabled: true
+loadBalancer:
+  mode: dsr
+routingMode: native
 operator:
   prometheus:
     enabled: true
