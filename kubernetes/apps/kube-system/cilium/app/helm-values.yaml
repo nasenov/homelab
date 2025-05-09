@@ -28,9 +28,11 @@ k8sServiceHost: localhost
 k8sServicePort: 7445
 l2announcements:
   enabled: true
-# loadBalancer:
-#   mode: dsr
-# routingMode: native
+loadBalancer:
+  mode: dsr
+routingMode: native
+ipv4NativeRoutingCIDR: 10.244.0.0/16
+autoDirectNodeRoutes: true
 rollOutCiliumPods: true
 operator:
   rollOutPods: true
