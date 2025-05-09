@@ -31,7 +31,9 @@ l2announcements:
 loadBalancer:
   mode: dsr
 routingMode: native
+rollOutCiliumPods: true
 operator:
+  rollOutPods: true
   prometheus:
     enabled: true
     serviceMonitor:
@@ -64,12 +66,14 @@ hubble:
         grafana_folder: Cilium
   relay:
     enabled: true
+    rollOutPods: true
     prometheus:
       enabled: true
       serviceMonitor:
         enabled: true
   ui:
     enabled: true
+    rollOutPods: true
 prometheus:
   enabled: true
   serviceMonitor:
@@ -79,6 +83,7 @@ dashboards:
   annotations:
     grafana_folder: Cilium
 envoy:
+  rollOutPods: true
   prometheus:
     enabled: true
     serviceMonitor:
