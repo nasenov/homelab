@@ -18,6 +18,8 @@ spec:
   values:
     controllers:
       n8n:
+        annotations:
+          reloader.stakater.com/auto: "true"
         pod:
           securityContext:
             runAsNonRoot: true
@@ -35,6 +37,9 @@ spec:
               N8N_PROTOCOL: https
               N8N_HOST: &hostName n8n.nasenov.dev
               N8N_PORT: &port 5678
+            envFrom:
+              - secretRef:
+                  name: n8n
             resources:
               requests:
                 cpu: 10m
@@ -68,9 +73,6 @@ spec:
 
     persistence:
       config:
-        type: persistentVolumeClaim
-        storageClass: ceph-block
-        accessMode: ReadWriteOnce
-        size: 1Gi
+        existingClaim: n8n
         globalMounts:
           - path: /home/node/.n8n

@@ -13,6 +13,7 @@ resources:
   - ./homepage/ks.yaml
   - ./jellyfin/ks.yaml
   - ./jellyseerr/ks.yaml
+  - ./n8n/ks.yaml
   - ./prowlarr/ks.yaml
   - ./qbittorrent/ks.yaml
   - ./qbtools/ks.yaml
