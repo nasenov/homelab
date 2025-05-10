@@ -1,3 +1,73 @@
+data "cloudflare_api_token_permission_groups_list" "permission_groups" {}
+
+resource "cloudflare_api_token" "proxmox" {
+  name = "proxmox"
+  policies = [
+    {
+      effect = "allow"
+      permission_groups = [
+        { id = local.zone_write_permission_group.id },
+        { id = local.dns_write_permission_group.id }
+      ]
+      resources = {
+        "com.cloudflare.api.account.zone.${var.cloudflare_zone_id}" = "*"
+      }
+    }
+  ]
+  status = "active"
+}
+
+resource "cloudflare_api_token" "truenas" {
+  name = "truenas"
+  policies = [
+    {
+      effect = "allow"
+      permission_groups = [
+        { id = local.zone_write_permission_group.id },
+        { id = local.dns_write_permission_group.id }
+      ]
+      resources = {
+        "com.cloudflare.api.account.zone.${var.cloudflare_zone_id}" = "*"
+      }
+    }
+  ]
+  status = "active"
+}
+
+resource "cloudflare_api_token" "cert_manager" {
+  name = "cert-manager"
+  policies = [
+    {
+      effect = "allow"
+      permission_groups = [
+        { id = local.zone_write_permission_group.id },
+        { id = local.dns_write_permission_group.id }
+      ]
+      resources = {
+        "com.cloudflare.api.account.zone.${var.cloudflare_zone_id}" = "*"
+      }
+    }
+  ]
+  status = "active"
+}
+
+resource "cloudflare_api_token" "external_dns" {
+  name = "external-dns"
+  policies = [
+    {
+      effect = "allow"
+      permission_groups = [
+        { id = local.zone_write_permission_group.id },
+        { id = local.dns_write_permission_group.id }
+      ]
+      resources = {
+        "com.cloudflare.api.account.zone.${var.cloudflare_zone_id}" = "*"
+      }
+    }
+  ]
+  status = "active"
+}
+
 resource "cloudflare_zero_trust_tunnel_cloudflared" "homelab" {
   account_id = var.cloudflare_account_id
   name       = "homelab"
