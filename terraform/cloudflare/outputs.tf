@@ -1,20 +1,20 @@
 output "proxmox_cloudflare_api_token" {
-  value     = cloudflare_api_token.proxmox.value
+  value     = cloudflare_account_token.proxmox.value
   sensitive = true
 }
 
 output "truenas_cloudflare_api_token" {
-  value     = cloudflare_api_token.truenas.value
+  value     = cloudflare_account_token.truenas.value
   sensitive = true
 }
 
 output "cert_manager_cloudflare_api_token" {
-  value     = cloudflare_api_token.cert_manager.value
+  value     = cloudflare_account_token.cert_manager.value
   sensitive = true
 }
 
 output "external_dns_cloudflare_api_token" {
-  value     = cloudflare_api_token.external_dns.value
+  value     = cloudflare_account_token.external_dns.value
   sensitive = true
 }
 
