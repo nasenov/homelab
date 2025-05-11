@@ -170,7 +170,16 @@ resource "cloudflare_zero_trust_tunnel_cloudflared_config" "homelab" {
   }
 }
 
-resource "cloudflare_dns_record" "external" {
+resource "cloudflare_dns_record" "nasenov_dev" {
+  zone_id = var.cloudflare_zone_id
+  type    = "CNAME"
+  name    = "nasenov.dev"
+  content = "${cloudflare_zero_trust_tunnel_cloudflared.homelab.id}.cfargotunnel.com"
+  proxied = true
+  ttl     = 1
+}
+
+resource "cloudflare_dns_record" "external_nasenov_dev" {
   zone_id = var.cloudflare_zone_id
   type    = "CNAME"
   name    = "external.nasenov.dev"
