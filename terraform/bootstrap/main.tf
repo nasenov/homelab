@@ -18,7 +18,7 @@ resource "helm_release" "cilium" {
   wait_for_jobs = true
 
   values = [
-    "${file("../../kubernetes/apps/kube-system/cilium/app/helm-values.yaml")}"
+    file("../../kubernetes/apps/kube-system/cilium/app/helm-values.yaml")
   ]
 }
 
@@ -32,7 +32,7 @@ resource "helm_release" "flux_operator" {
   version    = "0.19.0"
 
   values = [
-    "${file("../../kubernetes/apps/flux-system/flux-operator/app/values.yaml")}"
+    file("../../kubernetes/apps/flux-system/flux-operator/app/values.yaml")
   ]
 }
 
@@ -46,6 +46,6 @@ resource "helm_release" "flux_instance" {
   version    = "0.19.0"
 
   values = [
-    "${file("../../kubernetes/apps/flux-system/flux-operator/instance/values.yaml")}"
+    file("../../kubernetes/apps/flux-system/flux-operator/instance/values.yaml")
   ]
 }
