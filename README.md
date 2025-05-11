@@ -30,8 +30,7 @@
 | Service                                      | Use                                                           | Cost          |
 |----------------------------------------------|---------------------------------------------------------------|---------------|
 | [Bitwarden](https://bitwarden.com/)          | Secrets with [External Secrets](https://external-secrets.io/) | Free          |
-| [Cloudflare](https://cloudflare.com/)        | S3 and Tunnel                                                 | Free          |
+| [Cloudflare](https://cloudflare.com/)        | Domain, S3 and Tunnel                                         | ~$12/yr       |
 | [Github](https://github.com/)                | Github Actions                                                | Free          |
-| [Namecheap](https://www.namecheap.com/)      | Domain                                                        | ~$20/yr       |
 | [Terraform Cloud](https://app.terraform.io/) | Terraform State                                               | Free          |
-|                                              |                                                               | Total: ~$2/mo |
+|                                              |                                                               | Total: ~$1/mo |
