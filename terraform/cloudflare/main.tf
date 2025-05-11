@@ -66,6 +66,64 @@ resource "cloudflare_account_token" "external_dns" {
   ]
 }
 
+# https://github.com/cloudflare/terraform-provider-cloudflare/issues/5373
+# resource "cloudflare_r2_bucket" "volsync" {
+#   account_id    = var.cloudflare_account_id
+#   name          = "volsync"
+#   location      = "eeur"
+#   storage_class = "Standard"
+
+#   lifecycle {
+#     prevent_destroy = true
+#   }
+# }
+
+resource "cloudflare_account_token" "volsync" {
+  account_id = var.cloudflare_account_id
+  name       = "volsync"
+  policies = [
+    {
+      effect = "allow"
+      permission_groups = [
+        { id = local.r2_bucket_write_permission_group.id }
+      ]
+      resources = {
+        # TODO: use bucket name and jurisdiction from cloudflare_r2_bucket
+        "com.cloudflare.edge.r2.bucket.${var.cloudflare_account_id}_default_volsync" = "*"
+      }
+    }
+  ]
+}
+
+# https://github.com/cloudflare/terraform-provider-cloudflare/issues/5373
+# resource "cloudflare_r2_bucket" "postgres" {
+#   account_id    = var.cloudflare_account_id
+#   name          = "postgres"
+#   location      = "eeur"
+#   storage_class = "Standard"
+
+#   lifecycle {
+#     prevent_destroy = true
+#   }
+# }
+
+resource "cloudflare_account_token" "postgres" {
+  account_id = var.cloudflare_account_id
+  name       = "postgres"
+  policies = [
+    {
+      effect = "allow"
+      permission_groups = [
+        { id = local.r2_bucket_write_permission_group.id }
+      ]
+      resources = {
+        # TODO: use bucket name and jurisdiction from cloudflare_r2_bucket
+        "com.cloudflare.edge.r2.bucket.${var.cloudflare_account_id}_default_postgres" = "*"
+      }
+    }
+  ]
+}
+
 resource "cloudflare_zero_trust_tunnel_cloudflared" "homelab" {
   account_id = var.cloudflare_account_id
   name       = "homelab"
@@ -120,26 +178,3 @@ resource "cloudflare_dns_record" "external" {
   proxied = true
   ttl     = 1
 }
-
-# https://github.com/cloudflare/terraform-provider-cloudflare/issues/5373
-# resource "cloudflare_r2_bucket" "volsync" {
-#   account_id    = var.cloudflare_account_id
-#   name          = "volsync"
-#   location      = "eeur"
-#   storage_class = "Standard"
-
-#   lifecycle {
-#     prevent_destroy = true
-#   }
-# }
-
-# resource "cloudflare_r2_bucket" "postgres" {
-#   account_id    = var.cloudflare_account_id
-#   name          = "postgres"
-#   location      = "eeur"
-#   storage_class = "Standard"
-
-#   lifecycle {
-#     prevent_destroy = true
-#   }
-# }
