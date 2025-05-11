@@ -1,3 +1,11 @@
+resource "cloudflare_zone" "nasenov_dev" {
+  account = {
+    id = var.cloudflare_account_id
+  }
+  name = "nasenov.dev"
+  type = "full"
+}
+
 data "cloudflare_account_api_token_permission_groups_list" "permission_groups" {
   account_id = var.cloudflare_account_id
 }
