@@ -1,9 +1,31 @@
+# Registrar API doesn't support account API tokens
+# https://developers.cloudflare.com/fundamentals/api/get-started/account-owned-tokens/#compatibility-matrix
+# resource "cloudflare_registrar_domain" "nasenov_dev" {
+#   account_id  = var.cloudflare_account_id
+#   domain_name = "nasenov.dev"
+#   auto_renew  = true
+#   locked      = true
+#   privacy     = true
+# }
+
 resource "cloudflare_zone" "nasenov_dev" {
   account = {
     id = var.cloudflare_account_id
   }
   name = "nasenov.dev"
   type = "full"
+}
+
+resource "cloudflare_zone_dnssec" "nasenov_dev" {
+  zone_id = cloudflare_zone.nasenov_dev.id
+  status  = "active"
+}
+
+resource "cloudflare_zone_setting" "ssl" {
+  zone_id    = cloudflare_zone.nasenov_dev.id
+  setting_id = "ssl"
+  id         = "ssl"
+  value      = "strict"
 }
 
 data "cloudflare_account_api_token_permission_groups_list" "permission_groups" {
@@ -20,7 +42,7 @@ resource "cloudflare_account_token" "proxmox" {
         { id = local.dns_write_permission_group.id }
       ]
       resources = {
-        "com.cloudflare.api.account.zone.${var.cloudflare_zone_id}" = "*"
+        "com.cloudflare.api.account.zone.${cloudflare_zone.nasenov_dev.id}" = "*"
       }
     }
   ]
@@ -36,7 +58,7 @@ resource "cloudflare_account_token" "truenas" {
         { id = local.dns_write_permission_group.id }
       ]
       resources = {
-        "com.cloudflare.api.account.zone.${var.cloudflare_zone_id}" = "*"
+        "com.cloudflare.api.account.zone.${cloudflare_zone.nasenov_dev.id}" = "*"
       }
     }
   ]
@@ -52,7 +74,7 @@ resource "cloudflare_account_token" "cert_manager" {
         { id = local.dns_write_permission_group.id }
       ]
       resources = {
-        "com.cloudflare.api.account.zone.${var.cloudflare_zone_id}" = "*"
+        "com.cloudflare.api.account.zone.${cloudflare_zone.nasenov_dev.id}" = "*"
       }
     }
   ]
@@ -68,7 +90,7 @@ resource "cloudflare_account_token" "external_dns" {
         { id = local.dns_write_permission_group.id }
       ]
       resources = {
-        "com.cloudflare.api.account.zone.${var.cloudflare_zone_id}" = "*"
+        "com.cloudflare.api.account.zone.${cloudflare_zone.nasenov_dev.id}" = "*"
       }
     }
   ]
@@ -179,7 +201,7 @@ resource "cloudflare_zero_trust_tunnel_cloudflared_config" "homelab" {
 }
 
 resource "cloudflare_dns_record" "nasenov_dev" {
-  zone_id = var.cloudflare_zone_id
+  zone_id = cloudflare_zone.nasenov_dev.id
   type    = "CNAME"
   name    = "nasenov.dev"
   content = "${cloudflare_zero_trust_tunnel_cloudflared.homelab.id}.cfargotunnel.com"
@@ -188,7 +210,7 @@ resource "cloudflare_dns_record" "nasenov_dev" {
 }
 
 resource "cloudflare_dns_record" "external_nasenov_dev" {
-  zone_id = var.cloudflare_zone_id
+  zone_id = cloudflare_zone.nasenov_dev.id
   type    = "CNAME"
   name    = "external.nasenov.dev"
   content = "${cloudflare_zero_trust_tunnel_cloudflared.homelab.id}.cfargotunnel.com"
