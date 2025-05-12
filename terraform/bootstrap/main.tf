@@ -29,7 +29,7 @@ resource "helm_release" "flux_operator" {
   namespace  = "flux-system"
   repository = "oci://ghcr.io/controlplaneio-fluxcd/charts"
   chart      = "flux-operator"
-  version    = "0.19.0"
+  version    = "0.20.0"
 
   values = [
     file("../../kubernetes/apps/flux-system/flux-operator/app/values.yaml")
@@ -43,7 +43,7 @@ resource "helm_release" "flux_instance" {
   namespace  = "flux-system"
   repository = "oci://ghcr.io/controlplaneio-fluxcd/charts"
   chart      = "flux-instance"
-  version    = "0.19.0"
+  version    = "0.20.0"
 
   values = [
     file("../../kubernetes/apps/flux-system/flux-operator/instance/values.yaml")
