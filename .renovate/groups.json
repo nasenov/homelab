@@ -4,13 +4,13 @@
     {
       "description": ["Flux Operator Group"],
       "matchDatasources": ["docker"],
-      "matchDepNames": ["flux-operator", "flux-instance"],
+      "matchPackageNames": ["ghcr.io/controlplaneio-fluxcd/charts/flux-operator", "ghcr.io/controlplaneio-fluxcd/charts/flux-instance"],
       "groupName": "Flux-Operator"
     },
     {
       "description": ["Intel Device Plugins Group"],
       "matchDatasources": ["helm"],
-      "matchDepNames": ["intel-device-plugins-operator", "intel-device-plugins-gpu"],
+      "matchPackageNames": ["intel-device-plugins-operator", "intel-device-plugins-gpu"],
       "groupName": "Intel-Device-Plugins"
     },
     {
