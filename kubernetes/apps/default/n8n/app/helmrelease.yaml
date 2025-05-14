@@ -37,6 +37,8 @@ spec:
               N8N_PROTOCOL: https
               N8N_HOST: &hostName n8n.nasenov.dev
               N8N_PORT: &port 5678
+              N8N_DIAGNOSTICS_ENABLED: "false"
+              N8N_VERSION_NOTIFICATIONS_ENABLED: "false"
               N8N_METRICS: "true"
               QUEUE_HEALTH_CHECK_ACTIVE: "true"
             envFrom:
