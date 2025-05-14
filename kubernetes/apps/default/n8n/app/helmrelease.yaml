@@ -31,12 +31,14 @@ spec:
           app:
             image:
               repository: ghcr.io/n8n-io/n8n
-              tag: 1.93.0
+              tag: 1.93.0@sha256:78361e40291fedd5bf07540b8fd435037f45432a0668aa042e1a11e79c45c8d3
             env:
               GENERIC_TIMEZONE: Europe/Sofia
               N8N_PROTOCOL: https
               N8N_HOST: &hostName n8n.nasenov.dev
               N8N_PORT: &port 5678
+              N8N_METRICS: "true"
+              QUEUE_HEALTH_CHECK_ACTIVE: "true"
             envFrom:
               - secretRef:
                   name: n8n
