@@ -80,6 +80,9 @@ spec:
               sslmode: require
               maxOpenConns: 4
               maxIdleConnsAuto: true
+        deleteDatasources:
+          - name: "Infinity"
+            orgId: 1
 
     dashboardProviders:
       dashboardproviders.yaml:
