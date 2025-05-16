@@ -50,9 +50,7 @@ spec:
 
     envFromSecrets:
       - name: grafana-postgres-configuration
-
-    plugins:
-      - yesoreyeram-infinity-datasource
+      - name: grafana-postgres-datasource-configuration
 
     datasources:
       datasources.yaml:
@@ -71,9 +69,17 @@ spec:
             url: http://loki-headless.monitoring.svc.cluster.local:3100
             jsonData:
               maxLines: 1000
-          - name: Infinity
-            type: yesoreyeram-infinity-datasource
-            uid: yesoreyeram-infinity-datasource
+          - name: Postgres
+            type: postgres
+            url: ${POSTGRES_DATASOURCE_URL}
+            user: ${POSTGRES_DATASOURCE_USER}
+            secureJsonData:
+              password: ${POSTGRES_DATASOURCE_PASSWORD}
+            jsonData:
+              database: ${POSTGRES_DATASOURCE_DATABASE}
+              sslmode: require
+              maxOpenConns: 4
+              maxIdleConnsAuto: true
 
     dashboardProviders:
       dashboardproviders.yaml:
