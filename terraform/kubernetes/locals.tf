@@ -1,7 +1,7 @@
 locals {
-  virtual_machines = {
+  controlplane_virtual_machines = {
     k8s-1 = {
-      ipv4_address = "192.168.0.21/24"
+      ipv4_address = "192.168.0.21"
       cpu_cores    = 4
       memory       = 4096
       hostpci      = []
@@ -9,7 +9,7 @@ locals {
       usb          = []
     }
     k8s-2 = {
-      ipv4_address = "192.168.0.22/24"
+      ipv4_address = "192.168.0.22"
       cpu_cores    = 4
       memory       = 4096
       hostpci      = []
@@ -17,15 +17,18 @@ locals {
       usb          = []
     }
     k8s-3 = {
-      ipv4_address = "192.168.0.23/24"
+      ipv4_address = "192.168.0.23"
       cpu_cores    = 4
       memory       = 4096
       hostpci      = []
       gpu          = []
       usb          = []
     }
+  }
+
+  worker_virtual_machines = {
     k8s-4 = {
-      ipv4_address = "192.168.0.24/24"
+      ipv4_address = "192.168.0.24"
       cpu_cores    = 4
       memory       = 12288
       hostpci      = ["0000:01:00"]
@@ -33,7 +36,7 @@ locals {
       usb          = []
     }
     k8s-5 = {
-      ipv4_address = "192.168.0.25/24"
+      ipv4_address = "192.168.0.25"
       cpu_cores    = 4
       memory       = 12288
       hostpci      = ["0000:02:00"]
@@ -41,7 +44,7 @@ locals {
       usb          = []
     }
     k8s-6 = {
-      ipv4_address = "192.168.0.26/24"
+      ipv4_address = "192.168.0.26"
       cpu_cores    = 4
       memory       = 12288
       hostpci      = ["0000:09:00"]
@@ -49,7 +52,7 @@ locals {
       usb          = []
     }
     k8s-7 = {
-      ipv4_address = "192.168.0.27/24"
+      ipv4_address = "192.168.0.27"
       cpu_cores    = 4
       memory       = 12288
       hostpci      = []
@@ -57,7 +60,7 @@ locals {
       usb          = ["10c4:ea60"]
     }
     k8s-8 = {
-      ipv4_address = "192.168.0.28/24"
+      ipv4_address = "192.168.0.28"
       cpu_cores    = 4
       memory       = 12288
       hostpci      = []
@@ -65,7 +68,7 @@ locals {
       usb          = []
     }
     k8s-9 = {
-      ipv4_address = "192.168.0.29/24"
+      ipv4_address = "192.168.0.29"
       cpu_cores    = 4
       memory       = 12288
       hostpci      = []
@@ -73,7 +76,7 @@ locals {
       usb          = []
     }
     k8s-10 = {
-      ipv4_address = "192.168.0.30/24"
+      ipv4_address = "192.168.0.30"
       cpu_cores    = 4
       memory       = 12288
       hostpci      = []
@@ -226,52 +229,4 @@ locals {
       }
     }
   })
-}
-
-locals {
-  controlplane_virtual_machines = {
-    k8s_1 = {
-      node     = proxmox_virtual_environment_vm.k8s["k8s-1"].name
-      endpoint = "192.168.0.21"
-    }
-    k8s_2 = {
-      node     = proxmox_virtual_environment_vm.k8s["k8s-2"].name
-      endpoint = "192.168.0.22"
-    }
-    k8s_3 = {
-      node     = proxmox_virtual_environment_vm.k8s["k8s-3"].name
-      endpoint = "192.168.0.23"
-    }
-  }
-
-  worker_virtual_machines = {
-    k8s_4 = {
-      node     = proxmox_virtual_environment_vm.k8s["k8s-4"].name
-      endpoint = "192.168.0.24"
-    }
-    k8s_5 = {
-      node     = proxmox_virtual_environment_vm.k8s["k8s-5"].name
-      endpoint = "192.168.0.25"
-    }
-    k8s_6 = {
-      node     = proxmox_virtual_environment_vm.k8s["k8s-6"].name
-      endpoint = "192.168.0.26"
-    }
-    k8s_7 = {
-      node     = proxmox_virtual_environment_vm.k8s["k8s-7"].name
-      endpoint = "192.168.0.27"
-    }
-    k8s_8 = {
-      node     = proxmox_virtual_environment_vm.k8s["k8s-8"].name
-      endpoint = "192.168.0.28"
-    }
-    k8s_9 = {
-      node     = proxmox_virtual_environment_vm.k8s["k8s-9"].name
-      endpoint = "192.168.0.29"
-    }
-    k8s_10 = {
-      node     = proxmox_virtual_environment_vm.k8s["k8s-10"].name
-      endpoint = "192.168.0.30"
-    }
-  }
 }

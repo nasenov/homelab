@@ -1,5 +1,5 @@
 resource "proxmox_virtual_environment_vm" "k8s" {
-  for_each = local.virtual_machines
+  for_each = merge(local.controlplane_virtual_machines, local.worker_virtual_machines)
 
   name      = each.key
   node_name = "pve"
@@ -81,7 +81,7 @@ resource "proxmox_virtual_environment_vm" "k8s" {
 
     ip_config {
       ipv4 {
-        address = each.value.ipv4_address
+        address = "${each.value.ipv4_address}/24"
         gateway = "192.168.0.1"
       }
     }
@@ -89,7 +89,7 @@ resource "proxmox_virtual_environment_vm" "k8s" {
 }
 
 data "talos_image_factory_extensions_versions" "this" {
-  talos_version = "v1.9.5"
+  talos_version = var.talos_version
   filters = {
     names = [
       "qemu-guest-agent",
@@ -110,7 +110,7 @@ resource "talos_image_factory_schematic" "this" {
 }
 
 data "talos_image_factory_urls" "this" {
-  talos_version = "v1.9.5"
+  talos_version = var.talos_version
   schematic_id  = talos_image_factory_schematic.this.id
   platform      = "nocloud"
 }
@@ -118,9 +118,9 @@ data "talos_image_factory_urls" "this" {
 resource "talos_machine_secrets" "this" {}
 
 data "talos_machine_configuration" "controlplane" {
-  cluster_name     = "homelab"
+  cluster_name     = var.talos_cluster_name
   machine_type     = "controlplane"
-  cluster_endpoint = "https://192.168.0.20:6443"
+  cluster_endpoint = var.talos_cluster_endpoint
   machine_secrets  = talos_machine_secrets.this.machine_secrets
 }
 
@@ -129,8 +129,8 @@ resource "talos_machine_configuration_apply" "controlplane" {
 
   client_configuration        = talos_machine_secrets.this.client_configuration
   machine_configuration_input = data.talos_machine_configuration.controlplane.machine_configuration
-  node                        = each.value.node
-  endpoint                    = each.value.endpoint
+  node                        = each.key
+  endpoint                    = each.value.ipv4_address
   config_patches = [
     local.talos_install_image_config_patch,
     local.talos_vip_config_patch,
@@ -147,10 +147,18 @@ resource "talos_machine_configuration_apply" "controlplane" {
   ]
 }
 
+resource "talos_machine_bootstrap" "this" {
+  depends_on = [
+    talos_machine_configuration_apply.controlplane,
+  ]
+  node                 = local.controlplane_virtual_machines.k8s-1.ipv4_address
+  client_configuration = talos_machine_secrets.this.client_configuration
+}
+
 data "talos_machine_configuration" "worker" {
-  cluster_name     = "homelab"
+  cluster_name     = var.talos_cluster_name
   machine_type     = "worker"
-  cluster_endpoint = "https://192.168.0.20:6443"
+  cluster_endpoint = var.talos_cluster_endpoint
   machine_secrets  = talos_machine_secrets.this.machine_secrets
 }
 
@@ -164,8 +172,8 @@ resource "talos_machine_configuration_apply" "worker" {
 
   client_configuration        = talos_machine_secrets.this.client_configuration
   machine_configuration_input = data.talos_machine_configuration.worker.machine_configuration
-  node                        = each.value.node
-  endpoint                    = each.value.endpoint
+  node                        = each.key
+  endpoint                    = each.value.ipv4_address
   config_patches = [
     local.talos_install_image_config_patch,
     local.talos_sysctls_config_patch,
@@ -176,41 +184,18 @@ resource "talos_machine_configuration_apply" "worker" {
   ]
 }
 
-resource "talos_machine_bootstrap" "this" {
-  depends_on = [
-    talos_machine_configuration_apply.controlplane,
-  ]
-  node                 = "192.168.0.21"
-  client_configuration = talos_machine_secrets.this.client_configuration
-}
-
 resource "talos_cluster_kubeconfig" "this" {
   depends_on = [
     talos_machine_bootstrap.this
   ]
 
   client_configuration = talos_machine_secrets.this.client_configuration
-  node                 = "192.168.0.21"
+  node                 = local.controlplane_virtual_machines.k8s-1.ipv4_address
 }
 
 data "talos_client_configuration" "this" {
-  cluster_name         = "homelab"
+  cluster_name         = var.talos_cluster_name
   client_configuration = talos_machine_secrets.this.client_configuration
-  endpoints = [
-    "192.168.0.21",
-    "192.168.0.22",
-    "192.168.0.23"
-  ]
-  nodes = [
-    "192.168.0.21",
-    "192.168.0.22",
-    "192.168.0.23",
-    "192.168.0.24",
-    "192.168.0.25",
-    "192.168.0.26",
-    "192.168.0.27",
-    "192.168.0.28",
-    "192.168.0.29",
-    "192.168.0.30"
-  ]
+  endpoints            = [for k, v in local.controlplane_virtual_machines : v.ipv4_address]
+  nodes                = [for k, v in merge(local.controlplane_virtual_machines, local.worker_virtual_machines) : v.ipv4_address]
 }
