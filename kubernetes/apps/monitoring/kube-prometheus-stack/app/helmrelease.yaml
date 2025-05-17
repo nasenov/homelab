@@ -39,8 +39,8 @@ spec:
         serviceMonitorSelectorNilUsesHelmValues: false
         podMonitorSelectorNilUsesHelmValues: false
         scrapeConfigSelectorNilUsesHelmValues: false
-        retention: 3d
-        retentionSize: 20GB
+        retention: 7d
+        retentionSize: 25GB
         storageSpec:
           volumeClaimTemplate:
             spec:
