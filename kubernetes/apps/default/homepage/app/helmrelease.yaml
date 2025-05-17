@@ -43,7 +43,6 @@ spec:
 
     configMaps:
       config:
-        enabled: true
         data:
           bookmarks.yaml: |
             ---
@@ -247,7 +246,7 @@ spec:
     persistence:
       config:
         type: configMap
-        name: homepage-config
+        name: homepage
         globalMounts:
           - path: /app/config
       logs:
