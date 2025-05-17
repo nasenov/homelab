@@ -4,7 +4,7 @@
     {
       "customType": "regex",
       "description": "Process various dependencies in YAML files",
-      "fileMatch": ["\\.ya?ml$"],
+      "managerFilePatterns": ["/\\.ya?ml$/"],
       "matchStrings": [
         "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( repository=(?<registryUrl>\\S+))?\\n.+(:\\s|=)(&\\S+\\s)?(?<currentValue>\\S+)"
       ],
@@ -13,7 +13,7 @@
     {
       "customType": "regex",
       "description": "Process GitHub download dependencies in YAML files",
-      "fileMatch": ["\\.ya?ml$"],
+      "managerFilePatterns": ["/\\.ya?ml$/"],
       "matchStrings": [
         "https:\\/\\/github.com\\/(?<depName>\\S+?\\/\\S+?)\\/releases\\/download\\/(?<currentValue>(v|\\d)\\S+?)\\/\\S+",
         "https:\\/\\/raw.githubusercontent.com\\/(?<depName>\\S+?\\/\\S+?)\\/(?<currentValue>(v|\\d)\\S+?)\\/\\S+"
@@ -25,7 +25,7 @@
     {
       "customType": "regex",
       "description": "Talos ISO image",
-      "fileMatch": ["\\.tf$"],
+      "managerFilePatterns": ["/\\.tf$/"],
       "matchStrings": [
         "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)\\n.+(=\\s)\"https:\\/\\/factory.talos.dev\\/image\\/\\S+\\/(?<currentValue>v\\S+?)\\/\\S+\""
       ],
