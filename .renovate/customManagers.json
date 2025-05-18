@@ -3,8 +3,8 @@
   "customManagers": [
     {
       "customType": "regex",
-      "description": "Process various dependencies in YAML and Terraform files",
-      "managerFilePatterns": ["/\\.ya?ml$/", "/\\.tf$/"],
+      "description": "Process various dependencies in YAML files",
+      "managerFilePatterns": ["/\\.ya?ml$/"],
       "matchStrings": [
         "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( repository=(?<registryUrl>\\S+))?\\n.+(:\\s|=\\s)(&\\S+\\s)?(?<currentValue>\\S+)"
       ],
@@ -24,10 +24,11 @@
     },
     {
       "customType": "regex",
-      "description": "Talos ISO image",
+      "description": "Process various dependencies in Terraform files",
       "managerFilePatterns": ["/\\.tf$/"],
       "matchStrings": [
-        "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)\\n.+(=\\s)\"https:\\/\\/factory.talos.dev\\/image\\/\\S+\\/(?<currentValue>v\\S+?)\\/\\S+\""
+        "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)\\n.+(=\\s)\"https:\\/\\/factory.talos.dev\\/image\\/\\S+\\/(?<currentValue>v\\S+?)\\/\\S+\"",
+        "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( repository=(?<registryUrl>\\S+))?\\n.+(:\\s|=\\s)(&\\S+\\s)?\"(?<currentValue>\\S+)\""
       ],
       "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}"
     }
