@@ -12,6 +12,8 @@ spec:
   dependsOn:
     - name: external-secrets-stores
       namespace: external-secrets
+    - name: qbittorrent
+      namespace: default
   path: ./kubernetes/apps/default/qbtools/app
   prune: true
   sourceRef:

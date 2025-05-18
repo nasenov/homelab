@@ -18,6 +18,8 @@ spec:
       namespace: rook-ceph
     - name: external-secrets-stores
       namespace: external-secrets
+    - name: qbittorrent
+      namespace: default
   path: ./kubernetes/apps/default/cross-seed/app
   prune: true
   sourceRef:
