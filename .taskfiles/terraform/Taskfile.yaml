@@ -9,7 +9,9 @@ tasks:
 
   bootstrap:
     dir: "{{.ROOT_DIR}}/terraform/bootstrap"
-    cmd: terraform apply
+    cmds:
+      - kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.3.0/experimental-install.yaml
+      - terraform apply
 
   sync:
     dir: "{{.ROOT_DIR}}/terraform/proxmox"
