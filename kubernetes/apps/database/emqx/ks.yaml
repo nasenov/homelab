@@ -33,6 +33,8 @@ spec:
   dependsOn:
     - name: emqx-operator
       namespace: database
+    - name: external-secrets-stores
+      namespace: external-secrets
     - name: prometheus-operator-crds
       namespace: monitoring
   path: ./kubernetes/apps/database/emqx/cluster
@@ -61,6 +63,8 @@ spec:
   dependsOn:
     - name: emqx-cluster
       namespace: database
+    - name: external-secrets-stores
+      namespace: external-secrets
     - name: prometheus-operator-crds
       namespace: monitoring
   path: ./kubernetes/apps/database/emqx/exporter
