@@ -5,10 +5,9 @@ version: "3"
 tasks:
   rook:
     cmds:
-      - kubectl --namespace kube-system apply -f ./.taskfiles/bootstrap/resources/wipe-rook.yaml
-      - until kubectl --namespace kube-system get pods/disk-wipe-1 pods/disk-wipe-2 pods/disk-wipe-3 &>/dev/null; do sleep 5; done
-      - kubectl --namespace kube-system wait pods/disk-wipe-1 pods/disk-wipe-2 pods/disk-wipe-3 --for=jsonpath='{.status.phase}'=Succeeded --timeout=5m
-      - kubectl --namespace kube-system delete -f ./.taskfiles/bootstrap/resources/wipe-rook.yaml
+      - talosctl --nodes 192.168.0.24 wipe disk nvme0n1
+      - talosctl --nodes 192.168.0.25 wipe disk nvme0n1
+      - talosctl --nodes 192.168.0.26 wipe disk nvme0n1
 
   main:
     cmds:

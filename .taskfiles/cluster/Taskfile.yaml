@@ -3,6 +3,16 @@
 version: "3"
 
 tasks:
+  bootstrap:
+    desc: Bootstrap Kubernetes cluster
+    cmds:
+      - task: :terraform:sync
+      - task: :terraform:apply
+      - task: :terraform:output
+      - task: :bootstrap:rook
+      - task: :flux:bootstrap
+      - task: :terraform:bootstrap
+
   destroy:
     desc: Destroy Kubernetes cluster
     cmd:

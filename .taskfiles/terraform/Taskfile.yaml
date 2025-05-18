@@ -11,6 +11,10 @@ tasks:
     dir: "{{.ROOT_DIR}}/terraform/bootstrap"
     cmd: terraform apply
 
+  sync:
+    dir: "{{.ROOT_DIR}}/terraform/proxmox"
+    cmd: terraform apply
+
   destroy:
     dir: "{{.ROOT_DIR}}/terraform/kubernetes"
     cmd: terraform destroy
