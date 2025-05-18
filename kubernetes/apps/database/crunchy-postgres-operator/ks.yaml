@@ -37,6 +37,8 @@ spec:
       namespace: external-secrets
     - name: prometheus-operator-crds
       namespace: monitoring
+    - name: openebs
+      namespace: openebs
   path: ./kubernetes/apps/database/crunchy-postgres-operator/cluster
   prune: true
   sourceRef:
