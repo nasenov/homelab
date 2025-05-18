@@ -3,10 +3,10 @@
   "customManagers": [
     {
       "customType": "regex",
-      "description": "Process various dependencies in YAML files",
-      "managerFilePatterns": ["/\\.ya?ml$/"],
+      "description": "Process various dependencies in YAML and Terraform files",
+      "managerFilePatterns": ["/\\.ya?ml$/", "/\\.tf$/"],
       "matchStrings": [
-        "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( repository=(?<registryUrl>\\S+))?\\n.+(:\\s|=)(&\\S+\\s)?(?<currentValue>\\S+)"
+        "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( repository=(?<registryUrl>\\S+))?\\n.+(:\\s|=\\s)(&\\S+\\s)?(?<currentValue>\\S+)"
       ],
       "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}"
     },

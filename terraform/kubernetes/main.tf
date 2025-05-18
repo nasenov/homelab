@@ -118,10 +118,11 @@ data "talos_image_factory_urls" "this" {
 resource "talos_machine_secrets" "this" {}
 
 data "talos_machine_configuration" "controlplane" {
-  cluster_name     = var.talos_cluster_name
-  machine_type     = "controlplane"
-  cluster_endpoint = var.talos_cluster_endpoint
-  machine_secrets  = talos_machine_secrets.this.machine_secrets
+  cluster_name       = var.talos_cluster_name
+  machine_type       = "controlplane"
+  cluster_endpoint   = var.talos_cluster_endpoint
+  machine_secrets    = talos_machine_secrets.this.machine_secrets
+  kubernetes_version = local.kubernetes_version
 }
 
 resource "talos_machine_configuration_apply" "controlplane" {
@@ -156,10 +157,11 @@ resource "talos_machine_bootstrap" "this" {
 }
 
 data "talos_machine_configuration" "worker" {
-  cluster_name     = var.talos_cluster_name
-  machine_type     = "worker"
-  cluster_endpoint = var.talos_cluster_endpoint
-  machine_secrets  = talos_machine_secrets.this.machine_secrets
+  cluster_name       = var.talos_cluster_name
+  machine_type       = "worker"
+  cluster_endpoint   = var.talos_cluster_endpoint
+  machine_secrets    = talos_machine_secrets.this.machine_secrets
+  kubernetes_version = local.kubernetes_version
 }
 
 resource "talos_machine_configuration_apply" "worker" {
@@ -184,9 +186,20 @@ resource "talos_machine_configuration_apply" "worker" {
   ]
 }
 
+# https://github.com/siderolabs/terraform-provider-talos/issues/206
+resource "time_sleep" "this" {
+  depends_on = [
+    talos_machine_configuration_apply.controlplane,
+    talos_machine_configuration_apply.worker,
+    talos_machine_bootstrap.this
+  ]
+
+  create_duration = "5m"
+}
+
 resource "talos_cluster_kubeconfig" "this" {
   depends_on = [
-    talos_machine_bootstrap.this
+    time_sleep.this
   ]
 
   client_configuration = talos_machine_secrets.this.client_configuration
@@ -194,6 +207,10 @@ resource "talos_cluster_kubeconfig" "this" {
 }
 
 data "talos_client_configuration" "this" {
+  depends_on = [
+    time_sleep.this
+  ]
+
   cluster_name         = var.talos_cluster_name
   client_configuration = talos_machine_secrets.this.client_configuration
   endpoints            = [for k, v in local.controlplane_virtual_machines : v.ipv4_address]

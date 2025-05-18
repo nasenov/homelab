@@ -87,6 +87,9 @@ locals {
 }
 
 locals {
+  # renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet
+  kubernetes_version = "v1.33.0"
+
   talos_install_image_config_patch = yamlencode({
     machine = {
       install = {
@@ -226,6 +229,12 @@ locals {
     cluster = {
       apiServer = {
         disablePodSecurityPolicy = true
+        admissionControl = [
+          {
+            name     = "PodSecurity"
+            "$patch" = "delete"
+          }
+        ]
       }
     }
   })
