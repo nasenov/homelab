@@ -136,6 +136,7 @@ resource "talos_machine_configuration_apply" "controlplane" {
     local.talos_install_image_config_patch,
     local.talos_vip_config_patch,
     local.talos_sysctls_config_patch,
+    local.talos_kernel_modules_config_patch,
     local.talos_kubelet_config_patch,
     local.talos_containerd_config_patch,
     local.talos_cluster_network_config_patch,
@@ -179,6 +180,7 @@ resource "talos_machine_configuration_apply" "worker" {
   config_patches = [
     local.talos_install_image_config_patch,
     local.talos_sysctls_config_patch,
+    local.talos_kernel_modules_config_patch,
     local.talos_kubelet_config_patch,
     local.talos_containerd_config_patch,
     local.talos_cluster_network_config_patch,

@@ -125,11 +125,20 @@ locals {
     }
   })
 
+  talos_kernel_modules_config_patch = yamlencode({
+    machine = {
+      kernel = {
+        modules = [{ name = "nbd" }]
+      }
+    }
+  })
+
   talos_kubelet_config_patch = yamlencode({
     machine = {
       kubelet = {
         extraArgs = {
           rotate-server-certificates = true
+          serialize-image-pulls      = false
         }
         extraMounts = [{
           destination = "/var/openebs/local"

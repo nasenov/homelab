@@ -30,6 +30,8 @@ spec:
   dependsOn:
     - name: silence-operator-crds
       namespace: monitoring
+    - name: kube-prometheus-stack
+      namespace: monitoring
   path: ./kubernetes/apps/monitoring/silence-operator/app
   prune: true
   sourceRef:
