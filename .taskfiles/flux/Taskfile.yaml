@@ -1,9 +1,0 @@
----
-# yaml-language-server: $schema=https://taskfile.dev/schema.json
-version: "3"
-
-tasks:
-  bootstrap:
-    cmds:
-      - kubectl create ns flux-system
-      - cat ./age.agekey | kubectl create secret generic sops-age --namespace=flux-system --from-file=age.agekey=/dev/stdin

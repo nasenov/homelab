@@ -6,14 +6,60 @@ tasks:
   bootstrap:
     desc: Bootstrap Kubernetes cluster
     cmds:
-      - task: :terraform:sync
-      - task: :terraform:apply
-      - task: :terraform:output
-      - task: :bootstrap:rook
-      - task: :flux:bootstrap
-      - task: :terraform:bootstrap
+      - task: terraform-apply
+        vars:
+          TERRAFORM_DIRECTORY: "{{.ROOT_DIR}}/terraform/proxmox"
+      - task: terraform-apply
+        vars:
+          TERRAFORM_DIRECTORY: "{{.ROOT_DIR}}/terraform/kubernetes"
+      - task: terraform-output
+      - task: wipe-rook-disks
+      - task: flux
+      - task: terraform-apply
+        vars:
+          TERRAFORM_DIRECTORY: "{{.ROOT_DIR}}/terraform/bootstrap"
 
   destroy:
     desc: Destroy Kubernetes cluster
-    cmd:
-      task: :terraform:destroy
+    dir: "{{.ROOT_DIR}}/terraform/kubernetes"
+    cmd: terraform destroy
+    preconditions:
+      - which terraform
+
+  terraform-apply:
+    internal: true
+    dir: "{{.TERRAFORM_DIRECTORY}}"
+    cmd: terraform apply
+    preconditions:
+      - which terraform
+
+  terraform-output:
+    internal: true
+    dir: "{{.ROOT_DIR}}/terraform/kubernetes"
+    cmds:
+      - terraform output -raw kubeconfig > ~/.kube/config
+      - chmod 600 ~/.kube/config
+      - terraform output -raw talosconfig > ~/.talos/config
+      - chmod 600 ~/.talos/config
+    preconditions:
+      - which terraform
+
+  wipe-rook-disks:
+    internal: true
+    prompt: Do you want to wipe rook-ceph data disks?
+    cmds:
+      - talosctl --nodes 192.168.0.24 wipe disk nvme0n1
+      - talosctl --nodes 192.168.0.25 wipe disk nvme0n1
+      - talosctl --nodes 192.168.0.26 wipe disk nvme0n1
+    preconditions:
+      - which talosctl
+
+  flux:
+    internal: true
+    cmds:
+      - kubectl create namespace flux-system
+      - cat ./age.agekey | kubectl create secret generic sops-age --namespace=flux-system --from-file=age.agekey=/dev/stdin
+      - kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.3.0/experimental-install.yaml
+    preconditions:
+      - which kubectl
+      - test -f ./age.agekey

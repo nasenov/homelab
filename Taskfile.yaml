@@ -3,11 +3,8 @@
 version: "3"
 
 includes:
-  bootstrap: .taskfiles/bootstrap
   cluster: .taskfiles/cluster
-  flux: .taskfiles/flux
   kubernetes: .taskfiles/kubernetes
-  terraform: .taskfiles/terraform
 
 tasks:
   default:
