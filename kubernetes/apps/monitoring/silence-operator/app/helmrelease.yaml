@@ -6,9 +6,13 @@ metadata:
   name: silence-operator
 spec:
   interval: 30m
-  chartRef:
-    kind: OCIRepository
-    name: silence-operator
+  chart:
+    spec:
+      chart: silence-operator
+      version: 0.16.1
+      sourceRef:
+        kind: HelmRepository
+        name: silence-operator
   install:
     remediation:
       retries: 3
@@ -17,27 +21,11 @@ spec:
       retries: 3
   values:
     image:
-      name: quay.io/giantswarm/silence-operator
+      registry: quay.io
+      name: giantswarm/silence-operator
+      tag: 0.16.1
 
-    operator:
-      config:
-        alertmanager:
-          service:
-            address: http://kube-prometheus-stack-alertmanager.monitoring.svc.cluster.local:9093
-    rbac:
-      create: true
+    alertmanagerAddress: http://kube-prometheus-stack-alertmanager.monitoring.svc.cluster.local:9093
 
-    extraDeploy:
-      - apiVersion: monitoring.giantswarm.io/v1alpha1
-        kind: Silence
-        metadata:
-          name: ceph-node-diskspace-warning
-          namespace: monitoring
-        spec:
-          matchers:
-            - name: alertname
-              value: CephNodeDiskspaceWarning
-              isRegex: false
-            - name: device
-              value: /dev/sd.*
-              isRegex: true
+    networkPolicy:
+      enabled: false
