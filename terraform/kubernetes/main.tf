@@ -34,6 +34,15 @@ resource "proxmox_virtual_environment_vm" "k8s" {
     cache        = "writeback"
   }
 
+  disk {
+    datastore_id = "fast"
+    file_format  = "raw"
+    interface    = "scsi1"
+    iothread     = true
+    size         = 64
+    cache        = "writeback"
+  }
+
   dynamic "hostpci" {
     for_each = each.value.hostpci
 
