@@ -24,7 +24,6 @@ resource "cloudflare_zone_dnssec" "nasenov_dev" {
 resource "cloudflare_zone_setting" "ssl" {
   zone_id    = cloudflare_zone.nasenov_dev.id
   setting_id = "ssl"
-  id         = "ssl"
   value      = "strict"
 }
 
@@ -96,21 +95,20 @@ resource "cloudflare_account_token" "external_dns" {
   ]
 }
 
-# https://github.com/cloudflare/terraform-provider-cloudflare/issues/5373
-# resource "cloudflare_r2_bucket" "volsync" {
-#   account_id    = var.cloudflare_account_id
-#   name          = "volsync"
-#   location      = "eeur"
-#   storage_class = "Standard"
+resource "cloudflare_r2_bucket" "volsync" {
+  account_id    = var.cloudflare_account_id
+  name          = "volsync"
+  location      = "EEUR"
+  storage_class = "Standard"
 
-#   lifecycle {
-#     prevent_destroy = true
-#   }
-# }
+  lifecycle {
+    prevent_destroy = true
+  }
+}
 
 resource "cloudflare_account_token" "volsync" {
   account_id = var.cloudflare_account_id
-  name       = "volsync"
+  name       = cloudflare_r2_bucket.volsync.name
   policies = [
     {
       effect = "allow"
@@ -118,28 +116,26 @@ resource "cloudflare_account_token" "volsync" {
         { id = local.r2_bucket_write_permission_group.id }
       ]
       resources = {
-        # TODO: use bucket name and jurisdiction from cloudflare_r2_bucket
-        "com.cloudflare.edge.r2.bucket.${var.cloudflare_account_id}_default_volsync" = "*"
+        "com.cloudflare.edge.r2.bucket.${var.cloudflare_account_id}_${cloudflare_r2_bucket.volsync.jurisdiction}_${cloudflare_r2_bucket.volsync.name}" = "*"
       }
     }
   ]
 }
 
-# https://github.com/cloudflare/terraform-provider-cloudflare/issues/5373
-# resource "cloudflare_r2_bucket" "postgres" {
-#   account_id    = var.cloudflare_account_id
-#   name          = "postgres"
-#   location      = "eeur"
-#   storage_class = "Standard"
+resource "cloudflare_r2_bucket" "postgres" {
+  account_id    = var.cloudflare_account_id
+  name          = "postgres"
+  location      = "EEUR"
+  storage_class = "Standard"
 
-#   lifecycle {
-#     prevent_destroy = true
-#   }
-# }
+  lifecycle {
+    prevent_destroy = true
+  }
+}
 
 resource "cloudflare_account_token" "postgres" {
   account_id = var.cloudflare_account_id
-  name       = "postgres"
+  name       = cloudflare_r2_bucket.postgres.name
   policies = [
     {
       effect = "allow"
@@ -147,8 +143,7 @@ resource "cloudflare_account_token" "postgres" {
         { id = local.r2_bucket_write_permission_group.id }
       ]
       resources = {
-        # TODO: use bucket name and jurisdiction from cloudflare_r2_bucket
-        "com.cloudflare.edge.r2.bucket.${var.cloudflare_account_id}_default_postgres" = "*"
+        "com.cloudflare.edge.r2.bucket.${var.cloudflare_account_id}_${cloudflare_r2_bucket.postgres.jurisdiction}_${cloudflare_r2_bucket.postgres.name}" = "*"
       }
     }
   ]
