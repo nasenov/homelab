@@ -161,7 +161,7 @@ spec:
           revision: 6
           datasource:
             - { name: DS_PROMETHEUS, value: Prometheus }
-            - { name: VAR_BLOCKY_URL, value: http://192.168.0.53:4000 }
+            - { name: VAR_BLOCKY_URL, value: http:\/\/192.168.0.53:4000 }
       emqx:
         authentication:
           url: https://raw.githubusercontent.com/emqx/emqx-exporter/main/grafana-dashboard/template/emqx-5/authentication.json
