@@ -156,10 +156,11 @@ spec:
             - { name: DS_PROMETHEUS, value: Prometheus }
             - { name: VAR_REPLICATIONDESTNAME, value: .*-dst }
         blocky:
-          url: https://raw.githubusercontent.com/0xERR0R/blocky/v0.19/docs/blocky-grafana.json
+          # renovate: depName="blocky4"
+          gnetId: 13768
+          revision: 6
           datasource:
-            - name: DS_PROMETHEUS
-              value: Prometheus
+            - { name: DS_PROMETHEUS, value: Prometheus }
       emqx:
         authentication:
           url: https://raw.githubusercontent.com/emqx/emqx-exporter/main/grafana-dashboard/template/emqx-5/authentication.json
