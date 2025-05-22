@@ -20,6 +20,26 @@ spec:
     remediation:
       retries: 3
   values:
+    openebs-crds:
+      csi:
+        volumeSnapshots:
+          enabled: false
+          keep: false
+
+    localpv-provisioner:
+      localpv:
+        image:
+          registry: quay.io/
+        basePath: /var/mnt/openebs/local
+      hostpathClass:
+        xfsQuota:
+          enabled: true
+      helperPod:
+        image:
+          registry: quay.io/
+      analytics:
+        enabled: false
+
     engines:
       local:
         lvm:
@@ -29,16 +49,3 @@ spec:
       replicated:
         mayastor:
           enabled: false
-
-    openebs-crds:
-      csi:
-        volumeSnapshots:
-          enabled: false
-          keep: false
-
-    localpv-provisioner:
-      hostpathClass:
-        xfsQuota:
-          enabled: true
-      analytics:
-        enabled: false

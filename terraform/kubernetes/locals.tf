@@ -141,9 +141,9 @@ locals {
           serialize-image-pulls      = false
         }
         extraMounts = [{
-          destination = "/var/openebs/local"
+          destination = "/var/mnt/openebs"
           type        = "bind"
-          source      = "/var/openebs/local"
+          source      = "/var/mnt/openebs"
           options     = ["bind", "rshared", "rw"]
         }]
       }
