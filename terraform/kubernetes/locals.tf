@@ -140,12 +140,6 @@ locals {
           rotate-server-certificates = true
           serialize-image-pulls      = false
         }
-        extraMounts = [{
-          destination = "/var/mnt/openebs"
-          type        = "bind"
-          source      = "/var/mnt/openebs"
-          options     = ["bind", "rshared", "rw"]
-        }]
       }
     }
   })

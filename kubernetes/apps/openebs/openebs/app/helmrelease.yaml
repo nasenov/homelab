@@ -32,8 +32,9 @@ spec:
           registry: quay.io/
         basePath: /var/mnt/openebs/local
       hostpathClass:
+        # https://github.com/siderolabs/talos/discussions/11081
         xfsQuota:
-          enabled: true
+          enabled: false
       helperPod:
         image:
           registry: quay.io/
