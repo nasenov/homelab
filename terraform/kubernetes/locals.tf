@@ -247,4 +247,17 @@ locals {
       }
     }
   })
+
+  talos_user_volume_config_patch = yamlencode({
+    apiVersion = "v1alpha1"
+    kind       = "UserVolumeConfig"
+    name       = "openebs"
+    provisioning = {
+      diskSelector = {
+        match = "disk.transport == 'virtio' && !system_disk"
+      }
+      minSize = "64GB"
+      grow    = true
+    }
+  })
 }
