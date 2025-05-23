@@ -19,8 +19,13 @@ spec:
     controllers:
       jellyfin:
         pod:
-          nodeSelector:
-            intel.feature.node.kubernetes.io/gpu: "true"
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1000
+            runAsGroup: 1000
+            fsGroup: 1000
+            fsGroupChangePolicy: OnRootMismatch
+            supplementalGroups: [44]
         containers:
           app:
             image:
@@ -48,6 +53,12 @@ spec:
               limits:
                 memory: 4Gi
                 gpu.intel.com/i915: 1
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities:
+                drop:
+                  - ALL
 
     service:
       app:
