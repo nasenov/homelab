@@ -84,3 +84,10 @@ spec:
         globalMounts:
           - path: /data/downloads
             subPath: downloads
+      tmpfs:
+        type: emptyDir
+        advancedMounts:
+          qbittorrent:
+            app:
+              - path: /tmp
+                subPath: tmp

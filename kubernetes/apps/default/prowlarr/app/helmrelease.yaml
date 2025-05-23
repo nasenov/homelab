@@ -81,3 +81,10 @@ spec:
     persistence:
       config:
         existingClaim: prowlarr
+      tmpfs:
+        type: emptyDir
+        advancedMounts:
+          prowlarr:
+            app:
+              - path: /tmp
+                subPath: tmp

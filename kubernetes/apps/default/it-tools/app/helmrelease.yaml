@@ -64,5 +64,10 @@ spec:
                 port: *port
 
     persistence:
-      tmp:
+      tmpfs:
         type: emptyDir
+        advancedMounts:
+          it-tools:
+            app:
+              - path: /tmp
+                subPath: tmp

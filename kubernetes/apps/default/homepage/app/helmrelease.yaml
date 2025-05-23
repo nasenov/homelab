@@ -249,7 +249,10 @@ spec:
         name: homepage
         globalMounts:
           - path: /app/config
-      logs:
+      tmpfs:
         type: emptyDir
-        globalMounts:
-          - path: /app/config/logs
+        advancedMounts:
+          homepage:
+            app:
+              - path: /app/config/logs
+                subPath: logs

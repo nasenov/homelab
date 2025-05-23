@@ -73,13 +73,6 @@ spec:
     persistence:
       config:
         existingClaim: jellyfin
-      config-log:
-        type: emptyDir
-        globalMounts:
-          - path: /config/log
-      transcode:
-        enabled: true
-        type: emptyDir
       media:
         enabled: true
         type: nfs
@@ -88,3 +81,16 @@ spec:
         globalMounts:
           - path: /data/media
             subPath: media
+      tmpfs:
+        type: emptyDir
+        advancedMounts:
+          jellyfin:
+            app:
+              - path: /cache
+                subPath: cache
+              - path: /config/log
+                subPath: log
+              - path: /tmp
+                subPath: tmp
+              - path: /transcode
+                subPath: transcode

@@ -88,3 +88,10 @@ spec:
         path: /mnt/tank/media
         globalMounts:
           - path: /data
+      tmpfs:
+        type: emptyDir
+        advancedMounts:
+          sonarr:
+            app:
+              - path: /tmp
+                subPath: tmp

@@ -71,11 +71,14 @@ spec:
         existingClaim: jellyseerr
         globalMounts:
           - path: /app/config
-      config-cache:
+      tmpfs:
         type: emptyDir
-        globalMounts:
-          - path: /app/config/cache
-      config-logs:
-        type: emptyDir
-        globalMounts:
-          - path: /app/config/logs
+        advancedMounts:
+          jellyseerr:
+            app:
+              - path: /app/config/logs
+                subPath: logs
+              - path: /app/config/cache
+                subPath: cache
+              - path: /tmp
+                subPath: tmp
