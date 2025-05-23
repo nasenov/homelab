@@ -21,7 +21,7 @@ spec:
     loki:
       auth_enabled: false
       limits_config:
-        retention_period: 7d
+        retention_period: 30d
       commonConfig:
         replication_factor: 1
       storage:
