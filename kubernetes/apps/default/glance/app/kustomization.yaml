@@ -5,7 +5,7 @@ kind: Kustomization
 resources:
   - ./helmrelease.yaml
 configMapGenerator:
-  - name: glance-config
+  - name: glance
     files:
       - glance.yml=./resources/glance.yml
 generatorOptions:

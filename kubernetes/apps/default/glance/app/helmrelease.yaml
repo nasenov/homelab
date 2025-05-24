@@ -70,7 +70,7 @@ spec:
     persistence:
       config:
         type: configMap
-        name: glance-config
+        name: glance
         globalMounts:
           - path: /app/config/glance.yml
             subPath: glance.yml
