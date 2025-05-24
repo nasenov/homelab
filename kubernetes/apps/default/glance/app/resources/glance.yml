@@ -55,6 +55,22 @@ pages:
               - title: Minio
                 url: https://minio.nasenov.dev:9002
                 icon: di:minio.svg
+              # Monitoring
+              - title: Grafana
+                url: https://grafana.nasenov.dev
+                icon: di:grafana.svg
+              - title: Prometheus
+                url: https://prometheus.nasenov.dev
+                icon: di:prometheus.svg
+              - title: Alertmanager
+                url: https://alertmanager.nasenov.dev
+                icon: di:alertmanager.svg
+              - title: Hubble
+                url: https://hubble.nasenov.dev
+                icon: di:cilium.svg
+              - title: Alloy
+                url: https://alloy.nasenov.dev
+                icon: di:alloy.svg
               # Automation
               - title: Home-assistant
                 url: https://home-assistant.nasenov.dev
