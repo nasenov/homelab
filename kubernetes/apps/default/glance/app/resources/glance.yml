@@ -20,21 +20,27 @@ pages:
               - title: Jellyfin
                 url: https://jellyfin.nasenov.dev
                 icon: di:jellyfin.svg
-              - title: Gitea
-                url: https://yourdomain.com/
-                icon: si:gitea
-              - title: qBittorrent # only for Linux ISOs, of course
-                url: https://yourdomain.com/
-                icon: si:qbittorrent
-              - title: Immich
-                url: https://yourdomain.com/
-                icon: si:immich
-              - title: AdGuard Home
-                url: https://yourdomain.com/
-                icon: si:adguard
-              - title: Vaultwarden
-                url: https://yourdomain.com/
-                icon: si:vaultwarden
+              - title: Jellyseerr
+                url: https://jellyseerr.nasenov.dev
+                icon: di:jellyseerr.svg
+              - title: Radarr
+                url: https://radarr.nasenov.dev
+                icon: di:radarr.svg
+              - title: Sonarr
+                url: https://sonarr.nasenov.dev
+                icon: di:sonarr.svg
+              - title: Bazarr
+                url: https://bazarr.nasenov.dev
+                icon: di:bazarr.svg
+              - title: Prowlarr
+                url: https://prowlarr.nasenov.dev
+                icon: di:prowlarr.svg
+              - title: Qbittorrent
+                url: https://qbittorrent.nasenov.dev
+                icon: di:qbittorrent.svg
+              - title: Autobrr
+                url: https://autobrr.nasenov.dev
+                icon: di:autobrr.svg
 
           - type: bookmarks
             groups:
