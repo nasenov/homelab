@@ -14,12 +14,12 @@ pages:
             autofocus: true
 
           - type: monitor
-            cache: 1m
             title: Services
+            cache: 1m
             sites:
               - title: Jellyfin
-                url: https://yourdomain.com/
-                icon: si:jellyfin
+                url: https://jellyfin.nasenov.dev
+                icon: di:jellyfin.svg
               - title: Gitea
                 url: https://yourdomain.com/
                 icon: si:gitea

@@ -71,6 +71,7 @@ spec:
     route:
       app:
         hostnames:
+          - jellyfin.nasenov.dev
           - media.nasenov.dev
         parentRefs:
           - name: internal
