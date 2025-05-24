@@ -71,6 +71,7 @@ spec:
     route:
       app:
         hostnames:
+          - zigbee2mqtt.nasenov.dev
           - zigbee.nasenov.dev
         parentRefs:
           - name: internal
