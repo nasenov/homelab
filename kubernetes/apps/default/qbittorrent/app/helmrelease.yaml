@@ -63,6 +63,7 @@ spec:
     route:
       app:
         hostnames:
+          - qbittorrent.nasenov.dev
           - qb.nasenov.dev
         parentRefs:
           - name: internal

@@ -17,6 +17,7 @@ pages:
             title: Services
             cache: 1m
             sites:
+              # Media
               - title: Jellyfin
                 url: https://jellyfin.nasenov.dev
                 icon: di:jellyfin.svg
@@ -41,6 +42,19 @@ pages:
               - title: Autobrr
                 url: https://autobrr.nasenov.dev
                 icon: di:autobrr.svg
+              # Infrastructure
+              - title: Proxmox
+                url: https://pve.nasenov.dev:8006
+                icon: di:proxmox.svg
+              - title: Truenas
+                url: https://truenas.nasenov.dev
+                icon: di:truenas.svg
+              - title: Rook
+                url: https://rook.nasenov.dev
+                icon: di:rook.svg
+              - title: Minio
+                url: https://minio.nasenov.dev:9002
+                icon: di:minio.svg
 
           - type: bookmarks
             groups:
