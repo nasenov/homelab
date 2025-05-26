@@ -72,6 +72,9 @@ pages:
               - title: Alloy
                 url: https://alloy.nasenov.dev
                 icon: di:alloy.svg
+              - title: Gatus
+                url: https://gatus.nasenov.dev
+                icon: di:gatus.svg
 
           - type: monitor
             title: Automation
