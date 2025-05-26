@@ -26,12 +26,14 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: rook-ceph-cluster
+  name: &app rook-ceph-cluster
 spec:
   targetNamespace: rook-ceph
   interval: 30m
   retryInterval: 2m
   timeout: 15m
+  components:
+    - ../../../../components/gatus/guarded
   dependsOn:
     - name: rook-ceph
       namespace: rook-ceph
@@ -57,3 +59,7 @@ spec:
       kind: CephCluster
       current: status.ceph.health == 'HEALTH_OK'
       failed: status.ceph.health == 'HEALTH_ERR'
+  postBuild:
+    substitute:
+      APP: *app
+      GATUS_SUBDOMAIN: rook

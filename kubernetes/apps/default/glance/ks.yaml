@@ -3,15 +3,20 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: glance
+  name: &app glance
 spec:
   targetNamespace: default
   interval: 30m
   retryInterval: 2m
   timeout: 5m
+  components:
+    - ../../../../components/gatus/guarded
   path: ./kubernetes/apps/default/glance/app
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
+  postBuild:
+    substitute:
+      APP: *app
