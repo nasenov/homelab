@@ -11,7 +11,7 @@ spec:
     name: app-template
   install:
     remediation:
-      retries: -1
+      retries: 3
   upgrade:
     remediation:
       retries: 3
@@ -114,7 +114,6 @@ spec:
         storageClass: ceph-block
         accessMode: ReadWriteOnce
         size: 1Gi
-        # existingClaim: gatus
       config-file:
         type: configMap
         name: gatus-configmap
@@ -129,14 +128,14 @@ spec:
     rbac:
       roles:
         gatus:
-          type: Role
+          type: ClusterRole
           rules:
             - apiGroups: [""]
               resources: ["configmaps", "secrets"]
               verbs: ["get", "watch", "list"]
       bindings:
         gatus:
-          type: RoleBinding
+          type: ClusterRoleBinding
           roleRef:
             identifier: gatus
           subjects:
