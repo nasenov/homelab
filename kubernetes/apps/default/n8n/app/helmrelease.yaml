@@ -44,6 +44,8 @@ spec:
             envFrom:
               - secretRef:
                   name: n8n
+              - secretRef:
+                  name: n8n-xiaomi-body-compositon-workflow
             probes:
               liveness:
                 enabled: true
