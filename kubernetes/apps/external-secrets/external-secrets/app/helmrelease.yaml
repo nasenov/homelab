@@ -32,8 +32,6 @@ spec:
     image:
       repository: ghcr.io/external-secrets/external-secrets
 
-    concurrent: 2
-
     serviceMonitor:
       enabled: true
 
