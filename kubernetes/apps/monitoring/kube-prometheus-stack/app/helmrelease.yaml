@@ -83,7 +83,7 @@ spec:
 
       alertmanagerSpec:
         useExistingSecret: true
-        configSecret: alertmanager-configuration
+        configSecret: alertmanager
         storage:
           volumeClaimTemplate:
             spec:
