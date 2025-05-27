@@ -18,7 +18,13 @@ spec:
       namespace: rook-ceph
     - name: external-secrets-stores
       namespace: external-secrets
+    - name: prowlarr
+      namespace: default
     - name: qbittorrent
+      namespace: default
+    - name: radarr
+      namespace: default
+    - name: sonarr
       namespace: default
   path: ./kubernetes/apps/default/cross-seed/app
   prune: true
