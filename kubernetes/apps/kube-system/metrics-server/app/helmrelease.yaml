@@ -20,6 +20,8 @@ spec:
     remediation:
       retries: 3
   values:
+    args:
+      - --kubelet-insecure-tls
     metrics:
       enabled: true
     serviceMonitor:

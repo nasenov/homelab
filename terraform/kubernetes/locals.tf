@@ -137,8 +137,7 @@ locals {
     machine = {
       kubelet = {
         extraArgs = {
-          rotate-server-certificates = true
-          serialize-image-pulls      = false
+          serialize-image-pulls = false
         }
       }
     }
