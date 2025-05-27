@@ -14,5 +14,3 @@ provider "proxmox" {
 }
 
 provider "talos" {}
-
-provider "time" {}

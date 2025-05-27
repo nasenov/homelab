@@ -5,6 +5,11 @@ resource "helm_release" "prometheus_operator_crds" {
   chart            = "prometheus-operator-crds"
   version          = "20.0.0"
   create_namespace = true
+
+  lifecycle {
+    ignore_changes  = all
+    prevent_destroy = true
+  }
 }
 
 resource "helm_release" "cilium" {
@@ -20,6 +25,11 @@ resource "helm_release" "cilium" {
   values = [
     file("../../kubernetes/apps/kube-system/cilium/app/helm-values.yaml")
   ]
+
+  lifecycle {
+    ignore_changes  = all
+    prevent_destroy = true
+  }
 }
 
 resource "helm_release" "flux_operator" {
@@ -34,6 +44,11 @@ resource "helm_release" "flux_operator" {
   values = [
     file("../../kubernetes/apps/flux-system/flux-operator/app/values.yaml")
   ]
+
+  lifecycle {
+    ignore_changes  = all
+    prevent_destroy = true
+  }
 }
 
 resource "helm_release" "flux_instance" {
@@ -48,4 +63,9 @@ resource "helm_release" "flux_instance" {
   values = [
     file("../../kubernetes/apps/flux-system/flux-operator/instance/values.yaml")
   ]
+
+  lifecycle {
+    ignore_changes  = all
+    prevent_destroy = true
+  }
 }
