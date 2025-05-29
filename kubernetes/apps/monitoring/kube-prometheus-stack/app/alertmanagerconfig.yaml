@@ -1,0 +1,48 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/monitoring.coreos.com/alertmanagerconfig_v1alpha1.json
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: AlertmanagerConfig
+metadata:
+  name: alertmanager
+spec:
+  route:
+    receiver: discord
+    groupBy:
+      - alertname
+      - job
+    groupWait: 1m
+    groupInterval: 10m
+    repeatInterval: 12h
+    routes:
+      - receiver: "null"
+        matchers:
+          - name: alertname
+            value: InfoInhibitor
+            matchType: =
+          - name: alertname
+            value: Watchdog
+            matchType: =
+      - receiver: discord
+        matchers:
+          - name: severity
+            value: critical
+            matchType: =
+  inhibitRules:
+    - sourceMatch:
+        - name: severity
+          value: critical
+          matchType: =
+      targetMatch:
+        - name: severity
+          value: warning
+          matchType: =
+      equal:
+        - namespace
+        - alertname
+  receivers:
+    - name: "null"
+    - name: discord
+      discordConfigs:
+        - apiURL:
+            name: alertmanager
+            key: ALERTMANAGER_DISCORD_WEBHOOK_URL

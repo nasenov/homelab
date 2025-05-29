@@ -82,8 +82,11 @@ spec:
               sectionName: https
 
       alertmanagerSpec:
-        useExistingSecret: true
-        configSecret: alertmanager
+        alertmanagerConfiguration:
+          name: alertmanager
+          global:
+            resolveTimeout: 5m
+        externalUrl: https://alertmanager.nasenov.dev
         storage:
           volumeClaimTemplate:
             spec:
