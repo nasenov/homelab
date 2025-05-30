@@ -75,14 +75,6 @@ locals {
       gpu          = []
       usb          = []
     }
-    k8s-10 = {
-      ipv4_address = "192.168.0.30"
-      cpu_cores    = 4
-      memory       = 12288
-      hostpci      = []
-      gpu          = []
-      usb          = []
-    }
   }
 }
 
