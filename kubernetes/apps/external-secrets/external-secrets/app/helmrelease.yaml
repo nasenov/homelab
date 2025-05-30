@@ -32,9 +32,6 @@ spec:
     image:
       repository: ghcr.io/external-secrets/external-secrets
 
-    log:
-      level: debug
-
     serviceMonitor:
       enabled: true
 
