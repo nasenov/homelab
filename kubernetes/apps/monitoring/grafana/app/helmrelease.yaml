@@ -31,7 +31,7 @@ spec:
       main:
         enabled: true
         hostnames:
-          - grafana.nasenov.dev
+          - &domain grafana.nasenov.dev
         parentRefs:
           - name: internal
             namespace: kube-system
@@ -47,6 +47,9 @@ spec:
 
     admin:
       existingSecret: grafana-admin
+
+    env:
+      GF_SERVER_DOMAIN: *domain
 
     envFromSecrets:
       - name: grafana-postgres-configuration
