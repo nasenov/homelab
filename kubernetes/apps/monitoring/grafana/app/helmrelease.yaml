@@ -50,6 +50,7 @@ spec:
 
     env:
       GF_SERVER_DOMAIN: *domain
+      GF_SERVER_ROOT_URL: https:%(domain)s
 
     envFromSecrets:
       - name: grafana-postgres-configuration
