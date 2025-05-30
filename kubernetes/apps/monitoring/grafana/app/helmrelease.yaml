@@ -71,12 +71,12 @@ spec:
               maxLines: 1000
           - name: Postgres
             type: postgres
-            url: ${POSTGRES_DATASOURCE_URL}
-            user: ${POSTGRES_DATASOURCE_USER}
+            url: $POSTGRES_DATASOURCE_URL
+            user: $POSTGRES_DATASOURCE_USER
             secureJsonData:
-              password: ${POSTGRES_DATASOURCE_PASSWORD}
+              password: $POSTGRES_DATASOURCE_PASSWORD
             jsonData:
-              database: ${POSTGRES_DATASOURCE_DATABASE}
+              database: $POSTGRES_DATASOURCE_DATABASE
               sslmode: require
               maxOpenConns: 4
               maxIdleConnsAuto: true
