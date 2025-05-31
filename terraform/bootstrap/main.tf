@@ -1,20 +1,4 @@
-resource "helm_release" "prometheus_operator_crds" {
-  name             = "prometheus-operator-crds"
-  namespace        = "monitoring"
-  repository       = "https://prometheus-community.github.io/helm-charts"
-  chart            = "prometheus-operator-crds"
-  version          = "20.0.0"
-  create_namespace = true
-
-  lifecycle {
-    ignore_changes  = all
-    prevent_destroy = true
-  }
-}
-
 resource "helm_release" "cilium" {
-  depends_on = [helm_release.prometheus_operator_crds]
-
   name          = "cilium"
   namespace     = "kube-system"
   repository    = "https://helm.cilium.io"
@@ -35,11 +19,28 @@ resource "helm_release" "cilium" {
 resource "helm_release" "flux_operator" {
   depends_on = [helm_release.cilium]
 
-  name       = "flux-operator"
-  namespace  = "flux-system"
-  repository = "oci://ghcr.io/controlplaneio-fluxcd/charts"
-  chart      = "flux-operator"
-  version    = "0.21.0"
+  name             = "flux-operator"
+  namespace        = "flux-system"
+  repository       = "oci://ghcr.io/controlplaneio-fluxcd/charts"
+  chart            = "flux-operator"
+  version          = "0.21.0"
+  create_namespace = true
+
+  lifecycle {
+    ignore_changes  = all
+    prevent_destroy = true
+  }
+}
+
+resource "kubernetes_secret_v1" "sops_age" {
+  metadata {
+    name      = "sops-age"
+    namespace = helm_release.flux_operator.namespace
+  }
+
+  data = {
+    "age.agekey" = file("../../age.agekey")
+  }
 
   lifecycle {
     ignore_changes  = all
@@ -48,10 +49,8 @@ resource "helm_release" "flux_operator" {
 }
 
 resource "helm_release" "flux_instance" {
-  depends_on = [helm_release.flux_operator]
-
   name       = "flux-instance"
-  namespace  = "flux-system"
+  namespace  = helm_release.flux_operator.namespace
   repository = "oci://ghcr.io/controlplaneio-fluxcd/charts"
   chart      = "flux-instance"
   version    = "0.21.0"
