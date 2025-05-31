@@ -36,14 +36,6 @@ autoDirectNodeRoutes: true
 rollOutCiliumPods: true
 operator:
   rollOutPods: true
-  prometheus:
-    enabled: true
-    serviceMonitor:
-      enabled: true
-  dashboards:
-    enabled: true
-    annotations:
-      grafana_folder: Cilium
   # https://github.com/cilium/cilium/issues/28549
   tolerations:
     - key: node.kubernetes.io/not-ready
@@ -60,35 +52,11 @@ hubble:
       - port-distribution
       - icmp
       - httpV2:labelsContext=source_ip,source_namespace,source_workload,destination_ip,destination_namespace,destination_workload,traffic_direction
-    serviceMonitor:
-      enabled: true
-    dashboards:
-      enabled: true
-      annotations:
-        grafana_folder: Cilium
   relay:
     enabled: true
     rollOutPods: true
-    prometheus:
-      enabled: true
-      serviceMonitor:
-        enabled: true
   ui:
     enabled: true
     rollOutPods: true
-prometheus:
-  enabled: true
-  serviceMonitor:
-    enabled: true
-dashboards:
-  enabled: true
-  annotations:
-    grafana_folder: Cilium
 envoy:
   rollOutPods: true
-  prometheus:
-    enabled: true
-    serviceMonitor:
-      enabled: true
-gatewayAPI:
-  enabled: true
