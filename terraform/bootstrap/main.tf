@@ -50,7 +50,7 @@ resource "kubernetes_secret_v1" "sops_age" {
 
 resource "helm_release" "flux_instance" {
   name       = "flux-instance"
-  namespace  = helm_release.flux_operator.namespace
+  namespace  = kubernetes_secret_v1.sops_age.metadata[0].namespace
   repository = "oci://ghcr.io/controlplaneio-fluxcd/charts"
   chart      = "flux-instance"
   version    = "0.21.0"
