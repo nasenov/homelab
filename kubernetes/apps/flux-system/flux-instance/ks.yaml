@@ -12,6 +12,8 @@ spec:
   dependsOn:
     - name: flux-operator
       namespace: flux-system
+    - name: prometheus-operator-crds
+      namespace: monitoring
   path: ./kubernetes/apps/flux-system/flux-instance/app
   prune: false
   sourceRef:

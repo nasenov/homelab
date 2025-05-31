@@ -41,10 +41,6 @@ resource "helm_release" "flux_operator" {
   chart      = "flux-operator"
   version    = "0.21.0"
 
-  values = [
-    file("../../kubernetes/apps/flux-system/flux-operator/app/values.yaml")
-  ]
-
   lifecycle {
     ignore_changes  = all
     prevent_destroy = true
@@ -61,7 +57,7 @@ resource "helm_release" "flux_instance" {
   version    = "0.21.0"
 
   values = [
-    file("../../kubernetes/apps/flux-system/flux-operator/instance/values.yaml")
+    file("../../kubernetes/apps/flux-system/flux-instance/app/values.yaml")
   ]
 
   lifecycle {
