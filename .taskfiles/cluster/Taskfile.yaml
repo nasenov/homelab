@@ -12,7 +12,6 @@ tasks:
       - task: terraform-apply
         vars:
           TERRAFORM_DIRECTORY: "{{.ROOT_DIR}}/terraform/kubernetes"
-      - task: terraform-output
       - task: wipe-rook-disks
       - task: terraform-apply
         vars:
@@ -29,17 +28,6 @@ tasks:
     internal: true
     dir: "{{.TERRAFORM_DIRECTORY}}"
     cmd: terraform apply
-    preconditions:
-      - which terraform
-
-  terraform-output:
-    internal: true
-    dir: "{{.ROOT_DIR}}/terraform/kubernetes"
-    cmds:
-      - terraform output -raw kubeconfig > ~/.kube/config
-      - chmod 600 ~/.kube/config
-      - terraform output -raw talosconfig > ~/.talos/config
-      - chmod 600 ~/.talos/config
     preconditions:
       - which terraform
 

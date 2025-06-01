@@ -114,8 +114,7 @@ resource "talos_image_factory_schematic" "this" {
         officialExtensions = data.talos_image_factory_extensions_versions.this.extensions_info[*].name
       }
     }
-    }
-  )
+  })
 }
 
 data "talos_image_factory_urls" "this" {
@@ -124,7 +123,11 @@ data "talos_image_factory_urls" "this" {
   platform      = "nocloud"
 }
 
-resource "talos_machine_secrets" "this" {}
+resource "talos_machine_secrets" "this" {
+  depends_on = [
+    proxmox_virtual_environment_vm.k8s
+  ]
+}
 
 data "talos_machine_configuration" "controlplane" {
   cluster_name       = var.talos_cluster_name
@@ -210,6 +213,12 @@ resource "talos_cluster_kubeconfig" "this" {
   node                 = local.controlplane_virtual_machines.k8s-1.ipv4_address
 }
 
+resource "local_sensitive_file" "kubeconfig" {
+  filename        = pathexpand("~/.kube/config")
+  file_permission = "0600"
+  content         = talos_cluster_kubeconfig.this.kubeconfig_raw
+}
+
 data "talos_client_configuration" "this" {
   depends_on = [
     talos_machine_configuration_apply.controlplane,
@@ -223,7 +232,13 @@ data "talos_client_configuration" "this" {
   nodes                = [for k, v in merge(local.controlplane_virtual_machines, local.worker_virtual_machines) : v.ipv4_address]
 }
 
-data "talos_cluster_health" "this" {
+resource "local_sensitive_file" "talosconfig" {
+  filename        = pathexpand("~/.talos/config")
+  file_permission = "0600"
+  content         = data.talos_client_configuration.this.talos_config
+}
+
+data "talos_cluster_health" "talos" {
   depends_on = [
     talos_machine_configuration_apply.controlplane,
     talos_machine_configuration_apply.worker,
@@ -235,6 +250,41 @@ data "talos_cluster_health" "this" {
   control_plane_nodes    = [for k, v in local.controlplane_virtual_machines : v.ipv4_address]
   worker_nodes           = [for k, v in local.worker_virtual_machines : v.ipv4_address]
   skip_kubernetes_checks = true
+  timeouts = {
+    read = "5m"
+  }
+}
+
+resource "helm_release" "cilium" {
+  depends_on = [
+    data.talos_cluster_health.talos
+  ]
+
+  name          = "cilium"
+  namespace     = "kube-system"
+  repository    = "https://helm.cilium.io"
+  chart         = "cilium"
+  version       = "1.17.4"
+  wait_for_jobs = true
+
+  values = [
+    file("../../kubernetes/apps/kube-system/cilium/app/helm-values.yaml")
+  ]
+
+  lifecycle {
+    ignore_changes = all
+  }
+}
+
+data "talos_cluster_health" "kubernetes" {
+  depends_on = [
+    helm_release.cilium
+  ]
+
+  client_configuration = talos_machine_secrets.this.client_configuration
+  endpoints            = [for k, v in local.controlplane_virtual_machines : v.ipv4_address]
+  control_plane_nodes  = [for k, v in local.controlplane_virtual_machines : v.ipv4_address]
+  worker_nodes         = [for k, v in local.worker_virtual_machines : v.ipv4_address]
 
   timeouts = {
     read = "5m"
