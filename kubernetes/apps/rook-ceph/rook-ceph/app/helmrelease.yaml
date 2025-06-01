@@ -20,6 +20,8 @@ spec:
       repository: ghcr.io/rook/ceph
 
     csi:
+      enableCephfsDriver: false
+      enableCephfsSnapshotter: false
       enableLiveness: true
       serviceMonitor:
         enabled: true
