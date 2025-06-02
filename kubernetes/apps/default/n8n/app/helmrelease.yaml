@@ -31,7 +31,7 @@ spec:
           app:
             image:
               repository: ghcr.io/n8n-io/n8n
-              tag: 1.96.0@sha256:a723c334d2010fb0b4ecd286299d22a82976b9663998efc319e528e5cf14b569
+              tag: 1.96.0@sha256:63b48ed7e877b26b8a7bcd628bcf328ae5fde63b937ede8b996d18c95106b6cb
             env:
               GENERIC_TIMEZONE: Europe/Sofia
               N8N_PROTOCOL: https
