@@ -165,8 +165,8 @@ resource "proxmox_virtual_environment_vm" "dns" {
   }
 
   memory {
-    dedicated = 1024
-    floating  = 1024
+    dedicated = 512
+    floating  = 512
   }
 
   network_device {
