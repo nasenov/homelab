@@ -38,7 +38,7 @@ locals {
     k8s-5 = {
       ipv4_address = "192.168.0.25"
       cpu_cores    = 8
-      memory       = 12288
+      memory       = 16384
       hostpci      = ["0000:02:00"]
       gpu          = []
       usb          = ["10c4:ea60"]
@@ -46,7 +46,7 @@ locals {
     k8s-6 = {
       ipv4_address = "192.168.0.26"
       cpu_cores    = 8
-      memory       = 12288
+      memory       = 16384
       hostpci      = ["0000:09:00"]
       gpu          = []
       usb          = []
