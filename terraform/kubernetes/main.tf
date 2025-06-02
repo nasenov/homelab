@@ -58,7 +58,7 @@ resource "proxmox_virtual_environment_vm" "k8s" {
     for_each = each.value.gpu
 
     content {
-      device = "hostpci0"
+      device = "hostpci1"
       id     = hostpci.value
       pcie   = true
       rombar = false

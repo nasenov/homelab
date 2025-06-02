@@ -29,49 +29,25 @@ locals {
   worker_virtual_machines = {
     k8s-4 = {
       ipv4_address = "192.168.0.24"
-      cpu_cores    = 4
+      cpu_cores    = 8
       memory       = 12288
       hostpci      = ["0000:01:00"]
-      gpu          = []
+      gpu          = ["0000:00:02"]
       usb          = []
     }
     k8s-5 = {
       ipv4_address = "192.168.0.25"
-      cpu_cores    = 4
+      cpu_cores    = 8
       memory       = 12288
       hostpci      = ["0000:02:00"]
       gpu          = []
-      usb          = []
+      usb          = ["10c4:ea60"]
     }
     k8s-6 = {
       ipv4_address = "192.168.0.26"
-      cpu_cores    = 4
+      cpu_cores    = 8
       memory       = 12288
       hostpci      = ["0000:09:00"]
-      gpu          = []
-      usb          = []
-    }
-    k8s-7 = {
-      ipv4_address = "192.168.0.27"
-      cpu_cores    = 4
-      memory       = 12288
-      hostpci      = []
-      gpu          = ["0000:00:02"]
-      usb          = ["10c4:ea60"]
-    }
-    k8s-8 = {
-      ipv4_address = "192.168.0.28"
-      cpu_cores    = 4
-      memory       = 12288
-      hostpci      = []
-      gpu          = []
-      usb          = []
-    }
-    k8s-9 = {
-      ipv4_address = "192.168.0.29"
-      cpu_cores    = 4
-      memory       = 12288
-      hostpci      = []
       gpu          = []
       usb          = []
     }
