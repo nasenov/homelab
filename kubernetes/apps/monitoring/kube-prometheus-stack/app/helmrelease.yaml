@@ -65,10 +65,6 @@ spec:
             static_configs:
               - targets:
                   - truenas.nasenov.dev:9633
-          - job_name: blocky
-            static_configs:
-              - targets:
-                  - 192.168.0.53:4000
 
     alertmanager:
       route:

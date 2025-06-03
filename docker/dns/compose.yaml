@@ -1,14 +1,25 @@
 ---
 services:
-  blocky:
-    container_name: blocky
-    image: ghcr.io/0xerr0r/blocky:v0.26
+  pihole:
+    container_name: pihole
+    image: ghcr.io/pi-hole/pihole:2025.05.1
     restart: unless-stopped
     ports:
-      - "4000:4000/tcp"
+      - "80:80/tcp"
       - "53:53/tcp"
       - "53:53/udp"
     environment:
-      - TZ=Europe/Sofia
+      TZ: Europe/Sofia
+      FTLCONF_dns_listeningMode: all
+      WEBPASSWORD_FILE: pi_hole_admin_password
+    secrets:
+      - pi_hole_admin_password
     volumes:
-      - ./config.yaml:/app/config.yml
+      - pihole:/etc/pihole
+
+secrets:
+  pi_hole_admin_password:
+    file: pi_hole_admin_password
+
+volumes:
+  pihole:
