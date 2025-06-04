@@ -45,5 +45,6 @@ spec:
     registry: noop
     domainFilters:
       - nasenov.dev
+      - tplinkwifi.net
     serviceMonitor:
       enabled: true
