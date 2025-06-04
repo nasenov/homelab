@@ -21,6 +21,9 @@ spec:
       retries: 3
   values:
     fullnameOverride: pihole-dns
+    image:
+      repository: registry.k8s.io/external-dns/external-dns
+      tag: v0.17.0@sha256:85eba2727b410c8f8093d641a4b1a29671878db94d525a70a4108d10ba8eef5f
     provider:
       name: pihole
     env:
@@ -30,8 +33,7 @@ spec:
             name: pihole-dns
             key: EXTERNAL_DNS_PIHOLE_PASSWORD
     extraArgs:
-      # TODO: enable once 0.17.0 is released
-      # - --pihole-api-version=6
+      - --pihole-api-version=6
       - --pihole-server=http://192.168.0.53
     triggerLoopOnEvent: true
     policy: sync
