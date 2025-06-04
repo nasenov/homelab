@@ -20,3 +20,23 @@ spec:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: pihole-dns-dnsendpoint
+spec:
+  targetNamespace: networking
+  interval: 30m
+  retryInterval: 2m
+  timeout: 5m
+  dependsOn:
+    - name: pihole-dns
+      namespace: networking
+  path: ./kubernetes/apps/networking/pihole-dns/dnsendpoint
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+    namespace: flux-system

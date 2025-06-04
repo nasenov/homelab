@@ -35,10 +35,13 @@ spec:
     extraArgs:
       - --pihole-api-version=6
       - --pihole-server=http://192.168.0.53
+      - --crd-source-apiversion=externaldns.k8s.io/v1alpha1
+      - --crd-source-kind=DNSEndpoint
     triggerLoopOnEvent: true
     policy: sync
     sources:
       - gateway-httproute
+      - crd
     registry: noop
     domainFilters:
       - nasenov.dev

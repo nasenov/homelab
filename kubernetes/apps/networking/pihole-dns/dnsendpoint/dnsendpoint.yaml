@@ -1,0 +1,60 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/externaldns.k8s.io/dnsendpoint_v1alpha1.json
+apiVersion: externaldns.k8s.io/v1alpha1
+kind: DNSEndpoint
+metadata:
+  name: tplink
+spec:
+  endpoints:
+    - dnsName: tplinkwifi.net
+      recordType: A
+      targets:
+        - 192.168.0.1
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/externaldns.k8s.io/dnsendpoint_v1alpha1.json
+apiVersion: externaldns.k8s.io/v1alpha1
+kind: DNSEndpoint
+metadata:
+  name: proxmox
+spec:
+  endpoints:
+    - dnsName: pve.nasenov.dev
+      recordType: A
+      targets:
+        - 192.168.0.10
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/externaldns.k8s.io/dnsendpoint_v1alpha1.json
+apiVersion: externaldns.k8s.io/v1alpha1
+kind: DNSEndpoint
+metadata:
+  name: truenas
+spec:
+  endpoints:
+    - dnsName: truenas.nasenov.dev
+      recordType: A
+      targets:
+        - 192.168.0.15
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/externaldns.k8s.io/dnsendpoint_v1alpha1.json
+apiVersion: externaldns.k8s.io/v1alpha1
+kind: DNSEndpoint
+metadata:
+  name: minio
+spec:
+  endpoints:
+    - dnsName: minio.nasenov.dev
+      recordType: A
+      targets:
+        - 192.168.0.15
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/externaldns.k8s.io/dnsendpoint_v1alpha1.json
+apiVersion: externaldns.k8s.io/v1alpha1
+kind: DNSEndpoint
+metadata:
+  name: s3
+spec:
+  endpoints:
+    - dnsName: s3.nasenov.dev
+      recordType: A
+      targets:
+        - 192.168.0.15
