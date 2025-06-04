@@ -41,6 +41,7 @@ spec:
     policy: sync
     sources:
       - gateway-httproute
+      - service
       - crd
     registry: noop
     domainFilters:
