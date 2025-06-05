@@ -209,6 +209,14 @@ locals {
     }
   })
 
+  talos_cluster_coredns_config_patch = yamlencode({
+    cluster = {
+      coreDNS = {
+        disabled = true
+      }
+    }
+  })
+
   talos_user_volume_config_patch = yamlencode({
     apiVersion = "v1alpha1"
     kind       = "UserVolumeConfig"

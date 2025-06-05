@@ -158,7 +158,8 @@ resource "talos_machine_configuration_apply" "controlplane" {
     local.talos_cluster_etcd_config_patch,
     local.talos_cluster_apiserver_config_patch,
     local.talos_kubernetes_talos_api_access_config_patch,
-    local.talos_user_volume_config_patch
+    local.talos_user_volume_config_patch,
+    local.talos_cluster_coredns_config_patch
   ]
 }
 
@@ -198,7 +199,8 @@ resource "talos_machine_configuration_apply" "worker" {
     local.talos_containerd_config_patch,
     local.talos_cluster_network_config_patch,
     local.talos_discovery_service_patch,
-    local.talos_user_volume_config_patch
+    local.talos_user_volume_config_patch,
+    local.talos_cluster_coredns_config_patch
   ]
 }
 
@@ -276,9 +278,29 @@ resource "helm_release" "cilium" {
   }
 }
 
-data "talos_cluster_health" "kubernetes" {
+resource "helm_release" "coredns" {
   depends_on = [
     helm_release.cilium
+  ]
+
+  name       = "coredns"
+  namespace  = "kube-system"
+  repository = "oci://ghcr.io/coredns/charts"
+  chart      = "coredns"
+  version    = "1.42.2"
+
+  values = [
+    file("../../kubernetes/apps/kube-system/coredns/app/helm-values.yaml")
+  ]
+
+  lifecycle {
+    ignore_changes = all
+  }
+}
+
+data "talos_cluster_health" "kubernetes" {
+  depends_on = [
+    helm_release.coredns
   ]
 
   client_configuration = talos_machine_secrets.this.client_configuration
