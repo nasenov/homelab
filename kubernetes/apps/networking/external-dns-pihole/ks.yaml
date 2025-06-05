@@ -3,7 +3,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: pihole-dns
+  name: external-dns-pihole
 spec:
   targetNamespace: networking
   interval: 30m
@@ -14,7 +14,7 @@ spec:
       namespace: monitoring
     - name: external-secrets-stores
       namespace: external-secrets
-  path: ./kubernetes/apps/networking/pihole-dns/app
+  path: ./kubernetes/apps/networking/external-dns-pihole/app
   prune: true
   sourceRef:
     kind: GitRepository
@@ -25,16 +25,16 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: pihole-dns-dnsendpoint
+  name: external-dns-pihole-dnsendpoint
 spec:
   targetNamespace: networking
   interval: 30m
   retryInterval: 2m
   timeout: 5m
   dependsOn:
-    - name: pihole-dns
+    - name: external-dns-pihole
       namespace: networking
-  path: ./kubernetes/apps/networking/pihole-dns/dnsendpoint
+  path: ./kubernetes/apps/networking/external-dns-pihole/dnsendpoint
   prune: true
   sourceRef:
     kind: GitRepository

@@ -3,7 +3,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: cloudflare-tunnel
+  name: cloudflared
 spec:
   targetNamespace: networking
   interval: 30m
@@ -14,7 +14,7 @@ spec:
       namespace: monitoring
     - name: external-secrets-stores
       namespace: external-secrets
-  path: ./kubernetes/apps/networking/cloudflare-tunnel/app
+  path: ./kubernetes/apps/networking/cloudflared/app
   prune: true
   sourceRef:
     kind: GitRepository

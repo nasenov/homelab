@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: cloudflare-dns
+  name: external-dns-pihole
 spec:
   interval: 30m
   chart:
@@ -12,7 +12,7 @@ spec:
       version: 1.16.1
       sourceRef:
         kind: HelmRepository
-        name: cloudflare-dns
+        name: external-dns-pihole
   install:
     remediation:
       retries: 3
@@ -20,32 +20,32 @@ spec:
     remediation:
       retries: 3
   values:
-    fullnameOverride: cloudflare-dns
+    fullnameOverride: external-dns-pihole
+    image:
+      repository: registry.k8s.io/external-dns/external-dns
+      tag: v0.17.0@sha256:85eba2727b410c8f8093d641a4b1a29671878db94d525a70a4108d10ba8eef5f
     provider:
-      name: cloudflare
+      name: pihole
     env:
-      - name: CF_API_TOKEN
+      - name: EXTERNAL_DNS_PIHOLE_PASSWORD
         valueFrom:
           secretKeyRef:
-            name: cloudflare-dns
-            key: CF_API_TOKEN
-      - name: CF_ZONE_ID
-        valueFrom:
-          secretKeyRef:
-            name: cloudflare-dns
-            key: CF_ZONE_ID
+            name: external-dns-pihole
+            key: EXTERNAL_DNS_PIHOLE_PASSWORD
     extraArgs:
-      - --zone-id-filter=$(CF_ZONE_ID)
-      - --cloudflare-dns-records-per-page=1000
-      - --cloudflare-proxied
-      - --gateway-name=external
+      - --pihole-api-version=6
+      - --pihole-server=http://192.168.0.53
+      - --crd-source-apiversion=externaldns.k8s.io/v1alpha1
+      - --crd-source-kind=DNSEndpoint
     triggerLoopOnEvent: true
     policy: sync
     sources:
       - gateway-httproute
-    txtOwnerId: default
-    txtPrefix: k8s.
+      - service
+      - crd
+    registry: noop
     domainFilters:
       - nasenov.dev
+      - tplinkwifi.net
     serviceMonitor:
       enabled: true
