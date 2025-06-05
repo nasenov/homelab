@@ -8,7 +8,7 @@ spec:
   interval: 30m
   url: oci://ghcr.io/spegel-org/helm-charts/spegel
   ref:
-    tag: 0.2.0
+    tag: 0.3.0
   layerSelector:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
