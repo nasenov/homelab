@@ -11,6 +11,9 @@ pages:
             title: Media
             cache: 1m
             sites:
+              - title: Fusion
+                url: https://feeds.nasenov.dev
+                icon: si:rss
               - title: Jellyfin
                 url: https://jellyfin.nasenov.dev
                 icon: di:jellyfin.svg
@@ -52,6 +55,9 @@ pages:
               - title: Minio
                 url: https://minio.nasenov.dev:9002
                 icon: di:minio.svg
+              - title: Pi-hole
+                url: http://192.168.0.53/admin
+                icon: di:pi-hole.svg
 
           - type: monitor
             title: Monitoring
