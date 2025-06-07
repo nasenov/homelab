@@ -24,3 +24,11 @@ endpoints:
       hide-hostname: true
     conditions:
       - "[CONNECTED] == true"
+  - name: flux-webhook
+    group: external
+    url: https://flux-webhook.nasenov.dev
+    interval: 1m
+    client:
+      dns-resolver: tcp://1.1.1.1:53
+    conditions:
+      - "[STATUS] == 404"

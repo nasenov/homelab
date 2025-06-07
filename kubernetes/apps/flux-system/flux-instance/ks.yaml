@@ -12,6 +12,10 @@ spec:
   dependsOn:
     - name: flux-operator
       namespace: flux-system
+    - name: cilium
+      namespace: kube-system
+    - name: external-secrets-stores
+      namespace: external-secrets
     - name: prometheus-operator-crds
       namespace: monitoring
   path: ./kubernetes/apps/flux-system/flux-instance/app
