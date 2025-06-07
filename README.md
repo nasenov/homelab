@@ -31,6 +31,8 @@
 |----------------------------------------------|---------------------------------------------------------------|---------------|
 | [Bitwarden](https://bitwarden.com/)          | Secrets with [External Secrets](https://external-secrets.io/) | Free          |
 | [Cloudflare](https://cloudflare.com/)        | Domain, S3 and Tunnel                                         | ~$12/yr       |
+| [Discord](https://discord.com/)              | Alerts and Notifications                                      | Free          |
 | [Github](https://github.com/)                | Github Actions                                                | Free          |
+| [Let's Encrypt](https://letsencrypt.org/)    | TLS certificates                                              | Free          |
 | [Terraform Cloud](https://app.terraform.io/) | Terraform State                                               | Free          |
 |                                              |                                                               | Total: ~$1/mo |
