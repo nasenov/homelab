@@ -149,22 +149,6 @@ locals {
     }
   })
 
-  talos_discovery_service_patch = yamlencode({
-    cluster = {
-      discovery = {
-        enabled = true
-        registries = {
-          service = {
-            disabled = true
-          }
-          kubernetes = {
-            disabled = false
-          }
-        }
-      }
-    }
-  })
-
   talos_cluster_controller_manager_config_patch = yamlencode({
     cluster = {
       controllerManager = {

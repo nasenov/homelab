@@ -152,7 +152,6 @@ resource "talos_machine_configuration_apply" "controlplane" {
     local.talos_kubelet_config_patch,
     local.talos_containerd_config_patch,
     local.talos_cluster_network_config_patch,
-    local.talos_discovery_service_patch,
     local.talos_cluster_controller_manager_config_patch,
     local.talos_cluster_scheduler_config_patch,
     local.talos_cluster_etcd_config_patch,
@@ -198,7 +197,6 @@ resource "talos_machine_configuration_apply" "worker" {
     local.talos_kubelet_config_patch,
     local.talos_containerd_config_patch,
     local.talos_cluster_network_config_patch,
-    local.talos_discovery_service_patch,
     local.talos_user_volume_config_patch,
     local.talos_cluster_coredns_config_patch
   ]
