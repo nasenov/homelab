@@ -5,6 +5,7 @@ version: "3"
 includes:
   cluster: .taskfiles/cluster
   kubernetes: .taskfiles/kubernetes
+  volsync: .taskfiles/volsync
 
 tasks:
   default:
