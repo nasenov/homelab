@@ -43,6 +43,12 @@ This is a mono repository for my home infrastructure and Kubernetes cluster. I t
 
 ---
 
+## <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f30e/512.gif" alt="🌎" width="20" height="20"> DNS
+
+In my cluster there are two instances of [ExternalDNS](https://github.com/kubernetes-sigs/external-dns) running. One for syncing private DNS records to my `Pi-hole`, while another instance syncs public DNS to `Cloudflare`. This setup is managed by creating httproutes with two specific gateways: `internal` for private DNS and `external` for public DNS. The `external-dns` instances then syncs the DNS records to their respective platforms accordingly.
+
+---
+
 ## <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/2699_fe0f/512.gif" alt="⚙" width="20" height="20"> Hardware
 
 | Device                           | Num | OS Disk Size | Data Disk Size                                   | Ram   | OS      | Function         |
