@@ -29,6 +29,43 @@ This is a mono repository for my home infrastructure and Kubernetes cluster. I t
 
 ---
 
+## <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f331/512.gif" alt="🌱" width="20" height="20"> Kubernetes
+
+My Kubernetes cluster is deployed with [Talos](https://www.talos.dev).
+
+### Core Components
+
+- [cert-manager](https://github.com/cert-manager/cert-manager): Creates TLS certificates for services in my cluster.
+- [cilium](https://github.com/cilium/cilium): eBPF-based networking for my workloads.
+- [cloudflared](https://github.com/cloudflare/cloudflared): Enables Cloudflare secure access to my routes.
+- [external-dns](https://github.com/kubernetes-sigs/external-dns): Automatically syncs ingress DNS records to a DNS provider.
+- [external-secrets](https://github.com/external-secrets/external-secrets): Managed Kubernetes secrets using [Bitwarden](https://bitwarden.com/).
+- [rook](https://github.com/rook/rook): Distributed block storage for peristent storage.
+- [sops](https://github.com/getsops/sops): Managed secrets for Kubernetes and Terraform which are commited to Git.
+- [spegel](https://github.com/spegel-org/spegel): Stateless cluster local OCI registry mirror.
+- [volsync](https://github.com/backube/volsync): Backup and recovery of persistent volume claims.
+
+### GitOps
+
+[Flux](https://github.com/fluxcd/flux2) watches the clusters in my [kubernetes](./kubernetes/) folder (see Directories below) and makes the changes to my clusters based on the state of my Git repository.
+
+The way Flux works for me here is it will recursively search the `kubernetes/apps` folder until it finds the most top level `kustomization.yaml` per directory and then apply all the resources listed in it. That aforementioned `kustomization.yaml` will generally only have a namespace resource and one or many Flux kustomizations (`ks.yaml`). Under the control of those Flux kustomizations there will be a `HelmRelease` or other resources related to the application which will be applied.
+
+[Renovate](https://github.com/renovatebot/renovate) watches my **entire** repository looking for dependency updates, when they are found a PR is automatically created. When some PRs are merged Flux applies the changes to my cluster.
+
+### Directories
+
+This Git repository contains the following directories under [Kubernetes](./kubernetes/).
+
+```sh
+📁 kubernetes
+├── 📁 apps       # applications
+├── 📁 components # re-useable kustomize components
+└── 📁 cluster    # flux system configuration
+```
+
+---
+
 ## <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f636_200d_1f32b_fe0f/512.gif" alt="😶" width="20" height="20"> Cloud Dependencies
 
 While most of my infrastructure and workloads are self-hosted I do rely upon the cloud for certain key parts of my setup.
