@@ -21,7 +21,7 @@ spec:
 
         # System Rules
         - alert: ExporterDown
-          expr: avg_over_time(up[5m]) < 0.5
+          expr: avg_over_time(up{job="database/postgres"}[5m]) < 0.5
           for: 10s
           labels:
             service: system
