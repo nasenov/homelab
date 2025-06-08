@@ -29,7 +29,9 @@ This is a mono repository for my home infrastructure and Kubernetes cluster. I t
 
 ---
 
-## ☁️ Cloud Dependencies
+## <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f636_200d_1f32b_fe0f/512.gif" alt="😶" width="20" height="20"> Cloud Dependencies
+
+While most of my infrastructure and workloads are self-hosted I do rely upon the cloud for certain key parts of my setup.
 
 | Service                                      | Use                                                           | Cost          |
 |----------------------------------------------|---------------------------------------------------------------|---------------|
