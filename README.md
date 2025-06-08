@@ -40,3 +40,9 @@ This is a mono repository for my home infrastructure and Kubernetes cluster. I t
 | [Let's Encrypt](https://letsencrypt.org/)    | TLS certificates                                              | Free          |
 | [Terraform Cloud](https://app.terraform.io/) | Terraform State                                               | Free          |
 |                                              |                                                               | Total: ~$1/mo |
+
+---
+
+## <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f64f/512.gif" alt="🙏" width="20" height="20"> Gratitude and Thanks
+
+Thanks to all the people who donate their time to the [Home Operations](https://discord.gg/home-operations) Discord community. Be sure to check out [kubesearch.dev](https://kubesearch.dev/) for ideas on how to deploy applications or get ideas on what you could deploy.
