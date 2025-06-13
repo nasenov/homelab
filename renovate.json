@@ -8,11 +8,11 @@
     ":dependencyDashboard",
     ":semanticCommits",
     ":separatePatchReleases",
-    "github>n-asenov/homelab//.renovate/customManagers.json",
-    "github>n-asenov/homelab//.renovate/grafanaDashboards.json",
-    "github>n-asenov/homelab//.renovate/groups.json",
-    "github>n-asenov/homelab//.renovate/labels.json",
-    "github>n-asenov/homelab//.renovate/semanticCommits.json"
+    "github>nasenov/homelab//.renovate/customManagers.json",
+    "github>nasenov/homelab//.renovate/grafanaDashboards.json",
+    "github>nasenov/homelab//.renovate/groups.json",
+    "github>nasenov/homelab//.renovate/labels.json",
+    "github>nasenov/homelab//.renovate/semanticCommits.json"
   ],
   "dependencyDashboardTitle": "Renovate Dashboard",
   "flux": {

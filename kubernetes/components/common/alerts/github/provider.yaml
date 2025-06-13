@@ -6,6 +6,6 @@ metadata:
   name: github
 spec:
   type: github
-  address: https://github.com/n-asenov/homelab
+  address: https://github.com/nasenov/homelab
   secretRef:
     name: github-token

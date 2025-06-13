@@ -12,7 +12,7 @@ instance:
     networkPolicy: false
   sync:
     kind: GitRepository
-    url: https://github.com/n-asenov/homelab
+    url: https://github.com/nasenov/homelab
     ref: refs/heads/main
     path: kubernetes/cluster
   kustomize:
