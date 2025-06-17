@@ -165,28 +165,19 @@ resource "cloudflare_zero_trust_tunnel_cloudflared_config" "homelab" {
   tunnel_id  = cloudflare_zero_trust_tunnel_cloudflared.homelab.id
   source     = "cloudflare"
   config = {
-    # https://github.com/cloudflare/terraform-provider-cloudflare/issues/5508
-    # origin_request = {
-    #   http2_origin       = true
-    #   origin_server_name = "external.nasenov.dev"
-    # }
+    origin_request = {
+      http2_origin       = true
+      origin_server_name = "external.nasenov.dev"
+    }
 
     ingress = [
       {
         hostname = "nasenov.dev"
         service  = "https://cilium-gateway-external.kube-system.svc.cluster.local"
-        origin_request = {
-          http2_origin       = true
-          origin_server_name = "external.nasenov.dev"
-        }
       },
       {
         hostname = "*.nasenov.dev"
         service  = "https://cilium-gateway-external.kube-system.svc.cluster.local"
-        origin_request = {
-          http2_origin       = true
-          origin_server_name = "external.nasenov.dev"
-        }
       },
       {
         service = "http_status:404"
