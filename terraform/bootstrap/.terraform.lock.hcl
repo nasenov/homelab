@@ -5,16 +5,6 @@ provider "registry.terraform.io/hashicorp/helm" {
   version     = "3.0.0"
   constraints = "3.0.0"
   hashes = [
-    "h1:+eRFXib39AaCz3iPpnBJnRP4tYOA4+hMVhZeRBuCeDA=",
-    "h1:9qGGIXRoyym+aeaJwmTdjjPURGPi9Ynedy7iPAVdoRw=",
-    "h1:Gl5PwPm8zAq3Bd5xMs0aQSzNoFUz2WKJw7kpcTQ7c8o=",
-    "h1:InNPn1rD2zl75RQasoc0qyvZE/O6E5V+trpmTSqVgJU=",
-    "h1:M/wE8hE8cLzwRpsffZSi6eu1a9oV5KxgiB+sHvGIDhA=",
-    "h1:QwVKY5A6YVUA/G6nYNc4XkaO1+j9VZA40MiZP7f1Ucg=",
-    "h1:WYHYD4XHvQwDzONUEVOBPwFswe3Yq/zXxwlERtFpUkU=",
-    "h1:ctdAK5sKNcUzAGl+GA/8JdJD7t1HxsiSydaFo6IRqxA=",
-    "h1:eC+8BXxrAyj20j3WmKVGpbjkNkB+McN3WjoFKyDrMGI=",
-    "h1:pYsiqK/qzv+4VvD+fPDhRTPQAmDcuAs5Gm8AYJzel1s=",
     "h1:xh5aXmIgE1ttbTGir29sy+u07KZKkhhEMuSIix7pZ/U=",
     "zh:40290e0d74b8ad5d4817dfa7c9abfd7d1b09ebb2ef6c9369fe66676c3e30899a",
     "zh:53bbc23a4e9bdc759522959e63dffbc49ec0e0edccba63588c13d03bcf139dda",
