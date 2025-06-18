@@ -62,7 +62,6 @@ spec:
 
     service:
       app:
-        controller: cross-seed
         ports:
           http:
             port: 80

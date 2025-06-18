@@ -39,7 +39,6 @@ spec:
 
     service:
       app:
-        controller: home-assistant
         ports:
           http:
             port: 80
@@ -54,10 +53,6 @@ spec:
           - name: internal
             namespace: kube-system
             sectionName: https
-        rules:
-          - backendRefs:
-              - identifier: app
-                port: 80
 
     persistence:
       config:

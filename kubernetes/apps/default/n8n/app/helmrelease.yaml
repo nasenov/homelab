@@ -82,14 +82,12 @@ spec:
 
     service:
       app:
-        controller: n8n
         ports:
           http:
             port: *port
 
     serviceMonitor:
       app:
-        serviceName: n8n
         endpoints:
           - port: http
 
@@ -101,10 +99,6 @@ spec:
           - name: internal
             namespace: kube-system
             sectionName: https
-        rules:
-          - backendRefs:
-              - identifier: app
-                port: *port
 
     persistence:
       config:

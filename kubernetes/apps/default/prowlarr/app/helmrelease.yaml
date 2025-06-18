@@ -59,7 +59,6 @@ spec:
 
     service:
       app:
-        controller: prowlarr
         ports:
           http:
             port: 80
@@ -72,11 +71,7 @@ spec:
         parentRefs:
           - name: internal
             namespace: kube-system
-            sectionName: https
-        rules:
-          - backendRefs:
-              - identifier: app
-                port: 80
+            sectionName: https\
 
     persistence:
       config:

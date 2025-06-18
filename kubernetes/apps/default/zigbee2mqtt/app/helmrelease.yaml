@@ -63,7 +63,6 @@ spec:
 
     service:
       app:
-        controller: zigbee2mqtt
         ports:
           http:
             port: 8080
@@ -77,10 +76,6 @@ spec:
           - name: internal
             namespace: kube-system
             sectionName: https
-        rules:
-          - backendRefs:
-              - identifier: app
-                port: 8080
 
     persistence:
       config:

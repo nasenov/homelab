@@ -49,14 +49,12 @@ spec:
 
     service:
       app:
-        controller: emqx-exporter
         ports:
           metrics:
             port: 8085
 
     serviceMonitor:
       app:
-        serviceName: emqx-exporter
         endpoints:
           - port: metrics
             path: /metrics

@@ -84,14 +84,12 @@ spec:
 
     service:
       app:
-        controller: gatus
         ports:
           http:
             port: *port
 
     serviceMonitor:
       app:
-        serviceName: gatus
         endpoints:
           - port: http
 
@@ -103,10 +101,6 @@ spec:
           - name: internal
             namespace: kube-system
             sectionName: https
-        rules:
-          - backendRefs:
-              - identifier: app
-                port: *port
 
     persistence:
       config:
