@@ -189,6 +189,15 @@ locals {
             "$patch" = "delete"
           }
         ]
+        resources = {
+          requests = {
+            cpu    = "200m"
+            memory = "512Mi"
+          }
+          limits = {
+            memory = "1Gi"
+          }
+        }
       }
     }
   })
