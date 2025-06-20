@@ -34,6 +34,8 @@ spec:
           mon_cluster_log_file_level: "info"
           # TODO: replace mon_cluster_log_file_level with mon_cluster_log_level in next ceph release
           # mon_cluster_log_level: "info"
+      cleanupPolicy:
+        wipeDevicesFromOtherClusters: true
       dashboard:
         enabled: true
         urlPrefix: /

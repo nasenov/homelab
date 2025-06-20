@@ -12,7 +12,6 @@ tasks:
       - task: terraform-apply
         vars:
           TERRAFORM_DIRECTORY: "{{.ROOT_DIR}}/terraform/kubernetes"
-      - task: wipe-rook-disks
       - task: terraform-apply
         vars:
           TERRAFORM_DIRECTORY: "{{.ROOT_DIR}}/terraform/bootstrap"
@@ -30,13 +29,3 @@ tasks:
     cmd: terraform apply
     preconditions:
       - which terraform
-
-  wipe-rook-disks:
-    internal: true
-    prompt: Do you want to wipe rook-ceph data disks?
-    cmds:
-      - talosctl --nodes 192.168.0.24 wipe disk nvme0n1
-      - talosctl --nodes 192.168.0.25 wipe disk nvme0n1
-      - talosctl --nodes 192.168.0.26 wipe disk nvme0n1
-    preconditions:
-      - which talosctl
