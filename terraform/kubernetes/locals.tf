@@ -47,7 +47,7 @@ locals {
       ipv4_address = "192.168.0.26"
       cpu_cores    = 8
       memory       = 12288
-      hostpci      = ["0000:09:00"]
+      hostpci      = ["0000:08:00"]
       gpu          = []
       usb          = []
     }
