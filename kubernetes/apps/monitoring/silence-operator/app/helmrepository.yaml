@@ -1,9 +1,0 @@
----
-# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/source.toolkit.fluxcd.io/helmrepository_v1.json
-apiVersion: source.toolkit.fluxcd.io/v1
-kind: HelmRepository
-metadata:
-  name: silence-operator
-spec:
-  interval: 30m
-  url: https://giantswarm.github.io/control-plane-catalog
