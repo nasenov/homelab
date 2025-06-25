@@ -31,23 +31,23 @@ locals {
       ipv4_address = "192.168.0.24"
       cpu_cores    = 8
       memory       = 12288
-      hostpci      = ["0000:01:00"]
-      gpu          = ["0000:00:02"]
+      hostpci      = ["ceph1"]
+      gpu          = ["gpu"]
       usb          = []
     }
     k8s-5 = {
       ipv4_address = "192.168.0.25"
       cpu_cores    = 8
       memory       = 12288
-      hostpci      = ["0000:02:00"]
+      hostpci      = ["ceph2"]
       gpu          = []
-      usb          = ["10c4:ea60"]
+      usb          = ["zigbee"]
     }
     k8s-6 = {
       ipv4_address = "192.168.0.26"
       cpu_cores    = 8
       memory       = 12288
-      hostpci      = ["0000:08:00"]
+      hostpci      = ["ceph3"]
       gpu          = []
       usb          = []
     }

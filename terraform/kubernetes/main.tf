@@ -47,10 +47,10 @@ resource "proxmox_virtual_environment_vm" "k8s" {
     for_each = each.value.hostpci
 
     content {
-      device = "hostpci0"
-      id     = hostpci.value
-      pcie   = true
-      rombar = true
+      device  = "hostpci0"
+      mapping = hostpci.value
+      pcie    = true
+      rombar  = true
     }
   }
 
@@ -58,10 +58,10 @@ resource "proxmox_virtual_environment_vm" "k8s" {
     for_each = each.value.gpu
 
     content {
-      device = "hostpci1"
-      id     = hostpci.value
-      pcie   = true
-      rombar = false
+      device  = "hostpci1"
+      mapping = hostpci.value
+      pcie    = true
+      rombar  = false
     }
   }
 
@@ -69,7 +69,7 @@ resource "proxmox_virtual_environment_vm" "k8s" {
     for_each = each.value.usb
 
     content {
-      host = usb.value
+      mapping = usb.value
     }
   }
 
