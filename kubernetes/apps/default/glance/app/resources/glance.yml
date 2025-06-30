@@ -11,6 +11,9 @@ pages:
             title: Media
             cache: 1m
             sites:
+              - title: Actual
+                url: https://actual.nasenov.dev
+                icon: di:actual-budget.svg
               - title: Fusion
                 url: https://feeds.nasenov.dev
                 icon: si:rss
