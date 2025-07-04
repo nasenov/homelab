@@ -3,18 +3,15 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app alloy
+  name: &app kromgo
 spec:
-  targetNamespace: monitoring
+  targetNamespace: observability
   interval: 30m
   retryInterval: 2m
   timeout: 5m
   components:
-    - ../../../../components/gatus/guarded
-  dependsOn:
-    - name: prometheus-operator-crds
-      namespace: monitoring
-  path: ./kubernetes/apps/monitoring/alloy/app
+    - ../../../../components/gatus/external
+  path: ./kubernetes/apps/observability/kromgo/app
   prune: true
   sourceRef:
     kind: GitRepository
@@ -23,3 +20,4 @@ spec:
   postBuild:
     substitute:
       APP: *app
+      GATUS_PATH: /talos_version

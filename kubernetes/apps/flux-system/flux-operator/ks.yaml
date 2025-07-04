@@ -11,7 +11,7 @@ spec:
   timeout: 5m
   dependsOn:
     - name: prometheus-operator-crds
-      namespace: monitoring
+      namespace: observability
   path: ./kubernetes/apps/flux-system/flux-operator/app
   prune: false
   sourceRef:

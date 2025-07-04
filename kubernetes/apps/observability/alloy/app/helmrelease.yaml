@@ -52,5 +52,5 @@ spec:
           rules:
             - backendRefs:
                 - name: alloy
-                  namespace: monitoring
+                  namespace: observability
                   port: 12345

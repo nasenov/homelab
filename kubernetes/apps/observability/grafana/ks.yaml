@@ -5,7 +5,7 @@ kind: Kustomization
 metadata:
   name: &app grafana
 spec:
-  targetNamespace: monitoring
+  targetNamespace: observability
   interval: 30m
   retryInterval: 2m
   timeout: 5m
@@ -15,12 +15,12 @@ spec:
     - name: external-secrets-stores
       namespace: external-secrets
     - name: prometheus-operator-crds
-      namespace: monitoring
+      namespace: observability
     - name: crunchy-postgres-operator-cluster
       namespace: database
     - name: crunchy-postgres-operator-secretstore
       namespace: database
-  path: ./kubernetes/apps/monitoring/grafana/app
+  path: ./kubernetes/apps/observability/grafana/app
   prune: true
   sourceRef:
     kind: GitRepository
