@@ -57,7 +57,7 @@ spec:
   healthCheckExprs:
     - apiVersion: ceph.rook.io/v1
       kind: CephCluster
-      current: status.ceph.health == 'HEALTH_OK'
+      current: status.ceph.health in ['HEALTH_OK', 'HEALTH_WARN']
       failed: status.ceph.health == 'HEALTH_ERR'
   postBuild:
     substitute:
