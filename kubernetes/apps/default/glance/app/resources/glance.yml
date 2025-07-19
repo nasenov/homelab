@@ -11,6 +11,9 @@ pages:
             title: Media
             cache: 1m
             sites:
+              - title: TimeTagger
+                url: https://timetagger.nasenov.dev
+                icon: di:timetagger.svg
               - title: Actual
                 url: https://actual.nasenov.dev
                 icon: di:actual-budget.svg
