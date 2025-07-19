@@ -5,16 +5,16 @@ kind: Kustomization
 metadata:
   name: volsync
 spec:
-  targetNamespace: storage
+  targetNamespace: volsync-system
   interval: 30m
   retryInterval: 2m
   timeout: 5m
   dependsOn:
     - name: snapshot-controller
-      namespace: storage
+      namespace: kube-system
     - name: prometheus-operator-crds
       namespace: observability
-  path: ./kubernetes/apps/storage/volsync/app
+  path: ./kubernetes/apps/volsync-system/volsync/app
   prune: true
   sourceRef:
     kind: GitRepository

@@ -38,7 +38,7 @@ spec:
     - name: rook-ceph
       namespace: rook-ceph
     - name: snapshot-controller
-      namespace: storage
+      namespace: kube-system
   path: ./kubernetes/apps/rook-ceph/rook-ceph/cluster
   prune: false
   sourceRef:
