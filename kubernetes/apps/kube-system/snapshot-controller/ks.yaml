@@ -5,14 +5,14 @@ kind: Kustomization
 metadata:
   name: snapshot-controller
 spec:
-  targetNamespace: storage
+  targetNamespace: kube-system
   interval: 30m
   retryInterval: 2m
   timeout: 5m
   dependsOn:
     - name: prometheus-operator-crds
       namespace: observability
-  path: ./kubernetes/apps/storage/snapshot-controller/app
+  path: ./kubernetes/apps/kube-system/snapshot-controller/app
   prune: true
   sourceRef:
     kind: GitRepository
