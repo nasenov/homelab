@@ -13,7 +13,7 @@ spec:
     - ../../../../components/volsync
   dependsOn:
     - name: volsync
-      namespace: storage
+      namespace: volsync-system
     - name: rook-ceph-cluster
       namespace: rook-ceph
     - name: external-secrets-stores

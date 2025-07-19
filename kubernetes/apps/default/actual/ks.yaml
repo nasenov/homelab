@@ -14,7 +14,7 @@ spec:
     - ../../../../components/gatus/guarded
   dependsOn:
     - name: volsync
-      namespace: storage
+      namespace: volsync-system
     - name: rook-ceph-cluster
       namespace: rook-ceph
   path: ./kubernetes/apps/default/actual/app
