@@ -23,4 +23,5 @@ resources:
   - ./radarr/ks.yaml
   - ./recyclarr/ks.yaml
   - ./sonarr/ks.yaml
+  - ./timetagger/ks.yaml
   - ./zigbee2mqtt/ks.yaml
