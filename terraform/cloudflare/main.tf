@@ -149,6 +149,33 @@ resource "cloudflare_account_token" "postgres" {
   ]
 }
 
+resource "cloudflare_r2_bucket" "obsidian" {
+  account_id    = var.cloudflare_account_id
+  name          = "obsidian"
+  location      = "EEUR"
+  storage_class = "Standard"
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
+resource "cloudflare_account_token" "obsidian" {
+  account_id = var.cloudflare_account_id
+  name       = cloudflare_r2_bucket.obsidian.name
+  policies = [
+    {
+      effect = "allow"
+      permission_groups = [
+        { id = local.r2_bucket_write_permission_group.id }
+      ]
+      resources = {
+        "com.cloudflare.edge.r2.bucket.${var.cloudflare_account_id}_${cloudflare_r2_bucket.obsidian.jurisdiction}_${cloudflare_r2_bucket.obsidian.name}" = "*"
+      }
+    }
+  ]
+}
+
 resource "cloudflare_zero_trust_tunnel_cloudflared" "homelab" {
   account_id = var.cloudflare_account_id
   name       = "homelab"
