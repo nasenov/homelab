@@ -11,6 +11,9 @@ pages:
             title: Media
             cache: 1m
             sites:
+              - title: Audiobookshelf
+                url: https://audiobookshelf.nasenov.dev
+                icon: di:audiobookshelf.svg
               - title: TimeTagger
                 url: https://timetagger.nasenov.dev
                 icon: di:timetagger.svg
