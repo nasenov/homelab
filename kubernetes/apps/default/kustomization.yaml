@@ -7,6 +7,7 @@ components:
   - ../../components/common
 resources:
   - ./actual/ks.yaml
+  - ./audiobookshelf/ks.yaml
   - ./autobrr/ks.yaml
   - ./bazarr/ks.yaml
   - ./cross-seed/ks.yaml
