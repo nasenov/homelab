@@ -79,7 +79,7 @@ spec:
       media:
         enabled: true
         type: nfs
-        server: 192.168.0.15
+        server: truenas.nasenov.dev
         path: /mnt/tank/media
         globalMounts:
           - path: /data
