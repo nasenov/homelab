@@ -58,9 +58,9 @@ spec:
         path: /mnt/tank/media
         globalMounts:
           - path: /cwa-book-ingest
-            subPath: /media/cwa/cwa-book-ingest
+            subPath: media/cwa/cwa-book-ingest
           - path: /calibre-library
-            subPath: /media/cwa/calibre-library
+            subPath: media/cwa/calibre-library
       tmpfs:
         type: emptyDir
         advancedMounts:
