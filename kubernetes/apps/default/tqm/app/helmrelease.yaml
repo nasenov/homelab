@@ -34,33 +34,13 @@ spec:
           successfulJobsHistory: 1
           failedJobsHistory: 1
           ttlSecondsAfterFinished: 3600
-        # initContainers:
-        #   retag: &container
-        #     image:
-        #       repository: ghcr.io/home-operations/tqm
-        #       tag: 1.15.0@sha256:70545e1a52e5afc4a6474c5b492e127be7b776eb9cea7adea3c6399e67ae2287
-        #     args:
-        #       - retag
-        #       - qb
-        #       - --dry-run
-        #     resources:
-        #       requests:
-        #         cpu: 10m
-        #       limits:
-        #         memory: 64Mi
-        #     securityContext:
-        #       allowPrivilegeEscalation: false
-        #       readOnlyRootFilesystem: true
-        #       capabilities:
-        #         drop:
-        #           - ALL
-        containers:
-          clean: &container
+        initContainers:
+          retag: &container
             image:
               repository: ghcr.io/home-operations/tqm
               tag: 1.15.0@sha256:70545e1a52e5afc4a6474c5b492e127be7b776eb9cea7adea3c6399e67ae2287
             args:
-              - clean
+              - retag
               - qb
               - --dry-run
             resources:
@@ -74,6 +54,13 @@ spec:
               capabilities:
                 drop:
                   - ALL
+        containers:
+          clean:
+            <<: *container
+            args:
+              - clean
+              - qb
+              - --dry-run
 
         pod:
           restartPolicy: Never
