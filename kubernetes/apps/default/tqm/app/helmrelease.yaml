@@ -40,9 +40,11 @@ spec:
               repository: ghcr.io/home-operations/tqm
               tag: 1.15.0@sha256:70545e1a52e5afc4a6474c5b492e127be7b776eb9cea7adea3c6399e67ae2287
             args:
-              - retag
-              - qb
-              - --dry-run
+              - "3600"
+                # - retag
+                # - qb
+                # - --dry-run
+            command: sleep
             resources:
               requests:
                 cpu: 10m
