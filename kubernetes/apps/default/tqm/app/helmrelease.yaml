@@ -60,7 +60,7 @@ spec:
             args:
               - clean
               - qb
-              - --dry-run
+              # - --dry-run
 
         pod:
           restartPolicy: Never
