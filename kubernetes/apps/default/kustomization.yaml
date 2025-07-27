@@ -21,9 +21,9 @@ resources:
   - ./n8n/ks.yaml
   - ./prowlarr/ks.yaml
   - ./qbittorrent/ks.yaml
-  # - ./qbtools/ks.yaml
   - ./radarr/ks.yaml
   - ./recyclarr/ks.yaml
   - ./sonarr/ks.yaml
   - ./timetagger/ks.yaml
+  - ./tqm/ks.yaml
   - ./zigbee2mqtt/ks.yaml
