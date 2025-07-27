@@ -15,8 +15,9 @@ spec:
         name: openebs
   install:
     remediation:
-      retries: 3
+      retries: -1
   upgrade:
+    cleanupOnFail: true
     remediation:
       retries: 3
   values:
