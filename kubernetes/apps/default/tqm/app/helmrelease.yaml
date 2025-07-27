@@ -42,7 +42,7 @@ spec:
             args:
               - retag
               - qb
-              - --dry-run
+              # - --dry-run
             resources:
               requests:
                 cpu: 10m
