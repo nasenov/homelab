@@ -110,6 +110,7 @@ spec:
               # - "--dry-run"
 
       reannounce:
+        enabled: false
         containers:
           app:
             <<: *container
