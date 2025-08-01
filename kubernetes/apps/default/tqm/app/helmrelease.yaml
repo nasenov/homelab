@@ -29,7 +29,7 @@ spec:
       tqm:
         type: cronjob
         cronjob: &cronJobSpec
-          schedule: 0/5 * * * *
+          schedule: "@hourly"
           backoffLimit: 0
           concurrencyPolicy: Forbid
           successfulJobsHistory: 1
@@ -69,7 +69,7 @@ spec:
         type: cronjob
         cronjob:
           <<: *cronJobSpec
-          schedule: 0 0 * * 0
+          schedule: "@weekly"
         containers:
           app:
             <<: *container
