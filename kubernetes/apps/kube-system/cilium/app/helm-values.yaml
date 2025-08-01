@@ -36,12 +36,6 @@ autoDirectNodeRoutes: true
 rollOutCiliumPods: true
 operator:
   rollOutPods: true
-  # https://github.com/cilium/cilium/issues/28549
-  tolerations:
-    - key: node.kubernetes.io/not-ready
-      effect: NoSchedule
-    - key: node-role.kubernetes.io/control-plane
-      effect: NoSchedule
 hubble:
   metrics:
     enabled:
