@@ -12,10 +12,6 @@ variable "proxmox_password" {
   sensitive = true
 }
 
-variable "talos_version" {
-  type = string
-}
-
 variable "talos_cluster_name" {
   type = string
 }

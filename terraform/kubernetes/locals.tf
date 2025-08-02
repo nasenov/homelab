@@ -55,6 +55,9 @@ locals {
 }
 
 locals {
+  # renovate: datasource=docker depName=ghcr.io/siderolabs/installer
+  talos_version = "v1.10.5"
+
   # renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet
   kubernetes_version = "v1.33.3"
 
@@ -119,6 +122,8 @@ locals {
         content = <<-EOT
         [plugins."io.containerd.cri.v1.images"]
           discard_unpacked_layers = false
+        [plugins."io.containerd.cri.v1.runtime"]
+          device_ownership_from_security_context = true          
         EOT
       }]
     }
