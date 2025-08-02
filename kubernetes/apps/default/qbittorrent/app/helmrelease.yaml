@@ -63,7 +63,7 @@ spec:
     route:
       app:
         hostnames:
-          - qbittorrent.nasenov.dev
+          - "{{ .Release.Name }}.nasenov.dev"
           - qb.nasenov.dev
         parentRefs:
           - name: internal
@@ -76,7 +76,7 @@ spec:
 
     persistence:
       config:
-        existingClaim: qbittorrent
+        existingClaim: "{{ .Release.Name }}"
       media:
         enabled: true
         type: nfs

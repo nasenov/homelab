@@ -68,7 +68,7 @@ spec:
     route:
       app:
         hostnames:
-          - sonarr.nasenov.dev
+          - "{{ .Release.Name }}.nasenov.dev"
         parentRefs:
           - name: internal
             namespace: kube-system
@@ -76,7 +76,7 @@ spec:
 
     persistence:
       config:
-        existingClaim: sonarr
+        existingClaim: "{{ .Release.Name }}"
       media:
         enabled: true
         type: nfs

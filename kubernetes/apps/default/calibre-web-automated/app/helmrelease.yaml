@@ -44,6 +44,7 @@ spec:
     route:
       app:
         hostnames:
+          - "{{ .Release.Name }}.nasenov.dev"
           - cwa.nasenov.dev
         parentRefs:
           - name: internal
@@ -52,7 +53,7 @@ spec:
 
     persistence:
       config:
-        existingClaim: calibre-web-automated
+        existingClaim: "{{ .Release.Name }}"
       media:
         type: nfs
         server: truenas.nasenov.dev

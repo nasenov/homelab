@@ -71,7 +71,7 @@ spec:
     route:
       app:
         hostnames:
-          - jellyfin.nasenov.dev
+          - "{{ .Release.Name }}.nasenov.dev"
           - media.nasenov.dev
         parentRefs:
           - name: internal
@@ -80,7 +80,7 @@ spec:
 
     persistence:
       config:
-        existingClaim: jellyfin
+        existingClaim: "{{ .Release.Name }}"
       media:
         enabled: true
         type: nfs

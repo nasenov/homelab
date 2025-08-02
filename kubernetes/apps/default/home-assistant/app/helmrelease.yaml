@@ -48,7 +48,7 @@ spec:
     route:
       app:
         hostnames:
-          - home-assistant.nasenov.dev
+          - "{{ .Release.Name }}.nasenov.dev"
           - hass.nasenov.dev
         parentRefs:
           - name: internal
@@ -57,7 +57,7 @@ spec:
 
     persistence:
       config:
-        existingClaim: home-assistant
+        existingClaim: "{{ .Release.Name }}"
       tmpfs:
         type: emptyDir
         advancedMounts:

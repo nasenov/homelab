@@ -68,7 +68,7 @@ spec:
     route:
       app:
         hostnames:
-          - fusion.nasenov.dev
+          - "{{ .Release.Name }}.nasenov.dev"
           - feeds.nasenov.dev
         parentRefs:
           - name: internal
@@ -77,6 +77,6 @@ spec:
 
     persistence:
       config:
-        existingClaim: fusion
+        existingClaim: "{{ .Release.Name }}"
         globalMounts:
           - path: /data

@@ -38,7 +38,7 @@ spec:
               TIMETAGGER_DATADIR: /opt/_timetagger
             envFrom:
               - secretRef:
-                  name: timetagger
+                  name: "{{ .Release.Name }}"
             resources:
               requests:
                 cpu: 10m
@@ -59,7 +59,7 @@ spec:
     route:
       app:
         hostnames:
-          - timetagger.nasenov.dev
+          - "{{ .Release.Name }}.nasenov.dev"
         parentRefs:
           - name: internal
             namespace: kube-system
@@ -67,6 +67,6 @@ spec:
 
     persistence:
       config:
-        existingClaim: timetagger
+        existingClaim: "{{ .Release.Name }}"
         globalMounts:
           - path: /opt/_timetagger

@@ -87,7 +87,7 @@ spec:
           - path: /.config/tqm
       secret-file:
         type: secret
-        name: tqm-secret
+        name: "{{ .Release.Name }}"
         globalMounts:
           - path: /.config/tqm/config.yaml
             subPath: config.yaml

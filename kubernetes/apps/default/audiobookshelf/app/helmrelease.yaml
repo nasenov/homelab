@@ -71,7 +71,7 @@ spec:
     route:
       app:
         hostnames:
-          - audiobookshelf.nasenov.dev
+          - "{{ .Release.Name }}.nasenov.dev"
         parentRefs:
           - name: internal
             namespace: kube-system
@@ -79,7 +79,7 @@ spec:
 
     persistence:
       config:
-        existingClaim: audiobookshelf
+        existingClaim: "{{ .Release.Name }}"
       media:
         type: nfs
         server: truenas.nasenov.dev

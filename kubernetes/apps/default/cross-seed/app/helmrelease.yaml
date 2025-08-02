@@ -70,10 +70,10 @@ spec:
 
     persistence:
       config:
-        existingClaim: cross-seed
+        existingClaim: "{{ .Release.Name }}"
       secret-file:
         type: secret
-        name: cross-seed
+        name: "{{ .Release.Name }}"
         globalMounts:
           - path: /config/config.js
             subPath: config.js

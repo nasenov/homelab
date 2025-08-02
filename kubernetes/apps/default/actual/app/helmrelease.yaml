@@ -67,7 +67,7 @@ spec:
     route:
       app:
         hostnames:
-          - actual.nasenov.dev
+          - "{{ .Release.Name }}.nasenov.dev"
         parentRefs:
           - name: internal
             namespace: kube-system
@@ -75,4 +75,4 @@ spec:
 
     persistence:
       data:
-        existingClaim: actual
+        existingClaim: "{{ .Release.Name }}"

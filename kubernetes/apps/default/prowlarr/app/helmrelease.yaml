@@ -68,7 +68,7 @@ spec:
     route:
       app:
         hostnames:
-          - prowlarr.nasenov.dev
+          - "{{ .Release.Name }}.nasenov.dev"
         parentRefs:
           - name: internal
             namespace: kube-system
@@ -76,7 +76,7 @@ spec:
 
     persistence:
       config:
-        existingClaim: prowlarr
+        existingClaim: "{{ .Release.Name }}"
       tmpfs:
         type: emptyDir
         advancedMounts:

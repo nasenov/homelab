@@ -97,7 +97,7 @@ spec:
     route:
       app:
         hostnames:
-          - gatus.nasenov.dev
+          - "{{ .Release.Name }}.nasenov.dev"
         parentRefs:
           - name: internal
             namespace: kube-system
@@ -111,7 +111,7 @@ spec:
         size: 1Gi
       config-file:
         type: configMap
-        name: gatus-configmap
+        name: "{{ .Release.Name }}"
         globalMounts:
           - path: /config/config.yaml
             subPath: config.yaml

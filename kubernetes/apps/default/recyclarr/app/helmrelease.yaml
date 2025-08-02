@@ -45,7 +45,7 @@ spec:
               TZ: Europe/Sofia
             envFrom:
               - secretRef:
-                  name: recyclarr
+                  name: "{{ .Release.Name }}"
             resources:
               requests:
                 cpu: 10m
@@ -60,10 +60,10 @@ spec:
 
     persistence:
       config:
-        existingClaim: recyclarr
+        existingClaim: "{{ .Release.Name }}"
       config-file:
         type: configMap
-        name: recyclarr
+        name: "{{ .Release.Name }}"
         globalMounts:
           - path: /config/recyclarr.yml
             subPath: recyclarr.yml

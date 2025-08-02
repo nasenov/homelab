@@ -76,7 +76,7 @@ spec:
     route:
       app:
         hostnames:
-          - kromgo.nasenov.dev
+          - "{{ .Release.Name }}.nasenov.dev"
         parentRefs:
           - name: external
             namespace: kube-system
@@ -89,7 +89,7 @@ spec:
     persistence:
       config-file:
         type: configMap
-        name: kromgo-configmap
+        name: "{{ .Release.Name }}"
         globalMounts:
           - path: /kromgo/config.yaml
             subPath: config.yaml

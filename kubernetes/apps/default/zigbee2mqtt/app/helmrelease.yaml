@@ -43,7 +43,7 @@ spec:
               ZIGBEE2MQTT_CONFIG_HOMEASSISTANT_ENABLED: "true"
             envFrom:
               - secretRef:
-                  name: zigbee2mqtt
+                  name: "{{ .Release.Name }}"
             probes:
               liveness:
                 enabled: true
@@ -71,7 +71,7 @@ spec:
     route:
       app:
         hostnames:
-          - zigbee2mqtt.nasenov.dev
+          - "{{ .Release.Name }}.nasenov.dev"
           - zigbee.nasenov.dev
         parentRefs:
           - name: internal
@@ -80,7 +80,7 @@ spec:
 
     persistence:
       config:
-        existingClaim: zigbee2mqtt
+        existingClaim: "{{ .Release.Name }}"
         globalMounts:
           - path: /app/data
       usb:

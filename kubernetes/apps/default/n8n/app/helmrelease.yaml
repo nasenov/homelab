@@ -36,7 +36,7 @@ spec:
             env:
               GENERIC_TIMEZONE: Europe/Sofia
               N8N_PROTOCOL: https
-              N8N_HOST: &hostName n8n.nasenov.dev
+              N8N_HOST: n8n.nasenov.dev
               N8N_PORT: &port 5678
               N8N_DIAGNOSTICS_ENABLED: "false"
               N8N_VERSION_NOTIFICATIONS_ENABLED: "false"
@@ -44,7 +44,7 @@ spec:
               QUEUE_HEALTH_CHECK_ACTIVE: "true"
             envFrom:
               - secretRef:
-                  name: n8n
+                  name: "{{ .Release.Name }}"
               - secretRef:
                   name: n8n-xiaomi-body-compositon-workflow
             probes:
@@ -95,7 +95,7 @@ spec:
     route:
       app:
         hostnames:
-          - *hostName
+          - "{{ .Release.Name }}.nasenov.dev"
         parentRefs:
           - name: internal
             namespace: kube-system
@@ -103,6 +103,6 @@ spec:
 
     persistence:
       config:
-        existingClaim: n8n
+        existingClaim: "{{ .Release.Name }}"
         globalMounts:
           - path: /home/node/.n8n

@@ -57,7 +57,7 @@ spec:
     route:
       app:
         hostnames:
-          - glance.nasenov.dev
+          - "{{ .Release.Name }}.nasenov.dev"
         parentRefs:
           - name: internal
             namespace: kube-system
@@ -66,7 +66,7 @@ spec:
     persistence:
       config:
         type: configMap
-        name: glance
+        name: "{{ .Release.Name }}"
         globalMounts:
           - path: /app/config/glance.yml
             subPath: glance.yml
