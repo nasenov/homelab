@@ -1,19 +1,23 @@
 ---
 web:
-  port: ${WEB_PORT}
+  port: ${GATUS_WEB_PORT}
+
 storage:
   type: sqlite
   path: /config/sqlite.db
   caching: true
+
 metrics: true
-debug: false
+
 ui:
   title: Status | Gatus
   header: Status
+
 connectivity:
   checker:
     target: 1.1.1.1:53
     interval: 1m
+
 endpoints:
   - name: emqx
     group: infrastructure
