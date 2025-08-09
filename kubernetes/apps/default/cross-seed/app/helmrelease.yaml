@@ -36,6 +36,7 @@ spec:
             args: ["daemon"]
             env:
               TZ: Europe/Sofia
+              CROSS_SEED_PORT: &port 80
             probes:
               liveness: &probes
                 enabled: false
@@ -43,7 +44,7 @@ spec:
                 spec:
                   httpGet:
                     path: /api/ping
-                    port: 2468
+                    port: *port
                   initialDelaySeconds: 0
                   periodSeconds: 10
                   timeoutSeconds: 1
@@ -65,8 +66,7 @@ spec:
       app:
         ports:
           http:
-            port: 80
-            targetPort: 2468
+            port: *port
 
     persistence:
       config:

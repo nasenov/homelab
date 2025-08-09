@@ -32,7 +32,7 @@ spec:
               repository: ghcr.io/actualbudget/actual-server
               tag: 25.8.0
             env:
-              ACTUAL_PORT: &httpPort 5006
+              ACTUAL_PORT: &httpPort 80
             probes:
               liveness: &probes
                 enabled: true

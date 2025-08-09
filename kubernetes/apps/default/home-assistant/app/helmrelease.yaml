@@ -42,8 +42,7 @@ spec:
       app:
         ports:
           http:
-            port: 80
-            targetPort: 8123
+            port: 8123
 
     route:
       app:

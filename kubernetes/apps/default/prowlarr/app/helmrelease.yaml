@@ -33,6 +33,7 @@ spec:
               tag: 2.0.2.5116@sha256:30062fde00bf3901770d02e4e255b3fa1afa320ae2ff5359473ff7599be7ebc8
             env:
               TZ: Europe/Sofia
+              PROWLARR__SERVER__PORT: &port 80
             probes:
               liveness: &probes
                 enabled: true
@@ -40,7 +41,7 @@ spec:
                 spec:
                   httpGet:
                     path: /ping
-                    port: 9696
+                    port: *port
                   initialDelaySeconds: 0
                   periodSeconds: 10
                   timeoutSeconds: 1
@@ -62,8 +63,7 @@ spec:
       app:
         ports:
           http:
-            port: 80
-            targetPort: 9696
+            port: *port
 
     route:
       app:

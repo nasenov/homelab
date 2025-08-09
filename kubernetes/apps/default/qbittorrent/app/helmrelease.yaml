@@ -33,6 +33,26 @@ spec:
               tag: 5.1.2@sha256:9dd0164cc23e9c937e0af27fd7c3f627d1df30c182cf62ed34d3f129c55dc0e8
             env:
               TZ: Europe/Sofia
+              QBT_WEBUI_PORT: &port 80
+              QBT_TORRENTING_PORT: &torrentPort 50413
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /api/v2/app/version
+                    port: *port
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
+              startup:
+                enabled: true
+                spec:
+                  periodSeconds: 10
+                  failureThreshold: 30
             resources:
               requests:
                 cpu: 10m
@@ -52,12 +72,9 @@ spec:
           lbipam.cilium.io/ips: 192.168.0.41
         ports:
           http:
-            port: 80
-            targetPort: 8080
+            port: *port
           bittorrent:
-            enabled: true
-            port: 50413
-            targetPort: 50413
+            port: *torrentPort
             protocol: TCP
 
     route:
@@ -72,7 +89,7 @@ spec:
         rules:
           - backendRefs:
               - identifier: app
-                port: 80
+                port: *port
 
     persistence:
       config:

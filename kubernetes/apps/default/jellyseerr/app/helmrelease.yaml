@@ -27,6 +27,7 @@ spec:
             env:
               TZ: Europe/Sofia
               LOG_LEVEL: info
+              PORT: &port 80
             probes:
               liveness: &probes
                 enabled: true
@@ -34,7 +35,7 @@ spec:
                 spec:
                   httpGet:
                     path: /api/v1/status
-                    port: 5055
+                    port: *port
                   initialDelaySeconds: 0
                   periodSeconds: 10
                   timeoutSeconds: 1
@@ -50,8 +51,7 @@ spec:
       app:
         ports:
           http:
-            port: 80
-            targetPort: 5055
+            port: *port
 
     route:
       app:

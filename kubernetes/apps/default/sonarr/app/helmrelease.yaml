@@ -33,6 +33,7 @@ spec:
               tag: 4.0.15.2940@sha256:ca6c735014bdfb04ce043bf1323a068ab1d1228eea5bab8305ca0722df7baf78
             env:
               TZ: Europe/Sofia
+              SONARR__SERVER__PORT: &port 80
             probes:
               liveness: &probes
                 enabled: true
@@ -40,7 +41,7 @@ spec:
                 spec:
                   httpGet:
                     path: /ping
-                    port: 8989
+                    port: *port
                   initialDelaySeconds: 0
                   periodSeconds: 10
                   timeoutSeconds: 1
@@ -62,8 +63,7 @@ spec:
       app:
         ports:
           http:
-            port: 80
-            targetPort: 8989
+            port: *port
 
     route:
       app:
