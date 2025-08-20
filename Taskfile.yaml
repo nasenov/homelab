@@ -6,6 +6,7 @@ includes:
   cluster: .taskfiles/cluster
   kubernetes: .taskfiles/kubernetes
   volsync: .taskfiles/volsync
+  workstation: .taskfiles/workstation
 
 tasks:
   default:
