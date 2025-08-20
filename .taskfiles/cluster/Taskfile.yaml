@@ -26,6 +26,8 @@ tasks:
   terraform-apply:
     internal: true
     dir: "{{.TERRAFORM_DIRECTORY}}"
-    cmd: terraform apply
+    cmds:
+      - terraform init
+      - terraform apply
     preconditions:
       - which terraform
