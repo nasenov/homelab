@@ -3,14 +3,28 @@
 version: "3"
 
 tasks:
-  sync-terraform-tfvars:
-    desc: Sync terraform tfvars
+  sync-all-secrets:
+    cmds:
+      - task: sync-agekey
+      - task: sync-terraform-tfvars
+
+  sync-agekey:
+    desc: Sync agekey
     silent: true
-    cmd: |
-      export BW_SESSION=$(bw unlock --raw)
-      bw get notes cloudflare.tfvars > {{.ROOT_DIR}}/terraform/cloudflare/terraform.tfvars
-      bw get notes kubernetes.tfvars > {{.ROOT_DIR}}/terraform/kubernetes/terraform.tfvars
-      bw get notes proxmox.tfvars > {{.ROOT_DIR}}/terraform/proxmox/terraform.tfvars
+    cmd: bw get notes agekey > {{.ROOT_DIR}}/age.agekey
     preconditions:
       - which bw
       - bw login --check
+      - bw unlock --check
+
+  sync-terraform-tfvars:
+    desc: Sync terraform tfvars
+    silent: true
+    cmds:
+      - bw get notes cloudflare.tfvars > {{.ROOT_DIR}}/terraform/cloudflare/terraform.tfvars
+      - bw get notes kubernetes.tfvars > {{.ROOT_DIR}}/terraform/kubernetes/terraform.tfvars
+      - bw get notes proxmox.tfvars > {{.ROOT_DIR}}/terraform/proxmox/terraform.tfvars
+    preconditions:
+      - which bw
+      - bw login --check
+      - bw unlock --check
