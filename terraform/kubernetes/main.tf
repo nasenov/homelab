@@ -1,5 +1,5 @@
-resource "proxmox_virtual_environment_vm" "k8s" {
-  for_each = merge(local.controlplane_virtual_machines, local.worker_virtual_machines)
+resource "proxmox_virtual_environment_vm" "this" {
+  for_each = local.controlplane_virtual_machines
 
   name      = each.key
   node_name = "pve"
@@ -30,7 +30,7 @@ resource "proxmox_virtual_environment_vm" "k8s" {
     file_format  = "raw"
     interface    = "scsi0"
     iothread     = true
-    size         = 100
+    size         = 128
     cache        = "writeback"
   }
 
@@ -125,11 +125,11 @@ data "talos_image_factory_urls" "this" {
 
 resource "talos_machine_secrets" "this" {
   depends_on = [
-    proxmox_virtual_environment_vm.k8s
+    proxmox_virtual_environment_vm.this
   ]
 }
 
-data "talos_machine_configuration" "controlplane" {
+data "talos_machine_configuration" "this" {
   cluster_name       = var.talos_cluster_name
   machine_type       = "controlplane"
   cluster_endpoint   = var.talos_cluster_endpoint
@@ -137,11 +137,11 @@ data "talos_machine_configuration" "controlplane" {
   kubernetes_version = local.kubernetes_version
 }
 
-resource "talos_machine_configuration_apply" "controlplane" {
+resource "talos_machine_configuration_apply" "this" {
   for_each = local.controlplane_virtual_machines
 
   client_configuration        = talos_machine_secrets.this.client_configuration
-  machine_configuration_input = data.talos_machine_configuration.controlplane.machine_configuration
+  machine_configuration_input = data.talos_machine_configuration.this.machine_configuration
   node                        = each.key
   endpoint                    = each.value.ipv4_address
   config_patches = [
@@ -165,48 +165,15 @@ resource "talos_machine_configuration_apply" "controlplane" {
 
 resource "talos_machine_bootstrap" "this" {
   depends_on = [
-    talos_machine_configuration_apply.controlplane,
+    talos_machine_configuration_apply.this
   ]
   node                 = local.controlplane_virtual_machines.k8s-1.ipv4_address
   client_configuration = talos_machine_secrets.this.client_configuration
 }
 
-data "talos_machine_configuration" "worker" {
-  cluster_name       = var.talos_cluster_name
-  machine_type       = "worker"
-  cluster_endpoint   = var.talos_cluster_endpoint
-  machine_secrets    = talos_machine_secrets.this.machine_secrets
-  kubernetes_version = local.kubernetes_version
-}
-
-resource "talos_machine_configuration_apply" "worker" {
-  depends_on = [
-    talos_machine_configuration_apply.controlplane,
-    talos_machine_bootstrap.this
-  ]
-
-  for_each = local.worker_virtual_machines
-
-  client_configuration        = talos_machine_secrets.this.client_configuration
-  machine_configuration_input = data.talos_machine_configuration.worker.machine_configuration
-  node                        = each.key
-  endpoint                    = each.value.ipv4_address
-  config_patches = [
-    local.talos_install_image_config_patch,
-    local.talos_sysctls_config_patch,
-    local.talos_kernel_modules_config_patch,
-    local.talos_kubelet_config_patch,
-    local.talos_containerd_config_patch,
-    local.talos_cluster_network_config_patch,
-    local.talos_user_volume_config_patch,
-    local.talos_cluster_coredns_config_patch
-  ]
-}
-
 resource "talos_cluster_kubeconfig" "this" {
   depends_on = [
-    talos_machine_configuration_apply.controlplane,
-    talos_machine_configuration_apply.worker,
+    talos_machine_configuration_apply.this,
     talos_machine_bootstrap.this
   ]
 
@@ -222,15 +189,14 @@ resource "local_sensitive_file" "kubeconfig" {
 
 data "talos_client_configuration" "this" {
   depends_on = [
-    talos_machine_configuration_apply.controlplane,
-    talos_machine_configuration_apply.worker,
+    talos_machine_configuration_apply.this,
     talos_machine_bootstrap.this
   ]
 
   cluster_name         = var.talos_cluster_name
   client_configuration = talos_machine_secrets.this.client_configuration
   endpoints            = [for k, v in local.controlplane_virtual_machines : v.ipv4_address]
-  nodes                = [for k, v in merge(local.controlplane_virtual_machines, local.worker_virtual_machines) : v.ipv4_address]
+  nodes                = [for k, v in local.controlplane_virtual_machines : v.ipv4_address]
 }
 
 resource "local_sensitive_file" "talosconfig" {
@@ -241,15 +207,13 @@ resource "local_sensitive_file" "talosconfig" {
 
 data "talos_cluster_health" "talos" {
   depends_on = [
-    talos_machine_configuration_apply.controlplane,
-    talos_machine_configuration_apply.worker,
+    talos_machine_configuration_apply.this,
     talos_cluster_kubeconfig.this
   ]
 
   client_configuration   = talos_machine_secrets.this.client_configuration
   endpoints              = [for k, v in local.controlplane_virtual_machines : v.ipv4_address]
   control_plane_nodes    = [for k, v in local.controlplane_virtual_machines : v.ipv4_address]
-  worker_nodes           = [for k, v in local.worker_virtual_machines : v.ipv4_address]
   skip_kubernetes_checks = true
   timeouts = {
     read = "5m"
@@ -305,7 +269,6 @@ data "talos_cluster_health" "kubernetes" {
   client_configuration = talos_machine_secrets.this.client_configuration
   endpoints            = [for k, v in local.controlplane_virtual_machines : v.ipv4_address]
   control_plane_nodes  = [for k, v in local.controlplane_virtual_machines : v.ipv4_address]
-  worker_nodes         = [for k, v in local.worker_virtual_machines : v.ipv4_address]
 
   timeouts = {
     read = "5m"
