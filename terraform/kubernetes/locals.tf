@@ -215,6 +215,12 @@ locals {
     }
   })
 
+  talos_cluster_control_plane_scheduling = yamlencode({
+    cluster = {
+      allowSchedulingOnControlPlanes = true
+    }
+  })
+
   talos_user_volume_config_patch = yamlencode({
     apiVersion = "v1alpha1"
     kind       = "UserVolumeConfig"
