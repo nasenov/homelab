@@ -59,7 +59,7 @@ locals {
   talos_version = "v1.11.0"
 
   # renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet
-  kubernetes_version = "v1.33.4"
+  kubernetes_version = "v1.34.0"
 
   talos_install_image_config_patch = yamlencode({
     machine = {
