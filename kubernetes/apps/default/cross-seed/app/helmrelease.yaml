@@ -79,7 +79,6 @@ spec:
             subPath: config.js
             readOnly: true
       media:
-        enabled: true
         type: nfs
         server: truenas.nasenov.dev
         path: /mnt/tank/media

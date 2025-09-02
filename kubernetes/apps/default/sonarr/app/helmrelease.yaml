@@ -78,7 +78,6 @@ spec:
       config:
         existingClaim: "{{ .Release.Name }}"
       media:
-        enabled: true
         type: nfs
         server: truenas.nasenov.dev
         path: /mnt/tank/media
