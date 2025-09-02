@@ -81,6 +81,7 @@ locals {
     machine = {
       kubelet = {
         extraArgs = {
+          feature-gates         = "ImageVolume=true"
           serialize-image-pulls = false
         }
       }
@@ -160,6 +161,9 @@ locals {
   talos_cluster_apiserver_config_patch = yamlencode({
     cluster = {
       apiServer = {
+        extraArgs = {
+          feature-gates = "ImageVolume=true"
+        }
         disablePodSecurityPolicy = true
         admissionControl = [
           {
