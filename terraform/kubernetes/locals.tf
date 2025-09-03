@@ -209,5 +209,9 @@ locals {
       minSize = "64GB"
       grow    = true
     }
+    filesystem = {
+      type                = "xfs"
+      projectQuotaSupport = true
+    }
   })
 }
