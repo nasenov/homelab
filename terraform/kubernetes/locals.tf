@@ -214,4 +214,11 @@ locals {
       projectQuotaSupport = true
     }
   })
+
+  talos_watchdog_timer_config = yamlencode({
+    apiVersion = "v1alpha1"
+    kind       = "WatchdogTimerConfig"
+    device     = "/dev/watchdog0"
+    timeout    = "5m"
+  })
 }
