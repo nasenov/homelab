@@ -43,6 +43,18 @@
         "ghcr.io/rook/rook-ceph",
         "ghcr.io/rook/rook-ceph-cluster"
       ]
+    },
+    {
+      "groupName": "Talos",
+      "description": "Talos Group",
+      "matchDatasources": [
+        "docker"
+      ],
+      "matchPackageNames": [
+        "ghcr.io/siderolabs/installer",
+        "ghcr.io/siderolabs/talosctl"
+      ],
+      "minimumGroupSize": 2
     }
   ]
 }
