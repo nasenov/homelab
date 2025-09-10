@@ -29,7 +29,7 @@ locals {
 
 locals {
   # renovate: datasource=docker depName=ghcr.io/siderolabs/installer
-  talos_version = "v1.11.0"
+  talos_version = "v1.11.1"
 
   # renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet
   kubernetes_version = "v1.34.0"
