@@ -50,6 +50,9 @@ pages:
               - title: Autobrr
                 url: https://autobrr.nasenov.dev
                 icon: di:autobrr.svg
+              - title: Qui
+                url: https://qui.nasenov.dev
+                icon: di:autobrr.svg
 
           - type: monitor
             title: Infrastructure
