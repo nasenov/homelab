@@ -8,9 +8,6 @@ tasks:
     cmds:
       - task: terraform-apply
         vars:
-          TERRAFORM_DIRECTORY: "{{.ROOT_DIR}}/terraform/proxmox"
-      - task: terraform-apply
-        vars:
           TERRAFORM_DIRECTORY: "{{.ROOT_DIR}}/terraform/kubernetes"
       - task: terraform-apply
         vars:

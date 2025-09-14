@@ -26,19 +26,3 @@ locals {
     }
   }
 }
-
-locals {
-  # renovate: datasource=docker depName=ghcr.io/siderolabs/installer
-  talos_version = "v1.11.1"
-
-  # renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet
-  kubernetes_version = "v1.34.1"
-
-  talos_install_image_config_patch = yamlencode({
-    machine = {
-      install = {
-        image = data.talos_image_factory_urls.this.urls.installer
-      }
-    }
-  })
-}

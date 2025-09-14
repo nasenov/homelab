@@ -1,3 +1,39 @@
+data "talos_image_factory_extensions_versions" "this" {
+  # renovate: datasource=docker depName=ghcr.io/siderolabs/installer
+  talos_version = "v1.11.1"
+
+  filters = {
+    names = [
+      "qemu-guest-agent",
+      "i915"
+    ]
+  }
+}
+
+resource "talos_image_factory_schematic" "this" {
+  schematic = yamlencode({
+    customization = {
+      systemExtensions = {
+        officialExtensions = data.talos_image_factory_extensions_versions.this.extensions_info[*].name
+      }
+    }
+  })
+}
+
+data "talos_image_factory_urls" "this" {
+  talos_version = data.talos_image_factory_extensions_versions.this.talos_version
+  schematic_id  = talos_image_factory_schematic.this.id
+  platform      = "nocloud"
+}
+
+resource "proxmox_virtual_environment_download_file" "this" {
+  node_name    = "pve"
+  datastore_id = "local"
+  content_type = "iso"
+  file_name    = "nocloud-amd64.iso"
+  url          = data.talos_image_factory_urls.this.urls.iso
+}
+
 resource "proxmox_virtual_environment_vm" "this" {
   for_each = local.controlplane_virtual_machines
 
@@ -26,7 +62,7 @@ resource "proxmox_virtual_environment_vm" "this" {
 
   disk {
     datastore_id = "fast"
-    file_id      = "local:iso/nocloud-amd64.img"
+    file_id      = "local:iso/${proxmox_virtual_environment_download_file.this.file_name}"
     file_format  = "raw"
     interface    = "scsi0"
     iothread     = true
@@ -97,53 +133,35 @@ resource "proxmox_virtual_environment_vm" "this" {
   }
 }
 
-data "talos_image_factory_extensions_versions" "this" {
-  talos_version = local.talos_version
-  filters = {
-    names = [
-      "qemu-guest-agent",
-      "i915"
-    ]
-  }
-}
-
-resource "talos_image_factory_schematic" "this" {
-  schematic = yamlencode({
-    customization = {
-      systemExtensions = {
-        officialExtensions = data.talos_image_factory_extensions_versions.this.extensions_info[*].name
-      }
-    }
-  })
-}
-
-data "talos_image_factory_urls" "this" {
-  talos_version = local.talos_version
-  schematic_id  = talos_image_factory_schematic.this.id
-  platform      = "nocloud"
-}
-
-resource "talos_machine_secrets" "this" {
-  depends_on = [
-    proxmox_virtual_environment_vm.this
-  ]
-}
+resource "talos_machine_secrets" "this" {}
 
 data "talos_machine_configuration" "this" {
-  cluster_name       = var.talos_cluster_name
-  machine_type       = "controlplane"
-  cluster_endpoint   = var.talos_cluster_endpoint
-  machine_secrets    = talos_machine_secrets.this.machine_secrets
-  kubernetes_version = local.kubernetes_version
+  cluster_name     = var.talos_cluster_name
+  machine_type     = "controlplane"
+  cluster_endpoint = var.talos_cluster_endpoint
+  machine_secrets  = talos_machine_secrets.this.machine_secrets
+  # renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet
+  kubernetes_version = "v1.34.1"
   config_patches = [
-    local.talos_install_image_config_patch, # TNU requirement
     file("${path.module}/resources/config.yaml"),
     file("${path.module}/resources/uservolumeconfig.yaml"),
-    file("${path.module}/resources/watchdogtimerconfig.yaml")
+    file("${path.module}/resources/watchdogtimerconfig.yaml"),
+    # TNU requirement
+    yamlencode({
+      machine = {
+        install = {
+          image = data.talos_image_factory_urls.this.urls.installer
+        }
+      }
+    })
   ]
 }
 
 resource "talos_machine_configuration_apply" "this" {
+  depends_on = [
+    proxmox_virtual_environment_vm.this
+  ]
+
   for_each = local.controlplane_virtual_machines
 
   client_configuration        = talos_machine_secrets.this.client_configuration
