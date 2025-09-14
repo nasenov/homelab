@@ -135,6 +135,12 @@ data "talos_machine_configuration" "this" {
   cluster_endpoint   = var.talos_cluster_endpoint
   machine_secrets    = talos_machine_secrets.this.machine_secrets
   kubernetes_version = local.kubernetes_version
+  config_patches = [
+    local.talos_install_image_config_patch, # TNU requirement
+    file("${path.module}/resources/config.yaml"),
+    file("${path.module}/resources/uservolumeconfig.yaml"),
+    file("${path.module}/resources/watchdogtimerconfig.yaml")
+  ]
 }
 
 resource "talos_machine_configuration_apply" "this" {
@@ -144,24 +150,6 @@ resource "talos_machine_configuration_apply" "this" {
   machine_configuration_input = data.talos_machine_configuration.this.machine_configuration
   node                        = each.key
   endpoint                    = each.value.ipv4_address
-  config_patches = [
-    local.talos_install_image_config_patch,
-    local.talos_vip_config_patch,
-    local.talos_sysctls_config_patch,
-    local.talos_kernel_modules_config_patch,
-    local.talos_kubelet_config_patch,
-    local.talos_containerd_config_patch,
-    local.talos_cluster_network_config_patch,
-    local.talos_cluster_controller_manager_config_patch,
-    local.talos_cluster_scheduler_config_patch,
-    local.talos_cluster_etcd_config_patch,
-    local.talos_cluster_apiserver_config_patch,
-    local.talos_kubernetes_talos_api_access_config_patch,
-    local.talos_user_volume_config_patch,
-    local.talos_cluster_coredns_config_patch,
-    local.talos_cluster_control_plane_scheduling,
-    local.talos_watchdog_timer_config
-  ]
 }
 
 resource "talos_machine_bootstrap" "this" {

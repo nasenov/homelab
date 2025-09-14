@@ -1,0 +1,13 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/siderolabs/talos/refs/heads/release-1.11/website/content/v1.11/schemas/config.schema.json
+apiVersion: v1alpha1
+kind: UserVolumeConfig
+name: openebs
+provisioning:
+  diskSelector:
+    match: disk.transport == 'virtio' && !system_disk
+  minSize: 64GB
+  grow: true
+filesystem:
+  type: xfs
+  projectQuotaSupport: true

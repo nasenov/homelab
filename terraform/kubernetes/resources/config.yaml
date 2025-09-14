@@ -1,0 +1,72 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/siderolabs/talos/refs/heads/release-1.11/website/content/v1.11/schemas/config.schema.json
+machine:
+  install:
+    image: ${install_image}
+  network:
+    interfaces:
+      - interface: eth0
+        vip:
+          ip: 192.168.0.20
+  sysctls:
+    fs.inotify.max_queued_events: "65536"
+    fs.inotify.max_user_watches: "524288"
+    fs.inotify.max_user_instances: "8192"
+    net.core.rmem_max: "7500000" # Cloudflared / QUIC
+    net.core.wmem_max: "7500000" # Cloudflared / QUIC
+  kernel:
+    modules:
+      - name: nbd
+  kubelet:
+    extraArgs:
+      feature-gates: ImageVolume=true
+      serialize-image-pulls: "false"
+  files:
+    - op: create
+      path: /etc/cri/conf.d/20-customization.part
+      content: |
+        [plugins."io.containerd.cri.v1.images"]
+          discard_unpacked_layers = false
+        [plugins."io.containerd.cri.v1.runtime"]
+          device_ownership_from_security_context = true
+  features:
+    kubernetesTalosAPIAccess:
+      enabled: true
+      allowedRoles:
+        - os:admin
+      allowedKubernetesNamespaces:
+        - system-upgrade
+cluster:
+  network:
+    cni:
+      name: none
+  proxy:
+    disabled: true
+  controllerManager:
+    extraArgs:
+      bind-address: 0.0.0.0
+  scheduler:
+    extraArgs:
+      bind-address: 0.0.0.0
+  etcd:
+    extraArgs:
+      listen-metrics-urls: http://0.0.0.0:2381
+  apiServer:
+    extraArgs:
+      feature-gates: ImageVolume=true
+    disablePodSecurityPolicy: true
+    resources:
+      requests:
+        cpu: 200m
+        memory: 1500Mi
+      limits:
+        memory: 1500Mi
+  coreDNS:
+    disabled: true
+  allowSchedulingOnControlPlanes: true
+---
+cluster:
+  apiServer:
+    admissionControl:
+      - name: PodSecurity
+        "$patch": delete
