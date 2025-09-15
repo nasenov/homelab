@@ -7,3 +7,4 @@ resources:
   - ./gateway.yaml
   - ./httproute.yaml
   - ./l2.yaml
+  - ./pushsecret.yaml
