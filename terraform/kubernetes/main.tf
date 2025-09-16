@@ -40,9 +40,10 @@ resource "proxmox_virtual_environment_vm" "this" {
   name      = each.key
   node_name = "pve"
 
-  machine       = "q35"
-  scsi_hardware = "virtio-scsi-single"
-  started       = true
+  machine         = "q35"
+  scsi_hardware   = "virtio-scsi-single"
+  started         = true
+  stop_on_destroy = true
 
   cpu {
     type    = "x86-64-v2-AES"
