@@ -53,6 +53,9 @@ pages:
               - title: Qui
                 url: https://qui.nasenov.dev
                 icon: di:autobrr.svg
+              - title: Thelounge
+                url: https://thelounge.nasenov.dev
+                icon: di:thelounge.svg
 
           - type: monitor
             title: Infrastructure
