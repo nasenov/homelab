@@ -24,6 +24,14 @@
     {
       "matchDatasources": ["helm"],
       "addLabels": ["renovate/helm"]
-    }
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "addLabels": ["renovate/github-action"]
+    },
+    {
+      "matchDatasources": ["github-releases"],
+      "addLabels": ["renovate/github-release"]
+    }    
   ]
 }

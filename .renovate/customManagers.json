@@ -2,18 +2,18 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "customManagers": [
     {
-      "customType": "regex",
       "description": "Process various dependencies in YAML files",
-      "managerFilePatterns": ["/\\.ya?ml$/"],
+      "customType": "regex",
+      "managerFilePatterns": ["/\\.yaml$/"],
       "matchStrings": [
         "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( repository=(?<registryUrl>\\S+))?\\n.+(:\\s|=\\s)(&\\S+\\s)?(?<currentValue>\\S+)"
       ],
       "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}"
     },
     {
-      "customType": "regex",
       "description": "Process GitHub download dependencies in YAML files",
-      "managerFilePatterns": ["/\\.ya?ml$/"],
+      "customType": "regex",
+      "managerFilePatterns": ["/\\.yaml$/"],
       "matchStrings": [
         "https:\\/\\/github.com\\/(?<depName>\\S+?\\/\\S+?)\\/releases\\/download\\/(?<currentValue>(v|\\d)\\S+?)\\/\\S+",
         "https:\\/\\/raw.githubusercontent.com\\/(?<depName>\\S+?\\/\\S+?)\\/(?<currentValue>(v|\\d)\\S+?)\\/\\S+"
@@ -23,8 +23,8 @@
       "extractVersionTemplate": "{{#if extractVersion}}{{{extractVersion}}}{{else}}^(?<version>.*)${{/if}}"
     },
     {
-      "customType": "regex",
       "description": "Process various dependencies in Terraform files",
+      "customType": "regex",
       "managerFilePatterns": ["/\\.tf$/"],
       "matchStrings": [
         "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( repository=(?<registryUrl>\\S+))?\\n.+(:\\s|=\\s)(&\\S+\\s)?\"(?<currentValue>\\S+)\""

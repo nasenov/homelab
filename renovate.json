@@ -4,23 +4,27 @@
     "config:recommended",
     "docker:enableMajor",
     "helpers:pinGitHubActionDigests",
-    ":disableRateLimiting",
-    ":dependencyDashboard",
-    ":semanticCommits",
+    "github>nasenov/homelab//.renovate/autoMerge.json",
+    "github>nasenov/homelab//.renovate/changelogs.json",
     "github>nasenov/homelab//.renovate/customManagers.json",
     "github>nasenov/homelab//.renovate/grafanaDashboards.json",
     "github>nasenov/homelab//.renovate/groups.json",
     "github>nasenov/homelab//.renovate/labels.json",
-    "github>nasenov/homelab//.renovate/semanticCommits.json"
+    "github>nasenov/homelab//.renovate/semanticCommits.json",
+    ":automergeBranch",
+    ":disableRateLimiting",
+    ":dependencyDashboard",
+    ":semanticCommits",
+    ":timezone(Europe/Sofia)"
   ],
   "dependencyDashboardTitle": "Renovate Dashboard",
   "flux": {
-    "managerFilePatterns": ["/(^|/)kubernetes/.+\\.ya?ml$/"]
+    "managerFilePatterns": ["/\\.yaml$/"]
   },
   "helm-values": {
-    "managerFilePatterns": ["/(^|/)kubernetes/.+\\.ya?ml$/"]
+    "managerFilePatterns": ["/\\.yaml$/"]
   },
   "kubernetes": {
-    "managerFilePatterns": ["/(^|/)kubernetes/.+\\.ya?ml$/"]
+    "managerFilePatterns": ["/\\.yaml$/"]
   }
 }

@@ -2,54 +2,39 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "packageRules": [
     {
-      "groupName": "CoreDNS",
-      "description": "CoreDNS Group",
-      "matchDatasources": [
-        "docker"
-      ],
-      "matchPackageNames": [
-        "ghcr.io/coredns/charts/coredns"
-      ]
-    },
-    {
-      "groupName": "Flux-Operator",
       "description": "Flux Operator Group",
-      "matchDatasources": [
-        "docker"
-      ],
+      "groupName": "flux-operator",
+      "matchDatasources": ["docker"],
       "matchPackageNames": [
         "ghcr.io/controlplaneio-fluxcd/charts/flux-operator",
         "ghcr.io/controlplaneio-fluxcd/charts/flux-instance"
-      ]
+      ],
+      "minimumGroupSize": 2
     },
     {
-      "groupName": "Intel-Device-Plugins",
       "description": "Intel Device Plugins Group",
-      "matchDatasources": [
-        "helm"
-      ],
+      "groupName": "intel-device-plugins",
+      "matchDatasources": ["helm"],
       "matchPackageNames": [
         "intel-device-plugins-operator",
         "intel-device-plugins-gpu"
-      ]
+      ],
+      "minimumGroupSize": 2
     },
     {
-      "groupName": "Rook-Ceph",
       "description": "Rook-Ceph Group",
-      "matchDatasources": [
-        "docker"
-      ],
+      "groupName": "rook-ceph",
+      "matchDatasources": ["docker"],
       "matchPackageNames": [
         "ghcr.io/rook/rook-ceph",
         "ghcr.io/rook/rook-ceph-cluster"
-      ]
+      ],
+      "minimumGroupSize": 2
     },
     {
-      "groupName": "Talos",
       "description": "Talos Group",
-      "matchDatasources": [
-        "docker"
-      ],
+      "groupName": "talos",
+      "matchDatasources": ["docker"],
       "matchPackageNames": [
         "ghcr.io/siderolabs/installer",
         "ghcr.io/siderolabs/talosctl"
