@@ -35,6 +35,7 @@ spec:
               sectionName: https
 
       prometheusSpec:
+        externalUrl: https://prometheus.nasenov.dev
         ruleSelectorNilUsesHelmValues: false
         serviceMonitorSelectorNilUsesHelmValues: false
         podMonitorSelectorNilUsesHelmValues: false
