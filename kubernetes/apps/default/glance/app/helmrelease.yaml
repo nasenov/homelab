@@ -70,4 +70,3 @@ spec:
         globalMounts:
           - path: /app/config/glance.yml
             subPath: glance.yml
-            readOnly: true
