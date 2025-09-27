@@ -5,7 +5,8 @@ data "talos_image_factory_extensions_versions" "this" {
   filters = {
     names = [
       "qemu-guest-agent",
-      "i915"
+      "i915",
+      "nfsrahead"
     ]
   }
 }
