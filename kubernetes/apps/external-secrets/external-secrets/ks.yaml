@@ -9,6 +9,8 @@ spec:
   interval: 30m
   retryInterval: 2m
   timeout: 5m
+  components:
+    - ../../../../components/defaults
   dependsOn:
     - name: prometheus-operator-crds
       namespace: observability
@@ -32,6 +34,8 @@ spec:
   interval: 30m
   retryInterval: 2m
   timeout: 5m
+  components:
+    - ../../../../components/defaults
   dependsOn:
     - name: external-secrets
       namespace: external-secrets

@@ -9,6 +9,8 @@ spec:
   interval: 30m
   retryInterval: 2m
   timeout: 5m
+  components:
+    - ../../../../components/defaults
   dependsOn:
     - name: cert-manager
       namespace: cert-manager
@@ -30,6 +32,8 @@ spec:
   interval: 30m
   retryInterval: 2m
   timeout: 5m
+  components:
+    - ../../../../components/defaults
   dependsOn:
     - name: emqx-operator
       namespace: database
@@ -60,6 +64,8 @@ spec:
   interval: 30m
   retryInterval: 2m
   timeout: 5m
+  components:
+    - ../../../../components/defaults
   dependsOn:
     - name: emqx-cluster
       namespace: database

@@ -13,13 +13,6 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: backube
-  install:
-    remediation:
-      retries: -1
-  upgrade:
-    cleanupOnFail: true
-    remediation:
-      retries: 3
   values:
     metrics:
       disableAuth: true

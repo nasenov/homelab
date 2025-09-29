@@ -9,6 +9,8 @@ spec:
   interval: 30m
   retryInterval: 2m
   timeout: 5m
+  components:
+    - ../../../../components/defaults
   dependsOn:
     - name: external-secrets-stores
       namespace: external-secrets
@@ -30,6 +32,8 @@ spec:
   interval: 30m
   retryInterval: 2m
   timeout: 15m
+  components:
+    - ../../../../components/defaults
   dependsOn:
     - name: crunchy-postgres-operator
       namespace: database
@@ -67,6 +71,8 @@ spec:
   interval: 30m
   retryInterval: 2m
   timeout: 5m
+  components:
+    - ../../../../components/defaults
   dependsOn:
     - name: external-secrets
       namespace: external-secrets

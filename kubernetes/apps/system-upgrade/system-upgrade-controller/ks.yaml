@@ -9,6 +9,8 @@ spec:
   interval: 30m
   retryInterval: 2m
   timeout: 5m
+  components:
+    - ../../../../components/defaults
   path: ./kubernetes/apps/system-upgrade/system-upgrade-controller/app
   prune: true
   sourceRef:
@@ -27,6 +29,8 @@ spec:
   interval: 30m
   retryInterval: 2m
   timeout: 5m
+  components:
+    - ../../../../components/defaults
   dependsOn:
     - name: system-upgrade-controller
       namespace: system-upgrade

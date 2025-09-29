@@ -10,6 +10,7 @@ spec:
   retryInterval: 2m
   timeout: 5m
   components:
+    - ../../../../components/defaults
     - ../../../../components/volsync
     - ../../../../components/gatus/guarded
   dependsOn:

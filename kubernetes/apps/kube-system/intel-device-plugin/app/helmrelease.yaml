@@ -13,10 +13,3 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: intel
-  install:
-    remediation:
-      retries: -1
-  upgrade:
-    cleanupOnFail: true
-    remediation:
-      retries: 3

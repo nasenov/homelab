@@ -9,14 +9,6 @@ spec:
   chartRef:
     kind: OCIRepository
     name: kube-prometheus-stack
-  install:
-    crds: Skip
-    remediation:
-      retries: 3
-  upgrade:
-    crds: Skip
-    remediation:
-      retries: 3
   values:
     cleanPrometheusOperatorObjectNames: true
 

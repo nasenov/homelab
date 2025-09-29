@@ -9,6 +9,8 @@ spec:
   interval: 30m
   timeout: 5m
   retryInterval: 2m
+  components:
+    - ../../../../components/defaults
   dependsOn:
     - name: external-secrets-stores
       namespace: external-secrets
@@ -30,6 +32,8 @@ spec:
   interval: 30m
   timeout: 5m
   retryInterval: 2m
+  components:
+    - ../../../../components/defaults
   dependsOn:
     - name: certificates-import
       namespace: kube-system

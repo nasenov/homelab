@@ -9,6 +9,8 @@ spec:
   interval: 30m
   retryInterval: 2m
   timeout: 5m
+  components:
+    - ../../../../components/defaults
   path: ./kubernetes/apps/kube-system/intel-device-plugin/app
   prune: true
   sourceRef:
@@ -26,6 +28,8 @@ spec:
   interval: 30m
   retryInterval: 2m
   timeout: 5m
+  components:
+    - ../../../../components/defaults
   dependsOn:
     - name: intel-device-plugin-operator
       namespace: kube-system

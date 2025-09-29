@@ -9,6 +9,8 @@ spec:
   interval: 30m
   retryInterval: 2m
   timeout: 5m
+  components:
+    - ../../../../components/defaults
   dependsOn:
     - name: external-secrets-stores
       namespace: external-secrets
@@ -33,6 +35,7 @@ spec:
   retryInterval: 2m
   timeout: 15m
   components:
+    - ../../../../components/defaults
     - ../../../../components/gatus/guarded
   dependsOn:
     - name: rook-ceph
