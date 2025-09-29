@@ -15,7 +15,6 @@ resources:
   - ./fusion/ks.yaml
   - ./glance/ks.yaml
   - ./home-assistant/ks.yaml
-  - ./it-tools/ks.yaml
   - ./jellyfin/ks.yaml
   - ./jellyseerr/ks.yaml
   - ./n8n/ks.yaml
@@ -26,6 +25,5 @@ resources:
   - ./recyclarr/ks.yaml
   - ./sonarr/ks.yaml
   - ./thelounge/ks.yaml
-  - ./timetagger/ks.yaml
   - ./tqm/ks.yaml
   - ./zigbee2mqtt/ks.yaml
