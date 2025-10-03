@@ -2,6 +2,14 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "packageRules": [
     {
+      "description": "CoreDNS Group",
+      "groupName": "coredns",
+      "matchDatasources": ["docker"],
+      "matchPackageNames": [
+        "ghcr.io/coredns/charts/coredns"
+      ]
+    },
+    {
       "description": "Flux Operator Group",
       "groupName": "flux-operator",
       "matchDatasources": ["docker"],
