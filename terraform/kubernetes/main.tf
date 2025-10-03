@@ -259,7 +259,7 @@ resource "helm_release" "coredns" {
   namespace  = "kube-system"
   repository = "oci://ghcr.io/coredns/charts"
   chart      = "coredns"
-  version    = "1.43.3"
+  version    = "1.44.3"
 
   values = [
     file("../../kubernetes/apps/kube-system/coredns/app/helm-values.yaml")
