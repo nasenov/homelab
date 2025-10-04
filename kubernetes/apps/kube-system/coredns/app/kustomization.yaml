@@ -9,3 +9,5 @@ configMapGenerator:
   - name: coredns-helm-values
     files:
       - values.yaml=./values.yaml
+generatorOptions:
+  disableNameSuffixHash: true
