@@ -5,7 +5,7 @@ kind: OCIRepository
 metadata:
   name: prometheus-smartctl-exporter
 spec:
-  interval: 30m
+  interval: 15m
   url: oci://ghcr.io/prometheus-community/charts/prometheus-smartctl-exporter
   ref:
     tag: 0.16.0

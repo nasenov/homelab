@@ -3,14 +3,10 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app zigbee2mqtt
+  name: zigbee2mqtt
 spec:
-  targetNamespace: default
-  interval: 30m
-  retryInterval: 2m
-  timeout: 5m
+  interval: 1h
   components:
-    - ../../../../components/defaults
     - ../../../../components/volsync
     - ../../../../components/gatus/guarded
   dependsOn:
@@ -30,4 +26,4 @@ spec:
     namespace: flux-system
   postBuild:
     substitute:
-      APP: *app
+      APP: zigbee2mqtt

@@ -5,12 +5,7 @@ kind: Kustomization
 metadata:
   name: certificates-import
 spec:
-  targetNamespace: kube-system
-  interval: 30m
-  timeout: 5m
-  retryInterval: 2m
-  components:
-    - ../../../../components/defaults
+  interval: 1h
   dependsOn:
     - name: external-secrets-stores
       namespace: external-secrets
@@ -28,15 +23,9 @@ kind: Kustomization
 metadata:
   name: certificates-export
 spec:
-  targetNamespace: kube-system
-  interval: 30m
-  timeout: 5m
-  retryInterval: 2m
-  components:
-    - ../../../../components/defaults
+  interval: 1h
   dependsOn:
     - name: certificates-import
-      namespace: kube-system
   path: ./kubernetes/apps/kube-system/certificates/export
   prune: true
   sourceRef:

@@ -5,7 +5,7 @@ kind: OCIRepository
 metadata:
   name: snapshot-controller
 spec:
-  interval: 30m
+  interval: 15m
   url: oci://ghcr.io/piraeusdatastore/helm-charts/snapshot-controller
   ref:
     tag: 4.1.0

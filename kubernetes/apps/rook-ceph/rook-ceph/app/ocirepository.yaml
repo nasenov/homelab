@@ -5,7 +5,7 @@ kind: OCIRepository
 metadata:
   name: rook-ceph
 spec:
-  interval: 30m
+  interval: 15m
   url: oci://ghcr.io/rook/rook-ceph
   ref:
     tag: v1.18.2

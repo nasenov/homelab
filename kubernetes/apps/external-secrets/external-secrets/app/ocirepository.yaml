@@ -5,7 +5,7 @@ kind: OCIRepository
 metadata:
   name: external-secrets
 spec:
-  interval: 30m
+  interval: 15m
   url: oci://ghcr.io/external-secrets/charts/external-secrets
   ref:
     tag: 0.20.2

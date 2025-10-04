@@ -5,7 +5,7 @@ kind: OCIRepository
 metadata:
   name: reloader
 spec:
-  interval: 30m
+  interval: 15m
   url: oci://ghcr.io/stakater/charts/reloader
   ref:
     tag: 2.2.3

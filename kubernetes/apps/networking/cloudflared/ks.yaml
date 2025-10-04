@@ -5,12 +5,7 @@ kind: Kustomization
 metadata:
   name: cloudflared
 spec:
-  targetNamespace: networking
-  interval: 30m
-  retryInterval: 2m
-  timeout: 5m
-  components:
-    - ../../../../components/defaults
+  interval: 1h
   dependsOn:
     - name: prometheus-operator-crds
       namespace: observability

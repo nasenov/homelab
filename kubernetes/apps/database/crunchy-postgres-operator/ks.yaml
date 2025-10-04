@@ -5,12 +5,7 @@ kind: Kustomization
 metadata:
   name: crunchy-postgres-operator
 spec:
-  targetNamespace: database
-  interval: 30m
-  retryInterval: 2m
-  timeout: 5m
-  components:
-    - ../../../../components/defaults
+  interval: 1h
   dependsOn:
     - name: external-secrets-stores
       namespace: external-secrets
@@ -28,15 +23,9 @@ kind: Kustomization
 metadata:
   name: crunchy-postgres-operator-cluster
 spec:
-  targetNamespace: database
-  interval: 30m
-  retryInterval: 2m
-  timeout: 15m
-  components:
-    - ../../../../components/defaults
+  interval: 1h
   dependsOn:
     - name: crunchy-postgres-operator
-      namespace: database
     - name: external-secrets-stores
       namespace: external-secrets
     - name: prometheus-operator-crds
@@ -67,12 +56,7 @@ kind: Kustomization
 metadata:
   name: crunchy-postgres-operator-secretstore
 spec:
-  targetNamespace: database
-  interval: 30m
-  retryInterval: 2m
-  timeout: 5m
-  components:
-    - ../../../../components/defaults
+  interval: 1h
   dependsOn:
     - name: external-secrets
       namespace: external-secrets

@@ -3,20 +3,15 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app grafana
+  name: grafana
 spec:
-  targetNamespace: observability
-  interval: 30m
-  retryInterval: 2m
-  timeout: 5m
+  interval: 1h
   components:
-    - ../../../../components/defaults
     - ../../../../components/gatus/guarded
   dependsOn:
     - name: external-secrets-stores
       namespace: external-secrets
     - name: prometheus-operator-crds
-      namespace: observability
     - name: crunchy-postgres-operator-cluster
       namespace: database
     - name: crunchy-postgres-operator-secretstore
@@ -29,4 +24,4 @@ spec:
     namespace: flux-system
   postBuild:
     substitute:
-      APP: *app
+      APP: grafana

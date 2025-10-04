@@ -3,18 +3,13 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app alloy
+  name: alloy
 spec:
-  targetNamespace: observability
-  interval: 30m
-  retryInterval: 2m
-  timeout: 5m
+  interval: 1h
   components:
-    - ../../../../components/defaults
     - ../../../../components/gatus/guarded
   dependsOn:
     - name: prometheus-operator-crds
-      namespace: observability
   path: ./kubernetes/apps/observability/alloy/app
   prune: true
   sourceRef:
@@ -23,4 +18,4 @@ spec:
     namespace: flux-system
   postBuild:
     substitute:
-      APP: *app
+      APP: alloy

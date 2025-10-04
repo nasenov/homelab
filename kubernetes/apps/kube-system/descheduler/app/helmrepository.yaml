@@ -5,5 +5,5 @@ kind: HelmRepository
 metadata:
   name: descheduler
 spec:
-  interval: 30m
+  interval: 15m
   url: https://kubernetes-sigs.github.io/descheduler

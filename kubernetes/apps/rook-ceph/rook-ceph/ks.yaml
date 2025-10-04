@@ -5,19 +5,14 @@ kind: Kustomization
 metadata:
   name: rook-ceph
 spec:
-  targetNamespace: rook-ceph
-  interval: 30m
-  retryInterval: 2m
-  timeout: 5m
-  components:
-    - ../../../../components/defaults
+  interval: 1h
   dependsOn:
     - name: external-secrets-stores
       namespace: external-secrets
     - name: prometheus-operator-crds
       namespace: observability
   path: ./kubernetes/apps/rook-ceph/rook-ceph/app
-  prune: false
+  prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -28,22 +23,17 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app rook-ceph-cluster
+  name: rook-ceph-cluster
 spec:
-  targetNamespace: rook-ceph
-  interval: 30m
-  retryInterval: 2m
-  timeout: 15m
+  interval: 1h
   components:
-    - ../../../../components/defaults
     - ../../../../components/gatus/guarded
   dependsOn:
     - name: rook-ceph
-      namespace: rook-ceph
     - name: snapshot-controller
       namespace: kube-system
   path: ./kubernetes/apps/rook-ceph/rook-ceph/cluster
-  prune: false
+  prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -64,5 +54,5 @@ spec:
       failed: status.ceph.health == 'HEALTH_ERR'
   postBuild:
     substitute:
-      APP: *app
+      APP: rook-ceph-cluster
       GATUS_SUBDOMAIN: rook

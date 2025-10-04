@@ -5,12 +5,7 @@ kind: Kustomization
 metadata:
   name: system-upgrade-controller
 spec:
-  targetNamespace: system-upgrade
-  interval: 30m
-  retryInterval: 2m
-  timeout: 5m
-  components:
-    - ../../../../components/defaults
+  interval: 1h
   path: ./kubernetes/apps/system-upgrade/system-upgrade-controller/app
   prune: true
   sourceRef:
@@ -25,15 +20,9 @@ kind: Kustomization
 metadata:
   name: system-upgrade-controller-plans
 spec:
-  targetNamespace: system-upgrade
-  interval: 30m
-  retryInterval: 2m
-  timeout: 5m
-  components:
-    - ../../../../components/defaults
+  interval: 1h
   dependsOn:
     - name: system-upgrade-controller
-      namespace: system-upgrade
   path: ./kubernetes/apps/system-upgrade/system-upgrade-controller/plans
   prune: true
   sourceRef:

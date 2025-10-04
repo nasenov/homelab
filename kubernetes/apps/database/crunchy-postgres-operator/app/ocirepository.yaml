@@ -5,7 +5,7 @@ kind: OCIRepository
 metadata:
   name: pgo
 spec:
-  interval: 30m
+  interval: 15m
   url: oci://registry.developers.crunchydata.com/crunchydata/pgo
   ref:
     tag: 5.8.3

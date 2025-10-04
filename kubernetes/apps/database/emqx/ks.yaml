@@ -5,12 +5,7 @@ kind: Kustomization
 metadata:
   name: emqx-operator
 spec:
-  targetNamespace: database
-  interval: 30m
-  retryInterval: 2m
-  timeout: 5m
-  components:
-    - ../../../../components/defaults
+  interval: 1h
   dependsOn:
     - name: cert-manager
       namespace: cert-manager
@@ -28,15 +23,9 @@ kind: Kustomization
 metadata:
   name: emqx-cluster
 spec:
-  targetNamespace: database
-  interval: 30m
-  retryInterval: 2m
-  timeout: 5m
-  components:
-    - ../../../../components/defaults
+  interval: 1h
   dependsOn:
     - name: emqx-operator
-      namespace: database
     - name: external-secrets-stores
       namespace: external-secrets
     - name: prometheus-operator-crds
@@ -60,15 +49,9 @@ kind: Kustomization
 metadata:
   name: emqx-exporter
 spec:
-  targetNamespace: database
-  interval: 30m
-  retryInterval: 2m
-  timeout: 5m
-  components:
-    - ../../../../components/defaults
+  interval: 1h
   dependsOn:
     - name: emqx-cluster
-      namespace: database
     - name: external-secrets-stores
       namespace: external-secrets
     - name: prometheus-operator-crds

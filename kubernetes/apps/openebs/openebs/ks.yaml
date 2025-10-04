@@ -5,12 +5,7 @@ kind: Kustomization
 metadata:
   name: openebs
 spec:
-  targetNamespace: openebs
-  interval: 30m
-  retryInterval: 2m
-  timeout: 5m
-  components:
-    - ../../../../components/defaults
+  interval: 1h
   path: ./kubernetes/apps/openebs/openebs/app
   prune: true
   sourceRef:

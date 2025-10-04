@@ -3,14 +3,10 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app kromgo
+  name: kromgo
 spec:
-  targetNamespace: observability
-  interval: 30m
-  retryInterval: 2m
-  timeout: 5m
+  interval: 1h
   components:
-    - ../../../../components/defaults
     - ../../../../components/gatus/external
   path: ./kubernetes/apps/observability/kromgo/app
   prune: true
@@ -20,5 +16,5 @@ spec:
     namespace: flux-system
   postBuild:
     substitute:
-      APP: *app
+      APP: kromgo
       GATUS_PATH: /talos_version

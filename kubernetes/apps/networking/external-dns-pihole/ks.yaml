@@ -5,12 +5,7 @@ kind: Kustomization
 metadata:
   name: external-dns-pihole
 spec:
-  targetNamespace: networking
-  interval: 30m
-  retryInterval: 2m
-  timeout: 5m
-  components:
-    - ../../../../components/defaults
+  interval: 1h
   dependsOn:
     - name: prometheus-operator-crds
       namespace: observability
@@ -29,15 +24,9 @@ kind: Kustomization
 metadata:
   name: external-dns-pihole-dnsendpoint
 spec:
-  targetNamespace: networking
-  interval: 30m
-  retryInterval: 2m
-  timeout: 5m
-  components:
-    - ../../../../components/defaults
+  interval: 1h
   dependsOn:
     - name: external-dns-pihole
-      namespace: networking
   path: ./kubernetes/apps/networking/external-dns-pihole/dnsendpoint
   prune: true
   sourceRef:

@@ -5,12 +5,7 @@ kind: Kustomization
 metadata:
   name: cilium
 spec:
-  targetNamespace: kube-system
-  interval: 30m
-  retryInterval: 2m
-  timeout: 5m
-  components:
-    - ../../../../components/defaults
+  interval: 1h
   dependsOn:
     - name: prometheus-operator-crds
       namespace: observability
@@ -28,16 +23,11 @@ kind: Kustomization
 metadata:
   name: cilium-config
 spec:
-  targetNamespace: kube-system
-  interval: 30m
-  retryInterval: 2m
-  timeout: 5m
+  interval: 1h
   components:
-    - ../../../../components/defaults
     - ../../../../components/gatus/guarded
   dependsOn:
     - name: cilium
-      namespace: kube-system
     - name: cert-manager-issuers
       namespace: cert-manager
   path: ./kubernetes/apps/kube-system/cilium/config

@@ -5,15 +5,9 @@ kind: Kustomization
 metadata:
   name: smartctl-exporter
 spec:
-  targetNamespace: observability
-  interval: 30m
-  retryInterval: 2m
-  timeout: 5m
-  components:
-    - ../../../../components/defaults
+  interval: 1h
   dependsOn:
     - name: prometheus-operator-crds
-      namespace: observability
   path: ./kubernetes/apps/observability/smartctl-exporter/app
   prune: true
   sourceRef:

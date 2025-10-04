@@ -5,12 +5,7 @@ kind: Kustomization
 metadata:
   name: intel-device-plugin-operator
 spec:
-  targetNamespace: kube-system
-  interval: 30m
-  retryInterval: 2m
-  timeout: 5m
-  components:
-    - ../../../../components/defaults
+  interval: 1h
   path: ./kubernetes/apps/kube-system/intel-device-plugin/app
   prune: true
   sourceRef:
@@ -24,15 +19,9 @@ kind: Kustomization
 metadata:
   name: intel-device-plugin-gpu
 spec:
-  targetNamespace: kube-system
-  interval: 30m
-  retryInterval: 2m
-  timeout: 5m
-  components:
-    - ../../../../components/defaults
+  interval: 1h
   dependsOn:
     - name: intel-device-plugin-operator
-      namespace: kube-system
   path: ./kubernetes/apps/kube-system/intel-device-plugin/gpu
   prune: true
   sourceRef:

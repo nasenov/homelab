@@ -3,20 +3,15 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app kube-prometheus-stack
+  name: kube-prometheus-stack
 spec:
-  targetNamespace: observability
-  interval: 30m
-  retryInterval: 2m
-  timeout: 5m
+  interval: 1h
   components:
-    - ../../../../components/defaults
     - ../../../../components/gatus/guarded
   dependsOn:
     - name: external-secrets-stores
       namespace: external-secrets
     - name: prometheus-operator-crds
-      namespace: observability
     - name: openebs
       namespace: openebs
   path: ./kubernetes/apps/observability/kube-prometheus-stack/app
@@ -27,5 +22,5 @@ spec:
     namespace: flux-system
   postBuild:
     substitute:
-      APP: *app
+      APP: kube-prometheus-stack
       GATUS_SUBDOMAIN: prometheus

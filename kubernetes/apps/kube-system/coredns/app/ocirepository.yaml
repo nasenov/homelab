@@ -5,7 +5,7 @@ kind: OCIRepository
 metadata:
   name: coredns
 spec:
-  interval: 30m
+  interval: 15m
   url: oci://ghcr.io/coredns/charts/coredns
   ref:
     tag: 1.44.3

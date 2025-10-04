@@ -5,12 +5,7 @@ kind: Kustomization
 metadata:
   name: external-secrets
 spec:
-  targetNamespace: external-secrets
-  interval: 30m
-  retryInterval: 2m
-  timeout: 5m
-  components:
-    - ../../../../components/defaults
+  interval: 1h
   dependsOn:
     - name: prometheus-operator-crds
       namespace: observability
@@ -30,15 +25,9 @@ kind: Kustomization
 metadata:
   name: external-secrets-stores
 spec:
-  targetNamespace: external-secrets
-  interval: 30m
-  retryInterval: 2m
-  timeout: 5m
-  components:
-    - ../../../../components/defaults
+  interval: 1h
   dependsOn:
     - name: external-secrets
-      namespace: external-secrets
   path: ./kubernetes/apps/external-secrets/external-secrets/stores
   prune: true
   sourceRef:

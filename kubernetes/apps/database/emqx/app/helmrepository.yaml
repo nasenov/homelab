@@ -5,5 +5,5 @@ kind: HelmRepository
 metadata:
   name: emqx
 spec:
-  interval: 30m
+  interval: 15m
   url: https://repos.emqx.io/charts

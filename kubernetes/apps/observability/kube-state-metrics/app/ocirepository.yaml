@@ -5,7 +5,7 @@ kind: OCIRepository
 metadata:
   name: kube-state-metrics
 spec:
-  interval: 30m
+  interval: 15m
   url: oci://ghcr.io/prometheus-community/charts/kube-state-metrics
   ref:
     tag: 6.3.0
