@@ -18,7 +18,7 @@ instance:
   kustomize:
     patches:
       - # Ref: https://fluxcd.io/flux/installation/configuration/vertical-scaling/#increase-the-number-of-workers-and-limits
-        patch: |
+        patch: |-
           - op: add
             path: /spec/template/spec/containers/0/args/-
             value: --concurrent=10
@@ -28,7 +28,7 @@ instance:
         target:
           kind: Deployment
           name: "(kustomize-controller|helm-controller|source-controller)"
-      - patch: |
+      - patch: |-
           apiVersion: apps/v1
           kind: Deployment
           metadata:
@@ -45,7 +45,7 @@ instance:
           kind: Deployment
           name: "(kustomize-controller|helm-controller|source-controller)"
       - # Ref: https://fluxcd.io/flux/installation/configuration/vertical-scaling/#enable-in-memory-kustomize-builds
-        patch: |
+        patch: |-
           - op: add
             path: /spec/template/spec/containers/0/args/-
             value: --concurrent=20
@@ -59,7 +59,7 @@ instance:
           kind: Deployment
           name: kustomize-controller
       - # Ref: https://fluxcd.io/flux/installation/configuration/vertical-scaling/#enable-helm-repositories-caching
-        patch: |
+        patch: |-
           - op: add
             path: /spec/template/spec/containers/0/args/-
             value: --helm-cache-max-size=10
@@ -73,7 +73,7 @@ instance:
           kind: Deployment
           name: source-controller
       # Ref: https://fluxcd.io/flux/installation/configuration/helm-oom-detection
-      - patch: |
+      - patch: |-
           # Enable OOM watch feature
           - op: add
             path: /spec/template/spec/containers/0/args/-
@@ -90,7 +90,7 @@ instance:
           kind: Deployment
           name: helm-controller
       - # Disable chart digest tracking
-        patch: |
+        patch: |-
           - op: add
             path: /spec/template/spec/containers/0/args/-
             value: --feature-gates=DisableChartDigestTracking=true
@@ -98,10 +98,18 @@ instance:
           kind: Deployment
           name: helm-controller
       - # Watch configmaps and secrets attached to Kustomizations, HelmReleases and Receiver
-        patch: |
+        patch: |-
           - op: add
             path: /spec/template/spec/containers/0/args/-
             value: --watch-configs-label-selector=owner!=helm
         target:
           kind: Deployment
           name: (kustomize-controller|helm-controller|notification-controller)
+      - # Global SOPS decryption
+        patch: |-
+          - op: add
+            path: /spec/template/spec/containers/0/args/-
+            value: --sops-age-secret=sops-age
+        target:
+          kind: Deployment
+          name: kustomize-controller
