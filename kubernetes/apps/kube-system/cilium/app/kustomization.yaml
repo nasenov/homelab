@@ -9,6 +9,4 @@ resources:
 configMapGenerator:
   - name: cilium-helm-values
     files:
-      - values.yaml=./helm-values.yaml
-configurations:
-  - kustomizeconfig.yaml
+      - values.yaml=./values.yaml
