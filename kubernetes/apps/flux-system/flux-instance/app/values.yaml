@@ -97,3 +97,11 @@ instance:
         target:
           kind: Deployment
           name: helm-controller
+      - # Watch configmaps and secrets attached to Kustomizations, HelmReleases and Receiver
+        patch: |
+          - op: add
+            path: /spec/template/spec/containers/0/args/-
+            value: --watch-configs-label-selector=owner!=helm
+        target:
+          kind: Deployment
+          name: (kustomize-controller|helm-controller|notification-controller)
