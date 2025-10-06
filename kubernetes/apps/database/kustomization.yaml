@@ -9,4 +9,3 @@ replacements:
   - path: ../../components/replacements/ks.yaml
 resources:
   - ./crunchy-postgres-operator/ks.yaml
-  - ./emqx/ks.yaml

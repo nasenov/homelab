@@ -16,8 +16,6 @@ spec:
       namespace: rook-ceph
     - name: external-secrets-stores
       namespace: external-secrets
-    - name: emqx-cluster
-      namespace: database
   path: ./kubernetes/apps/default/zigbee2mqtt/app
   prune: true
   sourceRef:

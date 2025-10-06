@@ -107,9 +107,6 @@ pages:
               - title: Zigbee2mqtt
                 url: https://zigbee2mqtt.nasenov.dev
                 icon: di:zigbee2mqtt.svg
-              - title: EMQX
-                url: https://emqx.nasenov.dev
-                icon: di:emqx.svg
               - title: n8n
                 url: https://n8n.nasenov.dev
                 icon: di:n8n.svg
