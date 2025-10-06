@@ -19,6 +19,7 @@ resources:
   - ./home-assistant/ks.yaml
   - ./jellyfin/ks.yaml
   - ./jellyseerr/ks.yaml
+  - ./mosquitto/ks.yaml
   - ./n8n/ks.yaml
   - ./prowlarr/ks.yaml
   - ./qbittorrent/ks.yaml
