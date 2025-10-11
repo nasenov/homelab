@@ -77,10 +77,3 @@ spec:
         globalMounts:
           - path: /data/downloads
             subPath: downloads
-      tmpfs:
-        type: emptyDir
-        advancedMounts:
-          cross-seed:
-            app:
-              - path: /config/logs
-                subPath: logs

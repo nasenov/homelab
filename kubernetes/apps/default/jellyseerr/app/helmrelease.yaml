@@ -60,14 +60,5 @@ spec:
         existingClaim: "{{ .Release.Name }}"
         globalMounts:
           - path: /app/config
-      tmpfs:
+      tmp:
         type: emptyDir
-        advancedMounts:
-          jellyseerr:
-            app:
-              - path: /app/config/logs
-                subPath: logs
-              - path: /app/config/cache
-                subPath: cache
-              - path: /tmp
-                subPath: tmp

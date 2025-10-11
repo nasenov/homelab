@@ -70,10 +70,5 @@ spec:
     persistence:
       config:
         existingClaim: "{{ .Release.Name }}"
-      tmpfs:
+      tmp:
         type: emptyDir
-        advancedMounts:
-          prowlarr:
-            app:
-              - path: /tmp
-                subPath: tmp

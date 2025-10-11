@@ -56,10 +56,5 @@ spec:
             subPath: media/cwa/cwa-book-ingest
           - path: /calibre-library
             subPath: media/cwa/calibre-library
-      tmpfs:
+      cache:
         type: emptyDir
-        advancedMounts:
-          calibre-web-automated:
-            app:
-              - path: /cache
-                subPath: cache

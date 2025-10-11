@@ -79,12 +79,5 @@ spec:
         path: /mnt/tank/media
         globalMounts:
           - path: /data
-      tmpfs:
+      tmp:
         type: emptyDir
-        advancedMounts:
-          audiobookshelf:
-            app:
-              - path: /.npm
-                subPath: npm
-              - path: /tmp
-                subPath: tmp

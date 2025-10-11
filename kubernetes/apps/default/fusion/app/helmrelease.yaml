@@ -69,7 +69,5 @@ spec:
             sectionName: https
 
     persistence:
-      config:
+      data:
         existingClaim: "{{ .Release.Name }}"
-        globalMounts:
-          - path: /data

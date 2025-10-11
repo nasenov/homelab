@@ -76,10 +76,5 @@ spec:
         path: /mnt/tank/media
         globalMounts:
           - path: /data
-      tmpfs:
+      tmp:
         type: emptyDir
-        advancedMounts:
-          radarr:
-            app:
-              - path: /tmp
-                subPath: tmp
