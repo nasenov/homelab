@@ -41,7 +41,7 @@ spec:
     service:
       app:
         ports:
-          http:
+          mqtt:
             port: 1883
 
     configMaps:
