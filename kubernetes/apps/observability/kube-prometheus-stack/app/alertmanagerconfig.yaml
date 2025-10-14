@@ -11,7 +11,7 @@ spec:
       - alertname
       - job
     groupWait: 1m
-    groupInterval: 10m
+    groupInterval: 5m
     repeatInterval: 12h
     routes:
       - receiver: "null"
