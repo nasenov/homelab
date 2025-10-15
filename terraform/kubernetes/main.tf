@@ -1,6 +1,6 @@
 data "talos_image_factory_extensions_versions" "this" {
   # renovate: datasource=docker depName=ghcr.io/siderolabs/installer
-  talos_version = "v1.11.2"
+  talos_version = "v1.11.3"
 
   filters = {
     names = [
