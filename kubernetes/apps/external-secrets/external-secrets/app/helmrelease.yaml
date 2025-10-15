@@ -23,19 +23,8 @@ spec:
           drop:
             - ALL
 
-    image:
-      repository: ghcr.io/external-secrets/external-secrets
-
     serviceMonitor:
       enabled: true
 
     grafanaDashboard:
       enabled: true
-
-    webhook:
-      image:
-        repository: ghcr.io/external-secrets/external-secrets
-
-    certController:
-      image:
-        repository: ghcr.io/external-secrets/external-secrets
