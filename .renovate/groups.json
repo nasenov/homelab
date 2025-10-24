@@ -49,6 +49,16 @@
         "ghcr.io/siderolabs/talosctl"
       ],
       "minimumGroupSize": 2
+    },
+    {
+      "description": "Node Exporter Group",
+      "groupName": "node-exporter",
+      "matchDatasources": ["docker", "github-releases"],
+      "matchPackageNames": [
+        "quay.io/prometheus/node-exporter",
+        "prometheus/node_exporter"
+      ],
+      "minimumGroupSize": 2
     }
   ]
 }
