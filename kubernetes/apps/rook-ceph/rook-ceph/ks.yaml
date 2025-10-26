@@ -6,6 +6,7 @@ metadata:
   name: rook-ceph
 spec:
   interval: 1h
+  targetNamespace: rook-ceph
   dependsOn:
     - name: external-secrets-stores
       namespace: external-secrets
@@ -26,6 +27,7 @@ metadata:
   name: rook-ceph-cluster
 spec:
   interval: 1h
+  targetNamespace: rook-ceph
   components:
     - ../../../../components/gatus/guarded
   dependsOn:

@@ -6,6 +6,7 @@ metadata:
   name: prometheus-operator-crds
 spec:
   interval: 1h
+  targetNamespace: observability
   path: ./kubernetes/apps/observability/prometheus-operator-crds/app
   prune: false
   sourceRef:

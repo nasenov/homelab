@@ -6,6 +6,7 @@ metadata:
   name: cloudflared
 spec:
   interval: 1h
+  targetNamespace: networking
   dependsOn:
     - name: prometheus-operator-crds
       namespace: observability

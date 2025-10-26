@@ -6,6 +6,7 @@ metadata:
   name: bazarr
 spec:
   interval: 1h
+  targetNamespace: default
   components:
     - ../../../../components/volsync
     - ../../../../components/gatus/guarded

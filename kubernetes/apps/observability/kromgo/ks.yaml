@@ -6,6 +6,7 @@ metadata:
   name: kromgo
 spec:
   interval: 1h
+  targetNamespace: observability
   components:
     - ../../../../components/gatus/external
   path: ./kubernetes/apps/observability/kromgo/app

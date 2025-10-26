@@ -6,6 +6,7 @@ metadata:
   name: external-dns-pihole
 spec:
   interval: 1h
+  targetNamespace: networking
   dependsOn:
     - name: prometheus-operator-crds
       namespace: observability
@@ -25,6 +26,7 @@ metadata:
   name: external-dns-pihole-dnsendpoint
 spec:
   interval: 1h
+  targetNamespace: networking
   dependsOn:
     - name: external-dns-pihole
   path: ./kubernetes/apps/networking/external-dns-pihole/dnsendpoint

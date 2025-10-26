@@ -6,6 +6,7 @@ metadata:
   name: grafana
 spec:
   interval: 1h
+  targetNamespace: observability
   components:
     - ../../../../components/gatus/guarded
   dependsOn:

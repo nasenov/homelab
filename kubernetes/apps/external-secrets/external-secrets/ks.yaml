@@ -6,6 +6,7 @@ metadata:
   name: external-secrets
 spec:
   interval: 1h
+  targetNamespace: external-secrets
   dependsOn:
     - name: prometheus-operator-crds
       namespace: observability
@@ -26,6 +27,7 @@ metadata:
   name: external-secrets-stores
 spec:
   interval: 1h
+  targetNamespace: external-secrets
   dependsOn:
     - name: external-secrets
   path: ./kubernetes/apps/external-secrets/external-secrets/stores

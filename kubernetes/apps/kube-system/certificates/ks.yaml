@@ -6,6 +6,7 @@ metadata:
   name: certificates-import
 spec:
   interval: 1h
+  targetNamespace: kube-system
   dependsOn:
     - name: external-secrets-stores
       namespace: external-secrets
@@ -24,6 +25,7 @@ metadata:
   name: certificates-export
 spec:
   interval: 1h
+  targetNamespace: kube-system
   dependsOn:
     - name: certificates-import
   path: ./kubernetes/apps/kube-system/certificates/export

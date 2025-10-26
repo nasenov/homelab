@@ -6,6 +6,7 @@ metadata:
   name: coredns
 spec:
   interval: 1h
+  targetNamespace: kube-system
   path: ./kubernetes/apps/kube-system/coredns/app
   prune: true
   sourceRef:

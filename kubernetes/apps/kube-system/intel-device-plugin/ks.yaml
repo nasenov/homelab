@@ -6,6 +6,7 @@ metadata:
   name: intel-device-plugin-operator
 spec:
   interval: 1h
+  targetNamespace: kube-system
   path: ./kubernetes/apps/kube-system/intel-device-plugin/app
   prune: true
   sourceRef:
@@ -20,6 +21,7 @@ metadata:
   name: intel-device-plugin-gpu
 spec:
   interval: 1h
+  targetNamespace: kube-system
   dependsOn:
     - name: intel-device-plugin-operator
   path: ./kubernetes/apps/kube-system/intel-device-plugin/gpu

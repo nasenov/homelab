@@ -6,6 +6,7 @@ metadata:
   name: kube-prometheus-stack
 spec:
   interval: 1h
+  targetNamespace: observability
   components:
     - ../../../../components/gatus/guarded
   dependsOn:

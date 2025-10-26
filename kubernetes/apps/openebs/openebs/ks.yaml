@@ -6,6 +6,7 @@ metadata:
   name: openebs
 spec:
   interval: 1h
+  targetNamespace: openebs
   path: ./kubernetes/apps/openebs/openebs/app
   prune: true
   sourceRef:

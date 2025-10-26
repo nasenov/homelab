@@ -6,6 +6,7 @@ metadata:
   name: crunchy-postgres-operator
 spec:
   interval: 1h
+  targetNamespace: database
   dependsOn:
     - name: external-secrets-stores
       namespace: external-secrets
@@ -24,6 +25,7 @@ metadata:
   name: crunchy-postgres-operator-cluster
 spec:
   interval: 1h
+  targetNamespace: database
   dependsOn:
     - name: crunchy-postgres-operator
     - name: external-secrets-stores
@@ -57,6 +59,7 @@ metadata:
   name: crunchy-postgres-operator-secretstore
 spec:
   interval: 1h
+  targetNamespace: database
   dependsOn:
     - name: external-secrets
       namespace: external-secrets

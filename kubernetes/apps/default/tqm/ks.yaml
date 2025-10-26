@@ -6,6 +6,7 @@ metadata:
   name: tqm
 spec:
   interval: 1h
+  targetNamespace: default
   dependsOn:
     - name: qbittorrent
   path: ./kubernetes/apps/default/tqm/app

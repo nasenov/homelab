@@ -6,6 +6,7 @@ metadata:
   name: cilium
 spec:
   interval: 1h
+  targetNamespace: kube-system
   dependsOn:
     - name: prometheus-operator-crds
       namespace: observability
@@ -24,6 +25,7 @@ metadata:
   name: cilium-config
 spec:
   interval: 1h
+  targetNamespace: kube-system
   components:
     - ../../../../components/gatus/guarded
   dependsOn:

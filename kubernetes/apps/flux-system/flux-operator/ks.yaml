@@ -6,6 +6,7 @@ metadata:
   name: flux-operator
 spec:
   interval: 1h
+  targetNamespace: flux-system
   dependsOn:
     - name: prometheus-operator-crds
       namespace: observability

@@ -6,6 +6,7 @@ metadata:
   name: cert-manager
 spec:
   interval: 1h
+  targetNamespace: cert-manager
   dependsOn:
     - name: prometheus-operator-crds
       namespace: observability
@@ -24,6 +25,7 @@ metadata:
   name: cert-manager-issuers
 spec:
   interval: 1h
+  targetNamespace: cert-manager
   dependsOn:
     - name: cert-manager
     - name: external-secrets-stores
