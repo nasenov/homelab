@@ -24,7 +24,6 @@ spec:
           parentRefs:
             - name: internal
               namespace: kube-system
-              sectionName: https
 
       prometheusSpec:
         externalUrl: https://prometheus.nasenov.dev
@@ -68,7 +67,6 @@ spec:
           parentRefs:
             - name: internal
               namespace: kube-system
-              sectionName: https
 
       alertmanagerSpec:
         alertmanagerConfiguration:
