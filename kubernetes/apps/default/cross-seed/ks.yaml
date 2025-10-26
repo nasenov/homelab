@@ -7,11 +7,7 @@ metadata:
 spec:
   interval: 1h
   targetNamespace: default
-  components:
-    - ../../../../components/volsync
   dependsOn:
-    - name: volsync
-      namespace: volsync-system
     - name: rook-ceph-cluster
       namespace: rook-ceph
     - name: external-secrets-stores
@@ -26,7 +22,3 @@ spec:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-  postBuild:
-    substitute:
-      APP: cross-seed
-      VOLSYNC_CAPACITY: 5Gi

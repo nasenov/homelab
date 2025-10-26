@@ -63,7 +63,10 @@ spec:
 
     persistence:
       config:
-        existingClaim: "{{ .Release.Name }}"
+        type: persistentVolumeClaim
+        storageClass: ceph-block
+        accessMode: ReadWriteOnce
+        size: 5Gi
       secret-file:
         type: secret
         name: "{{ .Release.Name }}"
