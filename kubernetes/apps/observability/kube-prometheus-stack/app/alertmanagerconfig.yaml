@@ -9,6 +9,7 @@ spec:
     receiver: discord
     groupBy:
       - alertname
+      - cluster
       - job
     groupWait: 1m
     groupInterval: 5m
