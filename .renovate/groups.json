@@ -16,9 +16,10 @@
       "matchDatasources": ["docker"],
       "matchPackageNames": [
         "ghcr.io/controlplaneio-fluxcd/charts/flux-operator",
-        "ghcr.io/controlplaneio-fluxcd/charts/flux-instance"
+        "ghcr.io/controlplaneio-fluxcd/charts/flux-instance",
+        "ghcr.io/controlplaneio-fluxcd/flux-operator-manifests"
       ],
-      "minimumGroupSize": 2
+      "minimumGroupSize": 3
     },
     {
       "description": "Intel Device Plugins Group",
