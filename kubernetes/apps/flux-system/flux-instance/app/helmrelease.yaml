@@ -12,8 +12,3 @@ spec:
   valuesFrom:
     - kind: ConfigMap
       name: flux-instance-helm-values
-  values:
-    instance:
-      distribution:
-        artifact: oci://ghcr.io/controlplaneio-fluxcd/flux-operator-manifests:v0.33.0
-        version: 2.x

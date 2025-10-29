@@ -30,6 +30,15 @@
         "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( repository=(?<registryUrl>\\S+))?\\n.+(:\\s|=\\s)(&\\S+\\s)?\"(?<currentValue>\\S+)\""
       ],
       "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}"
+    },
+    {
+      "description": "Process OCI dependencies",
+      "customType": "regex",
+      "managerFilePatterns": ["/\\.yaml$/"],
+      "matchStrings": [
+        "oci://(?<depName>[^:]+):(?<currentValue>\\S+)"
+      ],
+      "datasourceTemplate": "docker"
     }
   ]
 }
