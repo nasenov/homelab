@@ -242,7 +242,7 @@ resource "helm_release" "cilium" {
   wait_for_jobs = true
 
   values = [
-    file("../../kubernetes/apps/kube-system/cilium/app/helm-values.yaml")
+    file("../../kubernetes/apps/kube-system/cilium/app/values.yaml")
   ]
 
   lifecycle {
@@ -262,7 +262,7 @@ resource "helm_release" "coredns" {
   version    = "1.45.0"
 
   values = [
-    file("../../kubernetes/apps/kube-system/coredns/app/helm-values.yaml")
+    file("../../kubernetes/apps/kube-system/coredns/app/values.yaml")
   ]
 
   lifecycle {
