@@ -48,7 +48,7 @@ spec:
                       retries: 2
                   rollback:
                     cleanupOnFail: true
-                    recreate: true                      
+                    recreate: true
               target:
                 group: helm.toolkit.fluxcd.io
                 kind: HelmRelease
