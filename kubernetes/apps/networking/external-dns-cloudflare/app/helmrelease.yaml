@@ -32,7 +32,7 @@ spec:
       - --zone-id-filter=$(CF_ZONE_ID)
       - --cloudflare-dns-records-per-page=1000
       - --cloudflare-proxied
-      - --gateway-name=external
+      - --gateway-name=envoy-external
     triggerLoopOnEvent: true
     policy: sync
     sources:
