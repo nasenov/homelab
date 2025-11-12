@@ -7,11 +7,28 @@ metadata:
 spec:
   interval: 1h
   targetNamespace: networking
+  path: ./kubernetes/apps/networking/envoy-gateway/app
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+    namespace: flux-system
+  wait: true
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: envoy-gateway-config
+spec:
+  interval: 1h
+  targetNamespace: networking
   dependsOn:
+    - name: envoy-gateway
     - name: certificates-import
     - name: prometheus-operator-crds
       namespace: observability
-  path: ./kubernetes/apps/networking/envoy-gateway/app
+  path: ./kubernetes/apps/networking/envoy-gateway/config
   prune: true
   sourceRef:
     kind: GitRepository
