@@ -202,14 +202,14 @@ resource "cloudflare_zero_trust_tunnel_cloudflared_config" "homelab" {
         origin_request = {
           origin_server_name = "nasenov.dev"
         }
-        service = "https://cilium-gateway-external.kube-system.svc.cluster.local"
+        service = "https://envoy-external.networking.svc.cluster.local"
       },
       {
         hostname = "*.nasenov.dev"
         origin_request = {
           origin_server_name = "*.nasenov.dev"
         }
-        service = "https://cilium-gateway-external.kube-system.svc.cluster.local"
+        service = "https://envoy-external.networking.svc.cluster.local"
       },
       {
         service = "http_status:404"
