@@ -9,6 +9,9 @@ spec:
   targetNamespace: observability
   components:
     - ../../../../components/gatus/external
+  dependsOn:
+    - name: envoy-gateway
+      namespace: networking
   path: ./kubernetes/apps/observability/kromgo/app
   prune: true
   sourceRef:

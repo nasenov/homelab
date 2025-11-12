@@ -19,6 +19,8 @@ spec:
       namespace: external-secrets
     - name: intel-device-plugin-gpu
       namespace: kube-system
+    - name: envoy-gateway
+      namespace: networking
   path: ./kubernetes/apps/default/jellyfin/app
   prune: true
   sourceRef:

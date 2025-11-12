@@ -70,8 +70,8 @@ spec:
         hostnames:
           - "{{ .Release.Name }}.nasenov.dev"
         parentRefs:
-          - name: external
-            namespace: kube-system
+          - name: envoy-external
+            namespace: networking
         rules:
           - backendRefs:
               - identifier: app

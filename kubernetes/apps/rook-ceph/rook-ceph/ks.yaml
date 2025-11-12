@@ -34,6 +34,8 @@ spec:
     - name: rook-ceph
     - name: snapshot-controller
       namespace: kube-system
+    - name: envoy-gateway
+      namespace: networking
   path: ./kubernetes/apps/rook-ceph/rook-ceph/cluster
   prune: true
   sourceRef:

@@ -67,8 +67,8 @@ spec:
           - "{{ .Release.Name }}.nasenov.dev"
           - zigbee.nasenov.dev
         parentRefs:
-          - name: internal
-            namespace: kube-system
+          - name: envoy-internal
+            namespace: networking
 
     persistence:
       config:

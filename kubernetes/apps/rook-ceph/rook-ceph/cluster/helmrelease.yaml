@@ -71,8 +71,8 @@ spec:
           path: /
           pathType: PathPrefix
         parentRefs:
-          - name: internal
-            namespace: kube-system
+          - name: envoy-internal
+            namespace: networking
 
     cephBlockPools:
       - name: ceph-blockpool

@@ -9,6 +9,9 @@ spec:
   targetNamespace: default
   components:
     - ../../../../components/gatus/guarded
+  dependsOn:
+    - name: envoy-gateway
+      namespace: networking
   path: ./kubernetes/apps/default/glance/app
   prune: true
   sourceRef:

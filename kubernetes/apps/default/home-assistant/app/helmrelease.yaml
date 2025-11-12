@@ -44,8 +44,8 @@ spec:
           - "{{ .Release.Name }}.nasenov.dev"
           - hass.nasenov.dev
         parentRefs:
-          - name: internal
-            namespace: kube-system
+          - name: envoy-internal
+            namespace: networking
 
     persistence:
       config:

@@ -58,8 +58,8 @@ spec:
           - "{{ .Release.Name }}.nasenov.dev"
           - qb.nasenov.dev
         parentRefs:
-          - name: internal
-            namespace: kube-system
+          - name: envoy-internal
+            namespace: networking
         rules:
           - backendRefs:
               - identifier: app

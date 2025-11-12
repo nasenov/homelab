@@ -22,8 +22,8 @@ spec:
           hostnames:
             - prometheus.nasenov.dev
           parentRefs:
-            - name: internal
-              namespace: kube-system
+            - name: envoy-internal
+              namespace: networking
 
       prometheusSpec:
         externalUrl: https://prometheus.nasenov.dev
@@ -65,8 +65,8 @@ spec:
           hostnames:
             - alertmanager.nasenov.dev
           parentRefs:
-            - name: internal
-              namespace: kube-system
+            - name: envoy-internal
+              namespace: networking
 
       alertmanagerSpec:
         alertmanagerConfiguration:

@@ -17,6 +17,8 @@ spec:
       namespace: rook-ceph
     - name: external-secrets-stores
       namespace: external-secrets
+    - name: envoy-gateway
+      namespace: networking
   path: ./kubernetes/apps/default/jellyseerr/app
   prune: true
   sourceRef:

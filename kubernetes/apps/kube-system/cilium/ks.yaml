@@ -30,8 +30,8 @@ spec:
     - ../../../../components/gatus/guarded
   dependsOn:
     - name: cilium
-    - name: cert-manager-issuers
-      namespace: cert-manager
+    - name: envoy-gateway
+      namespace: networking
   path: ./kubernetes/apps/kube-system/cilium/config
   prune: false
   sourceRef:

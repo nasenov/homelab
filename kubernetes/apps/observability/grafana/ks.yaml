@@ -17,6 +17,8 @@ spec:
       namespace: database
     - name: crunchy-postgres-operator-secretstore
       namespace: database
+    - name: envoy-gateway
+      namespace: networking
   path: ./kubernetes/apps/observability/grafana/app
   prune: true
   sourceRef:

@@ -8,8 +8,8 @@ spec:
   hostnames:
     - flux-webhook.nasenov.dev
   parentRefs:
-    - name: external
-      namespace: kube-system
+    - name: envoy-external
+      namespace: networking
   rules:
     - backendRefs:
         - name: webhook-receiver

@@ -11,6 +11,8 @@ spec:
     - ../../../../components/gatus/guarded
   dependsOn:
     - name: prometheus-operator-crds
+    - name: envoy-gateway
+      namespace: networking
   path: ./kubernetes/apps/observability/alloy/app
   prune: true
   sourceRef:

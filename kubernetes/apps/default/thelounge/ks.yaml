@@ -15,6 +15,8 @@ spec:
       namespace: volsync-system
     - name: rook-ceph-cluster
       namespace: rook-ceph
+    - name: envoy-gateway
+      namespace: networking
   path: ./kubernetes/apps/default/thelounge/app
   prune: true
   sourceRef:

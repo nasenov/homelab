@@ -11,6 +11,8 @@ spec:
     - name: rook-ceph-cluster
       namespace: rook-ceph
     - name: prometheus-operator-crds
+    - name: envoy-gateway
+      namespace: networking
   path: ./kubernetes/apps/observability/gatus/app
   prune: true
   sourceRef:

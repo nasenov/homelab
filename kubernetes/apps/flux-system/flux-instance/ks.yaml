@@ -9,12 +9,12 @@ spec:
   targetNamespace: flux-system
   dependsOn:
     - name: flux-operator
-    - name: cilium
-      namespace: kube-system
     - name: external-secrets-stores
       namespace: external-secrets
     - name: prometheus-operator-crds
       namespace: observability
+    - name: envoy-gateway
+      namespace: networking
   path: ./kubernetes/apps/flux-system/flux-instance/app
   prune: false
   sourceRef:
