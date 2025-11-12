@@ -9,6 +9,8 @@ spec:
   targetNamespace: networking
   dependsOn:
     - name: certificates-import
+    - name: prometheus-operator-crds
+      namespace: observability
   path: ./kubernetes/apps/networking/envoy-gateway/app
   prune: true
   sourceRef:
