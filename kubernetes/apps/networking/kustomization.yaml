@@ -8,5 +8,6 @@ components:
 resources:
   - ./namespace.yaml
   - ./cloudflared/ks.yaml
+  - ./envoy-gateway/ks.yaml
   - ./external-dns-cloudflare/ks.yaml
   - ./external-dns-pihole/ks.yaml
