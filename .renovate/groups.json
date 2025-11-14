@@ -22,16 +22,6 @@
       "minimumGroupSize": 3
     },
     {
-      "description": "Intel Device Plugins Group",
-      "groupName": "intel-device-plugins",
-      "matchDatasources": ["helm"],
-      "matchPackageNames": [
-        "intel-device-plugins-operator",
-        "intel-device-plugins-gpu"
-      ],
-      "minimumGroupSize": 2
-    },
-    {
       "description": "Rook-Ceph Group",
       "groupName": "rook-ceph",
       "matchDatasources": ["docker"],
