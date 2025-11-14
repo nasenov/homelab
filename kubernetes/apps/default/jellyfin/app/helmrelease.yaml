@@ -13,6 +13,9 @@ spec:
     controllers:
       jellyfin:
         pod:
+          resourceClaims:
+            - name: gpu
+              resourceClaimTemplateName: jellyfin
           securityContext:
             runAsNonRoot: true
             runAsUser: 1000
@@ -42,10 +45,10 @@ spec:
             resources:
               requests:
                 cpu: 10m
-                gpu.intel.com/i915: 1
               limits:
                 memory: 2Gi
-                gpu.intel.com/i915: 1
+              claims:
+                - name: gpu
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
