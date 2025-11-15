@@ -28,4 +28,4 @@ resources:
   - ./sonarr/ks.yaml
   - ./thelounge/ks.yaml
   - ./tqm/ks.yaml
-  - ./zigbee2mqtt/ks.yaml
+  - ./zigbee/ks.yaml

@@ -3,15 +3,15 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: zigbee2mqtt
+  name: zigbee
 spec:
   interval: 1h
   chartRef:
     kind: OCIRepository
-    name: zigbee2mqtt
+    name: zigbee
   values:
     controllers:
-      zigbee2mqtt:
+      zigbee:
         annotations:
           reloader.stakater.com/auto: "true"
         pod:
@@ -28,11 +28,13 @@ spec:
               tag: 2.6.3@sha256:3baac2a3b74a9945fbbcb665b3e6e0ace5df2d49b5502e3d26b66a5454316e81
             env:
               TZ: "Europe/Sofia"
+              ZIGBEE2MQTT_DATA: /config
               ZIGBEE2MQTT_CONFIG_PERMIT_JOIN: "false"
               ZIGBEE2MQTT_CONFIG_MQTT_SERVER: mqtt://mosquitto.default.svc.cluster.local:1883
               ZIGBEE2MQTT_CONFIG_SERIAL_ADAPTER: zstack
               ZIGBEE2MQTT_CONFIG_SERIAL_PORT: /dev/serial/by-id/usb-ITead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_cc6b105fee12ec11945f20c7bd930c07-if00-port0
               ZIGBEE2MQTT_CONFIG_FRONTEND_URL: https://zigbee.nasenov.dev
+              ZIGBEE2MQTT_CONFIG_FRONTEND_PORT: &port 80
               ZIGBEE2MQTT_CONFIG_HOMEASSISTANT_ENABLED: "true"
             envFrom:
               - secretRef:
@@ -64,13 +66,12 @@ spec:
       app:
         ports:
           http:
-            port: 8080
+            port: *port
 
     route:
       app:
         hostnames:
           - "{{ .Release.Name }}.nasenov.dev"
-          - zigbee.nasenov.dev
         parentRefs:
           - name: envoy-internal
             namespace: networking
@@ -78,5 +79,3 @@ spec:
     persistence:
       config:
         existingClaim: "{{ .Release.Name }}"
-        globalMounts:
-          - path: /app/data
