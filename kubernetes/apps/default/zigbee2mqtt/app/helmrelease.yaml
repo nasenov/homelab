@@ -12,26 +12,26 @@ spec:
   values:
     controllers:
       zigbee2mqtt:
+        annotations:
+          reloader.stakater.com/auto: "true"
         pod:
-          affinity:
-            nodeAffinity:
-              requiredDuringSchedulingIgnoredDuringExecution:
-                nodeSelectorTerms:
-                  - matchExpressions:
-                      - key: feature.node.kubernetes.io/usb-ff_10c4_ea60.present
-                        operator: In
-                        values: ["true"]
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1000
+            runAsGroup: 1000
+            fsGroup: 1000
+            fsGroupChangePolicy: OnRootMismatch
         containers:
           app:
             image:
               repository: ghcr.io/koenkk/zigbee2mqtt
-              tag: 2.6.3
+              tag: 2.6.3@sha256:3baac2a3b74a9945fbbcb665b3e6e0ace5df2d49b5502e3d26b66a5454316e81
             env:
               TZ: "Europe/Sofia"
               ZIGBEE2MQTT_CONFIG_PERMIT_JOIN: "false"
               ZIGBEE2MQTT_CONFIG_MQTT_SERVER: mqtt://mosquitto.default.svc.cluster.local:1883
-              ZIGBEE2MQTT_CONFIG_SERIAL_PORT: /dev/ttyACM0
               ZIGBEE2MQTT_CONFIG_SERIAL_ADAPTER: zstack
+              ZIGBEE2MQTT_CONFIG_SERIAL_PORT: /dev/serial/by-id/usb-ITead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_cc6b105fee12ec11945f20c7bd930c07-if00-port0
               ZIGBEE2MQTT_CONFIG_FRONTEND_URL: https://zigbee.nasenov.dev
               ZIGBEE2MQTT_CONFIG_HOMEASSISTANT_ENABLED: "true"
             envFrom:
@@ -52,8 +52,13 @@ spec:
                 cpu: 10m
               limits:
                 memory: 256Mi
+                squat.ai/zigbee: 1
             securityContext:
-              privileged: true
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities:
+                drop:
+                  - ALL
 
     service:
       app:
@@ -75,9 +80,3 @@ spec:
         existingClaim: "{{ .Release.Name }}"
         globalMounts:
           - path: /app/data
-      usb:
-        type: hostPath
-        hostPath: /dev/serial/by-id/usb-ITead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_cc6b105fee12ec11945f20c7bd930c07-if00-port0
-        hostPathType: CharDevice
-        globalMounts:
-          - path: /dev/ttyACM0
