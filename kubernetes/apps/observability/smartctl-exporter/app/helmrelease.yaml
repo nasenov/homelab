@@ -27,7 +27,3 @@ spec:
           annotations:
             summary: Device has temperature higher than 65°C
             description: Device {{ $labels.device }} on instance {{ $labels.instance }} has temperature higher than 65°C
-
-    nodeSelector:
-      # NVMe label
-      feature.node.kubernetes.io/pci-0108.present: "true"
