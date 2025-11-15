@@ -1,0 +1,51 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: generic-device-plugin
+spec:
+  interval: 1h
+  chartRef:
+    kind: OCIRepository
+    name: generic-device-plugin
+  values:
+    controllers:
+      generic-device-plugin:
+        type: daemonset
+        strategy: RollingUpdate
+        pod:
+          priorityClassName: system-node-critical
+        containers:
+          app:
+            image:
+              repository: ghcr.io/squat/generic-device-plugin
+              tag: be79a68@sha256:1cde41849c49721deae1087fd2bcfac76aead42e393900f45a002dd4d57c34a6
+            args:
+              - --device
+              - |
+                name: zigbee
+                groups:
+                  - paths:
+                      - path: /dev/serial/by-id/usb-ITead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_cc6b105fee12ec11945f20c7bd930c07-if00-port0
+            resources:
+              requests:
+                cpu: 10m
+              limits:
+                memory: 64Mi
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities:
+                drop:
+                  - ALL
+
+    persistence:
+      dev:
+        type: hostPath
+        hostPath: /dev
+        globalMounts:
+          - readOnly: true
+      var-lib-kubelet-device-plugins:
+        type: hostPath
+        hostPath: /var/lib/kubelet/device-plugins
