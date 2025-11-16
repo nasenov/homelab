@@ -28,8 +28,6 @@ metadata:
 spec:
   interval: 1h
   targetNamespace: rook-ceph
-  components:
-    - ../../../../components/gatus/guarded
   dependsOn:
     - name: rook-ceph
     - name: snapshot-controller

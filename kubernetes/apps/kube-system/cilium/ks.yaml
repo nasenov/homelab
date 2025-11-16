@@ -26,8 +26,6 @@ metadata:
 spec:
   interval: 1h
   targetNamespace: kube-system
-  components:
-    - ../../../../components/gatus/guarded
   dependsOn:
     - name: cilium
     - name: envoy-gateway

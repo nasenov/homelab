@@ -9,7 +9,6 @@ spec:
   targetNamespace: default
   components:
     - ../../../../components/volsync
-    - ../../../../components/gatus/guarded
   dependsOn:
     - name: volsync
       namespace: volsync-system

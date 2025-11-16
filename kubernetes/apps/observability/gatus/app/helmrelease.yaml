@@ -14,8 +14,6 @@ spec:
       gatus:
         annotations:
           reloader.stakater.com/auto: "true"
-        serviceAccount:
-          identifier: gatus
         pod:
           securityContext:
             runAsNonRoot: true
@@ -23,24 +21,6 @@ spec:
             runAsGroup: 1000
             fsGroup: 1000
             fsGroupChangePolicy: OnRootMismatch
-        initContainers:
-          init-config:
-            image:
-              repository: ghcr.io/home-operations/k8s-sidecar
-              tag: 2.1.2@sha256:d9e169add4e71fd5931a24e11696853f3d804ebc2022cd81f038e7ef22f4d626
-            env:
-              FOLDER: /config
-              LABEL: gatus.io/enabled
-              NAMESPACE: ALL
-              RESOURCE: both
-              UNIQUE_FILENAMES: true
-              METHOD: WATCH
-            restartPolicy: Always
-            resources:
-              requests:
-                cpu: 10m
-              limits:
-                memory: 512Mi
         containers:
           app:
             image:
@@ -110,22 +90,3 @@ spec:
         globalMounts:
           - path: /config/config.yaml
             subPath: config.yaml
-
-    serviceAccount:
-      gatus: {}
-
-    rbac:
-      roles:
-        gatus:
-          type: ClusterRole
-          rules:
-            - apiGroups: [""]
-              resources: ["configmaps", "secrets"]
-              verbs: ["get", "watch", "list"]
-      bindings:
-        gatus:
-          type: ClusterRoleBinding
-          roleRef:
-            identifier: gatus
-          subjects:
-            - identifier: gatus

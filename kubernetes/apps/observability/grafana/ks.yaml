@@ -7,8 +7,6 @@ metadata:
 spec:
   interval: 1h
   targetNamespace: observability
-  components:
-    - ../../../../components/gatus/guarded
   dependsOn:
     - name: external-secrets-stores
       namespace: external-secrets

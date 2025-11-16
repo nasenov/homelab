@@ -14,25 +14,188 @@ connectivity:
     interval: 1m
 
 endpoints:
-  - name: mosquitto
-    group: infrastructure
-    url: tcp://mosquitto.default.svc.cluster.local:1883
-    interval: 1m
-    ui:
-      hide-url: true
-      hide-hostname: true
-    conditions:
-      - "[CONNECTED] == true"
-    alerts:
-      - type: discord
   - name: flux-webhook
     group: external
-    url: https://flux-webhook.nasenov.dev
-    interval: 1m
-    client:
-      dns-resolver: tcp://1.1.1.1:53
+    url: https://flux-webook.nasenov.dev
     conditions:
       - "[STATUS] == 404"
+    client:
+      dns-resolver: tcp://1.1.1.1:53
+    alerts:
+      - type: discord
+  - name: kromgo
+    group: external
+    url: https://kromgo.nasenov.dev
+    conditions:
+      - "[STATUS] == 200"
+    client:
+      dns-resolver: tcp://1.1.1.1:53
+    alerts:
+      - type: discord
+  - name: actual
+    group: internal
+    url: https://actual.nasenov.dev
+    conditions:
+      - "[STATUS] == 200"
+    alerts:
+      - type: discord
+  - name: alertmanger
+    group: internal
+    url: https://alertmanager.nasenov.dev
+    conditions:
+      - "[STATUS] == 200"
+    alerts:
+      - type: discord
+  - name: alloy
+    group: internal
+    url: https://alloy.nasenov.dev
+    conditions:
+      - "[STATUS] == 200"
+    alerts:
+      - type: discord
+  - name: audiobookshelf
+    group: internal
+    url: https://audiobookshelf.nasenov.dev
+    conditions:
+      - "[STATUS] == 200"
+    alerts:
+      - type: discord
+  - name: autobrr
+    group: internal
+    url: https://autobrr.nasenov.dev
+    conditions:
+      - "[STATUS] == 200"
+    alerts:
+      - type: discord
+  - name: bazarr
+    group: internal
+    url: https://bazarr.nasenov.dev
+    conditions:
+      - "[STATUS] == 200"
+    alerts:
+      - type: discord
+  - name: calibre-web-automated
+    group: internal
+    url: https://calibre-web-automated.nasenov.dev
+    conditions:
+      - "[STATUS] == 200"
+    alerts:
+      - type: discord
+  - name: fusion
+    group: internal
+    url: https://fusion.nasenov.dev
+    conditions:
+      - "[STATUS] == 200"
+    alerts:
+      - type: discord
+  - name: glance
+    group: internal
+    url: https://glance.nasenov.dev
+    conditions:
+      - "[STATUS] == 200"
+    alerts:
+      - type: discord
+  - name: grafana
+    group: internal
+    url: https://grafana.nasenov.dev
+    conditions:
+      - "[STATUS] == 200"
+    alerts:
+      - type: discord
+  - name: home-assistant
+    group: internal
+    url: https://home-assistant.nasenov.dev
+    conditions:
+      - "[STATUS] == 200"
+    alerts:
+      - type: discord
+  - name: hubble
+    group: internal
+    url: https://hubble.nasenov.dev
+    conditions:
+      - "[STATUS] == 200"
+    alerts:
+      - type: discord
+  - name: jellyfin
+    group: internal
+    url: https://jellyfin.nasenov.dev
+    conditions:
+      - "[STATUS] == 200"
+    alerts:
+      - type: discord
+  - name: jellyseerr
+    group: internal
+    url: https://jellyseerr.nasenov.dev
+    conditions:
+      - "[STATUS] == 200"
+    alerts:
+      - type: discord
+  - name: n8n
+    group: internal
+    url: https://n8n.nasenov.dev
+    conditions:
+      - "[STATUS] == 200"
+    alerts:
+      - type: discord
+  - name: prometheus
+    group: internal
+    url: https://prometheus.nasenov.dev
+    conditions:
+      - "[STATUS] == 200"
+    alerts:
+      - type: discord
+  - name: prowlarr
+    group: internal
+    url: https://prowlarr.nasenov.dev
+    conditions:
+      - "[STATUS] == 200"
+    alerts:
+      - type: discord
+  - name: qbittorrent
+    group: internal
+    url: https://qbittorrent.nasenov.dev
+    conditions:
+      - "[STATUS] == 200"
+    alerts:
+      - type: discord
+  - name: qui
+    group: internal
+    url: https://qui.nasenov.dev
+    conditions:
+      - "[STATUS] == 200"
+    alerts:
+      - type: discord
+  - name: radarr
+    group: internal
+    url: https://radarr.nasenov.dev
+    conditions:
+      - "[STATUS] == 200"
+  - name: rook
+    group: internal
+    url: https://rook.nasenov.dev
+    conditions:
+      - "[STATUS] == 200"
+    alerts:
+      - type: discord
+  - name: sonarr
+    group: internal
+    url: https://sonarr.nasenov.dev
+    conditions:
+      - "[STATUS] == 200"
+    alerts:
+      - type: discord
+  - name: thelounge
+    group: internal
+    url: https://thelounge.nasenov.dev
+    conditions:
+      - "[STATUS] == 200"
+    alerts:
+      - type: discord
+  - name: zigbee
+    group: internal
+    url: https://zigbee.nasenov.dev
+    conditions:
+      - "[STATUS] == 200"
     alerts:
       - type: discord
 
