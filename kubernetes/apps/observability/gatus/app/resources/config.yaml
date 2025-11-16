@@ -18,7 +18,7 @@ endpoints:
     group: external
     url: https://flux-webhook.nasenov.dev
     conditions:
-      - "[CONNECTED] == true"
+      - "[STATUS] == 404"
     client:
       dns-resolver: tcp://1.1.1.1:53
     alerts:
