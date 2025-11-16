@@ -16,7 +16,7 @@ connectivity:
 endpoints:
   - name: flux-webhook
     group: external
-    url: https://flux-webook.nasenov.dev
+    url: https://flux-webhook.nasenov.dev
     conditions:
       - "[CONNECTED] == true"
     client:
