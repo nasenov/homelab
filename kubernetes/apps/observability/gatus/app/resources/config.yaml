@@ -1,17 +1,12 @@
 ---
-web:
-  port: ${GATUS_WEB_PORT}
-
-storage:
-  type: sqlite
-  path: /config/sqlite.db
-  caching: true
-
-metrics: true
-
-ui:
-  title: Status | Gatus
-  header: Status
+alerting:
+  discord:
+    webhook-url: ${GATUS_DISCORD_WEBHOOK_URL}
+    default-alert:
+      description: health check failed
+      send-on-resolved: true
+      success-threshold: 3
+      failure-threshold: 3
 
 connectivity:
   checker:
@@ -28,6 +23,8 @@ endpoints:
       hide-hostname: true
     conditions:
       - "[CONNECTED] == true"
+    alerts:
+      - type: discord
   - name: flux-webhook
     group: external
     url: https://flux-webhook.nasenov.dev
@@ -36,3 +33,19 @@ endpoints:
       dns-resolver: tcp://1.1.1.1:53
     conditions:
       - "[STATUS] == 404"
+    alerts:
+      - type: discord
+
+metrics: true
+
+storage:
+  type: sqlite
+  path: ${GATUS_CONFIG_PATH}/gatus.db
+  caching: true
+
+ui:
+  title: Status | Gatus
+  header: Status
+
+web:
+  port: ${GATUS_WEB_PORT}

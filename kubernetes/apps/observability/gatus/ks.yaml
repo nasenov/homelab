@@ -8,6 +8,8 @@ spec:
   interval: 1h
   targetNamespace: observability
   dependsOn:
+    - name: external-secrets-stores
+      namespace: external-secrets
     - name: rook-ceph-cluster
       namespace: rook-ceph
     - name: prometheus-operator-crds
