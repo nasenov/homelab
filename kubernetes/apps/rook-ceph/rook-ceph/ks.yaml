@@ -54,7 +54,3 @@ spec:
       kind: CephCluster
       current: status.ceph.health in ['HEALTH_OK', 'HEALTH_WARN']
       failed: status.ceph.health == 'HEALTH_ERR'
-  postBuild:
-    substitute:
-      APP: rook-ceph-cluster
-      GATUS_SUBDOMAIN: rook

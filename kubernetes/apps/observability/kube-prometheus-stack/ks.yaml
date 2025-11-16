@@ -21,7 +21,3 @@ spec:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-  postBuild:
-    substitute:
-      APP: kube-prometheus-stack
-      GATUS_SUBDOMAIN: prometheus

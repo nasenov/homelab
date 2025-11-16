@@ -19,13 +19,17 @@ endpoints:
     url: https://flux-webook.nasenov.dev
     conditions:
       - "[STATUS] == 404"
+    client:
+      dns-resolver: tcp://1.1.1.1:53
     alerts:
       - type: discord
   - name: kromgo
     group: external
-    url: https://kromgo.nasenov.dev
+    url: https://kromgo.nasenov.dev/talos_version
     conditions:
       - "[STATUS] == 200"
+    client:
+      dns-resolver: tcp://1.1.1.1:53
     alerts:
       - type: discord
   - name: actual
