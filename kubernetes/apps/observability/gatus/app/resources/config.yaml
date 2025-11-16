@@ -17,19 +17,21 @@ endpoints:
   - name: flux-webhook
     group: external
     url: https://flux-webook.nasenov.dev/
+    interval: 1m
+    client:
+      dns-resolver: "tcp://1.1.1.1:53"
     conditions:
       - "[STATUS] == 404"
-    client:
-      dns-resolver: tcp://1.1.1.1:53
-    alerts:
-      - type: discord
+    # alerts:
+    #   - type: discord
   - name: kromgo
     group: external
     url: https://kromgo.nasenov.dev/talos_version
+    interval: 1m
+    client:
+      dns-resolver: "tcp://1.1.1.1:53"
     conditions:
       - "[STATUS] == 200"
-    client:
-      dns-resolver: tcp://1.1.1.1:53
     alerts:
       - type: discord
   - name: actual
