@@ -176,6 +176,22 @@ resource "cloudflare_account_token" "obsidian" {
   ]
 }
 
+resource "cloudflare_account_token" "rclone" {
+  account_id = var.cloudflare_account_id
+  name       = "rclone"
+  policies = [
+    {
+      effect = "allow"
+      permission_groups = [
+        { id = local.r2_bucket_write_permission_group.id }
+      ]
+      resources = {
+        "com.cloudflare.api.account.${var.cloudflare_account_id}" : "*"
+      }
+    }
+  ]
+}
+
 resource "cloudflare_zero_trust_tunnel_cloudflared" "homelab" {
   account_id = var.cloudflare_account_id
   name       = "homelab"

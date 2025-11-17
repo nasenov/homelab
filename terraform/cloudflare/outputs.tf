@@ -63,6 +63,21 @@ output "obsidian_r2_access_key_secret" {
   sensitive = true
 }
 
+output "rclone_cloudflare_api_token" {
+  value     = cloudflare_account_token.rclone.value
+  sensitive = true
+}
+
+output "rclone_r2_access_key" {
+  value     = cloudflare_account_token.rclone.id
+  sensitive = true
+}
+
+output "rclone_r2_access_key_secret" {
+  value     = sha256(cloudflare_account_token.rclone.value)
+  sensitive = true
+}
+
 output "cloudflared_token" {
   value     = data.cloudflare_zero_trust_tunnel_cloudflared_token.homelab.token
   sensitive = true
