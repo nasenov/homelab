@@ -28,3 +28,13 @@ spec:
 
     grafanaDashboard:
       enabled: true
+
+    webhook:
+      replicaCount: 2
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - topologyKey: kubernetes.io/hostname
+              labelSelector:
+                matchLabels:
+                  app.kubernetes.io/name: external-secrets-webhook
