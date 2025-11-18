@@ -31,6 +31,8 @@ spec:
 
     webhook:
       replicaCount: 2
+      podDisruptionBudget:
+        enabled: true
       affinity:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
