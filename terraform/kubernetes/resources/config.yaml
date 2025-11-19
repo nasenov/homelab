@@ -55,6 +55,7 @@ cluster:
   apiServer:
     extraArgs:
       feature-gates: ImageVolume=true
+      anonymous-auth: "true" # https://github.com/siderolabs/talos/issues/11324
     disablePodSecurityPolicy: true
     resources:
       requests:
