@@ -198,6 +198,15 @@ endpoints:
       - "[STATUS] == 200"
     alerts:
       - type: discord
+  - name: k8s
+    group: infrastructure
+    url: https://k8s.nasenov.dev:6443/readyz
+    conditions:
+      - "[STATUS] == 200"
+    client:
+      insecure: true
+    alerts:
+      - type: discord
 
 metrics: true
 
