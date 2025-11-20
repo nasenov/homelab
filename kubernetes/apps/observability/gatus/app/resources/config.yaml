@@ -203,8 +203,6 @@ endpoints:
     url: https://k8s.nasenov.dev:6443/readyz
     conditions:
       - "[STATUS] == 200"
-    client:
-      insecure: true
     alerts:
       - type: discord
 

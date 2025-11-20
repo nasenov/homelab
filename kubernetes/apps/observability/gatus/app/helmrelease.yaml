@@ -90,3 +90,9 @@ spec:
         globalMounts:
           - path: /config/config.yaml
             subPath: config.yaml
+      kube-root-ca:
+        type: configMap
+        name: kube-root-ca.crt
+        globalMounts:
+          - path: /etc/ssl/certs/kube-root-ca.crt
+            subPath: ca.crt
