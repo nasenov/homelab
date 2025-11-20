@@ -205,6 +205,13 @@ endpoints:
       - "[STATUS] == 200"
     alerts:
       - type: discord
+  - name: db
+    group: infrastructure
+    url: tcp://192.168.0.42:5432
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: discord
 
 metrics: true
 
