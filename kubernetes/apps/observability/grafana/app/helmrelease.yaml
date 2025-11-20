@@ -98,14 +98,6 @@ spec:
             editable: true
             options:
               path: /var/lib/grafana/dashboards/flux
-          - name: minio
-            orgId: 1
-            folder: MinIO
-            type: file
-            disableDeletion: false
-            editable: true
-            options:
-              path: /var/lib/grafana/dashboards/minio
           - name: postgresql
             orgId: 1
             folder: PostgreSQL
@@ -167,22 +159,6 @@ spec:
         flux-logs:
           url: https://raw.githubusercontent.com/fluxcd/flux2-monitoring-example/main/monitoring/configs/dashboards/logs.json
           datasource: Loki
-      minio:
-        minio-dashboard:
-          # renovate: depName="MinIO Dashboard"
-          gnetId: 13502
-          revision: 26
-          datasource: Prometheus
-        minio-bucket-dashboard:
-          # renovate: depName="MinIO Bucket Dashboard"
-          gnetId: 19237
-          revision: 2
-          datasource: Prometheus
-        minio-replication-dashboard:
-          # renovate: depName="MinIO Replication Dashboard"
-          gnetId: 15305
-          revision: 5
-          datasource: Prometheus
       postgresql:
         pgbackrest:
           url: https://raw.githubusercontent.com/CrunchyData/postgres-operator-examples/main/kustomize/monitoring/grafana/dashboards/pgbackrest.json
