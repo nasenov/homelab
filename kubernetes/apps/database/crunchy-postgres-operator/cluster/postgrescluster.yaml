@@ -32,6 +32,7 @@ spec:
     type: LoadBalancer
     metadata:
       annotations:
+        external-dns.alpha.kubernetes.io/hostname: db.nasenov.dev
         lbipam.cilium.io/ips: 192.168.0.42
 
   backups:
