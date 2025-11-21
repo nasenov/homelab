@@ -40,9 +40,9 @@ resource "cloudflare_account_token" "proxmox" {
       permission_groups = [
         { id = local.dns_write_permission_group.id }
       ]
-      resources = {
+      resources = jsonencode({
         "com.cloudflare.api.account.zone.${cloudflare_zone.nasenov_dev.id}" = "*"
-      }
+      })
     }
   ]
 }
@@ -56,9 +56,9 @@ resource "cloudflare_account_token" "truenas" {
       permission_groups = [
         { id = local.dns_write_permission_group.id }
       ]
-      resources = {
+      resources = jsonencode({
         "com.cloudflare.api.account.zone.${cloudflare_zone.nasenov_dev.id}" = "*"
-      }
+      })
     }
   ]
 }
@@ -72,9 +72,9 @@ resource "cloudflare_account_token" "cert_manager" {
       permission_groups = [
         { id = local.dns_write_permission_group.id }
       ]
-      resources = {
+      resources = jsonencode({
         "com.cloudflare.api.account.zone.${cloudflare_zone.nasenov_dev.id}" = "*"
-      }
+      })
     }
   ]
 }
@@ -88,9 +88,9 @@ resource "cloudflare_account_token" "external_dns" {
       permission_groups = [
         { id = local.dns_write_permission_group.id }
       ]
-      resources = {
+      resources = jsonencode({
         "com.cloudflare.api.account.zone.${cloudflare_zone.nasenov_dev.id}" = "*"
-      }
+      })
     }
   ]
 }
@@ -115,9 +115,9 @@ resource "cloudflare_account_token" "volsync" {
       permission_groups = [
         { id = local.r2_bucket_write_permission_group.id }
       ]
-      resources = {
+      resources = jsonencode({
         "com.cloudflare.edge.r2.bucket.${var.cloudflare_account_id}_${cloudflare_r2_bucket.volsync.jurisdiction}_${cloudflare_r2_bucket.volsync.name}" = "*"
-      }
+      })
     }
   ]
 }
@@ -142,9 +142,9 @@ resource "cloudflare_account_token" "postgres" {
       permission_groups = [
         { id = local.r2_bucket_write_permission_group.id }
       ]
-      resources = {
+      resources = jsonencode({
         "com.cloudflare.edge.r2.bucket.${var.cloudflare_account_id}_${cloudflare_r2_bucket.postgres.jurisdiction}_${cloudflare_r2_bucket.postgres.name}" = "*"
-      }
+      })
     }
   ]
 }
@@ -169,9 +169,9 @@ resource "cloudflare_account_token" "obsidian" {
       permission_groups = [
         { id = local.r2_bucket_write_permission_group.id }
       ]
-      resources = {
+      resources = jsonencode({
         "com.cloudflare.edge.r2.bucket.${var.cloudflare_account_id}_${cloudflare_r2_bucket.obsidian.jurisdiction}_${cloudflare_r2_bucket.obsidian.name}" = "*"
-      }
+      })
     }
   ]
 }
@@ -185,9 +185,9 @@ resource "cloudflare_account_token" "rclone" {
       permission_groups = [
         { id = local.r2_bucket_write_permission_group.id }
       ]
-      resources = {
+      resources = jsonencode({
         "com.cloudflare.api.account.${var.cloudflare_account_id}" : "*"
-      }
+      })
     }
   ]
 }
