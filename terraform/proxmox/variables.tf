@@ -12,19 +12,6 @@ variable "proxmox_password" {
   sensitive = true
 }
 
-variable "ci_user" {
-  type = string
-}
-
-variable "ci_password" {
-  type      = string
-  sensitive = true
-}
-
-variable "sshkeys" {
-  type = list(string)
-}
-
 variable "cloudflare_account_id" {
   type      = string
   sensitive = true
