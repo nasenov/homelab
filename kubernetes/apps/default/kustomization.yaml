@@ -28,5 +28,4 @@ resources:
   - ./sonarr/ks.yaml
   - ./thelounge/ks.yaml
   - ./tqm/ks.yaml
-  - ./garage-proxy/ks.yaml
   - ./zigbee/ks.yaml
