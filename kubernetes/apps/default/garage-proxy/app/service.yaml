@@ -6,3 +6,6 @@ metadata:
 spec:
   type: ExternalName
   externalName: truenas.nasenov.dev
+  ports:
+    - name: s3
+      port: 3900
