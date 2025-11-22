@@ -69,7 +69,7 @@ spec:
           s3: &backupS3
             bucket: postgres
             endpoint: s3.nasenov.dev:9000
-            region: eu-central-1
+            region: us-east-1
           schedules:
             full: "0 1 * * 0" # Sunday at 01:00
             differential: "0 1 * * 1-6" # Mon-Sat at 01:00
