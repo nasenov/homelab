@@ -1,0 +1,26 @@
+---
+services:
+  garage:
+    container_name: garage
+    image: dxflrs/garage:v2.1.0
+    restart: unless-stopped
+    environment:
+      GARAGE_ALLOW_WORLD_READABLE_SECRETS: "true"
+      GARAGE_RPC_SECRET_FILE: /run/secrets/garage-rpc-secret
+      GARAGE_ADMIN_TOKEN_FILE: /run/secrets/garage-admin-token
+    secrets:
+      - garage-rpc-secret
+      - garage-admin-token
+    ports:
+      - "3900:3900"
+      - "3903:3903"
+    volumes:
+      - /mnt/apps/garage/garage.toml:/etc/garage.toml
+      - /mnt/apps/garage/meta:/var/lib/garage/meta
+      - /mnt/apps/garage/data:/var/lib/garage/data
+
+secrets:
+  garage-rpc-secret:
+    file: /mnt/apps/garage/garage-rpc-secret
+  garage-admin-token:
+    file: /mnt/apps/garage/garage-admin-token
