@@ -8,6 +8,11 @@ output "truenas_cloudflare_api_token" {
   sensitive = true
 }
 
+output "traefik_cloudflare_api_token" {
+  value     = cloudflare_account_token.traefik.value
+  sensitive = true
+}
+
 output "cert_manager_cloudflare_api_token" {
   value     = cloudflare_account_token.cert_manager.value
   sensitive = true
