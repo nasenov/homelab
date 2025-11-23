@@ -1,0 +1,27 @@
+---
+http:
+  routers:
+    s3:
+      entryPoints:
+        - s3
+      rule: Host(`s3.nasenov.dev`)
+      service: s3
+      tls:
+        certResolver: letsencrypt
+    garage:
+      entryPoints:
+        - garage
+      rule: Host(`s3.nasenov.dev`)
+      service: garage
+      tls:
+        certResolver: letsencrypt
+
+  services:
+    s3:
+      loadBalancer:
+        servers:
+          - url: "http://garage:3900"
+    garage:
+      loadBalancer:
+        servers:
+          - url: "http://garage:3903"

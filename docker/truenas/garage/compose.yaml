@@ -11,16 +11,32 @@ services:
     secrets:
       - garage-rpc-secret
       - garage-admin-token
-    ports:
-      - "3900:3900"
-      - "3903:3903"
     volumes:
       - /mnt/apps/garage/garage.toml:/etc/garage.toml
       - /mnt/apps/garage/meta:/var/lib/garage/meta
       - /mnt/apps/garage/data:/var/lib/garage/data
+
+  traefik:
+    container_name: traefik
+    image: traefik:3.6.2
+    restart: unless-stopped
+    environment:
+      CLOUDFLARE_DNS_API_TOKEN_FILE: /run/secrets/traefik-cloudflare-api-token
+    ports:
+      - "3900:3900"
+      - "3903:3903"
+      # - "8080:8080"
+    secrets:
+      - traefik-cloudflare-api-token
+    volumes:
+      - /mnt/apps/garage/traefik.yaml:/etc/traefik/traefik.yaml
+      - /mnt/apps/garage/routing.yaml:/etc/traefik/routing.yaml
+      - /mnt/apps/garage/certs:/etc/traefik/certs
 
 secrets:
   garage-rpc-secret:
     file: /mnt/apps/garage/garage-rpc-secret
   garage-admin-token:
     file: /mnt/apps/garage/garage-admin-token
+  traefik-cloudflare-api-token:
+    file: /mnt/apps/garage/traefik-cloudflare-api-token

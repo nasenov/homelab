@@ -1,0 +1,21 @@
+---
+# api:
+#   insecure: true
+
+entryPoints:
+  s3:
+    address: :3900
+  garage:
+    address: :3903
+
+providers:
+  file:
+    filename: /etc/traefik/routing.yaml
+
+certificatesResolvers:
+  letsencrypt:
+    acme:
+      email: 10465782+nasenov@users.noreply.github.com
+      storage: /etc/traefik/certs/acme.json
+      dnsChallenge:
+        provider: cloudflare
