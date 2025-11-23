@@ -51,7 +51,6 @@ spec:
         repo1-path: /pgbackrest/database/postgres/repo1
         repo1-retention-full: "30" # days
         repo1-retention-full-type: time
-        repo1-storage-verify-tls: "n"
         # R2
         repo2-block: "y"
         repo2-bundle: "y"
