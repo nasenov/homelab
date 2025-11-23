@@ -58,6 +58,7 @@ spec:
               - targets:
                   - truenas.nasenov.dev:9633
           - job_name: garage
+            scheme: https
             static_configs:
               - targets:
                   - s3.nasenov.dev:3903
