@@ -6,7 +6,7 @@ metadata:
   name: openebs
 spec:
   interval: 15m
-  url: oci://ghcr.io/openebs/dev/helm/openebs
+  url: oci://ghcr.io/openebs/charts/openebs
   ref:
     tag: 4.4.0
   layerSelector:
