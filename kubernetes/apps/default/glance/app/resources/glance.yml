@@ -67,9 +67,6 @@ pages:
               - title: Rook
                 url: https://rook.nasenov.dev
                 icon: di:rook.svg
-              - title: Minio
-                url: https://minio.nasenov.dev:9002
-                icon: di:minio.svg
               - title: Pi-hole
                 url: http://192.168.0.53/admin
                 icon: di:pi-hole.svg

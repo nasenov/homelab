@@ -43,7 +43,7 @@ spec:
       global: &backupGlobal
         compress-type: "bz2"
         compress-level: "9"
-        # Minio
+        # Garage
         repo1-bundle: "y"
         repo1-block: "y"
         repo1-cipher-type: aes-256-cbc
