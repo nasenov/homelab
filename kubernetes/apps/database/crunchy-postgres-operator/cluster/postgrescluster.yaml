@@ -5,11 +5,8 @@ metadata:
   name: &name postgres
   annotations:
     postgres-operator.crunchydata.com/autoCreateUserSchema: "true"
-    postgres-operator.crunchydata.com/allow-upgrade: "postgres-upgrade"
 spec:
-  postgresVersion: 17
-
-  shutdown: true
+  postgresVersion: 18
 
   instances:
     - name: postgres
