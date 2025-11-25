@@ -136,6 +136,4 @@ spec:
         parameters:
           synchronous_commit: "on"
 
-  monitoring:
-    pgmonitor:
-      exporter: {}
+  instrumentation: {}

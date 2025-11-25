@@ -7,9 +7,9 @@ metadata:
 spec:
   selector:
     matchLabels:
-      postgres-operator.crunchydata.com/crunchy-postgres-exporter: "true"
+      postgres-operator.crunchydata.com/crunchy-otel-collector: "true"
   podMetricsEndpoints:
-    - port: exporter
+    - port: otel-metrics
       relabelings:
         # Keep exporter port and drop all others
         - sourceLabels:
@@ -43,3 +43,16 @@ spec:
         - sourceLabels:
             - __meta_kubernetes_pod_label_postgres_operator_crunchydata_com_role
           targetLabel: role
+        # The following relabels should make it easier to use pgMonitor dashboards.
+        # Note: The following was added for the pgBouncer dashboard and what labels it requires.
+        # For pgBouncer, `exp_type` should be equal to role.
+        - sourceLabels:
+            - __meta_kubernetes_pod_label_postgres_operator_crunchydata_com_role
+          targetLabel: exp_type
+        # `cluster_name` is equivalent to `pg_cluster`
+        - sourceLabels:
+            - __meta_kubernetes_namespace
+            - __meta_kubernetes_pod_label_postgres_operator_crunchydata_com_cluster
+          targetLabel: cluster_name
+          separator: ":"
+          replacement: "$1$2"
