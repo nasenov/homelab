@@ -13,3 +13,5 @@ spec:
     singleNamespace: true
     debug: false
     disable_check_for_upgrades: true
+    features:
+      OpenTelemetryMetrics: true
