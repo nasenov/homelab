@@ -154,6 +154,11 @@ pages:
 
       - size: full
         widgets:
+          - type: videos
+            style: vertical-list
+            channels:
+              - UCRvqjQPSeaWn-uEx-w0XOIg # Benjamin Cowen
+
           - type: rss
             title: News
             style: horizontal-cards
@@ -173,14 +178,6 @@ pages:
               - type: reddit
                 show-thumbnails: true
                 subreddit: wallstreetbets
-
-          - type: videos
-            style: grid-cards
-            collapse-after-rows: 3
-            channels:
-              - UCvSXMi2LebwJEM1s4bz5IBA # New Money
-              - UCV6KDgJskWaEckne5aPA0aQ # Graham Stephan
-              - UCAzhpt9DmG6PnHXjmJTvRGQ # Federal Reserve
 
       - size: small
         widgets:
