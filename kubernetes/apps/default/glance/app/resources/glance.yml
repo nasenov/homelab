@@ -135,34 +135,11 @@ pages:
             channels:
               - UCRvqjQPSeaWn-uEx-w0XOIg # Benjamin Cowen
 
-          - type: rss
-            title: News
-            style: horizontal-cards
-            feeds:
-              - url: https://feeds.bloomberg.com/markets/news.rss
-                title: Bloomberg
-              - url: https://moxie.foxbusiness.com/google-publisher/markets.xml
-                title: Fox Business
-              - url: https://moxie.foxbusiness.com/google-publisher/technology.xml
-                title: Fox Business
-
           - type: group
             widgets:
               - type: reddit
                 show-thumbnails: true
-                subreddit: technology
-              - type: reddit
-                show-thumbnails: true
-                subreddit: wallstreetbets
+                subreddit: crypto
 
       - size: small
-        widgets:
-          - type: rss
-            title: News
-            limit: 30
-            collapse-after: 13
-            feeds:
-              - url: https://www.ft.com/technology?format=rss
-                title: Financial Times
-              - url: https://feeds.a.dj.com/rss/RSSMarketsMain.xml
-                title: Wall Street Journal
+        widgets: {}
