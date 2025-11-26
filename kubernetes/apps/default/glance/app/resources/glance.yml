@@ -139,4 +139,4 @@ pages:
             widgets:
               - type: reddit
                 show-thumbnails: true
-                subreddit: crypto
+                subreddit: CryptoCurrency
