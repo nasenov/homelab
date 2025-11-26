@@ -140,6 +140,3 @@ pages:
               - type: reddit
                 show-thumbnails: true
                 subreddit: crypto
-
-      - size: small
-        widgets: {}
