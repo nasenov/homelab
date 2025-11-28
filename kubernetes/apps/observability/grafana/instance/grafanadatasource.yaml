@@ -61,6 +61,7 @@ spec:
   datasource:
     type: postgres
     name: postgres
+    access: proxy
     url: ${POSTGRES_DATASOURCE_URL}
     user: ${POSTGRES_DATASOURCE_USER}
     secureJsonData:
