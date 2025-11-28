@@ -34,3 +34,5 @@ spec:
       password: ${GRAFANA_DATABASE_PASSWORD}
       max_open_conn: "4"
       ssl_mode: require
+    server:
+      root_url: https://grafana.nasenov.dev
