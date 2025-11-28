@@ -48,3 +48,46 @@ spec:
     jsonData:
       maxLines: 1000
     url: http://loki-headless.observability.svc.cluster.local:3100
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/grafana.integreatly.org/grafanadatasource_v1beta1.json
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDatasource
+metadata:
+  name: postgres
+spec:
+  instanceSelector:
+    matchLabels:
+      grafana.internal/instance: grafana
+  datasource:
+    type: postgres
+    name: postgres
+    url: ${POSTGRES_DATASOURCE_URL}
+    user: ${POSTGRES_DATASOURCE_USER}
+    secureJsonData:
+      password: ${POSTGRES_DATASOURCE_PASSWORD}
+    jsonData:
+      database: ${POSTGRES_DATASOURCE_DATABASE}
+      sslmode: require
+      maxOpenConns: 4
+      maxIdleConnsAuto: true
+  valuesFrom:
+    - targetPath: url
+      valueFrom:
+        secretKeyRef:
+          name: grafana-postgres-datasource-configuration
+          key: POSTGRES_DATASOURCE_URL
+    - targetPath: jsonData.database
+      valueFrom:
+        secretKeyRef:
+          name: grafana-postgres-datasource-configuration
+          key: POSTGRES_DATASOURCE_DATABASE
+    - targetPath: user
+      valueFrom:
+        secretKeyRef:
+          name: grafana-postgres-datasource-configuration
+          key: POSTGRES_DATASOURCE_USER
+    - targetPath: secureJsonData.password
+      valueFrom:
+        secretKeyRef:
+          name: grafana-postgres-datasource-configuration
+          key: POSTGRES_DATASOURCE_PASSWORD
