@@ -21,11 +21,3 @@ spec:
                     secretKeyRef:
                       name: grafana-admin-password
                       key: GF_SECURITY_ADMIN_PASSWORD
-
-  httpRoute:
-    spec:
-      hostnames:
-        - grafana.nasenov.dev
-      parentRefs:
-        - name: envoy-internal
-          namespace: networking
