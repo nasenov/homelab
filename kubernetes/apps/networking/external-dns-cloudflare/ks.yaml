@@ -8,10 +8,12 @@ spec:
   interval: 1h
   targetNamespace: networking
   dependsOn:
-    - name: prometheus-operator-crds
-      namespace: observability
     - name: external-secrets-stores
       namespace: external-secrets
+    - name: grafana
+      namespace: observability
+    - name: prometheus-operator-crds
+      namespace: observability
   path: ./kubernetes/apps/networking/external-dns-cloudflare/app
   prune: true
   sourceRef:

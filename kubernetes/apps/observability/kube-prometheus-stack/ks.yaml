@@ -10,6 +10,7 @@ spec:
   dependsOn:
     - name: external-secrets-stores
       namespace: external-secrets
+    - name: grafana
     - name: prometheus-operator-crds
     - name: openebs
       namespace: openebs

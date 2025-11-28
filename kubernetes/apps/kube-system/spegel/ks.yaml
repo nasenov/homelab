@@ -7,6 +7,9 @@ metadata:
 spec:
   interval: 1h
   targetNamespace: kube-system
+  dependsOn:
+    - name: grafana
+      namespace: observability
   path: ./kubernetes/apps/kube-system/spegel/app
   prune: true
   sourceRef:

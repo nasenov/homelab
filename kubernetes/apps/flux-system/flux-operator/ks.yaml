@@ -8,6 +8,8 @@ spec:
   interval: 1h
   targetNamespace: flux-system
   dependsOn:
+    - name: grafana
+      namespace: observability
     - name: prometheus-operator-crds
       namespace: observability
   path: ./kubernetes/apps/flux-system/flux-operator/app

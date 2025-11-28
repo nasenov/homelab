@@ -8,6 +8,7 @@ spec:
   interval: 1h
   targetNamespace: observability
   dependsOn:
+    - name: grafana
     - name: prometheus-operator-crds
   path: ./kubernetes/apps/observability/smartctl-exporter/app
   prune: true

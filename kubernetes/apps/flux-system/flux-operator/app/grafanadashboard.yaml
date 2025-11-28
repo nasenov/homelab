@@ -3,7 +3,7 @@
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
 metadata:
-  name: grafana-operator
+  name: flux-k8s-api-performance
 spec:
   allowCrossNamespaceImport: true
   instanceSelector:
@@ -12,15 +12,13 @@ spec:
   datasources:
     - datasourceName: prometheus
       inputName: DS_PROMETHEUS
-  configMapRef:
-    name: grafana-operator-dashboard
-    key: grafana-operator.json
+  url: https://raw.githubusercontent.com/controlplaneio-fluxcd/flux-operator/refs/heads/main/config/monitoring/dashboards/flux-k8s-api-performance.json
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/grafana.integreatly.org/grafanadashboard_v1beta1.json
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
 metadata:
-  name: garage
+  name: flux-performance
 spec:
   allowCrossNamespaceImport: true
   instanceSelector:
@@ -29,4 +27,4 @@ spec:
   datasources:
     - datasourceName: prometheus
       inputName: DS_PROMETHEUS
-  url: https://git.deuxfleurs.fr/Deuxfleurs/garage/raw/branch/main-v1/script/telemetry/grafana-garage-dashboard-prometheus.json
+  url: https://raw.githubusercontent.com/controlplaneio-fluxcd/flux-operator/refs/heads/main/config/monitoring/dashboards/flux-performance.json

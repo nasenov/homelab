@@ -20,3 +20,7 @@ spec:
       enabled: true
     grafanaDashboard:
       enabled: true
+      mode: GrafanaOperator
+      grafanaOperator:
+        matchLabels:
+          grafana.internal/instance: grafana

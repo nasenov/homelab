@@ -24,16 +24,12 @@ spec:
           enabled: true
       dashboards:
         enabled: true
-        annotations:
-          grafana_folder: Cilium
     hubble:
       metrics:
         serviceMonitor:
           enabled: true
         dashboards:
           enabled: true
-          annotations:
-            grafana_folder: Cilium
       relay:
         prometheus:
           enabled: true
@@ -45,8 +41,6 @@ spec:
         enabled: true
     dashboards:
       enabled: true
-      annotations:
-        grafana_folder: Cilium
     envoy:
       prometheus:
         enabled: true

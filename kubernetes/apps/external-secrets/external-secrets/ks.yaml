@@ -8,6 +8,8 @@ spec:
   interval: 1h
   targetNamespace: external-secrets
   dependsOn:
+    - name: grafana
+      namespace: observability
     - name: prometheus-operator-crds
       namespace: observability
     - name: cert-manager

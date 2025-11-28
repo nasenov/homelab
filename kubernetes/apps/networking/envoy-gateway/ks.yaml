@@ -7,6 +7,9 @@ metadata:
 spec:
   interval: 1h
   targetNamespace: networking
+  dependsOn:
+    - name: grafana
+      namespace: observability
   path: ./kubernetes/apps/networking/envoy-gateway/app
   prune: true
   sourceRef:
@@ -26,6 +29,8 @@ spec:
   dependsOn:
     - name: envoy-gateway
     - name: certificates-import
+    - name: grafana
+      namespace: observability
     - name: prometheus-operator-crds
       namespace: observability
   path: ./kubernetes/apps/networking/envoy-gateway/config

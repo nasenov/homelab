@@ -11,6 +11,8 @@ spec:
     - name: flux-operator
     - name: external-secrets-stores
       namespace: external-secrets
+    - name: grafana
+      namespace: observability
     - name: prometheus-operator-crds
       namespace: observability
     - name: envoy-gateway

@@ -10,6 +10,8 @@ spec:
   dependsOn:
     - name: snapshot-controller
       namespace: kube-system
+    - name: grafana
+      namespace: observability
     - name: prometheus-operator-crds
       namespace: observability
   path: ./kubernetes/apps/volsync-system/volsync/app
