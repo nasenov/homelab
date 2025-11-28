@@ -31,6 +31,7 @@ spec:
     - name: envoy-gateway
       namespace: networking
     - name: grafana
+    - name: prometheus-operator-crds
   path: ./kubernetes/apps/observability/grafana/instance
   prune: true
   sourceRef:
