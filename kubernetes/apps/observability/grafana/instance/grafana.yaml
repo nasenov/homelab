@@ -13,6 +13,13 @@ spec:
 
       template:
         spec:
+          affinity:
+            podAntiAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+                - topologyKey: kubernetes.io/hostname
+                  labelSelector:
+                    matchLabels:
+                      grafana.internal/instance: grafana
           containers:
             - name: grafana
               env:
@@ -26,6 +33,15 @@ spec:
                     name: grafana-postgres-configuration
 
   config:
+    analytics:
+      check_for_updates: "false"
+      check_for_plugin_updates: "false"
+      feedback_links_enabled: "false"
+      reporting_enabled: "false"
+    news:
+      news_feed_enabled: "false"
+    plugins:
+      plugin_admin_enabled: "false"
     database:
       type: postgres
       host: ${GRAFANA_DATABASE_HOST}
@@ -35,4 +51,5 @@ spec:
       max_open_conn: "4"
       ssl_mode: require
     server:
+      enable_gzip: "true"
       root_url: https://grafana.nasenov.dev
