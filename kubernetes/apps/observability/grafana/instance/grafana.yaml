@@ -9,7 +9,7 @@ metadata:
 spec:
   deployment:
     spec:
-      replicas: 1
+      replicas: 2
 
       template:
         spec:
@@ -21,3 +21,16 @@ spec:
                     secretKeyRef:
                       name: grafana-admin-password
                       key: GF_SECURITY_ADMIN_PASSWORD
+              envFrom:
+                - secretRef:
+                    name: grafana-postgres-configuration
+
+  config:
+    database:
+      type: postgres
+      host: ${GRAFANA_DATABASE_HOST}
+      name: ${GRAFANA_DATABASE_NAME}
+      user: ${GRAFANA_DATABASE_USER}
+      password: ${GRAFANA_DATABASE_PASSWORD}
+      max_open_conn: "4"
+      ssl_mode: require

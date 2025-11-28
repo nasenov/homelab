@@ -28,6 +28,10 @@ spec:
   dependsOn:
     - name: external-secrets-stores
       namespace: external-secrets
+    - name: crunchy-postgres-operator-cluster
+      namespace: database
+    - name: crunchy-postgres-operator-secretstore
+      namespace: database
     - name: envoy-gateway
       namespace: networking
     - name: grafana
