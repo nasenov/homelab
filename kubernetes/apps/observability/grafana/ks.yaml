@@ -8,18 +8,11 @@ spec:
   interval: 1h
   targetNamespace: observability
   dependsOn:
-    - name: external-secrets-stores
-      namespace: external-secrets
     - name: prometheus-operator-crds
-    - name: crunchy-postgres-operator-cluster
-      namespace: database
-    - name: crunchy-postgres-operator-secretstore
-      namespace: database
-    - name: envoy-gateway
-      namespace: networking
   path: ./kubernetes/apps/observability/grafana/app
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
+  wait: true
