@@ -4,17 +4,20 @@
     "grafana-dashboards": {
       "defaultRegistryUrlTemplate": "https://grafana.com/api/dashboards/{{packageName}}",
       "format": "json",
-      "transformTemplates": ["{\"releases\":[{\"version\": $string(revision)}]}"]
+      "transformTemplates": ["{\"releases\":[{\"version\": $string(revision)}], \"sourceDirectory\": name}"]
     }
   },
   "customManagers": [
     {
       "description": "Process Grafana dashboards",
       "customType": "regex",
-      "managerFilePatterns": ["/(^|/)kubernetes/.+\\.ya?ml$/"],
-      "matchStrings": ["#\\s+renovate:\\s+depName=\"(?<depName>.*)\"\\n\\s+gnetId:\\s+(?<packageName>.*?)\\n\\s+revision:\\s+(?<currentValue>.*)"],
+      "managerFilePatterns": ["/grafanadashboard\\.yaml$/"],
+      "matchStrings": [
+        "dashboards\\/(?<depName>\\d+)\\/revisions\\/(?<currentValue>\\d+)\\/download"
+      ],
       "versioningTemplate": "regex:^(?<major>\\d+)$",
-      "datasourceTemplate": "custom.grafana-dashboards"
+      "datasourceTemplate": "custom.grafana-dashboards",
+      "autoReplaceStringTemplate": "dashboards/{{depName}}/revisions/{{newValue}}/download"
     }
   ],
   "packageRules": [
@@ -27,8 +30,8 @@
       "matchUpdateTypes": ["major"],
       "semanticCommitType": "chore",
       "semanticCommitScope": "grafana-dashboards",
-      "commitMessageTopic": "dashboard {{depName}}",
-      "commitMessageExtra": "( {{currentVersion}} → {{newVersion}} )"
+      "commitMessageTopic": "dashboard {{sourceDirectory}}",
+      "commitMessageExtra": "({{currentVersion}} → {{newVersion}})"
     }
   ]
 }
