@@ -2,20 +2,14 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "customManagers": [
     {
-      "description": "Process various dependencies in YAML files",
+      "description": "Process annotated dependencies",
       "customType": "regex",
-      "managerFilePatterns": ["/\\.yaml$/"],
-      "matchStrings": [
-        "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( repository=(?<registryUrl>\\S+))?\\n.+(:\\s|=\\s)(&\\S+\\s)?(?<currentValue>\\S+)"
+      "managerFilePatterns": [
+        "/\\.tf$/",
+        "/\\.yaml$/"
       ],
-      "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}"
-    },
-    {
-      "description": "Process various dependencies in Terraform files",
-      "customType": "regex",
-      "managerFilePatterns": ["/\\.tf$/"],
       "matchStrings": [
-        "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( repository=(?<registryUrl>\\S+))?\\n.+(:\\s|=\\s)(&\\S+\\s)?\"(?<currentValue>\\S+)\""
+        "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( repository=(?<registryUrl>\\S+))?\\n.+(:?[:=]\\s*)\"?(?<currentValue>[^\"\\s]+)\"?"
       ],
       "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}"
     },
