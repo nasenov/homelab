@@ -15,16 +15,16 @@ resource "proxmox_virtual_environment_apt_repository" "enterprise" {
   node      = proxmox_virtual_environment_apt_standard_repository.enterprise.node
 }
 
-resource "proxmox_virtual_environment_apt_standard_repository" "ceph_quincy_enterprise" {
+resource "proxmox_virtual_environment_apt_standard_repository" "ceph_squid_enterprise" {
   node   = "pve"
   handle = "ceph-squid-enterprise"
 }
 
-resource "proxmox_virtual_environment_apt_repository" "ceph_quincy_enterprise" {
+resource "proxmox_virtual_environment_apt_repository" "ceph_squid_enterprise" {
   enabled   = false
-  file_path = proxmox_virtual_environment_apt_standard_repository.ceph_quincy_enterprise.file_path
-  index     = proxmox_virtual_environment_apt_standard_repository.ceph_quincy_enterprise.index
-  node      = proxmox_virtual_environment_apt_standard_repository.ceph_quincy_enterprise.node
+  file_path = proxmox_virtual_environment_apt_standard_repository.ceph_squid_enterprise.file_path
+  index     = proxmox_virtual_environment_apt_standard_repository.ceph_squid_enterprise.index
+  node      = proxmox_virtual_environment_apt_standard_repository.ceph_squid_enterprise.node
 }
 
 resource "proxmox_virtual_environment_acme_account" "letsencrypt" {
