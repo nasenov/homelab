@@ -19,7 +19,6 @@ machine:
       - name: nbd
   kubelet:
     extraArgs:
-      feature-gates: ImageVolume=true
       serialize-image-pulls: "false"
   files:
     - op: create
@@ -54,7 +53,6 @@ cluster:
       listen-metrics-urls: http://0.0.0.0:2381
   apiServer:
     extraArgs:
-      feature-gates: ImageVolume=true
       anonymous-auth: "true" # https://github.com/siderolabs/talos/issues/11324
     disablePodSecurityPolicy: true
     resources:
