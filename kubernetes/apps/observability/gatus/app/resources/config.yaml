@@ -5,8 +5,8 @@ alerting:
     default-alert:
       description: health check failed
       send-on-resolved: true
-      success-threshold: 3
-      failure-threshold: 3
+      success-threshold: 5
+      failure-threshold: 5
 
 connectivity:
   checker:
