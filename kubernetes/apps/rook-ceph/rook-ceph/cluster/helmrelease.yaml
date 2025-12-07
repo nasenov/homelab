@@ -12,6 +12,11 @@ spec:
   values:
     toolbox:
       enabled: true
+      resources:
+        requests:
+          memory: 64Mi
+        limits:
+          memory: 64Mi
 
     monitoring:
       enabled: true
@@ -60,7 +65,7 @@ spec:
         mon:
           requests:
             cpu: 100m
-            memory: 1Gi
+            memory: 512Mi
           limits:
             memory: 1Gi
         osd:
