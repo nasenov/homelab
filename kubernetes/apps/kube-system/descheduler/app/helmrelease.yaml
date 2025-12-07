@@ -29,6 +29,10 @@ spec:
               matchLabels:
                 app.kubernetes.io/name: descheduler
 
+    resources:
+      requests:
+        cpu: 10m
+
     service:
       enabled: true
 
