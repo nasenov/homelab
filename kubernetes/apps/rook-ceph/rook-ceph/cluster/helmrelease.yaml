@@ -60,12 +60,23 @@ spec:
         mon:
           requests:
             cpu: 100m
+            memory: 1Gi
+          limits:
+            memory: 1Gi
         osd:
           requests:
             cpu: 100m
+            memory: 2Gi
+          limits:
+            memory: 2Gi
         prepareosd:
           requests:
             cpu: 100m
+        logcollector:
+          requests:
+            memory: 64Mi
+          limits:
+            memory: 64Mi
         cleanup:
           requests:
             cpu: 100m
