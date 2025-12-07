@@ -19,7 +19,7 @@ spec:
             requests:
               cpu: 10m
             limits:
-              memory: 1Gi
+              memory: 256Mi
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/gateway.networking.k8s.io/gatewayclass_v1.json
 apiVersion: gateway.networking.k8s.io/v1
