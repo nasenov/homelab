@@ -10,7 +10,18 @@ spec:
     kind: OCIRepository
     name: node-feature-discovery
   values:
+    master:
+      resources:
+        requests:
+          memory: 128Mi
+        limits:
+          memory: 128Mi
     worker:
+      resources:
+        requests:
+          memory: 64Mi
+        limits:
+          memory: 64Mi
       config:
         core:
           featureSources:
@@ -43,3 +54,9 @@ spec:
               - "12"
             deviceLabelFields:
               - class
+    gc:
+      resources:
+        requests:
+          memory: 64Mi
+        limits:
+          memory: 64Mi
