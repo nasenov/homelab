@@ -19,6 +19,28 @@ spec:
       enableLiveness: true
       serviceMonitor:
         enabled: true
+      csiRBDPluginResource: |
+        - name : driver-registrar
+          resource:
+            requests:
+              memory: 64Mi
+              cpu: 50m
+            limits:
+              memory: 128Mi
+        - name : csi-rbdplugin
+          resource:
+            requests:
+              memory: 256Mi
+              cpu: 100m
+            limits:
+              memory: 512Mi
+        - name : liveness-prometheus
+          resource:
+            requests:
+              memory: 64Mi
+              cpu: 50m
+            limits:
+              memory: 128Mi
 
     monitoring:
       enabled: true
