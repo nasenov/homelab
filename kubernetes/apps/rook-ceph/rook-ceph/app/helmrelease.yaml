@@ -19,6 +19,48 @@ spec:
       enableLiveness: true
       serviceMonitor:
         enabled: true
+      csiRBDProvisionerResource: |
+        - name : csi-provisioner
+          resource:
+            requests:
+              memory: 64Mi
+              cpu: 100m
+            limits:
+              memory: 128Mi
+        - name : csi-resizer
+          resource:
+            requests:
+              memory: 64Mi
+              cpu: 100m
+            limits:
+              memory: 128Mi
+        - name : csi-attacher
+          resource:
+            requests:
+              memory: 64Mi
+              cpu: 100m
+            limits:
+              memory: 128Mi
+        - name : csi-snapshotter
+          resource:
+            requests:
+              memory: 64Mi
+              cpu: 100m
+            limits:
+              memory: 128Mi
+        - name : csi-rbdplugin
+          resource:
+            requests:
+              memory: 128Mi
+            limits:
+              memory: 256Mi
+        - name : liveness-prometheus
+          resource:
+            requests:
+              memory: 64Mi
+              cpu: 50m
+            limits:
+              memory: 128Mi
       csiRBDPluginResource: |
         - name : driver-registrar
           resource:
@@ -30,10 +72,10 @@ spec:
         - name : csi-rbdplugin
           resource:
             requests:
-              memory: 256Mi
+              memory: 128Mi
               cpu: 100m
             limits:
-              memory: 512Mi
+              memory: 256Mi
         - name : liveness-prometheus
           resource:
             requests:
@@ -41,6 +83,5 @@ spec:
               cpu: 50m
             limits:
               memory: 128Mi
-
     monitoring:
       enabled: true
