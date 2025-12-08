@@ -67,16 +67,7 @@ resource "proxmox_virtual_environment_vm" "this" {
     file_format  = "raw"
     interface    = "scsi0"
     iothread     = true
-    size         = 128
-    cache        = "writeback"
-  }
-
-  disk {
-    datastore_id = "fast"
-    file_format  = "raw"
-    interface    = "scsi1"
-    iothread     = true
-    size         = 64
+    size         = 256
     cache        = "writeback"
   }
 

@@ -5,9 +5,9 @@ kind: UserVolumeConfig
 name: openebs
 provisioning:
   diskSelector:
-    match: disk.transport == 'virtio' && !system_disk
-  minSize: 64GB
-  grow: true
+    match: system_disk
+  minSize: 128GB
+  maxSize: 128GB
 filesystem:
   type: xfs
   projectQuotaSupport: true
