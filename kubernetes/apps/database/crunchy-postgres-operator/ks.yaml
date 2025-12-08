@@ -48,11 +48,6 @@ spec:
       - kind: Secret
         name: crunchy-postgres-r2
         optional: false
-  healthCheckExprs:
-    - apiVersion: postgres-operator.crunchydata.com/v1beta1
-      kind: PostgresCluster
-      current: status.conditions.exists(condition, condition.type == "ProxyAvailable" && condition.status == "True")
-      failed: status.conditions.exists(condition, condition.type == "ProxyAvailable" && condition.status == "False")
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
 apiVersion: kustomize.toolkit.fluxcd.io/v1
