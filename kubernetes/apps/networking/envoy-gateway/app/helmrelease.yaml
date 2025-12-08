@@ -12,6 +12,11 @@ spec:
   values:
     global:
       imageRegistry: mirror.gcr.io
+    deployment:
+      envoyGateway:
+        resources:
+          limits:
+            memory: 256Mi
     config:
       envoyGateway:
         provider:
