@@ -71,9 +71,9 @@ spec:
         osd:
           requests:
             cpu: 100m
-            memory: 1Gi
-          limits:
             memory: 2Gi
+          limits:
+            memory: 4Gi
         prepareosd:
           requests:
             cpu: 100m
