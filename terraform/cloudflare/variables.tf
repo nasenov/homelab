@@ -7,3 +7,8 @@ variable "cloudflare_account_id" {
   type      = string
   sensitive = true
 }
+
+variable "email" {
+  type      = string
+  sensitive = true
+}
