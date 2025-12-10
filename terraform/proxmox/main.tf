@@ -29,7 +29,7 @@ resource "proxmox_virtual_environment_apt_repository" "ceph_squid_enterprise" {
 
 resource "proxmox_virtual_environment_acme_account" "letsencrypt" {
   name      = "letsencrypt"
-  contact   = "asenov.nikolay98@gmail.com"
+  contact   = "10465782+nasenov@users.noreply.github.com"
   directory = "https://acme-v02.api.letsencrypt.org/directory"
   tos       = "https://letsencrypt.org/documents/LE-SA-v1.4-April-3-2024.pdf"
 }
