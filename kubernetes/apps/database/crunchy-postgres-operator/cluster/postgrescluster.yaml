@@ -135,4 +135,5 @@ spec:
       postgresql:
         parameters:
           synchronous_commit: "on"
-# instrumentation: {}
+
+  instrumentation: {}
