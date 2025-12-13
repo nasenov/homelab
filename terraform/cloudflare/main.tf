@@ -27,6 +27,12 @@ resource "cloudflare_zone_setting" "ssl" {
   value      = "strict"
 }
 
+resource "cloudflare_zone_setting" "always_use_https" {
+  zone_id    = cloudflare_zone.nasenov_dev.id
+  setting_id = "always_use_https"
+  value      = "on"
+}
+
 data "cloudflare_account_api_token_permission_groups_list" "permission_groups" {
   account_id = var.cloudflare_account_id
 }
