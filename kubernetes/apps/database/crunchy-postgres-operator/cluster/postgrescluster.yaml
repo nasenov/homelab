@@ -136,4 +136,16 @@ spec:
         parameters:
           synchronous_commit: "on"
 
-  instrumentation: {}
+  instrumentation:
+    metrics:
+      customQueries:
+        remove:
+          # stop SELECT * FROM get_pgbackrest_info();
+          - ccp_backrest_last_diff_backup_time_since_completion_seconds
+          - ccp_backrest_last_full_backup_time_since_completion_seconds
+          - ccp_backrest_last_incr_backup_time_since_completion_seconds
+          - ccp_backrest_last_info_backrest_repo_version
+          - ccp_backrest_last_info_backup_error
+          - ccp_backrest_last_info_backup_runtime_seconds
+          - ccp_backrest_last_info_repo_backup_size_bytes
+          - ccp_backrest_oldest_full_backup_time_seconds
