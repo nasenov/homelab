@@ -12,6 +12,8 @@ spec:
       namespace: observability
     - name: prometheus-operator-crds
       namespace: observability
+    - name: envoy-gateway
+      namespace: networking
   path: ./kubernetes/apps/flux-system/flux-operator/app
   prune: false
   sourceRef:
