@@ -70,6 +70,9 @@ pages:
               - title: Pi-hole
                 url: http://192.168.0.53/admin
                 icon: di:pi-hole.svg
+              - title: Flux
+                url: https://flux-operator.nasenov.dev
+                icon: di:flux-cd.svg
 
           - type: monitor
             title: Monitoring

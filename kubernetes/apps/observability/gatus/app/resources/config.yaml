@@ -81,6 +81,11 @@ endpoints:
       - "[STATUS] == 200"
     alerts:
       - type: discord
+  - name: flux-operator
+    group: internal
+    url: https://flux-operator.nasenov.dev
+    conditions:
+      - "[STATUS] == 200"
   - name: fusion
     group: internal
     url: https://fusion.nasenov.dev
