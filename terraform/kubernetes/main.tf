@@ -133,7 +133,7 @@ data "talos_machine_configuration" "this" {
   cluster_endpoint = var.talos_cluster_endpoint
   machine_secrets  = talos_machine_secrets.this.machine_secrets
   # renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet
-  kubernetes_version = "v1.34.3"
+  kubernetes_version = "v1.35.0"
   config_patches = [
     file("${path.module}/resources/config.yaml"),
     file("${path.module}/resources/uservolumeconfig.yaml"),
