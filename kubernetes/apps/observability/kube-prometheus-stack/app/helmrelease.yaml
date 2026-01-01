@@ -32,14 +32,14 @@ spec:
         podMonitorSelectorNilUsesHelmValues: false
         scrapeConfigSelectorNilUsesHelmValues: false
         retention: 30d
-        retentionSize: 25GB
+        retentionSize: 32GiB
         storageSpec:
           volumeClaimTemplate:
             spec:
               storageClassName: openebs-hostpath
               resources:
                 requests:
-                  storage: 25Gi
+                  storage: 32Gi
         additionalScrapeConfigs:
           - job_name: pve-node-exporter
             static_configs:
