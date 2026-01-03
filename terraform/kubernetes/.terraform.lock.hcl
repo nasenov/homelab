@@ -101,20 +101,7 @@ provider "registry.terraform.io/siderolabs/talos" {
   version     = "0.10.0"
   constraints = "0.10.0"
   hashes = [
-    "h1:84fdqJdvMDvmyE5yedL3WUIpsFY4cyFA+CVXhUOurRE=",
-    "h1:9nqMfBKRs83IlrWmNadBDSMhTlF7qGDqQpO0vMCHhK8=",
-    "h1:BNQqPvV2qql1NmdzUcIaNFBd4CQpO7zmyzAS82nebEk=",
-    "h1:CsM0N5Ft1mI1rTu9kG8dKU3DdeRg7EPtq5dCdjJURKg=",
-    "h1:GiBMpXV5xu9nateg9CVBCUn/+i0LM84/ZNuSFAfkxmg=",
-    "h1:LA+BwIKd0PI+AAygYd99HeFBr7jssCAQ0CkC1HoMQcs=",
-    "h1:TVSVsRVqYxR+9A3T/JxQBNIy60fELXgnPGNPq99H/HY=",
     "h1:beRc3A/9lXlTPDFYxNZIgHUFCvqnc1FtnT8Kl8fhZs4=",
-    "h1:jfB6ARbCAnZfCtZ1qbGTk4Xxf0r62oQR+T7nnCvDsvc=",
-    "h1:kesZa/Fb7+I8s64ocI4GHt3uRpPqtaNcWo0zPu+sFLI=",
-    "h1:kiA7YQ+qKD3T/pn27FQaAWAMs/bwij9rVf931dmR4Yw=",
-    "h1:nFn2rYLkst+Bt9qSmtB0hIfV6iaZ98rqYc5TSZDhwzc=",
-    "h1:r+2UW8qjuDdoVbqQ9YQpMDkfrJJA2F782yVaMso9FKI=",
-    "h1:yZq1Y0Bhm45cKu+S+StL5awwnLiJq1byNxzOHQQOsnY=",
     "zh:0640a27e658d5305c055721290a196780194c7f75ace9fd3461e0e2a8e465410",
     "zh:0fa82a384b25a58b65523e0ea4768fa1212b1f5cfc0c9379d31162454fedcc9d",
     "zh:1340a04eec0b33e08cca08aa414b53c8e279ec32d22bec828faa17c6043119ba",
