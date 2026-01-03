@@ -136,6 +136,7 @@ data "talos_machine_configuration" "this" {
   kubernetes_version = "v1.35.0"
   config_patches = [
     file("${path.module}/resources/config.yaml"),
+    file("${path.module}/resources/layer2vipconfig.yaml"),
     file("${path.module}/resources/oomconfig.yaml"),
     file("${path.module}/resources/uservolumeconfig.yaml"),
     file("${path.module}/resources/watchdogtimerconfig.yaml")
