@@ -27,5 +27,4 @@ resources:
   - ./recyclarr/ks.yaml
   - ./sonarr/ks.yaml
   - ./thelounge/ks.yaml
-  - ./tqm/ks.yaml
   - ./zigbee/ks.yaml
