@@ -76,3 +76,10 @@ spec:
     persistence:
       config:
         existingClaim: "{{ .Release.Name }}"
+      media:
+        type: nfs
+        server: truenas.nasenov.dev
+        path: /mnt/tank/media
+        globalMounts:
+          - path: /data/downloads
+            subPath: downloads
