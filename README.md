@@ -77,7 +77,6 @@ While most of my infrastructure and workloads are self-hosted I do rely upon the
 | [Discord](https://discord.com/)              | Alerts and Notifications                                      | Free          |
 | [Github](https://github.com/)                | Github Actions                                                | Free          |
 | [Let's Encrypt](https://letsencrypt.org/)    | TLS certificates                                              | Free          |
-| [Terraform Cloud](https://app.terraform.io/) | Terraform State                                               | Free          |
 |                                              |                                                               | Total: ~$1/mo |
 
 ---
