@@ -139,7 +139,17 @@ data "talos_machine_configuration" "this" {
     file("${path.module}/resources/layer2vipconfig.yaml"),
     file("${path.module}/resources/oomconfig.yaml"),
     file("${path.module}/resources/uservolumeconfig.yaml"),
-    file("${path.module}/resources/watchdogtimerconfig.yaml")
+    file("${path.module}/resources/watchdogtimerconfig.yaml"),
+    # tuppr requirement
+    yamlencode({
+      machine = {
+        install = {
+          # https://github.com/siderolabs/terraform-provider-talos/issues/293
+          # image = data.talos_image_factory_urls.this.urls.installer
+          image = "factory.talos.dev/nocloud-installer/d3dc673627e9b94c6cd4122289aa52c2484cddb31017ae21b75309846e257d30:v1.12.1"
+        }
+      }
+    })
   ]
 }
 

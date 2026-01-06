@@ -13,6 +13,12 @@ tasks:
         vars:
           TERRAFORM_DIRECTORY: "{{.ROOT_DIR}}/terraform/bootstrap"
 
+  reset-talos-upgrade:
+    desc: Reset failed Talos upgrade
+    cmd: kubectl --namespace system-upgrade annotate talosupgrade talos tuppr.home-operations.com/reset="$(date)"
+    preconditions:
+      - which kubectl
+
   destroy:
     desc: Destroy Kubernetes cluster
     dir: "{{.ROOT_DIR}}/terraform/kubernetes"
