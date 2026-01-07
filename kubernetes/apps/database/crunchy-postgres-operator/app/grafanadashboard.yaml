@@ -12,7 +12,7 @@ spec:
   datasources:
     - datasourceName: prometheus
       inputName: DS_PROMETHEUS
-  url: https://raw.githubusercontent.com/nasenov/postgres-operator-examples/main/kustomize/monitoring/grafana/dashboards/pgbackrest.json
+  url: https://raw.githubusercontent.com/nasenov/postgres-operator/refs/heads/main/config/monitoring/grafana/dashboards/pgbackrest.json
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/grafana.integreatly.org/grafanadashboard_v1beta1.json
 apiVersion: grafana.integreatly.org/v1beta1
@@ -42,7 +42,7 @@ spec:
   datasources:
     - datasourceName: prometheus
       inputName: DS_PROMETHEUS
-  url: https://raw.githubusercontent.com/nasenov/postgres-operator-examples/main/kustomize/monitoring/grafana/dashboards/pod_details.json
+  url: https://raw.githubusercontent.com/nasenov/postgres-operator/refs/heads/main/config/monitoring/grafana/dashboards/pod_details.json
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/grafana.integreatly.org/grafanadashboard_v1beta1.json
 apiVersion: grafana.integreatly.org/v1beta1
@@ -57,7 +57,7 @@ spec:
   datasources:
     - datasourceName: prometheus
       inputName: DS_PROMETHEUS
-  url: https://raw.githubusercontent.com/nasenov/postgres-operator-examples/main/kustomize/monitoring/grafana/dashboards/postgresql_details.json
+  url: https://raw.githubusercontent.com/nasenov/postgres-operator/refs/heads/main/config/monitoring/grafana/dashboards/postgresql_details.json
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/grafana.integreatly.org/grafanadashboard_v1beta1.json
 apiVersion: grafana.integreatly.org/v1beta1
@@ -72,7 +72,7 @@ spec:
   datasources:
     - datasourceName: prometheus
       inputName: DS_PROMETHEUS
-  url: https://raw.githubusercontent.com/nasenov/postgres-operator-examples/main/kustomize/monitoring/grafana/dashboards/postgresql_overview.json
+  url: https://raw.githubusercontent.com/nasenov/postgres-operator/refs/heads/main/config/monitoring/grafana/dashboards/postgresql_overview.json
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/grafana.integreatly.org/grafanadashboard_v1beta1.json
 apiVersion: grafana.integreatly.org/v1beta1
@@ -87,7 +87,7 @@ spec:
   datasources:
     - datasourceName: prometheus
       inputName: DS_PROMETHEUS
-  url: https://raw.githubusercontent.com/nasenov/postgres-operator-examples/main/kustomize/monitoring/grafana/dashboards/postgresql_service_health.json
+  url: https://raw.githubusercontent.com/nasenov/postgres-operator/refs/heads/main/config/monitoring/grafana/dashboards/postgresql_service_health.json
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/grafana.integreatly.org/grafanadashboard_v1beta1.json
 apiVersion: grafana.integreatly.org/v1beta1
@@ -102,7 +102,7 @@ spec:
   datasources:
     - datasourceName: prometheus
       inputName: DS_PROMETHEUS
-  url: https://raw.githubusercontent.com/nasenov/postgres-operator-examples/main/kustomize/monitoring/grafana/dashboards/prometheus_alerts.json
+  url: https://raw.githubusercontent.com/nasenov/postgres-operator/refs/heads/main/config/monitoring/grafana/dashboards/prometheus_alerts.json
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/grafana.integreatly.org/grafanadashboard_v1beta1.json
 apiVersion: grafana.integreatly.org/v1beta1
@@ -117,4 +117,4 @@ spec:
   datasources:
     - datasourceName: prometheus
       inputName: DS_PROMETHEUS
-  url: https://raw.githubusercontent.com/nasenov/postgres-operator-examples/main/kustomize/monitoring/grafana/dashboards/query_statistics.json
+  url: https://raw.githubusercontent.com/nasenov/postgres-operator/refs/heads/main/config/monitoring/grafana/dashboards/query_statistics.json
