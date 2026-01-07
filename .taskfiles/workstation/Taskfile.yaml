@@ -21,6 +21,7 @@ tasks:
     desc: Sync terraform tfvars
     silent: true
     cmds:
+      - bw get notes bootstrap.tfvars > {{.ROOT_DIR}}/terraform/bootstrap/terraform.tfvars
       - bw get notes cloudflare.tfvars > {{.ROOT_DIR}}/terraform/cloudflare/terraform.tfvars
       - bw get notes kubernetes.tfvars > {{.ROOT_DIR}}/terraform/kubernetes/terraform.tfvars
       - bw get notes proxmox.tfvars > {{.ROOT_DIR}}/terraform/proxmox/terraform.tfvars

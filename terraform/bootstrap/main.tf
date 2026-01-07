@@ -12,7 +12,28 @@ resource "helm_release" "external_secrets" {
   }
 }
 
+resource "kubernetes_secret_v1" "bitwarden_access_token" {
+  metadata {
+    name      = "bitwarden-access-token"
+    namespace = helm_release.external_secrets.namespace
+  }
+
+  data = {
+    "token" = var.bitwarden_access_token
+  }
+
+  lifecycle {
+    ignore_changes  = all
+    prevent_destroy = true
+  }
+}
+
 resource "helm_release" "flux_operator" {
+  depends_on = [
+    helm_release.external_secrets,
+    kubernetes_secret_v1.bitwarden_access_token
+  ]
+
   name             = "flux-operator"
   namespace        = "flux-system"
   repository       = "oci://ghcr.io/controlplaneio-fluxcd/charts"
