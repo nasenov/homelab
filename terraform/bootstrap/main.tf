@@ -1,3 +1,17 @@
+resource "helm_release" "external_secrets" {
+  name             = "external-secrets"
+  namespace        = "external-secrets"
+  repository       = "oci://ghcr.io/external-secrets/charts"
+  chart            = "external-secrets"
+  version          = "1.2.1"
+  create_namespace = true
+
+  lifecycle {
+    ignore_changes  = all
+    prevent_destroy = true
+  }
+}
+
 resource "helm_release" "flux_operator" {
   name             = "flux-operator"
   namespace        = "flux-system"
