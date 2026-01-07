@@ -47,25 +47,9 @@ resource "helm_release" "flux_operator" {
   }
 }
 
-resource "kubernetes_secret_v1" "sops_age" {
-  metadata {
-    name      = "sops-age"
-    namespace = helm_release.flux_operator.namespace
-  }
-
-  data = {
-    "age.agekey" = file("../../age.agekey")
-  }
-
-  lifecycle {
-    ignore_changes  = all
-    prevent_destroy = true
-  }
-}
-
 resource "helm_release" "flux_instance" {
   name       = "flux-instance"
-  namespace  = kubernetes_secret_v1.sops_age.metadata[0].namespace
+  namespace  = helm_release.flux_operator.namespace
   repository = "oci://ghcr.io/controlplaneio-fluxcd/charts"
   chart      = "flux-instance"
   version    = "0.38.1"

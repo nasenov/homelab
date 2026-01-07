@@ -133,11 +133,3 @@ instance:
         target:
           kind: Deployment
           name: (kustomize-controller|helm-controller|notification-controller)
-      - # Global SOPS decryption
-        patch: |-
-          - op: add
-            path: /spec/template/spec/containers/0/args/-
-            value: --sops-age-secret=sops-age
-        target:
-          kind: Deployment
-          name: kustomize-controller

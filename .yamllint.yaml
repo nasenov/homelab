@@ -1,9 +1,6 @@
 ---
 extends: default
 
-ignore:
-  - "*.sops.*"
-
 rules:
   braces:
     max-spaces-inside: 1

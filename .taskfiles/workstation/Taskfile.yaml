@@ -3,20 +3,6 @@
 version: "3"
 
 tasks:
-  sync-all-secrets:
-    cmds:
-      - task: sync-agekey
-      - task: sync-terraform-tfvars
-
-  sync-agekey:
-    desc: Sync agekey
-    silent: true
-    cmd: bw get notes agekey > {{.ROOT_DIR}}/age.agekey
-    preconditions:
-      - which bw
-      - bw login --check
-      - bw unlock --check
-
   sync-terraform-tfvars:
     desc: Sync terraform tfvars
     silent: true
