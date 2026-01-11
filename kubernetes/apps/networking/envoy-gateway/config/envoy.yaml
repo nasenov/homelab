@@ -107,7 +107,8 @@ spec:
       kind: Gateway
   clientIPDetection:
     xForwardedFor:
-      numTrustedHops: 1
+      trustedCIDRs:
+        - 10.244.0.0/16
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/gateway.networking.k8s.io/httproute_v1.json
 apiVersion: gateway.networking.k8s.io/v1
