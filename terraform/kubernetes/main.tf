@@ -127,7 +127,7 @@ resource "helm_release" "cilium" {
 
   name          = "cilium"
   namespace     = "kube-system"
-  repository    = "https://helm.cilium.io"
+  repository    = "oci://quay.io/cilium/charts"
   chart         = "cilium"
   version       = "1.18.6"
   wait_for_jobs = true

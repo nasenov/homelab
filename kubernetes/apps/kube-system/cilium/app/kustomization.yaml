@@ -5,7 +5,7 @@ kind: Kustomization
 resources:
   - ./grafanadashboard.yaml
   - ./helmrelease.yaml
-  - ./helmrepository.yaml
+  - ./ocirepository.yaml
 configMapGenerator:
   - name: cilium-helm-values
     files:
