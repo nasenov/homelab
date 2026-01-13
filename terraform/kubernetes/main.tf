@@ -26,111 +26,12 @@ data "talos_image_factory_urls" "this" {
   platform      = "nocloud"
 }
 
-resource "proxmox_virtual_environment_download_file" "this" {
-  node_name    = "pve"
-  datastore_id = "local"
-  content_type = "iso"
-  file_name    = "nocloud-amd64.iso"
-  url          = data.talos_image_factory_urls.this.urls.iso
-}
-
-resource "proxmox_virtual_environment_vm" "this" {
-  for_each = local.controlplane_virtual_machines
-
-  name      = each.key
-  node_name = "pve"
-
-  machine         = "q35"
-  scsi_hardware   = "virtio-scsi-single"
-  started         = true
-  stop_on_destroy = true
-
-  cpu {
-    type    = "x86-64-v2-AES"
-    sockets = 1
-    cores   = each.value.cpu_cores
-    units   = 100
-  }
-
-  memory {
-    dedicated = each.value.memory
-    floating  = each.value.memory
-  }
-
-  network_device {
-
-  }
-
-  disk {
-    datastore_id = "fast"
-    file_id      = "local:iso/${proxmox_virtual_environment_download_file.this.file_name}"
-    file_format  = "raw"
-    interface    = "scsi0"
-    iothread     = true
-    size         = 256
-    cache        = "writeback"
-  }
-
-  dynamic "hostpci" {
-    for_each = each.value.hostpci
-
-    content {
-      device  = "hostpci0"
-      mapping = hostpci.value
-      pcie    = true
-      rombar  = true
-    }
-  }
-
-  dynamic "hostpci" {
-    for_each = each.value.gpu
-
-    content {
-      device  = "hostpci1"
-      mapping = hostpci.value
-      pcie    = true
-      rombar  = false
-    }
-  }
-
-  dynamic "usb" {
-    for_each = each.value.usb
-
-    content {
-      mapping = usb.value
-    }
-  }
-
-  operating_system {
-    type = "l26"
-  }
-
-  agent {
-    enabled = true
-  }
-
-  initialization {
-    datastore_id = "local-lvm"
-
-    dns {
-      servers = ["192.168.0.53"]
-    }
-
-    ip_config {
-      ipv4 {
-        address = "${each.value.ipv4_address}/24"
-        gateway = "192.168.0.1"
-      }
-    }
-  }
-}
-
 resource "talos_machine_secrets" "this" {}
 
 data "talos_machine_configuration" "this" {
-  cluster_name     = var.talos_cluster_name
+  cluster_name     = "homelab"
   machine_type     = "controlplane"
-  cluster_endpoint = var.talos_cluster_endpoint
+  cluster_endpoint = "https://k8s.nasenov.dev:6443"
   machine_secrets  = talos_machine_secrets.this.machine_secrets
   # renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet
   kubernetes_version = "v1.35.0"
@@ -154,11 +55,7 @@ data "talos_machine_configuration" "this" {
 }
 
 resource "talos_machine_configuration_apply" "this" {
-  depends_on = [
-    proxmox_virtual_environment_vm.this
-  ]
-
-  for_each = local.controlplane_virtual_machines
+  for_each = local.controlplane
 
   client_configuration        = talos_machine_secrets.this.client_configuration
   machine_configuration_input = data.talos_machine_configuration.this.machine_configuration
@@ -170,7 +67,7 @@ resource "talos_machine_bootstrap" "this" {
   depends_on = [
     talos_machine_configuration_apply.this
   ]
-  node                 = local.controlplane_virtual_machines.k8s-1.ipv4_address
+  node                 = local.controlplane.k8s-1.ipv4_address
   client_configuration = talos_machine_secrets.this.client_configuration
 }
 
@@ -181,7 +78,7 @@ resource "talos_cluster_kubeconfig" "this" {
   ]
 
   client_configuration = talos_machine_secrets.this.client_configuration
-  node                 = local.controlplane_virtual_machines.k8s-1.ipv4_address
+  node                 = local.controlplane.k8s-1.ipv4_address
 }
 
 resource "local_sensitive_file" "kubeconfig" {
@@ -196,10 +93,10 @@ data "talos_client_configuration" "this" {
     talos_machine_bootstrap.this
   ]
 
-  cluster_name         = var.talos_cluster_name
+  cluster_name         = data.talos_machine_configuration.this.cluster_name
   client_configuration = talos_machine_secrets.this.client_configuration
-  endpoints            = [for k, v in local.controlplane_virtual_machines : v.ipv4_address]
-  nodes                = [for k, v in local.controlplane_virtual_machines : v.ipv4_address]
+  endpoints            = [for k, v in local.controlplane : v.ipv4_address]
+  nodes                = [for k, v in local.controlplane : v.ipv4_address]
 }
 
 resource "local_sensitive_file" "talosconfig" {
@@ -215,8 +112,8 @@ data "talos_cluster_health" "talos" {
   ]
 
   client_configuration   = talos_machine_secrets.this.client_configuration
-  endpoints              = [for k, v in local.controlplane_virtual_machines : v.ipv4_address]
-  control_plane_nodes    = [for k, v in local.controlplane_virtual_machines : v.ipv4_address]
+  endpoints              = [for k, v in local.controlplane : v.ipv4_address]
+  control_plane_nodes    = [for k, v in local.controlplane : v.ipv4_address]
   skip_kubernetes_checks = true
   timeouts = {
     read = "5m"
@@ -270,8 +167,8 @@ data "talos_cluster_health" "kubernetes" {
   ]
 
   client_configuration = talos_machine_secrets.this.client_configuration
-  endpoints            = [for k, v in local.controlplane_virtual_machines : v.ipv4_address]
-  control_plane_nodes  = [for k, v in local.controlplane_virtual_machines : v.ipv4_address]
+  endpoints            = [for k, v in local.controlplane : v.ipv4_address]
+  control_plane_nodes  = [for k, v in local.controlplane : v.ipv4_address]
 
   timeouts = {
     read = "5m"

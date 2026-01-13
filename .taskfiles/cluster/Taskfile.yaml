@@ -22,8 +22,11 @@ tasks:
   destroy:
     desc: Destroy Kubernetes cluster
     dir: "{{.ROOT_DIR}}/terraform/kubernetes"
-    cmd: terraform destroy
+    cmds:
+      - talosctl reset --system-labels-to-wipe STATE --system-labels-to-wipe EPHEMERAL --system-labels-to-wipe u-openebs --graceful=false --reboot
+      - terraform state rm $(terraform state list)
     preconditions:
+      - which talosctl
       - which terraform
 
   terraform-apply:

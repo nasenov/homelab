@@ -114,3 +114,101 @@ resource "proxmox_virtual_environment_download_file" "truenas" {
   checksum_algorithm = "sha256"
   checksum           = "ede23d4c70a7fde6674879346c1307517be9854dc79f6a5e016814226457f359"
 }
+
+resource "proxmox_virtual_environment_download_file" "talos" {
+  node_name    = "pve"
+  datastore_id = "local"
+  content_type = "iso"
+  url          = "https://factory.talos.dev/image/d3dc673627e9b94c6cd4122289aa52c2484cddb31017ae21b75309846e257d30/v1.12.1/nocloud-amd64.iso"
+}
+
+resource "proxmox_virtual_environment_vm" "this" {
+  for_each = local.talos_virtual_machines
+
+  name      = each.key
+  node_name = "pve"
+
+  machine         = "q35"
+  scsi_hardware   = "virtio-scsi-single"
+  started         = true
+  stop_on_destroy = true
+
+  cpu {
+    type    = "x86-64-v2-AES"
+    sockets = 1
+    cores   = each.value.cpu_cores
+    units   = 100
+  }
+
+  memory {
+    dedicated = each.value.memory
+    floating  = each.value.memory
+  }
+
+  network_device {
+
+  }
+
+  disk {
+    datastore_id = "fast"
+    file_id      = "local:iso/${proxmox_virtual_environment_download_file.talos.file_name}"
+    file_format  = "raw"
+    interface    = "scsi0"
+    iothread     = true
+    size         = 256
+    cache        = "writeback"
+  }
+
+  dynamic "hostpci" {
+    for_each = each.value.hostpci
+
+    content {
+      device  = "hostpci0"
+      mapping = hostpci.value
+      pcie    = true
+      rombar  = true
+    }
+  }
+
+  dynamic "hostpci" {
+    for_each = each.value.gpu
+
+    content {
+      device  = "hostpci1"
+      mapping = hostpci.value
+      pcie    = true
+      rombar  = false
+    }
+  }
+
+  dynamic "usb" {
+    for_each = each.value.usb
+
+    content {
+      mapping = usb.value
+    }
+  }
+
+  operating_system {
+    type = "l26"
+  }
+
+  agent {
+    enabled = true
+  }
+
+  initialization {
+    datastore_id = "local-lvm"
+
+    dns {
+      servers = ["192.168.0.53"]
+    }
+
+    ip_config {
+      ipv4 {
+        address = "${each.value.ipv4_address}/24"
+        gateway = "192.168.0.1"
+      }
+    }
+  }
+}
