@@ -54,31 +54,74 @@ data "talos_machine_configuration" "this" {
   ]
 }
 
-resource "talos_machine_configuration_apply" "this" {
-  for_each = local.controlplane
+data "talos_machine_configuration" "k8s_3" {
+  cluster_name     = "homelab"
+  machine_type     = "controlplane"
+  cluster_endpoint = "https://k8s.nasenov.dev:6443"
+  machine_secrets  = talos_machine_secrets.this.machine_secrets
+  # renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet
+  kubernetes_version = "v1.35.0"
+  config_patches = [
+    file("${path.module}/resources/config.yaml"),
+    file("${path.module}/resources/k8s-3.yaml"),
+    file("${path.module}/resources/layer2vipconfig.yaml"),
+    file("${path.module}/resources/oomconfig.yaml"),
+    file("${path.module}/resources/uservolumeconfig.yaml"),
+    file("${path.module}/resources/watchdogtimerconfig.yaml"),
+    # tuppr requirement
+    yamlencode({
+      machine = {
+        install = {
+          # https://github.com/siderolabs/terraform-provider-talos/issues/293
+          image = "factory.talos.dev/metal-installer/dc8730aa8cc7bfa5ef7e2b3284248f2631135b2faf4ae11aa997a0c1987b0eee:v1.12.1"
+          diskSelector = {
+            model = "INTEL SSDPEKKF256G7L"
+          }
+        }
+      }
+    })
+  ]
+}
 
+resource "talos_machine_configuration_apply" "k8s_1" {
   client_configuration        = talos_machine_secrets.this.client_configuration
   machine_configuration_input = data.talos_machine_configuration.this.machine_configuration
-  node                        = each.key
-  endpoint                    = each.value.ipv4_address
+  node                        = "k8s-1"
+  endpoint                    = "192.168.0.21"
+}
+
+resource "talos_machine_configuration_apply" "k8s_2" {
+  client_configuration        = talos_machine_secrets.this.client_configuration
+  machine_configuration_input = data.talos_machine_configuration.this.machine_configuration
+  node                        = "k8s-2"
+  endpoint                    = "192.168.0.22"
+}
+
+resource "talos_machine_configuration_apply" "k8s_3" {
+  client_configuration        = talos_machine_secrets.this.client_configuration
+  machine_configuration_input = data.talos_machine_configuration.k8s_3.machine_configuration
+  node                        = "k8s-3"
+  endpoint                    = "192.168.0.23"
 }
 
 resource "talos_machine_bootstrap" "this" {
   depends_on = [
-    talos_machine_configuration_apply.this
+    talos_machine_configuration_apply.k8s_1,
+    talos_machine_configuration_apply.k8s_2,
+    talos_machine_configuration_apply.k8s_3
   ]
-  node                 = local.controlplane.k8s-1.ipv4_address
+
   client_configuration = talos_machine_secrets.this.client_configuration
+  node                 = "192.168.0.21"
 }
 
 resource "talos_cluster_kubeconfig" "this" {
   depends_on = [
-    talos_machine_configuration_apply.this,
     talos_machine_bootstrap.this
   ]
 
   client_configuration = talos_machine_secrets.this.client_configuration
-  node                 = local.controlplane.k8s-1.ipv4_address
+  node                 = "192.168.0.21"
 }
 
 resource "local_sensitive_file" "kubeconfig" {
@@ -89,14 +132,13 @@ resource "local_sensitive_file" "kubeconfig" {
 
 data "talos_client_configuration" "this" {
   depends_on = [
-    talos_machine_configuration_apply.this,
     talos_machine_bootstrap.this
   ]
 
   cluster_name         = data.talos_machine_configuration.this.cluster_name
   client_configuration = talos_machine_secrets.this.client_configuration
-  endpoints            = [for k, v in local.controlplane : v.ipv4_address]
-  nodes                = [for k, v in local.controlplane : v.ipv4_address]
+  endpoints            = ["192.168.0.21", "192.168.0.22", "192.168.0.23"]
+  nodes                = ["192.168.0.21", "192.168.0.22", "192.168.0.23"]
 }
 
 resource "local_sensitive_file" "talosconfig" {
@@ -107,13 +149,12 @@ resource "local_sensitive_file" "talosconfig" {
 
 data "talos_cluster_health" "talos" {
   depends_on = [
-    talos_machine_configuration_apply.this,
     talos_cluster_kubeconfig.this
   ]
 
   client_configuration   = talos_machine_secrets.this.client_configuration
-  endpoints              = [for k, v in local.controlplane : v.ipv4_address]
-  control_plane_nodes    = [for k, v in local.controlplane : v.ipv4_address]
+  endpoints              = ["192.168.0.21", "192.168.0.22", "192.168.0.23"]
+  control_plane_nodes    = ["192.168.0.21", "192.168.0.22", "192.168.0.23"]
   skip_kubernetes_checks = true
   timeouts = {
     read = "5m"
@@ -167,8 +208,8 @@ data "talos_cluster_health" "kubernetes" {
   ]
 
   client_configuration = talos_machine_secrets.this.client_configuration
-  endpoints            = [for k, v in local.controlplane : v.ipv4_address]
-  control_plane_nodes  = [for k, v in local.controlplane : v.ipv4_address]
+  endpoints            = ["192.168.0.21", "192.168.0.22", "192.168.0.23"]
+  control_plane_nodes  = ["192.168.0.21", "192.168.0.22", "192.168.0.23"]
 
   timeouts = {
     read = "5m"
