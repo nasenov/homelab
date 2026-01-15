@@ -16,13 +16,5 @@ locals {
       gpu          = []
       usb          = ["zigbee"]
     }
-    k8s-3 = {
-      ipv4_address = "192.168.0.23"
-      cpu_cores    = 4
-      memory       = 16384
-      hostpci      = ["ceph3"]
-      gpu          = []
-      usb          = []
-    }
   }
 }

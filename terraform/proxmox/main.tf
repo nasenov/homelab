@@ -50,7 +50,7 @@ resource "proxmox_virtual_environment_hardware_mapping_pci" "ceph1" {
     path         = "0000:01:00.0"
     id           = "2646:5013"
     subsystem_id = "2646:5013"
-    iommu_group  = 16
+    iommu_group  = 15
   }]
 }
 
@@ -61,18 +61,7 @@ resource "proxmox_virtual_environment_hardware_mapping_pci" "ceph2" {
     path         = "0000:02:00.0"
     id           = "2646:5013"
     subsystem_id = "2646:5013"
-    iommu_group  = 17
-  }]
-}
-
-resource "proxmox_virtual_environment_hardware_mapping_pci" "ceph3" {
-  name = "ceph3"
-  map = [{
-    node         = "pve"
-    path         = "0000:08:00.0"
-    id           = "2646:5013"
-    subsystem_id = "2646:5013"
-    iommu_group  = 21
+    iommu_group  = 16
   }]
 }
 
@@ -83,7 +72,7 @@ resource "proxmox_virtual_environment_hardware_mapping_pci" "hba" {
     path         = "0000:07:00.0"
     id           = "1000:0087"
     subsystem_id = "1000:3020"
-    iommu_group  = 20
+    iommu_group  = 19
   }]
 }
 
@@ -155,7 +144,7 @@ resource "proxmox_virtual_environment_vm" "this" {
     file_format  = "raw"
     interface    = "scsi0"
     iothread     = true
-    size         = 256
+    size         = 238
     cache        = "writeback"
   }
 
