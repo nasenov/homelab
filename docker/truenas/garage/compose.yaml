@@ -2,7 +2,7 @@
 services:
   garage:
     container_name: garage
-    image: dxflrs/garage:v2.1.0
+    image: dxflrs/garage:v2.2.0
     restart: unless-stopped
     environment:
       GARAGE_ALLOW_WORLD_READABLE_SECRETS: "true"
