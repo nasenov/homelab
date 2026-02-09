@@ -2,6 +2,15 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "packageRules": [
     {
+      "description": "Cilium Group",
+      "groupName": "cilium",
+      "matchDatasources": ["docker"],
+      "matchPackageNames": [
+        "quay.io/cilium/charts/cilium"
+      ],
+      "minimumGroupSize": 1
+    },
+    {
       "description": "CoreDNS Group",
       "groupName": "coredns",
       "matchDatasources": ["docker"],
