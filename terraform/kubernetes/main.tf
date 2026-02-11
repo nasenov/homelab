@@ -34,7 +34,7 @@ data "talos_machine_configuration" "this" {
   cluster_endpoint = "https://k8s.nasenov.dev:6443"
   machine_secrets  = talos_machine_secrets.this.machine_secrets
   # renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet
-  kubernetes_version = "v1.35.0"
+  kubernetes_version = "v1.35.1"
   config_patches = [
     file("${path.module}/resources/config.yaml"),
     file("${path.module}/resources/layer2vipconfig.yaml"),
@@ -60,7 +60,7 @@ data "talos_machine_configuration" "k8s_3" {
   cluster_endpoint = "https://k8s.nasenov.dev:6443"
   machine_secrets  = talos_machine_secrets.this.machine_secrets
   # renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet
-  kubernetes_version = "v1.35.0"
+  kubernetes_version = "v1.35.1"
   config_patches = [
     file("${path.module}/resources/config.yaml"),
     file("${path.module}/resources/k8s-3.yaml"),
