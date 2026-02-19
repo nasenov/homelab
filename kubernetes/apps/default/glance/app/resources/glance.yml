@@ -58,9 +58,6 @@ pages:
             title: Infrastructure
             cache: 1m
             sites:
-              - title: Proxmox
-                url: https://pve.nasenov.dev:8006
-                icon: di:proxmox.svg
               - title: Truenas
                 url: https://truenas.nasenov.dev
                 icon: di:truenas.svg

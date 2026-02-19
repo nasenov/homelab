@@ -1,8 +1,3 @@
-output "proxmox_cloudflare_api_token" {
-  value     = cloudflare_account_token.proxmox.value
-  sensitive = true
-}
-
 output "truenas_cloudflare_api_token" {
   value     = cloudflare_account_token.truenas.value
   sensitive = true
