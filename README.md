@@ -90,9 +90,9 @@ In my cluster there are two instances of [ExternalDNS](https://github.com/kubern
 
 | Device               | Num | OS Disk Size | Data Disk Size                                   | Ram   | OS      | Function         |
 |----------------------|-----|--------------|--------------------------------------------------|-------|---------|------------------|
-| Lenovo M910x i5-7500 | 1   | 256GB SSD    | 1TB (rook-ceph)                                  | 16GB  | Talos   | Kubernetes       |
-| Custom PC i5-13600K  | 1   | 500GB SSD    | 3.84TB (local) / 3x1TB (rook-ceph) / 2x4TB (NAS) | 128GB | Proxmox | Kubernetes + NAS |
-| TP-Link AX5400       | 1   | -            | -                                                | -     | -       | Router           |
+| Lenovo M910x i5-7500 | 3   | 256GB SSD    | 1TB (rook-ceph)                                  | 16GB  | Talos   | Kubernetes       |
+| Custom PC i5-13600K  | 1   | 500GB SSD    | 2x4TB HDD                                        | 128GB | TrueNAS | NAS              |
+| TP-Link AX3000       | 1   | -            | -                                                | -     | -       | Router           |
 
 ---
 
