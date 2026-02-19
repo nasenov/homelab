@@ -43,36 +43,14 @@ resource "proxmox_virtual_environment_acme_dns_plugin" "cloudflare" {
   }
 }
 
-resource "proxmox_virtual_environment_hardware_mapping_pci" "ceph1" {
-  name = "ceph1"
-  map = [{
-    node         = "pve"
-    path         = "0000:01:00.0"
-    id           = "2646:5013"
-    subsystem_id = "2646:5013"
-    iommu_group  = 15
-  }]
-}
-
-resource "proxmox_virtual_environment_hardware_mapping_pci" "ceph2" {
-  name = "ceph2"
-  map = [{
-    node         = "pve"
-    path         = "0000:02:00.0"
-    id           = "2646:5013"
-    subsystem_id = "2646:5013"
-    iommu_group  = 16
-  }]
-}
-
 resource "proxmox_virtual_environment_hardware_mapping_pci" "hba" {
   name = "hba"
   map = [{
     node         = "pve"
-    path         = "0000:07:00.0"
+    path         = "0000:05:00.0"
     id           = "1000:0087"
     subsystem_id = "1000:3020"
-    iommu_group  = 19
+    iommu_group  = 15
   }]
 }
 
