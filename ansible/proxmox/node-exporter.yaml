@@ -1,9 +1,0 @@
----
-- hosts: all
-  roles:
-    - prometheus.prometheus.node_exporter
-  vars:
-    # renovate: datasource=github-releases depName=prometheus/node_exporter
-    node_exporter_version: 1.10.2
-    node_exporter_system_user: node_exporter
-    node_exporter_system_group: node_exporter
