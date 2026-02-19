@@ -4,7 +4,6 @@ data "talos_image_factory_extensions_versions" "this" {
 
   filters = {
     names = [
-      "qemu-guest-agent",
       "i915"
     ]
   }
@@ -45,9 +44,7 @@ data "talos_machine_configuration" "this" {
     yamlencode({
       machine = {
         install = {
-          # https://github.com/siderolabs/terraform-provider-talos/issues/293
-          # image = data.talos_image_factory_urls.this.urls.installer
-          image = "factory.talos.dev/nocloud-installer/d3dc673627e9b94c6cd4122289aa52c2484cddb31017ae21b75309846e257d30:v1.12.1"
+          image = data.talos_image_factory_urls.this.urls.installer
         }
       }
     })
@@ -72,8 +69,7 @@ data "talos_machine_configuration" "k8s_3" {
     yamlencode({
       machine = {
         install = {
-          # https://github.com/siderolabs/terraform-provider-talos/issues/293
-          image = "factory.talos.dev/metal-installer/dc8730aa8cc7bfa5ef7e2b3284248f2631135b2faf4ae11aa997a0c1987b0eee:v1.12.1"
+          image = data.talos_image_factory_urls.this.urls.installer
           diskSelector = {
             model = "INTEL SSDPEKKF256G7L"
           }
