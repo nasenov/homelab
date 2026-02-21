@@ -30,7 +30,6 @@ spec:
               TZ: Europe/Sofia
               QUI__HOST: 0.0.0.0
               QUI__PORT: &port 80
-              QUI__LOG_LEVEL: INFO
             envFrom:
               - secretRef:
                   name: "{{ .Release.Name }}"
