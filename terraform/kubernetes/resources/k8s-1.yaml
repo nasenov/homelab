@@ -1,5 +1,5 @@
 ---
 apiVersion: v1alpha1
 kind: HostnameConfig
-hostname: k8s-3
+hostname: k8s-1
 auto: off

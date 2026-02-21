@@ -22,7 +22,7 @@ resource "talos_image_factory_schematic" "this" {
 data "talos_image_factory_urls" "this" {
   talos_version = data.talos_image_factory_extensions_versions.this.talos_version
   schematic_id  = talos_image_factory_schematic.this.id
-  platform      = "nocloud"
+  platform      = "metal"
 }
 
 resource "talos_machine_secrets" "this" {}
@@ -36,8 +36,11 @@ data "talos_machine_configuration" "this" {
   kubernetes_version = "v1.35.0"
   config_patches = [
     file("${path.module}/resources/config.yaml"),
+    file("${path.module}/resources/ethernetconfig.yaml"),
     file("${path.module}/resources/layer2vipconfig.yaml"),
     file("${path.module}/resources/oomconfig.yaml"),
+    file("${path.module}/resources/resolverconfig.yaml"),
+    file("${path.module}/resources/timesyncconfig.yaml"),
     file("${path.module}/resources/uservolumeconfig.yaml"),
     file("${path.module}/resources/watchdogtimerconfig.yaml"),
     # tuppr requirement
@@ -45,34 +48,6 @@ data "talos_machine_configuration" "this" {
       machine = {
         install = {
           image = data.talos_image_factory_urls.this.urls.installer
-        }
-      }
-    })
-  ]
-}
-
-data "talos_machine_configuration" "k8s_3" {
-  cluster_name     = "homelab"
-  machine_type     = "controlplane"
-  cluster_endpoint = "https://k8s.nasenov.dev:6443"
-  machine_secrets  = talos_machine_secrets.this.machine_secrets
-  # renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet
-  kubernetes_version = "v1.35.0"
-  config_patches = [
-    file("${path.module}/resources/config.yaml"),
-    file("${path.module}/resources/k8s-3.yaml"),
-    file("${path.module}/resources/layer2vipconfig.yaml"),
-    file("${path.module}/resources/oomconfig.yaml"),
-    file("${path.module}/resources/uservolumeconfig.yaml"),
-    file("${path.module}/resources/watchdogtimerconfig.yaml"),
-    # tuppr requirement
-    yamlencode({
-      machine = {
-        install = {
-          image = data.talos_image_factory_urls.this.urls.installer
-          diskSelector = {
-            model = "INTEL SSDPEKKF256G7L"
-          }
         }
       }
     })
@@ -83,21 +58,57 @@ resource "talos_machine_configuration_apply" "k8s_1" {
   client_configuration        = talos_machine_secrets.this.client_configuration
   machine_configuration_input = data.talos_machine_configuration.this.machine_configuration
   node                        = "k8s-1"
-  endpoint                    = "192.168.0.21"
+  endpoint                    = "192.168.0.121"
+  config_patches = [
+    file("${path.module}/resources/k8s-1.yaml"),
+    yamlencode({
+      machine = {
+        install = {
+          diskSelector = {
+            model = "SAMSUNG MZVLB256HAHQ-000L7"
+          }
+        }
+      }
+    })
+  ]
 }
 
 resource "talos_machine_configuration_apply" "k8s_2" {
   client_configuration        = talos_machine_secrets.this.client_configuration
   machine_configuration_input = data.talos_machine_configuration.this.machine_configuration
   node                        = "k8s-2"
-  endpoint                    = "192.168.0.22"
+  endpoint                    = "192.168.0.122"
+  config_patches = [
+    file("${path.module}/resources/k8s-2.yaml"),
+    yamlencode({
+      machine = {
+        install = {
+          diskSelector = {
+            model = "WDC PC SN720 SDAPNTW-256G-1006"
+          }
+        }
+      }
+    })
+  ]
 }
 
 resource "talos_machine_configuration_apply" "k8s_3" {
   client_configuration        = talos_machine_secrets.this.client_configuration
-  machine_configuration_input = data.talos_machine_configuration.k8s_3.machine_configuration
+  machine_configuration_input = data.talos_machine_configuration.this.machine_configuration
   node                        = "k8s-3"
-  endpoint                    = "192.168.0.23"
+  endpoint                    = "192.168.0.123"
+  config_patches = [
+    file("${path.module}/resources/k8s-3.yaml"),
+    yamlencode({
+      machine = {
+        install = {
+          diskSelector = {
+            model = "INTEL SSDPEKKF256G7L"
+          }
+        }
+      }
+    })
+  ]
 }
 
 resource "talos_machine_bootstrap" "this" {
@@ -108,7 +119,7 @@ resource "talos_machine_bootstrap" "this" {
   ]
 
   client_configuration = talos_machine_secrets.this.client_configuration
-  node                 = "192.168.0.21"
+  node                 = talos_machine_configuration_apply.k8s_1.endpoint
 }
 
 resource "talos_cluster_kubeconfig" "this" {
@@ -117,7 +128,7 @@ resource "talos_cluster_kubeconfig" "this" {
   ]
 
   client_configuration = talos_machine_secrets.this.client_configuration
-  node                 = "192.168.0.21"
+  node                 = talos_machine_configuration_apply.k8s_1.endpoint
 }
 
 resource "local_sensitive_file" "kubeconfig" {
@@ -133,8 +144,18 @@ data "talos_client_configuration" "this" {
 
   cluster_name         = data.talos_machine_configuration.this.cluster_name
   client_configuration = talos_machine_secrets.this.client_configuration
-  endpoints            = ["192.168.0.21", "192.168.0.22", "192.168.0.23"]
-  nodes                = ["192.168.0.21", "192.168.0.22", "192.168.0.23"]
+
+  endpoints = [
+    talos_machine_configuration_apply.k8s_1.endpoint,
+    talos_machine_configuration_apply.k8s_2.endpoint,
+    talos_machine_configuration_apply.k8s_3.endpoint
+  ]
+
+  nodes = [
+    talos_machine_configuration_apply.k8s_1.endpoint,
+    talos_machine_configuration_apply.k8s_2.endpoint,
+    talos_machine_configuration_apply.k8s_3.endpoint
+  ]
 }
 
 resource "local_sensitive_file" "talosconfig" {
@@ -148,10 +169,22 @@ data "talos_cluster_health" "talos" {
     talos_cluster_kubeconfig.this
   ]
 
-  client_configuration   = talos_machine_secrets.this.client_configuration
-  endpoints              = ["192.168.0.21", "192.168.0.22", "192.168.0.23"]
-  control_plane_nodes    = ["192.168.0.21", "192.168.0.22", "192.168.0.23"]
+  client_configuration = talos_machine_secrets.this.client_configuration
+
+  endpoints = [
+    talos_machine_configuration_apply.k8s_1.endpoint,
+    talos_machine_configuration_apply.k8s_2.endpoint,
+    talos_machine_configuration_apply.k8s_3.endpoint
+  ]
+
+  control_plane_nodes = [
+    talos_machine_configuration_apply.k8s_1.endpoint,
+    talos_machine_configuration_apply.k8s_2.endpoint,
+    talos_machine_configuration_apply.k8s_3.endpoint
+  ]
+
   skip_kubernetes_checks = true
+
   timeouts = {
     read = "5m"
   }
@@ -204,8 +237,18 @@ data "talos_cluster_health" "kubernetes" {
   ]
 
   client_configuration = talos_machine_secrets.this.client_configuration
-  endpoints            = ["192.168.0.21", "192.168.0.22", "192.168.0.23"]
-  control_plane_nodes  = ["192.168.0.21", "192.168.0.22", "192.168.0.23"]
+
+  endpoints = [
+    talos_machine_configuration_apply.k8s_1.endpoint,
+    talos_machine_configuration_apply.k8s_2.endpoint,
+    talos_machine_configuration_apply.k8s_3.endpoint
+  ]
+
+  control_plane_nodes = [
+    talos_machine_configuration_apply.k8s_1.endpoint,
+    talos_machine_configuration_apply.k8s_2.endpoint,
+    talos_machine_configuration_apply.k8s_3.endpoint
+  ]
 
   timeouts = {
     read = "5m"
