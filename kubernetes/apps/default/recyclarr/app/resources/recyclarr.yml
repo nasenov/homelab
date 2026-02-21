@@ -1,15 +1,16 @@
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/recyclarr/recyclarr/master/schemas/config-schema.json
 sonarr:
-  sonarr:
+  series:
     base_url: http://sonarr.default.svc.cluster.local
     api_key: !env_var SONARR_API_KEY
     delete_old_custom_formats: true
-    replace_existing_custom_formats: true
-    include:
-      - template: sonarr-quality-definition-series
-      - template: sonarr-v4-quality-profile-web-1080p
-      - template: sonarr-v4-custom-formats-web-1080p
+    quality_definition:
+      type: series
+    quality_profiles:
+      - trash_id: 72dae194fc92bf828f32cde7744e51a1 # WEB-1080p
+        reset_unmatched_scores:
+          enabled: true
     custom_formats:
       - trash_ids:
           - 32b367365729d530ca1c124a0b180c64 # Bad Dual Groups
@@ -21,15 +22,16 @@ sonarr:
           - name: WEB-1080p
 
 radarr:
-  radarr:
+  movies:
     base_url: http://radarr.default.svc.cluster.local
     api_key: !env_var RADARR_API_KEY
     delete_old_custom_formats: true
-    replace_existing_custom_formats: true
-    include:
-      - template: radarr-quality-definition-movie
-      - template: radarr-quality-profile-remux-web-1080p
-      - template: radarr-custom-formats-remux-web-1080p
+    quality_definition:
+      type: movie
+    quality_profiles:
+      - trash_id: 9ca12ea80aa55ef916e3751f4b874151 # Remux + WEB 1080p
+        reset_unmatched_scores:
+          enabled: true
     custom_formats:
       - trash_ids:
           - b6832f586342ef70d9c128d40c07b872 # Bad Dual Groups
