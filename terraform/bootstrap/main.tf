@@ -3,7 +3,7 @@ resource "helm_release" "external_secrets" {
   namespace        = "external-secrets"
   repository       = "oci://ghcr.io/external-secrets/charts"
   chart            = "external-secrets"
-  version          = "1.3.2"
+  version          = "2.0.1"
   create_namespace = true
 
   lifecycle {
