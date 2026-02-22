@@ -73,7 +73,6 @@ spec:
         server: truenas.nasenov.dev
         path: /mnt/tank/media
         globalMounts:
-          - path: /data/downloads
-            subPath: downloads
+          - path: /data
       tmp:
         type: emptyDir

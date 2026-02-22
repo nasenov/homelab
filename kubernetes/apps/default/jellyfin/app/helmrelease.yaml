@@ -81,8 +81,7 @@ spec:
         server: truenas.nasenov.dev
         path: /mnt/tank/media
         globalMounts:
-          - path: /data/media
-            subPath: media
+          - path: /data
       tmpfs:
         type: emptyDir
         advancedMounts:
