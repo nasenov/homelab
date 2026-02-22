@@ -12,18 +12,5 @@ spec:
   values:
     fullnameOverride: smartctl-exporter
 
-    config:
-      devices:
-        - /dev/nvme0n1
-
     serviceMonitor:
       enabled: true
-
-    prometheusRules:
-      enabled: true
-      rules:
-        smartCTLDDeviceTemperature:
-          expr: smartctl_device_temperature{temperature_type="current"} > 65
-          annotations:
-            summary: Device has temperature higher than 65°C
-            description: Device {{ $labels.device }} on instance {{ $labels.instance }} has temperature higher than 65°C
