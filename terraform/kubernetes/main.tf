@@ -38,7 +38,6 @@ data "talos_machine_configuration" "this" {
     file("${path.module}/resources/config.yaml"),
     file("${path.module}/resources/ethernetconfig.yaml"),
     file("${path.module}/resources/layer2vipconfig.yaml"),
-    file("${path.module}/resources/oomconfig.yaml"),
     file("${path.module}/resources/resolverconfig.yaml"),
     file("${path.module}/resources/timesyncconfig.yaml"),
     file("${path.module}/resources/uservolumeconfig.yaml"),
