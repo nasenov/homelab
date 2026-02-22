@@ -5,11 +5,17 @@ kind: Certificate
 metadata:
   name: nasenov-dev
 spec:
-  secretName: nasenov-dev-tls
-  issuerRef:
-    name: letsencrypt-production
-    kind: ClusterIssuer
-  commonName: nasenov.dev
   dnsNames:
     - nasenov.dev
     - "*.nasenov.dev"
+  duration: 160h
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  privateKey:
+    algorithm: ECDSA
+    size: 256
+    rotationPolicy: Always
+  secretName: nasenov-dev-tls
+  usages:
+    - digital signature
