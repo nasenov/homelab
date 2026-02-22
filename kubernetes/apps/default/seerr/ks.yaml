@@ -3,7 +3,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: jellyseerr
+  name: seerr
 spec:
   interval: 1h
   targetNamespace: default
@@ -18,7 +18,7 @@ spec:
       namespace: external-secrets
     - name: envoy-gateway
       namespace: networking
-  path: ./kubernetes/apps/default/jellyseerr/app
+  path: ./kubernetes/apps/default/seerr/app
   prune: true
   sourceRef:
     kind: GitRepository
@@ -26,4 +26,4 @@ spec:
     namespace: flux-system
   postBuild:
     substitute:
-      APP: jellyseerr
+      APP: seerr

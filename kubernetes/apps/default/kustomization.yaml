@@ -16,7 +16,6 @@ resources:
   - ./glance/ks.yaml
   - ./home-assistant/ks.yaml
   - ./jellyfin/ks.yaml
-  - ./jellyseerr/ks.yaml
   - ./mosquitto/ks.yaml
   - ./n8n/ks.yaml
   - ./prowlarr/ks.yaml
@@ -24,6 +23,7 @@ resources:
   - ./qui/ks.yaml
   - ./radarr/ks.yaml
   - ./recyclarr/ks.yaml
+  - ./seerr/ks.yaml
   - ./sonarr/ks.yaml
   - ./thelounge/ks.yaml
   - ./zigbee/ks.yaml

@@ -26,9 +26,9 @@ pages:
               - title: Jellyfin
                 url: https://jellyfin.nasenov.dev
                 icon: di:jellyfin.svg
-              - title: Jellyseerr
-                url: https://jellyseerr.nasenov.dev
-                icon: di:jellyseerr.svg
+              - title: Seerr
+                url: https://seerr.nasenov.dev
+                icon: di:seerr.svg
               - title: Radarr
                 url: https://radarr.nasenov.dev
                 icon: di:radarr.svg

@@ -128,9 +128,9 @@ endpoints:
       - "[STATUS] == 200"
     alerts:
       - type: discord
-  - name: jellyseerr
+  - name: seerr
     group: internal
-    url: https://jellyseerr.nasenov.dev
+    url: https://seerr.nasenov.dev
     conditions:
       - "[STATUS] == 200"
     alerts:
