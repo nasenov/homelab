@@ -7,8 +7,6 @@ metadata:
 spec:
   interval: 1h
   targetNamespace: kube-system
-  dependsOn:
-    - name: node-feature-discovery
   path: ./kubernetes/apps/kube-system/intel-gpu-resource-driver/app
   prune: true
   sourceRef:
