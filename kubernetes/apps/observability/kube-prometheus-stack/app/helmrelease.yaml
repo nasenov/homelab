@@ -45,10 +45,14 @@ spec:
             static_configs:
               - targets:
                   - truenas.nasenov.dev:9100
+                labels:
+                  instance: truenas
           - job_name: truenas-smartctl-exporter
             static_configs:
               - targets:
                   - truenas.nasenov.dev:9633
+                labels:
+                  instance: truenas
           - job_name: garage
             scheme: https
             static_configs:

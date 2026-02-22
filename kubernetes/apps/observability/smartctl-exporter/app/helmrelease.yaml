@@ -18,9 +18,7 @@ spec:
         - action: labeldrop
           regex: (pod)
         - action: replace
-          regex: (.*);(.*)
-          replacement: $1.nasenov.dev:$2
+          regex: (.*)
           sourceLabels:
             - __meta_kubernetes_endpoint_node_name
-            - __meta_kubernetes_pod_container_port_number
           targetLabel: instance
