@@ -3,6 +3,16 @@
 version: "3"
 
 tasks:
+  prune-pods:
+    desc: Prune pods in Failed, Pending, or Succeeded state
+    cmds:
+      - for:
+          matrix:
+            PHASE: [Failed, Pending, Succeeded]
+        cmd: kubectl delete pods --all-namespaces --field-selector status.phase={{.ITEM.PHASE}} --ignore-not-found=true
+    preconditions:
+      - which kubectl
+
   sync-external-secrets:
     desc: Sync all ExternalSecrets
     cmds:
