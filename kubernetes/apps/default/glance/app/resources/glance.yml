@@ -11,9 +11,6 @@ pages:
             title: Media
             cache: 1m
             sites:
-              - title: Calibre-Web-Automated
-                url: https://cwa.nasenov.dev
-                icon: di:calibre-web.svg
               - title: Audiobookshelf
                 url: https://audiobookshelf.nasenov.dev
                 icon: di:audiobookshelf.svg

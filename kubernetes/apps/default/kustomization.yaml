@@ -11,7 +11,6 @@ resources:
   - ./audiobookshelf/ks.yaml
   - ./autobrr/ks.yaml
   - ./bazarr/ks.yaml
-  - ./calibre-web-automated/ks.yaml
   - ./fusion/ks.yaml
   - ./glance/ks.yaml
   - ./home-assistant/ks.yaml

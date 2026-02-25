@@ -74,13 +74,6 @@ endpoints:
       - "[STATUS] == 200"
     alerts:
       - type: discord
-  - name: calibre-web-automated
-    group: internal
-    url: https://calibre-web-automated.nasenov.dev
-    conditions:
-      - "[STATUS] == 200"
-    alerts:
-      - type: discord
   - name: flux-operator
     group: internal
     url: https://flux-operator.nasenov.dev
