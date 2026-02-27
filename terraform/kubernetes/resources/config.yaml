@@ -1,5 +1,6 @@
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/siderolabs/talos/refs/heads/release-1.11/website/content/v1.11/schemas/config.schema.json
+version: v1alpha1
 machine:
   sysctls:
     fs.inotify.max_queued_events: "65536"
@@ -11,8 +12,8 @@ machine:
     modules:
       - name: nbd
   kubelet:
-    extraArgs:
-      serialize-image-pulls: "false"
+    extraConfig:
+      serializeImagePulls: false
   files:
     - op: create
       path: /etc/cri/conf.d/20-customization.part
