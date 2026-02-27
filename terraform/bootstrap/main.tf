@@ -38,7 +38,7 @@ resource "helm_release" "flux_operator" {
   namespace        = "flux-system"
   repository       = "oci://ghcr.io/controlplaneio-fluxcd/charts"
   chart            = "flux-operator"
-  version          = "0.42.1"
+  version          = "0.43.0"
   create_namespace = true
 
   lifecycle {
@@ -52,7 +52,7 @@ resource "helm_release" "flux_instance" {
   namespace  = helm_release.flux_operator.namespace
   repository = "oci://ghcr.io/controlplaneio-fluxcd/charts"
   chart      = "flux-instance"
-  version    = "0.42.1"
+  version    = "0.43.0"
 
   values = [
     file("../../kubernetes/apps/flux-system/flux-instance/app/values.yaml")
