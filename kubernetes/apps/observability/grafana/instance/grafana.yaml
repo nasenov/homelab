@@ -5,7 +5,7 @@ kind: Grafana
 metadata:
   name: grafana
   labels:
-    grafana.internal/instance: grafana
+    dashboards: grafana
 spec:
   deployment:
     spec:
@@ -19,7 +19,7 @@ spec:
                 - topologyKey: kubernetes.io/hostname
                   labelSelector:
                     matchLabels:
-                      grafana.internal/instance: grafana
+                      dashboards: grafana
           containers:
             - name: grafana
               env:

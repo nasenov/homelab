@@ -23,4 +23,4 @@ spec:
       mode: GrafanaOperator
       grafanaOperator:
         matchLabels:
-          grafana.internal/instance: grafana
+          dashboards: grafana
