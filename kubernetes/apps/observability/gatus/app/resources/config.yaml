@@ -189,6 +189,13 @@ endpoints:
       - "[STATUS] == 200"
     alerts:
       - type: discord
+  - name: victoria-logs
+    group: internal
+    url: https://victoria-logs.nasenov.dev
+    conditions:
+      - "[STATUS] == 200"
+    alerts:
+      - type: discord
   - name: zigbee
     group: internal
     url: https://zigbee.nasenov.dev

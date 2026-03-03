@@ -90,6 +90,9 @@ pages:
               - title: Gatus
                 url: https://gatus.nasenov.dev
                 icon: di:gatus.svg
+              - title: VictoriaLogs
+                url: https://victoria-logs.nasenov.dev
+                icon: di:victorialogs.svg
 
           - type: monitor
             title: Automation
