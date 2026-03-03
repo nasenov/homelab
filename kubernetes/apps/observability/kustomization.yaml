@@ -17,3 +17,4 @@ resources:
   - ./node-exporter/ks.yaml
   - ./prometheus-operator-crds/ks.yaml
   - ./smartctl-exporter/ks.yaml
+  - ./victoria-logs/ks.yaml
