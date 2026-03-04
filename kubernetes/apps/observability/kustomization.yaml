@@ -8,6 +8,7 @@ components:
 resources:
   - ./namespace.yaml
   - ./alloy/ks.yaml
+  - ./fluent-bit/ks.yaml
   - ./gatus/ks.yaml
   - ./grafana/ks.yaml
   - ./kromgo/ks.yaml
