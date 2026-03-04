@@ -38,6 +38,12 @@ spec:
             port: 80
             targetPort: 8123
 
+    serviceMonitor:
+      app:
+        endpoints:
+          - port: http
+            path: /api/prometheus
+
     route:
       app:
         hostnames:
