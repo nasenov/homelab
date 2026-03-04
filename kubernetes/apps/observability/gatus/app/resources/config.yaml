@@ -46,13 +46,6 @@ endpoints:
       - "[STATUS] == 200"
     alerts:
       - type: discord
-  - name: alloy
-    group: internal
-    url: https://alloy.nasenov.dev
-    conditions:
-      - "[STATUS] == 200"
-    alerts:
-      - type: discord
   - name: audiobookshelf
     group: internal
     url: https://audiobookshelf.nasenov.dev
