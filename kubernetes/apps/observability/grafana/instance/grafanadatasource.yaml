@@ -36,23 +36,6 @@ spec:
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDatasource
 metadata:
-  name: loki
-spec:
-  instanceSelector:
-    matchLabels:
-      dashboards: grafana
-  datasource:
-    type: loki
-    name: loki
-    access: proxy
-    jsonData:
-      maxLines: 1000
-    url: http://loki-headless.observability.svc.cluster.local:3100
----
-# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/grafana.integreatly.org/grafanadatasource_v1beta1.json
-apiVersion: grafana.integreatly.org/v1beta1
-kind: GrafanaDatasource
-metadata:
   name: postgres
 spec:
   instanceSelector:

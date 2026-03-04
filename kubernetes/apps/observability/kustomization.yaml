@@ -13,7 +13,6 @@ resources:
   - ./kromgo/ks.yaml
   - ./kube-prometheus-stack/ks.yaml
   - ./kube-state-metrics/ks.yaml
-  - ./loki/ks.yaml
   - ./node-exporter/ks.yaml
   - ./prometheus-operator-crds/ks.yaml
   - ./smartctl-exporter/ks.yaml
