@@ -90,3 +90,5 @@ spec:
 
     dashboards:
       enabled: true
+
+    logLevel: warn
