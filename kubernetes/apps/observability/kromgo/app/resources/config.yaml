@@ -51,7 +51,7 @@ metrics:
     title: Memory
 
   - name: cluster_power_usage
-    query: round(node_hwmon_power_watt{sensor="power1"}, 0.1)
+    query: round(homeassistant_sensor_power_w{entity="sensor.0x70ac08fffe90a20f_power"}, 0.1)
     suffix: "w"
     colors:
       - { color: "green", min: 0, max: 400.0 }
