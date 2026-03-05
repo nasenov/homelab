@@ -19,7 +19,7 @@ sonarr:
           - 06d66ab109d4d2eddb2794d21526d140 # Retags
           - 1b3994c551cbb92a2c781af061f4ab44 # Scene
         assign_scores_to:
-          - name: WEB-1080p
+          - trash_id: 72dae194fc92bf828f32cde7744e51a1 # WEB-1080p
 
 radarr:
   movies:
@@ -42,4 +42,4 @@ radarr:
           - 5c44f52a8714fdd79bb4d98e2673be1f # Retags
           - f537cf427b64c38c8e36298f657e4828 # Scene
         assign_scores_to:
-          - name: Remux + WEB 1080p
+          - trash_id: 9ca12ea80aa55ef916e3751f4b874151 # Remux + WEB 1080p
