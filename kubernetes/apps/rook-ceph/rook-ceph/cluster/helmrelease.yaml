@@ -31,8 +31,8 @@ spec:
           bdev_enable_discard: "true" # quote
           osd_class_update_on_start: "false" # quote
           device_failure_prediction_mode: local # requires mgr module
+          mon_cluster_log_level: info
         mon:
-          mon_cluster_log_level: "info"
           debug_mon: "0/5"
           debug_rocksdb: "0/5"
         mgr:
