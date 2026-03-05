@@ -25,7 +25,7 @@ endpoints:
       - type: discord
   - name: kromgo
     group: external
-    url: https://kromgo.nasenov.dev/talos_version
+    url: https://kromgo.nasenov.dev
     conditions:
       - "[STATUS] == 200"
     client:
