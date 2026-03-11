@@ -14,6 +14,7 @@ connectivity:
     interval: 1m
 
 endpoints:
+  # External Group
   - name: flux-webhook
     group: external
     url: https://flux-webhook.nasenov.dev
@@ -32,6 +33,8 @@ endpoints:
       dns-resolver: tcp://1.1.1.1:53
     alerts:
       - type: discord
+
+  # Internal Group
   - name: actual
     group: internal
     url: https://actual.nasenov.dev
@@ -114,13 +117,6 @@ endpoints:
       - "[STATUS] == 200"
     alerts:
       - type: discord
-  - name: seerr
-    group: internal
-    url: https://seerr.nasenov.dev
-    conditions:
-      - "[STATUS] == 200"
-    alerts:
-      - type: discord
   - name: n8n
     group: internal
     url: https://n8n.nasenov.dev
@@ -168,6 +164,13 @@ endpoints:
       - "[STATUS] == 200"
     alerts:
       - type: discord
+  - name: seerr
+    group: internal
+    url: https://seerr.nasenov.dev
+    conditions:
+      - "[STATUS] == 200"
+    alerts:
+      - type: discord
   - name: sonarr
     group: internal
     url: https://sonarr.nasenov.dev
@@ -196,6 +199,15 @@ endpoints:
       - "[STATUS] == 200"
     alerts:
       - type: discord
+
+  # Infrastructure Group
+  - name: db
+    group: infrastructure
+    url: tcp://db.nasenov.dev:5432
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: discord
   - name: k8s
     group: infrastructure
     url: https://k8s.nasenov.dev:6443/readyz
@@ -203,11 +215,18 @@ endpoints:
       - "[STATUS] == 200"
     alerts:
       - type: discord
-  - name: db
+  - name: pi-hole
     group: infrastructure
-    url: tcp://db.nasenov.dev:5432
+    url: http://192.168.0.53/admin
     conditions:
-      - "[CONNECTED] == true"
+      - "[STATUS] == 200"
+    alerts:
+      - type: discord
+  - name: truenas
+    group: infrastructure
+    url: https://truenas.nasenov.dev
+    conditions:
+      - "[STATUS] == 200"
     alerts:
       - type: discord
 
