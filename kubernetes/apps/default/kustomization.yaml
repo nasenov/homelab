@@ -12,7 +12,6 @@ resources:
   - ./autobrr/ks.yaml
   - ./bazarr/ks.yaml
   - ./fusion/ks.yaml
-  - ./glance/ks.yaml
   - ./home-assistant/ks.yaml
   - ./jellyfin/ks.yaml
   - ./mosquitto/ks.yaml
