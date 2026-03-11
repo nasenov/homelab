@@ -1,0 +1,13 @@
+---
+services:
+  meshcentral:
+    container_name: meshcentral
+    image: ghcr.io/ylianst/meshcentral:1.1.57
+    restart: unless-stopped
+    environment:
+      DYNAMIC_CONFIG: "true"
+      ALLOWED_ORIGIN: "true"
+    ports:
+      - "16443:443"
+    volumes:
+      - /mnt/apps/meshcentral/data:/opt/meshcentral/meshcentral-data
