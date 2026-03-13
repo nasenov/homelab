@@ -11,3 +11,4 @@ services:
       - "16443:443"
     volumes:
       - /mnt/apps/meshcentral/data:/opt/meshcentral/meshcentral-data
+      - /mnt/apps/meshcentral/files:/opt/meshcentral/meshcentral-files
