@@ -1,8 +1,7 @@
 ---
 instance:
   distribution:
-    version: 2.8.1
-    # artifact: oci://ghcr.io/controlplaneio-fluxcd/flux-operator-manifests:v0.44.0
+    artifact: oci:///ghcr.io/controlplaneio-fluxcd/flux-operator-manifests:v0.44.0
   components:
     - source-controller
     - kustomize-controller
