@@ -40,7 +40,7 @@ spec:
         enabled: true
 
     dashboards:
-      enabled: false
+      enabled: true
       grafanaOperator:
         enabled: true
         spec:
