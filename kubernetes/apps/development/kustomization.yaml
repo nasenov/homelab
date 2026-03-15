@@ -7,4 +7,3 @@ components:
   - ../../components/alerts
 resources:
   - ./namespace.yaml
-  - ./victoria-logs/ks.yaml
