@@ -29,4 +29,3 @@ spec:
   postBuild:
     substitute:
       APP: jellyfin
-      VOLSYNC_CAPACITY: 50Gi
