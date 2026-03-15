@@ -1,7 +1,8 @@
 ---
 instance:
   distribution:
-    artifact: oci://ghcr.io/controlplaneio-fluxcd/flux-operator-manifests:v0.44.0
+    version: 2.8.1
+    # artifact: oci://ghcr.io/controlplaneio-fluxcd/flux-operator-manifests:v0.44.0
   components:
     - source-controller
     - kustomize-controller
@@ -132,11 +133,3 @@ instance:
         target:
           kind: Deployment
           name: (kustomize-controller|helm-controller|notification-controller)
-      - # Debug logs
-        patch: |-
-          - op: add
-            path: /spec/template/spec/containers/0/args/-
-            value: --log-level=debug
-        target:
-          kind: Deployment
-          name: helm-controller
