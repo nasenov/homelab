@@ -12,7 +12,7 @@ services:
     secrets:
       - pi_hole_admin_password
     networks:
-      pihole:
+      apps_ipvlan:
         ipv4_address: 192.168.0.53
     volumes:
       - pihole:/etc/pihole
@@ -22,15 +22,8 @@ secrets:
     file: /mnt/apps/pihole/pi_hole_admin_password
 
 networks:
-  pihole:
-    driver: macvlan
-    driver_opts:
-      parent: enp2s0
-    ipam:
-      config:
-        - subnet: 192.168.0.0/24
-          gateway: 192.168.0.1
-          ip_range: 192.168.0.53/32
+  apps_ipvlan:
+    external: true
 
 volumes:
   pihole:
