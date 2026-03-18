@@ -57,7 +57,7 @@ spec:
             scheme: https
             static_configs:
               - targets:
-                  - s3.nasenov.dev:3903
+                  - garage.truenas.nasenov.dev
 
     alertmanager:
       route:
