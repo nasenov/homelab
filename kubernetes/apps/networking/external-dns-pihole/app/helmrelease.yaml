@@ -25,7 +25,7 @@ spec:
             key: EXTERNAL_DNS_PIHOLE_PASSWORD
     extraArgs:
       - --pihole-api-version=6
-      - --pihole-server=https://pihole.truenas.nasenov.dev/admin
+      - --pihole-server=https://pihole.truenas.nasenov.dev
       - --crd-source-apiversion=externaldns.k8s.io/v1alpha1
       - --crd-source-kind=DNSEndpoint
     triggerLoopOnEvent: true
