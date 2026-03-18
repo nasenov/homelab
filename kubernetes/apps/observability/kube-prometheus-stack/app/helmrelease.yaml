@@ -44,13 +44,13 @@ spec:
           - job_name: truenas-node-exporter
             static_configs:
               - targets:
-                  - truenas.nasenov.dev:9100
+                  - node-exporter.truenas.nasenov.dev
                 labels:
                   instance: truenas
           - job_name: truenas-smartctl-exporter
             static_configs:
               - targets:
-                  - truenas.nasenov.dev:9633
+                  - smartctl-exporter.truenas.nasenov.dev
                 labels:
                   instance: truenas
           - job_name: garage
