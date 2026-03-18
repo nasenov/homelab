@@ -210,7 +210,7 @@ endpoints:
       - type: discord
   - name: pi-hole
     group: infrastructure
-    url: http://192.168.0.53/admin
+    url: https://pihole.truenas.nasenov.dev/admin
     conditions:
       - "[STATUS] == 200"
     alerts:
