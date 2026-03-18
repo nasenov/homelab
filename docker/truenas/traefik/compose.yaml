@@ -1,0 +1,53 @@
+---
+services:
+  traefik:
+    container_name: traefik
+    image: traefik:v3.6.10
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.dashboard.rule=Host(`traefik.truenas.nasenov.dev`)
+      - traefik.http.routers.dashboard.service=api@internal
+      - traefik.http.services.dashboard.loadbalancer.server.port=8080
+    restart: unless-stopped
+    command:
+      - --api.dashboard=true
+      - --providers.docker=true
+      - --providers.docker.network=apps_bridge
+      - --providers.docker.defaultRule=Host(`{{ .ContainerName }}.truenas.nasenov.dev`)
+      - --entrypoints.web.address=:80
+      - --entrypoints.web.http.redirections.entrypoint.scheme=https
+      - --entrypoints.web.http.redirections.entrypoint.to=websecure
+      - --entrypoints.websecure.address=:443
+      - --entrypoints.websecure.asDefault=true
+      - --entrypoints.websecure.http.tls=true
+      - --entrypoints.websecure.http.tls.certresolver=letsencrypt
+      - --entrypoints.websecure.http.tls.domains[0].main=*.truenas.nasenov.dev
+      - --certificatesResolvers.letsencrypt.acme.caServer=https://acme-v02.api.letsencrypt.org/directory
+      - --certificatesResolvers.letsencrypt.acme.dnsChallenge.provider=cloudflare
+      - --certificatesResolvers.letsencrypt.acme.storage=/acme/acme.json
+    environment:
+      CLOUDFLARE_DNS_API_TOKEN_FILE: /run/secrets/traefik_cloudflare_api_token
+    secrets:
+      - traefik_cloudflare_api_token
+    networks:
+      apps_ipvlan:
+        ipv4_address: 192.168.0.16
+      apps_bridge:
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    volumes:
+      - acme:/acme
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+secrets:
+  traefik_cloudflare_api_token:
+    file: /mnt/apps/traefik/traefik_cloudflare_api_token
+
+networks:
+  apps_ipvlan:
+    external: true
+  apps_bridge:
+    external: true
+
+volumes:
+  acme:

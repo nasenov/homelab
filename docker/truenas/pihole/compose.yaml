@@ -3,6 +3,8 @@ services:
   pihole:
     container_name: pihole
     image: ghcr.io/pi-hole/pihole:2026.02.0
+    labels:
+      - traefik.http.services.pihole.loadbalancer.server.port=80
     restart: unless-stopped
     environment:
       TZ: Europe/Sofia
@@ -14,6 +16,7 @@ services:
     networks:
       apps_ipvlan:
         ipv4_address: 192.168.0.53
+      apps_bridge:
     volumes:
       - pihole:/etc/pihole
 
@@ -23,6 +26,8 @@ secrets:
 
 networks:
   apps_ipvlan:
+    external: true
+  apps_bridge:
     external: true
 
 volumes:

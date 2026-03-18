@@ -1,0 +1,12 @@
+{
+  "settings": {
+    "port": 80,
+    "redirPort": 0,
+    "TLSOffload": true
+  },
+  "domains": {
+    "": {
+      "allowedOrigin": true
+    }
+  }
+}
