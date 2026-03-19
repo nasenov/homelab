@@ -22,7 +22,7 @@ services:
 
 secrets:
   pi_hole_admin_password:
-    file: /mnt/apps/pihole/pi_hole_admin_password
+    file: /mnt/apps/apps/pihole/pi_hole_admin_password
 
 networks:
   apps_ipvlan:

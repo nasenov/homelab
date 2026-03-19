@@ -7,8 +7,8 @@ services:
     networks:
       apps_bridge:
     volumes:
-      - /mnt/apps/meshcentral/data:/opt/meshcentral/meshcentral-data
-      - /mnt/apps/meshcentral/files:/opt/meshcentral/meshcentral-files
+      - /mnt/apps/apps/meshcentral/data:/opt/meshcentral/meshcentral-data
+      - /mnt/apps/apps/meshcentral/files:/opt/meshcentral/meshcentral-files
 
 networks:
   apps_bridge:
