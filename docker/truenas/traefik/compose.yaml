@@ -41,7 +41,7 @@ services:
 
 secrets:
   traefik_cloudflare_api_token:
-    file: /mnt/apps/apps/traefik/traefik_cloudflare_api_token
+    file: /mnt/tank/apps/traefik/traefik_cloudflare_api_token
 
 networks:
   apps_ipvlan:

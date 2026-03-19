@@ -22,15 +22,15 @@ services:
     networks:
       apps_bridge:
     volumes:
-      - /mnt/apps/apps/garage/garage.toml:/etc/garage.toml
-      - /mnt/apps/apps/garage/meta:/var/lib/garage/meta
-      - /mnt/apps/apps/garage/data:/var/lib/garage/data
+      - /mnt/tank/apps/garage/garage.toml:/etc/garage.toml
+      - /mnt/tank/apps/garage/meta:/var/lib/garage/meta
+      - /mnt/tank/apps/garage/data:/var/lib/garage/data
 
 secrets:
   garage-rpc-secret:
-    file: /mnt/apps/apps/garage/garage-rpc-secret
+    file: /mnt/tank/apps/garage/garage-rpc-secret
   garage-admin-token:
-    file: /mnt/apps/apps/garage/garage-admin-token
+    file: /mnt/tank/apps/garage/garage-admin-token
 
 networks:
   apps_bridge:
