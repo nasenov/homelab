@@ -208,7 +208,7 @@ endpoints:
       - "[STATUS] == 200"
     alerts:
       - type: discord
-  - name: pi-hole
+  - name: pihole
     group: infrastructure
     url: https://pihole.truenas.nasenov.dev/admin
     conditions:
