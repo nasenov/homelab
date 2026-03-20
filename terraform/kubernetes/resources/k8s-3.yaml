@@ -1,4 +1,9 @@
 ---
+machine:
+  install:
+    diskSelector:
+      model: INTEL SSDPEKKF256G7L
+---
 apiVersion: v1alpha1
 kind: HostnameConfig
 hostname: k8s-3

@@ -88,10 +88,10 @@ In my cluster there are two instances of [ExternalDNS](https://github.com/kubern
 
 ## <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/2699_fe0f/512.gif" alt="⚙" width="20" height="20"> Hardware
 
-| Device               | Num | OS Disk Size | Data Disk Size                                   | Ram   | OS      | Function         |
+| Device               | Num | OS Disk Size | Data Disk Size                                   | RAM   | OS      | Function         |
 |----------------------|-----|--------------|--------------------------------------------------|-------|---------|------------------|
-| Lenovo M910x i5-7500 | 3   | 256GB SSD    | 1TB (rook-ceph)                                  | 16GB  | Talos   | Kubernetes       |
-| Custom PC i5-13600K  | 1   | 500GB SSD    | 2x4TB HDD                                        | 128GB | TrueNAS | NAS              |
+| Lenovo m910x i5-7500 | 3   | 256GB NVMe   | 500GB SSD (local) / 1TB NVMe (rook-ceph)         | 16GB  | Talos   | Kubernetes       |
+| Custom PC i5-13600K  | 1   | 256GB NVMe   | 2x4TB HDD                                        | 64GB  | TrueNAS | NAS              |
 | TP-Link AX3000       | 1   | -            | -                                                | -     | -       | Router           |
 
 ---

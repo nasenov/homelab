@@ -59,16 +59,7 @@ resource "talos_machine_configuration_apply" "k8s_1" {
   node                        = "k8s-1"
   endpoint                    = "192.168.0.121"
   config_patches = [
-    file("${path.module}/resources/k8s-1.yaml"),
-    yamlencode({
-      machine = {
-        install = {
-          diskSelector = {
-            model = "SAMSUNG MZVLB256HAHQ-000L7"
-          }
-        }
-      }
-    })
+    file("${path.module}/resources/k8s-1.yaml")
   ]
 }
 
@@ -78,16 +69,7 @@ resource "talos_machine_configuration_apply" "k8s_2" {
   node                        = "k8s-2"
   endpoint                    = "192.168.0.122"
   config_patches = [
-    file("${path.module}/resources/k8s-2.yaml"),
-    yamlencode({
-      machine = {
-        install = {
-          diskSelector = {
-            model = "WDC PC SN720 SDAPNTW-256G-1006"
-          }
-        }
-      }
-    })
+    file("${path.module}/resources/k8s-2.yaml")
   ]
 }
 
@@ -97,16 +79,7 @@ resource "talos_machine_configuration_apply" "k8s_3" {
   node                        = "k8s-3"
   endpoint                    = "192.168.0.123"
   config_patches = [
-    file("${path.module}/resources/k8s-3.yaml"),
-    yamlencode({
-      machine = {
-        install = {
-          diskSelector = {
-            model = "INTEL SSDPEKKF256G7L"
-          }
-        }
-      }
-    })
+    file("${path.module}/resources/k8s-3.yaml")
   ]
 }
 
