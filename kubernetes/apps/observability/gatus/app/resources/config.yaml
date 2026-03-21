@@ -110,11 +110,25 @@ endpoints:
       - "[STATUS] == 200"
     alerts:
       - type: discord
+  - name: k8s
+    group: internal
+    url: https://k8s.nasenov.dev:6443/readyz
+    conditions:
+      - "[STATUS] == 200"
+    alerts:
+      - type: discord
   - name: n8n
     group: internal
     url: https://n8n.nasenov.dev
     conditions:
       - "[STATUS] == 200"
+    alerts:
+      - type: discord
+  - name: postgres
+    group: internal
+    url: tcp://postgres.nasenov.dev:5432
+    conditions:
+      - "[CONNECTED] == true"
     alerts:
       - type: discord
   - name: prometheus
@@ -194,16 +208,16 @@ endpoints:
       - type: discord
 
   # Infrastructure Group
-  - name: db
+  - name: garage
     group: infrastructure
-    url: tcp://db.nasenov.dev:5432
+    url: https://garage.truenas.nasenov.dev/health
     conditions:
-      - "[CONNECTED] == true"
+      - "[STATUS] == 200"
     alerts:
       - type: discord
-  - name: k8s
+  - name: meshcentral
     group: infrastructure
-    url: https://k8s.nasenov.dev:6443/readyz
+    url: https://meshcentral.truenas.nasenov.dev
     conditions:
       - "[STATUS] == 200"
     alerts:
@@ -211,6 +225,13 @@ endpoints:
   - name: pihole
     group: infrastructure
     url: https://pihole.truenas.nasenov.dev/admin
+    conditions:
+      - "[STATUS] == 200"
+    alerts:
+      - type: discord
+  - name: traefik
+    group: infrastructure
+    url: https://traefik.truenas.nasenov.dev
     conditions:
       - "[STATUS] == 200"
     alerts:
