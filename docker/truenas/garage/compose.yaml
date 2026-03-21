@@ -14,11 +14,11 @@ services:
     restart: unless-stopped
     environment:
       GARAGE_ALLOW_WORLD_READABLE_SECRETS: "true"
-      GARAGE_RPC_SECRET_FILE: /run/secrets/garage-rpc-secret
-      GARAGE_ADMIN_TOKEN_FILE: /run/secrets/garage-admin-token
+      GARAGE_RPC_SECRET_FILE: /run/secrets/garage_rpc_secret
+      GARAGE_ADMIN_TOKEN_FILE: /run/secrets/garage_admin_token
     secrets:
-      - garage-rpc-secret
-      - garage-admin-token
+      - garage_rpc_secret
+      - garage_admin_token
     networks:
       apps_bridge:
     volumes:
@@ -27,10 +27,10 @@ services:
       - /mnt/tank/apps/garage/data:/var/lib/garage/data
 
 secrets:
-  garage-rpc-secret:
-    file: /mnt/tank/apps/garage/garage-rpc-secret
-  garage-admin-token:
-    file: /mnt/tank/apps/garage/garage-admin-token
+  garage_rpc_secret:
+    file: /mnt/tank/apps/garage/garage_rpc_secret
+  garage_admin_token:
+    file: /mnt/tank/apps/garage/garage_admin_token
 
 networks:
   apps_bridge:
