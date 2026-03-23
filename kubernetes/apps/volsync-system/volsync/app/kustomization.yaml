@@ -6,3 +6,4 @@ resources:
   - ./grafanadashboard.yaml
   - ./helmrelease.yaml
   - ./helmrepository.yaml
+  - ./prometheusrule.yaml
