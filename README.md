@@ -92,7 +92,7 @@ In my cluster there are two instances of [ExternalDNS](https://github.com/kubern
 |----------------------|-----|--------------|--------------------------------------------------|-------|---------|------------------|
 | Lenovo m910x i5-7500 | 3   | 256GB NVMe   | 500GB SSD (local) / 1TB NVMe (rook-ceph)         | 16GB  | Talos   | Kubernetes       |
 | Custom PC i5-13600K  | 1   | 256GB NVMe   | 2x4TB HDD                                        | 64GB  | TrueNAS | NAS              |
-| TP-Link AX3000       | 1   | -            | -                                                | -     | -       | Router           |
+| TP-Link Archer AX53  | 1   | -            | -                                                | -     | -       | Router           |
 
 ---
 
