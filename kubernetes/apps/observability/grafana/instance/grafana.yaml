@@ -64,4 +64,3 @@ spec:
       ssl_mode: require
     server:
       enable_gzip: "true"
-      root_url: https://grafana.nasenov.dev
