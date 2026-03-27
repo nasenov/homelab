@@ -27,7 +27,7 @@ spec:
   datasources:
     - datasourceName: prometheus
       inputName: DS_PROMETHEUS
-  url: https://raw.githubusercontent.com/nasenov/postgres-operator-examples/refs/heads/main/kustomize/monitoring/grafana/dashboards/pgbouncer_direct.json
+  url: https://raw.githubusercontent.com/nasenov/postgres-operator/refs/heads/main/config/monitoring/grafana/dashboards/pgbouncer_direct.json
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/grafana.integreatly.org/grafanadashboard_v1beta1.json
 apiVersion: grafana.integreatly.org/v1beta1
