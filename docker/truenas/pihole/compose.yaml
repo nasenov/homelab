@@ -18,7 +18,7 @@ services:
         ipv4_address: 192.168.0.53
       apps_bridge:
     volumes:
-      - pihole:/etc/pihole
+      - /mnt/tank/apps/pihole/pihole:/etc/pihole
 
 secrets:
   pi_hole_admin_password:
@@ -29,6 +29,3 @@ networks:
     external: true
   apps_bridge:
     external: true
-
-volumes:
-  pihole:

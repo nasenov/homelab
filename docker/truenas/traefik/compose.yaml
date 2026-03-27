@@ -36,7 +36,7 @@ services:
     extra_hosts:
       - host.docker.internal:host-gateway
     volumes:
-      - acme:/acme
+      - /mnt/tank/apps/traefik/acme:/acme
       - /var/run/docker.sock:/var/run/docker.sock:ro
 
 secrets:
@@ -48,6 +48,3 @@ networks:
     external: true
   apps_bridge:
     external: true
-
-volumes:
-  acme:
