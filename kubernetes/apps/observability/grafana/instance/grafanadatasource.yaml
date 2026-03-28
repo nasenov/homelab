@@ -5,6 +5,7 @@ kind: GrafanaDatasource
 metadata:
   name: prometheus
 spec:
+  uid: 345941b8-786a-4924-9465-3f109c8361b4
   instanceSelector:
     matchLabels:
       dashboards: grafana
