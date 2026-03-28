@@ -22,6 +22,7 @@ kind: GrafanaDatasource
 metadata:
   name: alertmanager
 spec:
+  uid: eb649bce-93a2-4dbe-b558-e7739ed5903e
   instanceSelector:
     matchLabels:
       dashboards: grafana
@@ -39,6 +40,7 @@ kind: GrafanaDatasource
 metadata:
   name: postgres
 spec:
+  uid: e63033e0-b892-4acb-b709-9eacece5f411
   instanceSelector:
     matchLabels:
       dashboards: grafana
