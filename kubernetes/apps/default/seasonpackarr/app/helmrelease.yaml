@@ -3,12 +3,12 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: seasonpackerr
+  name: seasonpackarr
 spec:
   interval: 1h
   chartRef:
     kind: OCIRepository
-    name: seasonpackerr
+    name: seasonpackarr
   values:
     controllers:
       seasonpackarr:
