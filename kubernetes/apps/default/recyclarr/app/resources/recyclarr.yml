@@ -12,6 +12,13 @@ sonarr:
         reset_unmatched_scores:
           enabled: true
     custom_formats:
+      # FLUX trumps REPACKS
+      - trash_ids:
+          - 5d9fd1b1e06cd8a475462f40214b7df6 # FLUX
+        assign_scores_to:
+          - trash_id: 72dae194fc92bf828f32cde7744e51a1 # WEB-1080p
+            score: 100
+      # Unwanted
       - trash_ids:
           - 32b367365729d530ca1c124a0b180c64 # Bad Dual Groups
           - 82d40da2bc6923f41e14394075dd4b03 # No-RlsGroup
@@ -33,6 +40,7 @@ radarr:
         reset_unmatched_scores:
           enabled: true
     custom_formats:
+      # Unwanted
       - trash_ids:
           - b6832f586342ef70d9c128d40c07b872 # Bad Dual Groups
           - cc444569854e9de0b084ab2b8b1532b2 # Black and White Editions
