@@ -21,6 +21,7 @@ resources:
   - ./qui/ks.yaml
   - ./radarr/ks.yaml
   - ./recyclarr/ks.yaml
+  - ./seasonpackerr/ks.yaml
   - ./seerr/ks.yaml
   - ./sonarr/ks.yaml
   - ./thelounge/ks.yaml
