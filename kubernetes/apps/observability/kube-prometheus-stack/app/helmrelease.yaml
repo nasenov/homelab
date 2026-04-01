@@ -34,9 +34,8 @@ spec:
         retention: 30d
         retentionSize: 32GiB
         resources:
-          requests:
-            cpu: 100m
           limits:
+            cpu: 100m
             memory: 2Gi
         storageSpec:
           volumeClaimTemplate:
