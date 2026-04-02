@@ -24,6 +24,19 @@ spec:
           parentRefs:
             - name: envoy-internal
               namespace: networking
+          additionalRules:
+            - backendRefs:
+                - group: ""
+                  kind: Service
+                  name: kube-prometheus-stack-prometheus
+                  port: 9090
+                  weight: 1
+              matches:
+                - path:
+                    type: PathPrefix
+                    value: /
+              timeouts:
+                request: "5m"
 
       prometheusSpec:
         externalUrl: https://prometheus.nasenov.dev
