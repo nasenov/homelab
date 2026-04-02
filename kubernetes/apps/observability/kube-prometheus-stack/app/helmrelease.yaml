@@ -33,10 +33,6 @@ spec:
         scrapeConfigSelectorNilUsesHelmValues: false
         retention: 30d
         retentionSize: 32GiB
-        resources:
-          limits:
-            cpu: 200m
-            memory: 2Gi
         storageSpec:
           volumeClaimTemplate:
             spec:
