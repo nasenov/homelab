@@ -2,7 +2,7 @@
 services:
   pihole:
     container_name: pihole
-    image: ghcr.io/pi-hole/pihole:2026.02.0
+    image: ghcr.io/pi-hole/pihole:2026.04.0
     labels:
       - traefik.http.services.pihole.loadbalancer.server.port=80
     restart: unless-stopped
