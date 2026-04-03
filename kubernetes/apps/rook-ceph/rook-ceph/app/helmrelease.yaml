@@ -19,7 +19,7 @@ spec:
       enableLiveness: true
       serviceMonitor:
         enabled: true
-        interval: 30s
+        interval: 1m
       csiRBDProvisionerResource: |
         - name : csi-provisioner
           resource:
