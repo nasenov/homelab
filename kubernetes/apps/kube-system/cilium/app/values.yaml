@@ -39,4 +39,4 @@ operator:
 hubble:
   enabled: false
 envoy:
-  rollOutPods: true
+  enabled: false

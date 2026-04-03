@@ -26,8 +26,3 @@ spec:
         enabled: true
     dashboards:
       enabled: true
-    envoy:
-      prometheus:
-        enabled: true
-        serviceMonitor:
-          enabled: true
