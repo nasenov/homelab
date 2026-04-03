@@ -96,13 +96,6 @@ endpoints:
       - "[STATUS] == 200"
     alerts:
       - type: discord
-  - name: hubble
-    group: internal
-    url: https://hubble.nasenov.dev
-    conditions:
-      - "[STATUS] == 200"
-    alerts:
-      - type: discord
   - name: jellyfin
     group: internal
     url: https://jellyfin.nasenov.dev
