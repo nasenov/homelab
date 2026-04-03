@@ -123,6 +123,10 @@ spec:
     kubeProxy:
       enabled: false
 
+    kubelet:
+      serviceMonitor:
+        interval: 30s
+
     additionalPrometheusRulesMap:
       dockerhub-rules:
         groups:
