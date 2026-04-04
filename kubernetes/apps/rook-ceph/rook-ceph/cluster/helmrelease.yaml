@@ -20,7 +20,7 @@ spec:
 
     monitoring:
       enabled: true
-      interval: 1m
+      interval: 30s
       createPrometheusRules: true
       prometheusRuleOverrides:
         CephNodeDiskspaceWarning:
