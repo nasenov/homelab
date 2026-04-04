@@ -35,8 +35,8 @@ spec:
         serviceMonitorSelectorNilUsesHelmValues: false
         podMonitorSelectorNilUsesHelmValues: false
         scrapeConfigSelectorNilUsesHelmValues: false
-        retention: 30d
-        retentionSize: 32GiB
+        retention: 7d
+        retentionSize: 8GiB
         resources:
           requests:
             cpu: 200m
@@ -48,7 +48,7 @@ spec:
               storageClassName: ceph-block
               resources:
                 requests:
-                  storage: 32Gi
+                  storage: 8Gi
         additionalScrapeConfigs:
           - job_name: truenas-node-exporter
             static_configs:
