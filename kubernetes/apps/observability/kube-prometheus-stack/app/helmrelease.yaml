@@ -82,6 +82,12 @@ spec:
         alertmanagerConfiguration:
           name: alertmanager
         externalUrl: https://alertmanager.nasenov.dev
+        resources:
+          requests:
+            cpu: 10m
+            memory: 64Mi
+          limits:
+            memory: 64Mi
         storage:
           volumeClaimTemplate:
             spec:
