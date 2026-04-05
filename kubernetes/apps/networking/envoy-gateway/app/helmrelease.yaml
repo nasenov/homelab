@@ -15,8 +15,10 @@ spec:
     deployment:
       envoyGateway:
         resources:
+          requests:
+            memory: 128Mi
           limits:
-            memory: 256Mi
+            memory: 128Mi
     config:
       envoyGateway:
         provider:
