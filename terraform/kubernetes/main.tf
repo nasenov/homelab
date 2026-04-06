@@ -179,7 +179,8 @@ resource "helm_release" "cilium" {
   ]
 
   lifecycle {
-    ignore_changes = all
+    ignore_changes  = all
+    prevent_destroy = true
   }
 }
 
@@ -199,7 +200,8 @@ resource "helm_release" "coredns" {
   ]
 
   lifecycle {
-    ignore_changes = all
+    ignore_changes  = all
+    prevent_destroy = true
   }
 }
 
