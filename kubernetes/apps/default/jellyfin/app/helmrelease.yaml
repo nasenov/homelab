@@ -12,6 +12,7 @@ spec:
   values:
     controllers:
       jellyfin:
+        replicas: 0
         pod:
           resourceClaims:
             - name: gpu

@@ -12,6 +12,7 @@ spec:
   values:
     controllers:
       qbittorrent:
+        replicas: 0
         pod:
           securityContext:
             runAsNonRoot: true
