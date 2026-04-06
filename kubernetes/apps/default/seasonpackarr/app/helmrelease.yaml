@@ -12,7 +12,6 @@ spec:
   values:
     controllers:
       seasonpackarr:
-        replicas: 0
         pod:
           securityContext:
             runAsNonRoot: true

@@ -14,7 +14,6 @@ spec:
       qui:
         annotations:
           reloader.stakater.com/auto: "true"
-        replicas: 0
         pod:
           securityContext:
             runAsNonRoot: true
