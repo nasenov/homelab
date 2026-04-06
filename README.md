@@ -40,7 +40,7 @@ My Kubernetes cluster is deployed with [Talos](https://www.talos.dev).
 - [cloudflared](https://github.com/cloudflare/cloudflared): Enables Cloudflare secure access to my routes.
 - [external-dns](https://github.com/kubernetes-sigs/external-dns): Automatically syncs ingress DNS records to a DNS provider.
 - [external-secrets](https://github.com/external-secrets/external-secrets): Managed Kubernetes secrets using [Bitwarden](https://bitwarden.com/).
-- [rook](https://github.com/rook/rook): Distributed block storage for peristent storage.
+- [rook](https://github.com/rook/rook): Distributed block storage for persistent storage.
 - [spegel](https://github.com/spegel-org/spegel): Stateless cluster local OCI registry mirror.
 - [volsync](https://github.com/backube/volsync): Backup and recovery of persistent volume claims.
 
