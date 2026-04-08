@@ -9,9 +9,20 @@ tasks:
       - task: terraform-apply
         vars:
           TERRAFORM_DIRECTORY: "{{.ROOT_DIR}}/terraform/kubernetes"
+      - task: download-kubeconfig
       - task: terraform-apply
         vars:
           TERRAFORM_DIRECTORY: "{{.ROOT_DIR}}/terraform/bootstrap"
+
+  download-kubeconfig:
+    desc: Download the admin kubeconfig
+    cmd: talosctl kubeconfig  --nodes {{.CONTROLLER}} --force
+    vars:
+      CONTROLLER:
+        sh: talosctl config info -o json | jq '.endpoints.[0]'
+    preconditions:
+      - which talosctl
+      - which jq
 
   reset-talos-upgrade:
     desc: Reset failed Talos upgrade

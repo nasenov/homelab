@@ -103,12 +103,6 @@ resource "talos_cluster_kubeconfig" "this" {
   node                 = talos_machine_configuration_apply.k8s_1.endpoint
 }
 
-resource "local_sensitive_file" "kubeconfig" {
-  filename        = pathexpand("~/.kube/config")
-  file_permission = "0600"
-  content         = talos_cluster_kubeconfig.this.kubeconfig_raw
-}
-
 data "talos_client_configuration" "this" {
   depends_on = [
     talos_machine_bootstrap.this
