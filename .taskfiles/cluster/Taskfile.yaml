@@ -9,13 +9,21 @@ tasks:
       - task: terraform-apply
         vars:
           TERRAFORM_DIRECTORY: "{{.ROOT_DIR}}/terraform/kubernetes"
-      - task: download-kubeconfig
+      - task: fetch-talosconfig
+      - task: fetch-kubeconfig
       - task: terraform-apply
         vars:
           TERRAFORM_DIRECTORY: "{{.ROOT_DIR}}/terraform/bootstrap"
 
-  download-kubeconfig:
-    desc: Download the admin kubeconfig
+  fetch-talosconfig:
+    desc: Fetch the talosconfig
+    dir: "{{.ROOT_DIR}}/terraform/kubernetes"
+    cmd: sh -c 'umask 077 && terraform output --raw talosconfig > ~/.talos/config'
+    preconditions:
+      - which terraform
+
+  fetch-kubeconfig:
+    desc: Fetch the admin kubeconfig
     cmd: talosctl kubeconfig  --nodes {{.CONTROLLER}} --force
     vars:
       CONTROLLER:

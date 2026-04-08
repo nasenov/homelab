@@ -124,12 +124,6 @@ data "talos_client_configuration" "this" {
   ]
 }
 
-resource "local_sensitive_file" "talosconfig" {
-  filename        = pathexpand("~/.talos/config")
-  file_permission = "0600"
-  content         = data.talos_client_configuration.this.talos_config
-}
-
 data "talos_cluster_health" "talos" {
   depends_on = [
     talos_cluster_kubeconfig.this

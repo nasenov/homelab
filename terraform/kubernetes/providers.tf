@@ -1,7 +1,5 @@
 provider "talos" {}
 
-provider "local" {}
-
 provider "helm" {
   kubernetes = {
     host                   = talos_cluster_kubeconfig.this.kubernetes_client_configuration.host
