@@ -2,7 +2,7 @@
 services:
   node-exporter:
     container_name: node-exporter
-    image: quay.io/prometheus/node-exporter:v1.11.0
+    image: quay.io/prometheus/node-exporter:v1.11.1
     labels:
       - traefik.http.services.node-exporter.loadbalancer.server.url=http://host.docker.internal:9100
     restart: unless-stopped
