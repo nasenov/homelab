@@ -1,20 +1,5 @@
-output "truenas_cloudflare_api_token" {
-  value     = cloudflare_account_token.truenas.value
-  sensitive = true
-}
-
-output "traefik_cloudflare_api_token" {
-  value     = cloudflare_account_token.traefik.value
-  sensitive = true
-}
-
-output "cert_manager_cloudflare_api_token" {
-  value     = cloudflare_account_token.cert_manager.value
-  sensitive = true
-}
-
-output "external_dns_cloudflare_api_token" {
-  value     = cloudflare_account_token.external_dns.value
+output "dns_write_account_tokens" {
+  value     = { for k, v in cloudflare_account_token.dns_write : k => v.value }
   sensitive = true
 }
 

@@ -37,57 +37,11 @@ data "cloudflare_account_api_token_permission_groups_list" "permission_groups" {
   account_id = var.cloudflare_account_id
 }
 
-resource "cloudflare_account_token" "truenas" {
-  account_id = var.cloudflare_account_id
-  name       = "truenas"
-  policies = [
-    {
-      effect = "allow"
-      permission_groups = [
-        { id = local.dns_write_permission_group.id }
-      ]
-      resources = jsonencode({
-        "com.cloudflare.api.account.zone.${cloudflare_zone.nasenov_dev.id}" = "*"
-      })
-    }
-  ]
-}
+resource "cloudflare_account_token" "dns_write" {
+  for_each = local.dns_write_account_tokens
 
-resource "cloudflare_account_token" "traefik" {
   account_id = var.cloudflare_account_id
-  name       = "traefik"
-  policies = [
-    {
-      effect = "allow"
-      permission_groups = [
-        { id = local.dns_write_permission_group.id }
-      ]
-      resources = jsonencode({
-        "com.cloudflare.api.account.zone.${cloudflare_zone.nasenov_dev.id}" = "*"
-      })
-    }
-  ]
-}
-
-resource "cloudflare_account_token" "cert_manager" {
-  account_id = var.cloudflare_account_id
-  name       = "cert-manager"
-  policies = [
-    {
-      effect = "allow"
-      permission_groups = [
-        { id = local.dns_write_permission_group.id }
-      ]
-      resources = jsonencode({
-        "com.cloudflare.api.account.zone.${cloudflare_zone.nasenov_dev.id}" = "*"
-      })
-    }
-  ]
-}
-
-resource "cloudflare_account_token" "external_dns" {
-  account_id = var.cloudflare_account_id
-  name       = "external-dns"
+  name       = each.key
   policies = [
     {
       effect = "allow"
