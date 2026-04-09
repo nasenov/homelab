@@ -52,7 +52,7 @@ data "talos_machine_configuration" "this" {
 }
 
 resource "talos_machine_configuration_apply" "this" {
-  for_each = local.controlplane
+  for_each = local.controlplanes
 
   client_configuration        = talos_machine_secrets.this.client_configuration
   machine_configuration_input = data.talos_machine_configuration.this.machine_configuration
@@ -81,17 +81,13 @@ resource "talos_machine_bootstrap" "this" {
 data "talos_client_configuration" "this" {
   cluster_name         = data.talos_machine_configuration.this.cluster_name
   client_configuration = talos_machine_secrets.this.client_configuration
-  endpoints            = [for machine in talos_machine_configuration_apply.this : machine.endpoint]
-  nodes                = [for machine in talos_machine_configuration_apply.this : machine.endpoint]
+  endpoints            = local.endpoints
+  nodes                = local.endpoints
 }
 
 resource "talos_cluster_kubeconfig" "this" {
-  depends_on = [
-    talos_machine_bootstrap.this
-  ]
-
   client_configuration = talos_machine_secrets.this.client_configuration
-  node                 = talos_machine_configuration_apply.this["k8s-1"].endpoint
+  node                 = talos_machine_bootstrap.this.node
 }
 
 data "talos_cluster_health" "talos" {
@@ -100,8 +96,8 @@ data "talos_cluster_health" "talos" {
   ]
 
   client_configuration   = talos_machine_secrets.this.client_configuration
-  endpoints              = [for machine in talos_machine_configuration_apply.this : machine.endpoint]
-  control_plane_nodes    = [for machine in talos_machine_configuration_apply.this : machine.endpoint]
+  endpoints              = local.endpoints
+  control_plane_nodes    = local.endpoints
   skip_kubernetes_checks = true
 
   timeouts = {
@@ -132,12 +128,8 @@ resource "helm_release" "cilium" {
 }
 
 resource "helm_release" "coredns" {
-  depends_on = [
-    helm_release.cilium
-  ]
-
   name       = "coredns"
-  namespace  = "kube-system"
+  namespace  = helm_release.cilium.namespace
   repository = "oci://ghcr.io/coredns/charts"
   chart      = "coredns"
   version    = "1.45.2"
@@ -158,8 +150,8 @@ data "talos_cluster_health" "kubernetes" {
   ]
 
   client_configuration = talos_machine_secrets.this.client_configuration
-  endpoints            = [for machine in talos_machine_configuration_apply.this : machine.endpoint]
-  control_plane_nodes  = [for machine in talos_machine_configuration_apply.this : machine.endpoint]
+  endpoints            = local.endpoints
+  control_plane_nodes  = local.endpoints
 
   timeouts = {
     read = "5m"
