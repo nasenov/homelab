@@ -1,6 +1,9 @@
 ---
 version: v1alpha1
 machine:
+  install:
+    diskSelector:
+      size: "256060514304" # 256 GB
   sysctls:
     fs.inotify.max_queued_events: "65536"
     fs.inotify.max_user_watches: "524288"

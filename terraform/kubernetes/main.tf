@@ -32,25 +32,23 @@ data "talos_machine_configuration" "this" {
   machine_type     = "controlplane"
   cluster_endpoint = "https://k8s.nasenov.dev:6443"
   machine_secrets  = talos_machine_secrets.this.machine_secrets
+
   # renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet
   kubernetes_version = "v1.35.3"
-  config_patches = [
-    file("${path.module}/resources/config.yaml"),
-    file("${path.module}/resources/ethernetconfig.yaml"),
-    file("${path.module}/resources/layer2vipconfig.yaml"),
-    file("${path.module}/resources/resolverconfig.yaml"),
-    file("${path.module}/resources/timesyncconfig.yaml"),
-    file("${path.module}/resources/uservolumeconfig.yaml"),
-    file("${path.module}/resources/watchdogtimerconfig.yaml"),
+
+  config_patches = concat(
+    [for file_name in fileset(path.module, "resources/*.yaml") : file("${path.module}/${file_name}")],
     # tuppr requirement
-    yamlencode({
-      machine = {
-        install = {
-          image = data.talos_image_factory_urls.this.urls.installer
+    [
+      yamlencode({
+        machine = {
+          install = {
+            image = data.talos_image_factory_urls.this.urls.installer
+          }
         }
-      }
-    })
-  ]
+      })
+    ]
+  )
 }
 
 resource "talos_machine_configuration_apply" "this" {
@@ -60,8 +58,14 @@ resource "talos_machine_configuration_apply" "this" {
   machine_configuration_input = data.talos_machine_configuration.this.machine_configuration
   node                        = each.key
   endpoint                    = each.value.ipv4_address
+
   config_patches = [
-    file("${path.module}/resources/${each.key}.yaml")
+    yamlencode({
+      apiVersion = "v1alpha1"
+      kind       = "HostnameConfig"
+      hostname   = each.key
+      auto       = "off"
+    })
   ]
 }
 
@@ -74,6 +78,13 @@ resource "talos_machine_bootstrap" "this" {
   node                 = talos_machine_configuration_apply.this["k8s-1"].endpoint
 }
 
+data "talos_client_configuration" "this" {
+  cluster_name         = data.talos_machine_configuration.this.cluster_name
+  client_configuration = talos_machine_secrets.this.client_configuration
+  endpoints            = [for machine in talos_machine_configuration_apply.this : machine.endpoint]
+  nodes                = [for machine in talos_machine_configuration_apply.this : machine.endpoint]
+}
+
 resource "talos_cluster_kubeconfig" "this" {
   depends_on = [
     talos_machine_bootstrap.this
@@ -83,21 +94,14 @@ resource "talos_cluster_kubeconfig" "this" {
   node                 = talos_machine_configuration_apply.this["k8s-1"].endpoint
 }
 
-data "talos_client_configuration" "this" {
-  cluster_name         = data.talos_machine_configuration.this.cluster_name
-  client_configuration = talos_machine_secrets.this.client_configuration
-  endpoints            = [for v in talos_machine_configuration_apply.this : v.endpoint]
-  nodes                = [for v in talos_machine_configuration_apply.this : v.endpoint]
-}
-
 data "talos_cluster_health" "talos" {
   depends_on = [
     talos_cluster_kubeconfig.this
   ]
 
   client_configuration   = talos_machine_secrets.this.client_configuration
-  endpoints              = [for v in talos_machine_configuration_apply.this : v.endpoint]
-  control_plane_nodes    = [for v in talos_machine_configuration_apply.this : v.endpoint]
+  endpoints              = [for machine in talos_machine_configuration_apply.this : machine.endpoint]
+  control_plane_nodes    = [for machine in talos_machine_configuration_apply.this : machine.endpoint]
   skip_kubernetes_checks = true
 
   timeouts = {
@@ -154,8 +158,8 @@ data "talos_cluster_health" "kubernetes" {
   ]
 
   client_configuration = talos_machine_secrets.this.client_configuration
-  endpoints            = [for v in talos_machine_configuration_apply.this : v.endpoint]
-  control_plane_nodes  = [for v in talos_machine_configuration_apply.this : v.endpoint]
+  endpoints            = [for machine in talos_machine_configuration_apply.this : machine.endpoint]
+  control_plane_nodes  = [for machine in talos_machine_configuration_apply.this : machine.endpoint]
 
   timeouts = {
     read = "5m"
