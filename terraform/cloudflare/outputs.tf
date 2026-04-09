@@ -14,18 +14,12 @@ output "r2_bucket_write_account_tokens" {
   sensitive = true
 }
 
-output "rclone_cloudflare_api_token" {
-  value     = cloudflare_account_token.rclone.value
-  sensitive = true
-}
-
-output "rclone_r2_access_key" {
-  value     = cloudflare_account_token.rclone.id
-  sensitive = true
-}
-
-output "rclone_r2_access_key_secret" {
-  value     = sha256(cloudflare_account_token.rclone.value)
+output "rclone_account_token" {
+  value = {
+    token             = cloudflare_account_token.rclone.value
+    access_key        = cloudflare_account_token.rclone.id
+    access_key_secret = sha256(cloudflare_account_token.rclone.value)
+  }
   sensitive = true
 }
 

@@ -162,64 +162,17 @@ resource "cloudflare_dns_record" "external_nasenov_dev" {
   ttl     = 1
 }
 
-resource "cloudflare_notification_policy" "r2_storage" {
-  account_id = var.cloudflare_account_id
-  name       = "R2 Storage"
-  alert_type = "billing_usage_alert"
-  mechanisms = {
-    email = [{
-      "id" : var.email
-    }]
-  }
-  filters = {
-    product = ["r2_storage"]
-    limit   = ["7516192768"] # 7 GB
-  }
-}
+resource "cloudflare_notification_policy" "this" {
+  for_each = local.cloudflare_notifications
 
-resource "cloudflare_notification_policy" "r2_class_a_operations" {
   account_id = var.cloudflare_account_id
-  name       = "R2 Class A"
-  alert_type = "billing_usage_alert"
-  mechanisms = {
-    email = [{
-      "id" : var.email
-    }]
-  }
-  filters = {
-    product = ["r2_class_a_operations"]
-    limit   = ["700000"]
-  }
-}
+  name       = each.value.name
+  alert_type = each.value.alert_type
+  filters    = each.value.filters
 
-resource "cloudflare_notification_policy" "r2_class_b_operations" {
-  account_id = var.cloudflare_account_id
-  name       = "R2 Class B"
-  alert_type = "billing_usage_alert"
   mechanisms = {
     email = [{
       "id" : var.email
     }]
-  }
-  filters = {
-    product = ["r2_class_b_operations"]
-    limit   = ["7000000"]
-  }
-}
-
-resource "cloudflare_notification_policy" "cloudflare_tunnel_health" {
-  account_id = var.cloudflare_account_id
-  name       = "Cloudflare Tunnel"
-  alert_type = "tunnel_health_event"
-  mechanisms = {
-    email = [{
-      "id" : var.email
-    }]
-  }
-  filters = {
-    "new_status" : [
-      "TUNNEL_STATUS_TYPE_DEGRADED",
-      "TUNNEL_STATUS_TYPE_DOWN"
-    ]
   }
 }
