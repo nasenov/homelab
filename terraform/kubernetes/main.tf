@@ -53,45 +53,25 @@ data "talos_machine_configuration" "this" {
   ]
 }
 
-resource "talos_machine_configuration_apply" "k8s_1" {
-  client_configuration        = talos_machine_secrets.this.client_configuration
-  machine_configuration_input = data.talos_machine_configuration.this.machine_configuration
-  node                        = "k8s-1"
-  endpoint                    = "192.168.0.121"
-  config_patches = [
-    file("${path.module}/resources/k8s-1.yaml")
-  ]
-}
+resource "talos_machine_configuration_apply" "this" {
+  for_each = local.controlplane
 
-resource "talos_machine_configuration_apply" "k8s_2" {
   client_configuration        = talos_machine_secrets.this.client_configuration
   machine_configuration_input = data.talos_machine_configuration.this.machine_configuration
-  node                        = "k8s-2"
-  endpoint                    = "192.168.0.122"
+  node                        = each.key
+  endpoint                    = each.value.ipv4_address
   config_patches = [
-    file("${path.module}/resources/k8s-2.yaml")
-  ]
-}
-
-resource "talos_machine_configuration_apply" "k8s_3" {
-  client_configuration        = talos_machine_secrets.this.client_configuration
-  machine_configuration_input = data.talos_machine_configuration.this.machine_configuration
-  node                        = "k8s-3"
-  endpoint                    = "192.168.0.123"
-  config_patches = [
-    file("${path.module}/resources/k8s-3.yaml")
+    file("${path.module}/resources/${each.key}.yaml")
   ]
 }
 
 resource "talos_machine_bootstrap" "this" {
   depends_on = [
-    talos_machine_configuration_apply.k8s_1,
-    talos_machine_configuration_apply.k8s_2,
-    talos_machine_configuration_apply.k8s_3
+    talos_machine_configuration_apply.this
   ]
 
   client_configuration = talos_machine_secrets.this.client_configuration
-  node                 = talos_machine_configuration_apply.k8s_1.endpoint
+  node                 = talos_machine_configuration_apply.this["k8s-1"].endpoint
 }
 
 resource "talos_cluster_kubeconfig" "this" {
@@ -100,28 +80,14 @@ resource "talos_cluster_kubeconfig" "this" {
   ]
 
   client_configuration = talos_machine_secrets.this.client_configuration
-  node                 = talos_machine_configuration_apply.k8s_1.endpoint
+  node                 = talos_machine_configuration_apply.this["k8s-1"].endpoint
 }
 
 data "talos_client_configuration" "this" {
-  depends_on = [
-    talos_machine_bootstrap.this
-  ]
-
   cluster_name         = data.talos_machine_configuration.this.cluster_name
   client_configuration = talos_machine_secrets.this.client_configuration
-
-  endpoints = [
-    talos_machine_configuration_apply.k8s_1.endpoint,
-    talos_machine_configuration_apply.k8s_2.endpoint,
-    talos_machine_configuration_apply.k8s_3.endpoint
-  ]
-
-  nodes = [
-    talos_machine_configuration_apply.k8s_1.endpoint,
-    talos_machine_configuration_apply.k8s_2.endpoint,
-    talos_machine_configuration_apply.k8s_3.endpoint
-  ]
+  endpoints            = [for v in talos_machine_configuration_apply.this : v.endpoint]
+  nodes                = [for v in talos_machine_configuration_apply.this : v.endpoint]
 }
 
 data "talos_cluster_health" "talos" {
@@ -129,20 +95,9 @@ data "talos_cluster_health" "talos" {
     talos_cluster_kubeconfig.this
   ]
 
-  client_configuration = talos_machine_secrets.this.client_configuration
-
-  endpoints = [
-    talos_machine_configuration_apply.k8s_1.endpoint,
-    talos_machine_configuration_apply.k8s_2.endpoint,
-    talos_machine_configuration_apply.k8s_3.endpoint
-  ]
-
-  control_plane_nodes = [
-    talos_machine_configuration_apply.k8s_1.endpoint,
-    talos_machine_configuration_apply.k8s_2.endpoint,
-    talos_machine_configuration_apply.k8s_3.endpoint
-  ]
-
+  client_configuration   = talos_machine_secrets.this.client_configuration
+  endpoints              = [for v in talos_machine_configuration_apply.this : v.endpoint]
+  control_plane_nodes    = [for v in talos_machine_configuration_apply.this : v.endpoint]
   skip_kubernetes_checks = true
 
   timeouts = {
@@ -199,18 +154,8 @@ data "talos_cluster_health" "kubernetes" {
   ]
 
   client_configuration = talos_machine_secrets.this.client_configuration
-
-  endpoints = [
-    talos_machine_configuration_apply.k8s_1.endpoint,
-    talos_machine_configuration_apply.k8s_2.endpoint,
-    talos_machine_configuration_apply.k8s_3.endpoint
-  ]
-
-  control_plane_nodes = [
-    talos_machine_configuration_apply.k8s_1.endpoint,
-    talos_machine_configuration_apply.k8s_2.endpoint,
-    talos_machine_configuration_apply.k8s_3.endpoint
-  ]
+  endpoints            = [for v in talos_machine_configuration_apply.this : v.endpoint]
+  control_plane_nodes  = [for v in talos_machine_configuration_apply.this : v.endpoint]
 
   timeouts = {
     read = "5m"
