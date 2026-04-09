@@ -1,50 +1,16 @@
 output "dns_write_account_tokens" {
-  value     = { for k, v in cloudflare_account_token.dns_write : k => v.value }
+  value     = { for key, token in cloudflare_account_token.dns_write : key => token.value }
   sensitive = true
 }
 
-output "volsync_cloudflare_api_token" {
-  value     = cloudflare_account_token.volsync.value
-  sensitive = true
-}
-
-output "volsync_r2_access_key" {
-  value     = cloudflare_account_token.volsync.id
-  sensitive = true
-}
-
-output "volsync_r2_access_key_secret" {
-  value     = sha256(cloudflare_account_token.volsync.value)
-  sensitive = true
-}
-
-output "postgres_cloudflare_api_token" {
-  value     = cloudflare_account_token.postgres.value
-  sensitive = true
-}
-
-output "postgres_r2_access_key" {
-  value     = cloudflare_account_token.postgres.id
-  sensitive = true
-}
-
-output "postgres_r2_access_key_secret" {
-  value     = sha256(cloudflare_account_token.postgres.value)
-  sensitive = true
-}
-
-output "obsidian_cloudflare_api_token" {
-  value     = cloudflare_account_token.obsidian.value
-  sensitive = true
-}
-
-output "obsidian_r2_access_key" {
-  value     = cloudflare_account_token.obsidian.id
-  sensitive = true
-}
-
-output "obsidian_r2_access_key_secret" {
-  value     = sha256(cloudflare_account_token.obsidian.value)
+output "r2_bucket_write_account_tokens" {
+  value = { for key, token in cloudflare_account_token.r2_bucket_write :
+    key => {
+      token             = token.value
+      access_key        = token.id
+      access_key_secret = sha256(token.value)
+    }
+  }
   sensitive = true
 }
 

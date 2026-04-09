@@ -55,9 +55,11 @@ resource "cloudflare_account_token" "dns_write" {
   ]
 }
 
-resource "cloudflare_r2_bucket" "volsync" {
+resource "cloudflare_r2_bucket" "this" {
+  for_each = local.r2_buckets
+
   account_id    = var.cloudflare_account_id
-  name          = "volsync"
+  name          = each.key
   location      = "EEUR"
   storage_class = "Standard"
 
@@ -66,9 +68,11 @@ resource "cloudflare_r2_bucket" "volsync" {
   }
 }
 
-resource "cloudflare_account_token" "volsync" {
+resource "cloudflare_account_token" "r2_bucket_write" {
+  for_each = local.r2_buckets
+
   account_id = var.cloudflare_account_id
-  name       = cloudflare_r2_bucket.volsync.name
+  name       = cloudflare_r2_bucket.this[each.key].name
   policies = [
     {
       effect = "allow"
@@ -76,61 +80,7 @@ resource "cloudflare_account_token" "volsync" {
         { id = local.r2_bucket_write_permission_group.id }
       ]
       resources = jsonencode({
-        "com.cloudflare.edge.r2.bucket.${var.cloudflare_account_id}_${cloudflare_r2_bucket.volsync.jurisdiction}_${cloudflare_r2_bucket.volsync.name}" = "*"
-      })
-    }
-  ]
-}
-
-resource "cloudflare_r2_bucket" "postgres" {
-  account_id    = var.cloudflare_account_id
-  name          = "postgres"
-  location      = "EEUR"
-  storage_class = "Standard"
-
-  lifecycle {
-    prevent_destroy = true
-  }
-}
-
-resource "cloudflare_account_token" "postgres" {
-  account_id = var.cloudflare_account_id
-  name       = cloudflare_r2_bucket.postgres.name
-  policies = [
-    {
-      effect = "allow"
-      permission_groups = [
-        { id = local.r2_bucket_write_permission_group.id }
-      ]
-      resources = jsonencode({
-        "com.cloudflare.edge.r2.bucket.${var.cloudflare_account_id}_${cloudflare_r2_bucket.postgres.jurisdiction}_${cloudflare_r2_bucket.postgres.name}" = "*"
-      })
-    }
-  ]
-}
-
-resource "cloudflare_r2_bucket" "obsidian" {
-  account_id    = var.cloudflare_account_id
-  name          = "obsidian"
-  location      = "EEUR"
-  storage_class = "Standard"
-
-  lifecycle {
-    prevent_destroy = true
-  }
-}
-
-resource "cloudflare_account_token" "obsidian" {
-  account_id = var.cloudflare_account_id
-  name       = cloudflare_r2_bucket.obsidian.name
-  policies = [
-    {
-      effect = "allow"
-      permission_groups = [
-        { id = local.r2_bucket_write_permission_group.id }
-      ]
-      resources = jsonencode({
-        "com.cloudflare.edge.r2.bucket.${var.cloudflare_account_id}_${cloudflare_r2_bucket.obsidian.jurisdiction}_${cloudflare_r2_bucket.obsidian.name}" = "*"
+        "com.cloudflare.edge.r2.bucket.${var.cloudflare_account_id}_${cloudflare_r2_bucket.this[each.key].jurisdiction}_${cloudflare_r2_bucket.this[each.key].name}" = "*"
       })
     }
   ]
