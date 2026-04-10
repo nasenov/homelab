@@ -1,10 +1,21 @@
-resource "helm_release" "external_secrets" {
-  name             = "external-secrets"
-  namespace        = "external-secrets"
-  repository       = "oci://ghcr.io/external-secrets/charts"
-  chart            = "external-secrets"
-  version          = "2.2.0"
-  create_namespace = true
+data "helm_template" "external_secrets" {
+  name       = "external-secrets"
+  namespace  = "external-secrets"
+  repository = "oci://ghcr.io/external-secrets/charts"
+  chart      = "external-secrets"
+  version    = "2.2.0"
+
+  show_only = [
+    "templates/crds/*.yaml"
+  ]
+}
+
+resource "kubernetes_manifest" "external_secrets_crds" {
+  for_each = {
+    for manifest in data.helm_template.external_secrets.manifests : yamldecode(manifest).metadata.name => yamldecode(manifest)
+  }
+
+  manifest = each.value
 
   lifecycle {
     ignore_changes  = all
@@ -30,7 +41,6 @@ resource "kubernetes_secret_v1" "bitwarden_access_token" {
 
 resource "helm_release" "flux_operator" {
   depends_on = [
-    helm_release.external_secrets,
     kubernetes_secret_v1.bitwarden_access_token
   ]
 
