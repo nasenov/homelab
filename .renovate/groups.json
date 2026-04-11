@@ -20,15 +20,6 @@
       "minimumGroupSize": 1
     },
     {
-      "description": "External Secrets Group",
-      "groupName": "external-secrets",
-      "matchDatasources": ["docker"],
-      "matchPackageNames": [
-        "ghcr.io/external-secrets/charts/external-secrets"
-      ],
-      "minimumGroupSize": 1
-    },
-    {
       "description": "Flux Operator Group",
       "groupName": "flux-operator",
       "matchDatasources": ["docker"],
