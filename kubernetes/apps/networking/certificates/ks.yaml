@@ -7,9 +7,6 @@ metadata:
 spec:
   interval: 1h
   targetNamespace: networking
-  dependsOn:
-    - name: external-secrets-stores
-      namespace: external-secrets
   path: ./kubernetes/apps/networking/certificates/import
   prune: true
   sourceRef:
@@ -30,8 +27,6 @@ spec:
     - name: certificates-import
     - name: cert-manager-issuers
       namespace: cert-manager
-    - name: external-secrets-stores
-      namespace: external-secrets
   path: ./kubernetes/apps/networking/certificates/export
   prune: true
   sourceRef:

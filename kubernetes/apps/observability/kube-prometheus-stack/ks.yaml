@@ -8,14 +8,8 @@ spec:
   interval: 1h
   targetNamespace: observability
   dependsOn:
-    - name: external-secrets-stores
-      namespace: external-secrets
-    - name: grafana
-    - name: prometheus-operator-crds
-    - name: openebs
-      namespace: openebs
-    - name: envoy-gateway
-      namespace: networking
+    - name: rook-ceph-cluster
+      namespace: rook-ceph
   path: ./kubernetes/apps/observability/kube-prometheus-stack/app
   prune: true
   sourceRef:

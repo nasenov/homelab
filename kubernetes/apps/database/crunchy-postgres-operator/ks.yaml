@@ -7,11 +7,6 @@ metadata:
 spec:
   interval: 1h
   targetNamespace: database
-  dependsOn:
-    - name: external-secrets-stores
-      namespace: external-secrets
-    - name: grafana
-      namespace: observability
   path: ./kubernetes/apps/database/crunchy-postgres-operator/app
   prune: true
   sourceRef:
@@ -30,10 +25,6 @@ spec:
   targetNamespace: database
   dependsOn:
     - name: crunchy-postgres-operator
-    - name: external-secrets-stores
-      namespace: external-secrets
-    - name: prometheus-operator-crds
-      namespace: observability
     - name: openebs
       namespace: openebs
   path: ./kubernetes/apps/database/crunchy-postgres-operator/cluster
@@ -57,9 +48,6 @@ metadata:
 spec:
   interval: 1h
   targetNamespace: database
-  dependsOn:
-    - name: external-secrets
-      namespace: external-secrets
   path: ./kubernetes/apps/database/crunchy-postgres-operator/clustersecretstore
   prune: true
   sourceRef:

@@ -7,8 +7,6 @@ metadata:
 spec:
   interval: 1h
   targetNamespace: observability
-  dependsOn:
-    - name: prometheus-operator-crds
   path: ./kubernetes/apps/observability/grafana/app
   prune: true
   sourceRef:
@@ -26,16 +24,11 @@ spec:
   interval: 1h
   targetNamespace: observability
   dependsOn:
-    - name: external-secrets-stores
-      namespace: external-secrets
     - name: crunchy-postgres-operator-cluster
       namespace: database
     - name: crunchy-postgres-operator-secretstore
       namespace: database
-    - name: envoy-gateway
-      namespace: networking
     - name: grafana
-    - name: prometheus-operator-crds
   path: ./kubernetes/apps/observability/grafana/instance
   prune: true
   sourceRef:

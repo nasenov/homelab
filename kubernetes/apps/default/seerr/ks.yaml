@@ -10,14 +10,10 @@ spec:
   components:
     - ../../../../components/volsync
   dependsOn:
-    - name: volsync
-      namespace: volsync-system
     - name: rook-ceph-cluster
       namespace: rook-ceph
-    - name: external-secrets-stores
-      namespace: external-secrets
-    - name: envoy-gateway
-      namespace: networking
+    - name: volsync
+      namespace: volsync-system
   path: ./kubernetes/apps/default/seerr/app
   prune: true
   sourceRef:

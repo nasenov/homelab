@@ -8,10 +8,6 @@ spec:
   interval: 1h
   targetNamespace: observability
   dependsOn:
-    - name: envoy-gateway
-      namespace: networking
-    - name: grafana
-    - name: prometheus-operator-crds
     - name: rook-ceph-cluster
       namespace: rook-ceph
   path: ./kubernetes/apps/observability/victoria-logs/app

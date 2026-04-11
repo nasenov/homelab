@@ -7,9 +7,6 @@ metadata:
 spec:
   interval: 1h
   targetNamespace: kube-system
-  dependsOn:
-    - name: prometheus-operator-crds
-      namespace: observability
   path: ./kubernetes/apps/kube-system/descheduler/app
   prune: true
   sourceRef:

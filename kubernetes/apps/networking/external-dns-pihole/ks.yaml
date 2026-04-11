@@ -7,11 +7,6 @@ metadata:
 spec:
   interval: 1h
   targetNamespace: networking
-  dependsOn:
-    - name: prometheus-operator-crds
-      namespace: observability
-    - name: external-secrets-stores
-      namespace: external-secrets
   path: ./kubernetes/apps/networking/external-dns-pihole/app
   prune: true
   sourceRef:

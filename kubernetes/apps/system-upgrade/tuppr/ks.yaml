@@ -7,9 +7,6 @@ metadata:
 spec:
   interval: 1h
   targetNamespace: system-upgrade
-  dependsOn:
-    - name: prometheus-operator-crds
-      namespace: observability
   path: ./kubernetes/apps/system-upgrade/tuppr/app
   prune: true
   sourceRef:

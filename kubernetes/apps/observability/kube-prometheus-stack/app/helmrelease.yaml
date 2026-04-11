@@ -12,9 +12,6 @@ spec:
   values:
     cleanPrometheusOperatorObjectNames: true
 
-    crds:
-      enabled: false
-
     defaultRules:
       rules:
         kubeApiserverBurnrate: false
