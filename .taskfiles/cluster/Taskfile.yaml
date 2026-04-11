@@ -18,13 +18,13 @@ tasks:
   fetch-talosconfig:
     desc: Fetch the talosconfig
     dir: "{{.ROOT_DIR}}/terraform/kubernetes"
-    cmd: sh -c 'umask 077 && terraform output --raw talosconfig > ~/.talos/config'
+    cmd: sh -c 'umask 077 && terraform output --raw talosconfig > {{.ROOT_DIR}}/talosconfig'
     preconditions:
       - which terraform
 
   fetch-kubeconfig:
     desc: Fetch the admin kubeconfig
-    cmd: talosctl kubeconfig  --nodes {{.CONTROLLER}} --force
+    cmd: talosctl kubeconfig  --nodes {{.CONTROLLER}} --force {{.ROOT_DIR}}
     vars:
       CONTROLLER:
         sh: talosctl config info -o json | jq '.endpoints.[0]'
