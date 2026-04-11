@@ -9,11 +9,11 @@ rpc_bind_addr = "[::]:3901"
 [s3_api]
 api_bind_addr = "[::]:3900"
 s3_region = "us-east-1"
-root_domain = "s3.nasenov.dev"
+root_domain = "s3.truenas.nasenov.dev"
 
 [s3_web]
 bind_addr = "[::]:3902"
-root_domain = "garage.nasenov.dev"
+root_domain = "garage.truenas.nasenov.dev"
 
 [admin]
 api_bind_addr = "[::]:3903"
