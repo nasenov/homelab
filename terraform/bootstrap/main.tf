@@ -1,18 +1,26 @@
-data "helm_template" "external_secrets" {
-  name       = local.external_secrets.name
-  namespace  = local.external_secrets.namespace
-  repository = local.external_secrets.repository
-  chart      = local.external_secrets.chart
-  version    = local.external_secrets.version
+data "helm_template" "this" {
+  for_each = local.crds
 
-  show_only = [
-    "templates/crds/*.yaml"
-  ]
+  name         = each.value.chart
+  repository   = each.value.repository
+  chart        = each.value.chart
+  version      = each.value.version
+  include_crds = true
+
+  # renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet
+  kube_version = "v1.35.3"
 }
 
-resource "kubernetes_manifest" "external_secrets_crds" {
+resource "kubernetes_manifest" "this" {
   for_each = {
-    for manifest in data.helm_template.external_secrets.manifests : yamldecode(manifest).metadata.name => yamldecode(manifest)
+    for manifest in flatten([for ht in data.helm_template.this : provider::kubernetes::manifest_decode_multi(ht.manifest)]) :
+    manifest.metadata.name => {
+      "apiVersion" = manifest.apiVersion
+      "kind"       = manifest.kind
+      "metadata"   = manifest.metadata
+      "spec"       = manifest.spec
+    }
+    if manifest.apiVersion == "apiextensions.k8s.io/v1" && manifest.kind == "CustomResourceDefinition"
   }
 
   manifest = each.value
@@ -26,7 +34,7 @@ resource "kubernetes_manifest" "external_secrets_crds" {
 resource "kubernetes_secret_v1" "bitwarden_access_token" {
   metadata {
     name      = "bitwarden-access-token"
-    namespace = local.external_secrets.namespace
+    namespace = local.crds.external_secrets.chart
   }
 
   data = {
