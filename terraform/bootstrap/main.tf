@@ -1,9 +1,9 @@
 data "helm_template" "external_secrets" {
-  name       = "external-secrets"
-  namespace  = "external-secrets"
-  repository = "oci://ghcr.io/external-secrets/charts"
-  chart      = "external-secrets"
-  version    = "2.2.0"
+  name       = local.external_secrets.name
+  namespace  = local.external_secrets.namespace
+  repository = local.external_secrets.repository
+  chart      = local.external_secrets.chart
+  version    = local.external_secrets.version
 
   show_only = [
     "templates/crds/*.yaml"
@@ -26,7 +26,7 @@ resource "kubernetes_manifest" "external_secrets_crds" {
 resource "kubernetes_secret_v1" "bitwarden_access_token" {
   metadata {
     name      = "bitwarden-access-token"
-    namespace = helm_release.external_secrets.namespace
+    namespace = local.external_secrets.namespace
   }
 
   data = {
