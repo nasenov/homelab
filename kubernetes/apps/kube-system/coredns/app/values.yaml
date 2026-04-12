@@ -21,30 +21,28 @@ servers:
         configBlock: |-
           lameduck 5s
       - name: ready
-      - name: log
-        parameters: .
-        configBlock: |-
-          class error
-      - name: prometheus
-        parameters: :9153
       - name: kubernetes
         parameters: cluster.local in-addr.arpa ip6.arpa
         configBlock: |-
-          pods insecure
+          pods verified
           fallthrough in-addr.arpa ip6.arpa
-          ttl 30
+      - name: autopath
+        parameters: "@kubernetes"
       - name: forward
         parameters: . /etc/resolv.conf
-        configBlock: |-
-          max_concurrent 1000
       - name: cache
         parameters: 30
         configBlock: |-
-          disable success cluster.local
-          disable denial cluster.local
+          prefetch 20
+          serve_stale
       - name: loop
       - name: reload
       - name: loadbalance
+      - name: prometheus
+        parameters: 0.0.0.0:9153
+      - name: log
+        configBlock: |-
+          class error
 
 affinity:
   nodeAffinity:
