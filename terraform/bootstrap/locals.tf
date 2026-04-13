@@ -29,7 +29,7 @@ locals {
       chart      = "kube-prometheus-stack"
 
       # renovate: datasource=docker depName=ghcr.io/prometheus-community/charts/kube-prometheus-stack
-      version = "83.4.0"
+      version = "83.4.1"
     }
   }
 }
