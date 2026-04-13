@@ -35,6 +35,11 @@ resource "kubernetes_namespace_v1" "external_secrets" {
   metadata {
     name = local.crds.external_secrets.chart
   }
+
+  lifecycle {
+    ignore_changes  = all
+    prevent_destroy = true
+  }
 }
 
 resource "kubernetes_secret_v1" "bitwarden_access_token" {
