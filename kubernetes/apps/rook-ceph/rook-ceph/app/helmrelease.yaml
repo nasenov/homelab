@@ -24,65 +24,65 @@ spec:
         - name : csi-provisioner
           resource:
             requests:
-              memory: 64Mi
               cpu: 100m
+              memory: 32Mi
             limits:
-              memory: 128Mi
+              memory: 32Mi
         - name : csi-resizer
           resource:
             requests:
-              memory: 64Mi
               cpu: 100m
+              memory: 32Mi
             limits:
-              memory: 128Mi
+              memory: 32Mi
         - name : csi-attacher
           resource:
             requests:
-              memory: 64Mi
               cpu: 100m
+              memory: 32Mi
             limits:
-              memory: 128Mi
+              memory: 32Mi
         - name : csi-snapshotter
           resource:
             requests:
-              memory: 64Mi
               cpu: 100m
+              memory: 32Mi
             limits:
-              memory: 128Mi
+              memory: 32Mi
         - name : csi-rbdplugin
           resource:
             requests:
-              memory: 128Mi
+              memory: 64Mi
             limits:
-              memory: 256Mi
+              memory: 64Mi
         - name : liveness-prometheus
           resource:
             requests:
-              memory: 64Mi
               cpu: 50m
+              memory: 16Mi
             limits:
-              memory: 128Mi
+              memory: 16Mi
       csiRBDPluginResource: |
         - name : driver-registrar
           resource:
             requests:
-              memory: 64Mi
               cpu: 50m
+              memory: 16Mi
             limits:
-              memory: 128Mi
+              memory: 16Mi
         - name : csi-rbdplugin
           resource:
             requests:
-              memory: 128Mi
               cpu: 100m
+              memory: 64Mi
             limits:
-              memory: 256Mi
+              memory: 64Mi
         - name : liveness-prometheus
           resource:
             requests:
-              memory: 64Mi
               cpu: 50m
+              memory: 16Mi
             limits:
-              memory: 128Mi
+              memory: 16Mi
     monitoring:
       enabled: true

@@ -14,9 +14,9 @@ spec:
       enabled: true
       resources:
         requests:
-          memory: 64Mi
+          memory: 32Mi
         limits:
-          memory: 64Mi
+          memory: 32Mi
 
     monitoring:
       enabled: true
@@ -72,7 +72,7 @@ spec:
             cpu: 100m
             memory: 512Mi
           limits:
-            memory: 1Gi
+            memory: 512Mi
         osd:
           requests:
             cpu: 100m
@@ -82,14 +82,24 @@ spec:
         prepareosd:
           requests:
             cpu: 100m
+        crashcollector:
+          requests:
+            memory: 32Mi
+          limits:
+            memory: 32Mi
         logcollector:
           requests:
-            memory: 64Mi
+            memory: 16Mi
           limits:
-            memory: 64Mi
+            memory: 16Mi
         cleanup:
           requests:
             cpu: 100m
+        exporter:
+          requests:
+            memory: 32Mi
+          limits:
+            memory: 32Mi
 
     route:
       dashboard:
