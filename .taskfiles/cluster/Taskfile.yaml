@@ -8,7 +8,7 @@ tasks:
     cmds:
       - task: terraform-apply
         vars:
-          TERRAFORM_DIRECTORY: "{{.ROOT_DIR}}/terraform/kubernetes"
+          TERRAFORM_DIRECTORY: "{{.ROOT_DIR}}/terraform/talos"
       - task: fetch-talosconfig
       - task: fetch-kubeconfig
       - task: terraform-apply
@@ -17,7 +17,7 @@ tasks:
 
   fetch-talosconfig:
     desc: Fetch the talosconfig
-    dir: "{{.ROOT_DIR}}/terraform/kubernetes"
+    dir: "{{.ROOT_DIR}}/terraform/talos"
     cmd: sh -c 'umask 077 && terraform output --raw talosconfig > {{.ROOT_DIR}}/talosconfig'
     preconditions:
       - which terraform
@@ -40,7 +40,7 @@ tasks:
 
   destroy:
     desc: Destroy Kubernetes cluster
-    dir: "{{.ROOT_DIR}}/terraform/kubernetes"
+    dir: "{{.ROOT_DIR}}/terraform/talos"
     cmds:
       - talosctl reset --system-labels-to-wipe STATE --system-labels-to-wipe EPHEMERAL --system-labels-to-wipe u-openebs --graceful=false --reboot
       - terraform state rm $(terraform state list)
