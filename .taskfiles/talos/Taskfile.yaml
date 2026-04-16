@@ -11,9 +11,8 @@ tasks:
           TERRAFORM_DIRECTORY: "{{.ROOT_DIR}}/terraform/talos"
       - task: fetch-talosconfig
       - task: fetch-kubeconfig
-      - task: terraform-apply
-        vars:
-          TERRAFORM_DIRECTORY: "{{.ROOT_DIR}}/terraform/bootstrap"
+      - task: kubernetes-apply-resources
+      - task: helmfile
 
   fetch-talosconfig:
     desc: Fetch the talosconfig
@@ -56,3 +55,28 @@ tasks:
       - terraform apply
     preconditions:
       - which terraform
+
+  kubernetes-apply-resources:
+    internal: true
+    cmds:
+      - kubectl create namespace external-secrets --dry-run=client -o yaml | kubectl apply -f -
+      - |-
+        kubectl create secret generic bitwarden-access-token --namespace external-secrets \
+        --from-literal=token="$(bws secret get 4fef3a89-a129-48cf-8754-b3cb014a6ca1 | jq --raw-output '.value')" \
+        --dry-run=client -o yaml | kubectl apply -f -
+    preconditions:
+      - which kubectl
+      - which bws
+      - which jq
+
+  helmfile:
+    internal: true
+    cmds:
+      - helmfile --file {{.ROOT_DIR}}/bootstrap/crds.yaml template --quiet | yq ea -e 'select(.kind == "CustomResourceDefinition")' | kubectl apply -f -
+      - helmfile --file {{.ROOT_DIR}}/bootstrap/helmfile.d/apps.yaml sync --hide-notes
+    preconditions:
+      - test -f {{.ROOT_DIR}}/bootstrap/crds.yaml
+      - test -f {{.ROOT_DIR}}/bootstrap/apps.yaml
+      - which helmfile
+      - which kubectl
+      - which yq

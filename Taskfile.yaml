@@ -3,8 +3,8 @@
 version: "3"
 
 includes:
-  cluster: .taskfiles/cluster
   kubernetes: .taskfiles/kubernetes
+  talos: .taskfiles/talos
   volsync: .taskfiles/volsync
   workstation: .taskfiles/workstation
 

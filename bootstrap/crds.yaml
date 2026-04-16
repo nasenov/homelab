@@ -1,0 +1,31 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/helmfile
+
+# This helmfile is for extracting and installing Custom Resource Definitions (CRDs) from Helm charts.
+# It is not intended to be used with helmfile apply or helmfile sync.
+
+helmDefaults:
+  args:
+    - --include-crds
+    - --no-hooks
+
+releases:
+  - name: external-secrets
+    namespace: external-secrets
+    chart: oci://ghcr.io/external-secrets/charts/external-secrets
+    version: 2.3.0
+
+  - name: envoy-gateway
+    namespace: networking
+    chart: oci://mirror.gcr.io/envoyproxy/gateway-helm
+    version: 1.7.1
+
+  - name: grafana-operator
+    namespace: observability
+    chart: oci://ghcr.io/grafana/helm-charts/grafana-operator
+    version: 5.22.2
+
+  - name: kube-prometheus-stack
+    namespace: observability
+    chart: oci://ghcr.io/prometheus-community/charts/kube-prometheus-stack
+    version: 83.5.0

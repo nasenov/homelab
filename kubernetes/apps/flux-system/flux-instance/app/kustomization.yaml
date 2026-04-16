@@ -11,9 +11,3 @@ resources:
   - ./podmonitor.yaml
   - ./prometheusrule.yaml
   - ./receiver.yaml
-configMapGenerator:
-  - name: flux-instance-helm-values
-    files:
-      - values.yaml=./values.yaml
-generatorOptions:
-  disableNameSuffixHash: true
