@@ -2,7 +2,7 @@
 services:
   garage:
     container_name: garage
-    image: dxflrs/garage:v2.2.0
+    image: dxflrs/garage:v2.3.0
     labels:
       - traefik.enable=true
       - traefik.http.routers.s3.rule=Host(`s3.truenas.nasenov.dev`)
