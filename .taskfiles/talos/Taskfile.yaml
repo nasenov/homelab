@@ -73,11 +73,11 @@ tasks:
   helmfile:
     internal: true
     cmds:
-      - helmfile --file {{.ROOT_DIR}}/bootstrap/crds.yaml template --quiet | yq ea -e 'select(.kind == "CustomResourceDefinition")' | kubectl apply --server-side -f -
-      - helmfile --file {{.ROOT_DIR}}/bootstrap/apps.yaml sync --hide-notes
+      - helmfile --file {{.ROOT_DIR}}/bootstrap/helmfile.d/crds.yaml template --quiet | yq ea -e 'select(.kind == "CustomResourceDefinition")' | kubectl apply --server-side -f -
+      - helmfile --file {{.ROOT_DIR}}/bootstrap/helmfile.d/apps.yaml sync --hide-notes
     preconditions:
-      - test -f {{.ROOT_DIR}}/bootstrap/crds.yaml
-      - test -f {{.ROOT_DIR}}/bootstrap/apps.yaml
+      - test -f {{.ROOT_DIR}}/bootstrap/helmfile.d/crds.yaml
+      - test -f {{.ROOT_DIR}}/bootstrap/helmfile.d/apps.yaml
       - which helmfile
       - which kubectl
       - which yq
