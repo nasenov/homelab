@@ -3,6 +3,7 @@
 version: "3"
 
 vars:
+  TALOS_BOOTSTRAP_DIR: "{{.ROOT_DIR}}/bootstrap/helmfile.d"
   TALOS_TERRAFORM_DIR: "{{.ROOT_DIR}}/terraform/talos"
 
 tasks:
@@ -73,11 +74,11 @@ tasks:
   helmfile:
     internal: true
     cmds:
-      - helmfile --file {{.ROOT_DIR}}/bootstrap/helmfile.d/crds.yaml template --quiet | yq ea -e 'select(.kind == "CustomResourceDefinition")' | kubectl apply --server-side -f -
-      - helmfile --file {{.ROOT_DIR}}/bootstrap/helmfile.d/apps.yaml sync --hide-notes
+      - helmfile --file {{.TALOS_BOOTSTRAP_DIR}}/crds.yaml template --quiet | yq ea -e 'select(.kind == "CustomResourceDefinition")' | kubectl apply --server-side -f -
+      - helmfile --file {{.TALOS_BOOTSTRAP_DIR}}/apps.yaml sync --hide-notes
     preconditions:
-      - test -f {{.ROOT_DIR}}/bootstrap/helmfile.d/crds.yaml
-      - test -f {{.ROOT_DIR}}/bootstrap/helmfile.d/apps.yaml
+      - test -f {{.TALOS_BOOTSTRAP_DIR}}/crds.yaml
+      - test -f {{.TALOS_BOOTSTRAP_DIR}}/apps.yaml
       - which helmfile
       - which kubectl
       - which yq
