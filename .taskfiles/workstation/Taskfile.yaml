@@ -7,7 +7,7 @@ tasks:
     desc: Sync terraform tfvars
     silent: true
     cmds:
-      - bws secret get 95ae7587-8b74-4663-89ae-b42e00eb0a67 | jq --raw-output '.value' > {{.ROOT_DIR}}/terraform/cloudflare/terraform.tfvars
+      - bws secret get 3218d99d-71fa-4c83-9e61-74978941d19f | jq --raw-output '.value' > {{.ROOT_DIR}}/terraform/cloudflare/terraform.tfvars
     preconditions:
       - which bws
       - which jq
