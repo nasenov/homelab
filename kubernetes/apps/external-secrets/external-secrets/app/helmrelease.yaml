@@ -12,7 +12,6 @@ spec:
   values:
     bitwarden-sdk-server:
       enabled: true
-      replicaCount: 2
       securityContext:
         runAsNonRoot: true
         readOnlyRootFilesystem: true
@@ -21,8 +20,6 @@ spec:
         capabilities:
           drop:
             - ALL
-
-    concurrent: 2
 
     serviceMonitor:
       enabled: true
