@@ -15,8 +15,8 @@ spec:
     name: flux-system
     namespace: flux-system
   patches:
-    - # Add Kustomization defaults for all child Kustomizations
-      patch: |-
+    # Add Kustomization defaults for all child Kustomizations
+    - patch: |-
         apiVersion: kustomize.toolkit.fluxcd.io/v1
         kind: Kustomization
         metadata:
@@ -32,6 +32,7 @@ spec:
                 spec:
                   install:
                     crds: CreateReplace
+                    timeout: 10m
                   upgrade:
                     cleanupOnFail: true
                     crds: CreateReplace
