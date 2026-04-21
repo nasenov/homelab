@@ -40,3 +40,6 @@ hubble:
   enabled: false
 envoy:
   enabled: false
+socketLB:
+  enabled: true
+  hostNamespaceOnly: true
