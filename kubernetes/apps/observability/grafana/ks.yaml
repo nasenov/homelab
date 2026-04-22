@@ -26,8 +26,6 @@ spec:
   dependsOn:
     - name: crunchy-postgres-operator-cluster
       namespace: database
-    - name: crunchy-postgres-operator-secretstore
-      namespace: database
     - name: grafana
   path: ./kubernetes/apps/observability/grafana/instance
   prune: true
