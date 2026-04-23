@@ -42,4 +42,3 @@ envoy:
   enabled: false
 socketLB:
   enabled: true
-  hostNamespaceOnly: true
