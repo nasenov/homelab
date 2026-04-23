@@ -7,7 +7,10 @@
       "automerge": true,
       "automergeType": "pr",
       "matchUpdateTypes": ["minor", "patch"],
-      "matchPackageNames": ["ghcr.io/prometheus-community/charts/kube-prometheus-stack"],
+      "matchPackageNames": [
+        "ghcr.io/n8n-io/n8n",
+        "ghcr.io/prometheus-community/charts/kube-prometheus-stack"
+      ],
       "ignoreTests": true,
       "schedule": ["before 6am on Monday"]
     }
