@@ -8,7 +8,7 @@ tasks:
     cmds:
       - for:
           matrix:
-            PHASE: [ Failed, Pending, Succeeded ]
+            PHASE: [Failed, Pending, Succeeded]
         cmd: kubectl delete pods --all-namespaces --field-selector status.phase={{.ITEM.PHASE}} --ignore-not-found=true
     preconditions:
       - which kubectl
@@ -16,7 +16,7 @@ tasks:
   sync-external-secrets:
     desc: Sync all ExternalSecrets
     cmds:
-      - for: { var: SECRETS, split: "\n" }
+      - for: {var: SECRETS, split: "\n"}
         cmd: kubectl --namespace {{splitList "," .ITEM | first}} annotate externalsecret {{splitList "," .ITEM | last}} force-sync="{{now | unixEpoch}}" --overwrite
     vars:
       SECRETS:
@@ -46,7 +46,7 @@ tasks:
   snapshot-all:
     desc: Snapshot all apps across all namespaces without waiting
     cmds:
-      - for: { var: ALL_APPS, split: "\n" }
+      - for: {var: ALL_APPS, split: "\n"}
         task: snapshot
         vars:
           WAIT: "false"
