@@ -22,4 +22,6 @@ spec:
     - kind: OCIRepository
       name: "*"
   exclusionList:
-    - "waiting.*socket"
+    - dial.*tcp.*timeout
+    - TLS.*handshake.*timeout
+    - waiting.*socket
