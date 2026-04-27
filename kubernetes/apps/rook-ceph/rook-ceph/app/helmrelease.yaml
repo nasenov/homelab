@@ -25,9 +25,9 @@ spec:
           resource:
             requests:
               cpu: 100m
-              memory: 32Mi
+              memory: 64Mi
             limits:
-              memory: 32Mi
+              memory: 64Mi
         - name : csi-resizer
           resource:
             requests:
