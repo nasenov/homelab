@@ -34,7 +34,7 @@ data "talos_machine_configuration" "this" {
   machine_secrets  = talos_machine_secrets.this.machine_secrets
 
   # renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet
-  kubernetes_version = "v1.35.4"
+  kubernetes_version = "v1.36.0"
 
   config_patches = concat(
     [for file_name in fileset(path.module, "resources/*.yaml") : file("${path.module}/${file_name}")],
