@@ -23,5 +23,6 @@ spec:
       name: "*"
   exclusionList:
     - dial.*tcp.*timeout
+    - dial.*tcp.*unreachable
     - TLS.*handshake.*timeout
     - waiting.*socket
