@@ -124,5 +124,5 @@ This is achieved by defining routes with two specific gateways: `internal` for p
 | Device                | Num | OS Disk Size | Data Disk Size                                   | RAM   | OS      | Function         |
 |-----------------------|-----|--------------|--------------------------------------------------|-------|---------|------------------|
 | Lenovo m910x i5-7500  | 3   | 256GB NVMe   | 500GB SSD (local) / 1TB NVMe (rook-ceph)         | 16GB  | Talos   | Kubernetes       |
-| Aoostar WTR PRO 5825U | 1   | 256GB NVMe   | 2x2TB SSD                                        | 16GB  | TrueNAS | NAS              |
+| Aoostar WTR PRO 5825U | 1   | 512GB NVMe   | 2x2TB SSD                                        | 16GB  | TrueNAS | NAS              |
 | TP-Link Archer AX53   | 1   | -            | -                                                | -     | -       | Router           |
