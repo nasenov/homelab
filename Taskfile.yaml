@@ -5,9 +5,17 @@ version: "3"
 includes:
   kubernetes: .taskfiles/kubernetes
   talos: .taskfiles/talos
-  workstation: .taskfiles/workstation
+  terraform: .taskfiles/terraform
 
 tasks:
   default:
     cmd: task --list
     silent: true
+
+  bootstrap:
+    desc: Bootstrap workstation
+    cmds:
+      - task: terraform:init
+      - task: terraform:sync-tfvars
+      - task: talos:fetch-talosconfig
+      - task: talos:fetch-kubeconfig

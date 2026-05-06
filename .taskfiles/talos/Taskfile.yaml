@@ -53,7 +53,7 @@ tasks:
     internal: true
     dir: "{{.TALOS_TERRAFORM_DIR}}"
     cmds:
-      - terraform init
+      - terraform init -upgrade
       - terraform apply
     preconditions:
       - which terraform

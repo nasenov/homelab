@@ -3,9 +3,19 @@
 version: "3"
 
 tasks:
-  sync-terraform-tfvars:
+  init:
+    desc: Initialize Terraform directories
+    cmds:
+      - for: {var: TF_DIRS, split: "\n"}
+        cmd: terraform -chdir={{.ITEM}} init -upgrade
+    vars:
+      TF_DIRS:
+        sh: find terraform -mindepth 1 -maxdepth 1 -type d
+    preconditions:
+      - which terraform
+
+  sync-tfvars:
     desc: Sync terraform tfvars
-    silent: true
     cmds:
       - bws secret get 3218d99d-71fa-4c83-9e61-74978941d19f | jq --raw-output '.value' > {{.ROOT_DIR}}/terraform/cloudflare/terraform.tfvars
     preconditions:
