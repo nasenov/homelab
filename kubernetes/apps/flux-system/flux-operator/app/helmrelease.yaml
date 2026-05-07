@@ -20,5 +20,12 @@ spec:
     serviceMonitor:
       create: true
     web:
+      httpRoute:
+        enabled: true
+        hostnames:
+          - flux-operator.nasenov.dev
+        parentRefs:
+          - name: envoy-internal
+            namespace: networking
       networkPolicy:
         create: false
