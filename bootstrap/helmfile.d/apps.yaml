@@ -2,6 +2,8 @@
 # yaml-language-server: $schema=https://json.schemastore.org/helmfile
 
 helmDefaults:
+  args:
+    - --force-conflicts
   cleanupOnFail: true
   wait: true
   waitForJobs: true
@@ -35,9 +37,9 @@ releases:
         args:
           - apply
           - --server-side
-          - --namespace=external-secrets
-          - --field-manager=kustomize-controller
-          - --filename=../../kubernetes/apps/external-secrets/external-secrets/app/certificate.yaml
+          - --force-conflicts
+          - --namespace={{ .Release.Namespace }}
+          - --filename=../../kubernetes/apps/{{ .Release.Namespace }}/{{ .Release.Name }}/app/certificate.yaml
         events:
           - presync
         showlogs: true
@@ -46,7 +48,7 @@ releases:
         args:
           - wait
           - --for=create
-          - --timeout=5m
+          - --timeout=2m
           - crd/clustersecretstores.external-secrets.io
         events:
           - postsync
@@ -56,8 +58,8 @@ releases:
         args:
           - apply
           - --server-side
-          - --field-manager=kustomize-controller
-          - --filename=../../kubernetes/apps/external-secrets/external-secrets/store/clustersecretstore.yaml
+          - --force-conflicts
+          - --filename=../../kubernetes/apps/{{ .Release.Namespace }}/{{ .Release.Name }}/store/clustersecretstore.yaml
         events:
           - postsync
         showlogs: true
