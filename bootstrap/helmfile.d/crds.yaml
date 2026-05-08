@@ -15,7 +15,7 @@ repositories:
 
 releases:
   - name: external-dns
-    namespace: network
+    namespace: networking
     chart: external-dns/external-dns
     version: 1.21.1
 
