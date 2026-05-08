@@ -9,6 +9,7 @@ spec:
   targetNamespace: flux-system
   dependsOn:
     - name: flux-operator
+      namespace: flux-system
   path: ./kubernetes/apps/flux-system/flux-instance/app
   prune: false
   sourceRef:

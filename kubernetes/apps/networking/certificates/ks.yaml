@@ -25,6 +25,7 @@ spec:
   targetNamespace: networking
   dependsOn:
     - name: certificates-import
+      namespace: networking
     - name: cert-manager-issuers
       namespace: cert-manager
   path: ./kubernetes/apps/networking/certificates/export

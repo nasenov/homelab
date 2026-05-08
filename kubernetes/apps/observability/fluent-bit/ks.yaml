@@ -9,6 +9,7 @@ spec:
   targetNamespace: observability
   dependsOn:
     - name: victoria-logs
+      namespace: observability
   path: ./kubernetes/apps/observability/fluent-bit/app
   prune: true
   sourceRef:

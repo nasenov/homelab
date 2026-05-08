@@ -25,6 +25,7 @@ spec:
   targetNamespace: system-upgrade
   dependsOn:
     - name: tuppr
+      namespace: system-upgrade
   path: ./kubernetes/apps/system-upgrade/tuppr/upgrades
   prune: true
   sourceRef:

@@ -25,6 +25,7 @@ spec:
   targetNamespace: database
   dependsOn:
     - name: crunchy-postgres-operator
+      namespace: database
     - name: openebs
       namespace: openebs
   path: ./kubernetes/apps/database/crunchy-postgres-operator/cluster

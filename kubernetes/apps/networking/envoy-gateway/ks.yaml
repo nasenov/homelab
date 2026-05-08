@@ -25,7 +25,9 @@ spec:
   targetNamespace: networking
   dependsOn:
     - name: envoy-gateway
+      namespace: networking
     - name: certificates-import
+      namespace: networking
   path: ./kubernetes/apps/networking/envoy-gateway/config
   prune: true
   sourceRef:
