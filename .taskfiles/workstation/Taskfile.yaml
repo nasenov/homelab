@@ -1,0 +1,20 @@
+---
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+version: "3"
+
+includes:
+  talos:
+    taskfile: ../talos
+    internal: true
+  terraform:
+    taskfile: ../terraform
+    internal: true
+
+tasks:
+  bootstrap:
+    desc: Bootstrap workstation
+    cmds:
+      - task: terraform:init
+      - task: terraform:sync-tfvars
+      - task: talos:fetch-talosconfig
+      - task: talos:fetch-kubeconfig

@@ -10,7 +10,7 @@ tasks:
         cmd: terraform -chdir={{.ITEM}} init -upgrade
     vars:
       TF_DIRS:
-        sh: find terraform -mindepth 1 -maxdepth 1 -type d
+        sh: find {{.ROOT_DIR}}/terraform -mindepth 1 -maxdepth 1 -type d
     preconditions:
       - which terraform
 
@@ -21,3 +21,31 @@ tasks:
     preconditions:
       - which bws
       - which jq
+
+  apply:
+    desc: Apply Terraform configuration
+    requires:
+      vars:
+        - TF_DIR
+    cmd: terraform -chdir={{.TF_DIR}} apply
+    preconditions:
+      - which terraform
+
+  output:
+    desc: Read Terraform output variable
+    requires:
+      vars:
+        - TF_DIR
+        - TF_OUTPUT
+    cmd: terraform -chdir={{.TF_DIR}} output --raw {{.TF_OUTPUT}}
+    preconditions:
+      - which terraform
+
+  purge:
+    desc: Purge Terraform state
+    requires:
+      vars:
+        - TF_DIR
+    cmd: terraform -chdir={{.TF_DIR}} state rm $(terraform -chdir={{.TF_DIR}} state list)
+    preconditions:
+      - which terraform

@@ -2,6 +2,11 @@
 # yaml-language-server: $schema=https://taskfile.dev/schema.json
 version: "3"
 
+includes:
+  terraform:
+    taskfile: ../terraform
+    internal: true
+
 vars:
   TALOS_BOOTSTRAP_DIR: "{{.ROOT_DIR}}/bootstrap/helmfile.d"
   TALOS_TERRAFORM_DIR: "{{.ROOT_DIR}}/terraform/talos"
@@ -10,7 +15,9 @@ tasks:
   bootstrap:
     desc: Bootstrap Kubernetes cluster
     cmds:
-      - task: terraform-apply
+      - task: terraform:apply
+        vars:
+          TF_DIR: "{{.TALOS_TERRAFORM_DIR}}"
       - task: fetch-talosconfig
       - task: fetch-kubeconfig
       - task: kubernetes-apply-resources
@@ -18,10 +25,8 @@ tasks:
 
   fetch-talosconfig:
     desc: Fetch the talosconfig
-    dir: "{{.TALOS_TERRAFORM_DIR}}"
-    cmd: sh -c 'umask 077 && terraform output --raw talosconfig > {{.ROOT_DIR}}/talosconfig'
-    preconditions:
-      - which terraform
+    dir: "{{.ROOT_DIR}}"
+    cmd: sh -c 'umask 077 && task terraform:output TF_DIR={{.TALOS_TERRAFORM_DIR}} TF_OUTPUT=talosconfig > talosconfig'
 
   fetch-kubeconfig:
     desc: Fetch the admin kubeconfig
@@ -41,22 +46,13 @@ tasks:
 
   destroy:
     desc: Destroy Kubernetes cluster
-    dir: "{{.TALOS_TERRAFORM_DIR}}"
     cmds:
       - talosctl reset --system-labels-to-wipe STATE --system-labels-to-wipe EPHEMERAL --system-labels-to-wipe u-openebs --graceful=false --reboot
-      - terraform state rm $(terraform state list)
+      - task: terraform:purge
+        vars:
+          TF_DIR: "{{.TALOS_TERRAFORM_DIR}}"
     preconditions:
       - which talosctl
-      - which terraform
-
-  terraform-apply:
-    internal: true
-    dir: "{{.TALOS_TERRAFORM_DIR}}"
-    cmds:
-      - terraform init -upgrade
-      - terraform apply
-    preconditions:
-      - which terraform
 
   kubernetes-apply-resources:
     internal: true
