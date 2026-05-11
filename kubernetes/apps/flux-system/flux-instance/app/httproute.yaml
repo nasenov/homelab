@@ -13,7 +13,6 @@ spec:
   rules:
     - backendRefs:
         - name: webhook-receiver
-          namespace: flux-system
           port: 80
       matches:
         - path:
