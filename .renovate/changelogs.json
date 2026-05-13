@@ -3,7 +3,7 @@
   "packageRules": [
     {
       "description": "Changelog URL for Cloudflared",
-      "matchPackageNames": ["docker.io/cloudflare/cloudflared"],
+      "matchPackageNames": ["mirror.gcr.io/cloudflare/cloudflared"],
       "changelogUrl": "https://github.com/cloudflare/cloudflared/blob/master/RELEASE_NOTES"
     }
   ]
