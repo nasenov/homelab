@@ -114,7 +114,7 @@ resource "helm_release" "cilium" {
   namespace     = "kube-system"
   repository    = "oci://quay.io/cilium/charts"
   chart         = "cilium"
-  version       = "1.19.3"
+  version       = "1.19.4"
   wait_for_jobs = true
 
   values = [
