@@ -10,9 +10,12 @@ spec:
     kind: OCIRepository
     name: victoria-logs
   values:
-    fullnameOverride: victoria-logs
+    global:
+      image:
+        registry: quay.io
 
     server:
+      fullnameOverride: victoria-logs
       retentionPeriod: 7d
       persistentVolume:
         storageClassName: ceph-block
