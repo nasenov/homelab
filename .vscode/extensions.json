@@ -1,6 +1,8 @@
 {
   "recommendations": [
     "hashicorp.terraform",
-    "redhat.vscode-yaml"
+    "hverlin.mise-vscode",
+    "redhat.vscode-yaml",
+    "tombi-toml.tombi"
   ]
 }
