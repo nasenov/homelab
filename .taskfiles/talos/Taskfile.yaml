@@ -8,7 +8,7 @@ includes:
     internal: true
 
 vars:
-  TALOS_BOOTSTRAP_DIR: "{{.ROOT_DIR}}/bootstrap/helmfile.d"
+  TALOS_BOOTSTRAP_DIR: "{{.ROOT_DIR}}/bootstrap/helmfile"
   TALOS_TERRAFORM_DIR: "{{.ROOT_DIR}}/terraform/talos"
 
 tasks:
