@@ -41,7 +41,7 @@ releases:
           - --server-side
           - --force-conflicts
           - --namespace={{ .Release.Namespace }}
-          - --filename=../../kubernetes/apps/{{ .Release.Namespace }}/{{ .Release.Name }}/config/l2.yaml
+          - --filename=../../apps/{{ .Release.Namespace }}/{{ .Release.Name }}/config/l2.yaml
         events:
           - postsync
         showlogs: true
@@ -77,7 +77,7 @@ releases:
           - --server-side
           - --force-conflicts
           - --namespace={{ .Release.Namespace }}
-          - --filename=../../kubernetes/apps/{{ .Release.Namespace }}/{{ .Release.Name }}/app/certificate.yaml
+          - --filename=../../apps/{{ .Release.Namespace }}/{{ .Release.Name }}/app/certificate.yaml
         events:
           - presync
         showlogs: true
@@ -97,7 +97,7 @@ releases:
           - apply
           - --server-side
           - --force-conflicts
-          - --filename=../../kubernetes/apps/{{ .Release.Namespace }}/{{ .Release.Name }}/store/clustersecretstore.yaml
+          - --filename=../../apps/{{ .Release.Namespace }}/{{ .Release.Name }}/store/clustersecretstore.yaml
         events:
           - postsync
         showlogs: true

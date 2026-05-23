@@ -8,8 +8,8 @@ includes:
     internal: true
 
 vars:
-  TALOS_BOOTSTRAP_DIR: "{{.ROOT_DIR}}/bootstrap/helmfile"
-  TALOS_TERRAFORM_DIR: "{{.ROOT_DIR}}/terraform/talos"
+  KUBERNETES_BOOTSTRAP_DIR: "{{.ROOT_DIR}}/kubernetes/bootstrap/helmfile"
+  TALOS_BOOTSTRAP_DIR: "{{.ROOT_DIR}}/terraform/talos"
 
 tasks:
   bootstrap:
@@ -17,7 +17,7 @@ tasks:
     cmds:
       - task: terraform:apply
         vars:
-          TF_DIR: "{{.TALOS_TERRAFORM_DIR}}"
+          TF_DIR: "{{.TALOS_BOOTSTRAP_DIR}}"
       - task: fetch-talosconfig
       - task: fetch-kubeconfig
       - task: kubernetes-apply-resources
@@ -26,7 +26,7 @@ tasks:
   fetch-talosconfig:
     desc: Fetch the talosconfig
     dir: "{{.ROOT_DIR}}"
-    cmd: sh -c 'umask 077 && task terraform:output TF_DIR={{.TALOS_TERRAFORM_DIR}} TF_OUTPUT=talosconfig > talosconfig'
+    cmd: sh -c 'umask 077 && task terraform:output TF_DIR={{.TALOS_BOOTSTRAP_DIR}} TF_OUTPUT=talosconfig > talosconfig'
 
   fetch-kubeconfig:
     desc: Fetch the admin kubeconfig
@@ -50,7 +50,7 @@ tasks:
       - talosctl reset --system-labels-to-wipe STATE --system-labels-to-wipe EPHEMERAL --system-labels-to-wipe u-openebs --graceful=false --reboot
       - task: terraform:purge
         vars:
-          TF_DIR: "{{.TALOS_TERRAFORM_DIR}}"
+          TF_DIR: "{{.TALOS_BOOTSTRAP_DIR}}"
     preconditions:
       - which talosctl
 
@@ -70,11 +70,11 @@ tasks:
   helmfile:
     internal: true
     cmds:
-      - helmfile --file {{.TALOS_BOOTSTRAP_DIR}}/crds.yaml template --quiet | yq ea -e 'select(.kind == "CustomResourceDefinition")' | kubectl apply --server-side -f -
-      - helmfile --file {{.TALOS_BOOTSTRAP_DIR}}/apps.yaml sync --hide-notes
+      - helmfile --file {{.KUBERNETES_BOOTSTRAP_DIR}}/crds.yaml template --quiet | yq ea -e 'select(.kind == "CustomResourceDefinition")' | kubectl apply --server-side -f -
+      - helmfile --file {{.KUBERNETES_BOOTSTRAP_DIR}}/apps.yaml sync --hide-notes
     preconditions:
-      - test -f {{.TALOS_BOOTSTRAP_DIR}}/crds.yaml
-      - test -f {{.TALOS_BOOTSTRAP_DIR}}/apps.yaml
+      - test -f {{.KUBERNETES_BOOTSTRAP_DIR}}/crds.yaml
+      - test -f {{.KUBERNETES_BOOTSTRAP_DIR}}/apps.yaml
       - which helmfile
       - which kubectl
       - which yq
