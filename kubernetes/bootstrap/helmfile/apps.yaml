@@ -13,7 +13,7 @@ bases:
 
 helmDefaults:
   cleanupOnFail: true
-  forceConflicts: true
+  # forceConflicts: true # requires helm v4
   wait: true
   waitForJobs: true
 
@@ -57,6 +57,8 @@ releases:
     namespace: kube-system
     inherit:
       - template: default
+    needs:
+      - kube-system/coredns
 
   - name: cert-manager
     namespace: cert-manager
