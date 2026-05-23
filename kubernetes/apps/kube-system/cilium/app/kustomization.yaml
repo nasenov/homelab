@@ -6,9 +6,3 @@ resources:
   - ./grafanadashboard.yaml
   - ./helmrelease.yaml
   - ./ocirepository.yaml
-configMapGenerator:
-  - name: cilium-helm-values
-    files:
-      - values.yaml=./values.yaml
-generatorOptions:
-  disableNameSuffixHash: true

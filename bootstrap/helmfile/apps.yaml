@@ -18,6 +18,41 @@ helmDefaults:
   waitForJobs: true
 
 releases:
+  - name: cilium
+    namespace: kube-system
+    inherit:
+      - template: default
+    hooks:
+      - # Wait for CRDs to be available
+        command: kubectl
+        args:
+          - wait
+          - --for=create
+          - --timeout=2m
+          - crd/ciliuml2announcementpolicies.cilium.io
+          - crd/ciliumloadbalancerippools.cilium.io
+        events:
+          - postsync
+        showlogs: true
+      - # Apply Resources
+        command: kubectl
+        args:
+          - apply
+          - --server-side
+          - --force-conflicts
+          - --namespace={{ .Release.Namespace }}
+          - --filename=../../kubernetes/apps/{{ .Release.Namespace }}/{{ .Release.Name }}/config/l2.yaml
+        events:
+          - postsync
+        showlogs: true
+
+  - name: coredns
+    namespace: kube-system
+    inherit:
+      - template: default
+    needs:
+      - kube-system/cilium
+
   - name: spegel
     namespace: kube-system
     inherit:
@@ -35,7 +70,7 @@ releases:
     inherit:
       - template: default
     hooks:
-      # Apply Certificate Resources
+      # Apply Resources
       - command: kubectl
         args:
           - apply
@@ -46,7 +81,7 @@ releases:
         events:
           - presync
         showlogs: true
-      # Wait for ExternalSecrets CRDs to be available
+      # Wait for CRDs to be available
       - command: kubectl
         args:
           - wait
@@ -56,7 +91,7 @@ releases:
         events:
           - postsync
         showlogs: true
-      # Apply ExternalSecret Resources
+      # Apply Resources
       - command: kubectl
         args:
           - apply
