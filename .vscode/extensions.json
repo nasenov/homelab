@@ -2,6 +2,7 @@
   "recommendations": [
     "hashicorp.terraform",
     "hverlin.mise-vscode",
+    "nefrob.vscode-just-syntax",
     "redhat.vscode-yaml",
     "tombi-toml.tombi"
   ]
