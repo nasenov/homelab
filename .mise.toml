@@ -1,3 +1,4 @@
 [env]
 KUBECONFIG = "{{config_root}}/kubeconfig"
 TALOSCONFIG = "{{config_root}}/talosconfig"
+JUST_UNSTABLE = "1"

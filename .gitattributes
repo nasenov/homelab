@@ -1,3 +1,5 @@
 *.json linguist-detectable
+*.just linguist-detectable
+*.justfile linguist-detectable
 *.yml linguist-detectable
 *.yaml linguist-detectable
