@@ -4,7 +4,9 @@ data "talos_image_factory_extensions_versions" "this" {
 
   filters = {
     names = [
-      "i915"
+      "i915",
+      "intel-ucode",
+      "mei"
     ]
   }
 }
