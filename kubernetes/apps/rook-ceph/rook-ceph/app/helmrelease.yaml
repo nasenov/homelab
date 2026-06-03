@@ -14,75 +14,9 @@ spec:
       repository: ghcr.io/rook/ceph
 
     csi:
-      enableCephfsDriver: false
-      enableCephfsSnapshotter: false
-      enableLiveness: true
       serviceMonitor:
         enabled: true
         interval: 30s
-      csiRBDProvisionerResource: |
-        - name : csi-provisioner
-          resource:
-            requests:
-              cpu: 100m
-              memory: 64Mi
-            limits:
-              memory: 64Mi
-        - name : csi-resizer
-          resource:
-            requests:
-              cpu: 100m
-              memory: 32Mi
-            limits:
-              memory: 32Mi
-        - name : csi-attacher
-          resource:
-            requests:
-              cpu: 100m
-              memory: 32Mi
-            limits:
-              memory: 32Mi
-        - name : csi-snapshotter
-          resource:
-            requests:
-              cpu: 100m
-              memory: 32Mi
-            limits:
-              memory: 32Mi
-        - name : csi-rbdplugin
-          resource:
-            requests:
-              memory: 128Mi
-            limits:
-              memory: 256Mi
-        - name : liveness-prometheus
-          resource:
-            requests:
-              cpu: 50m
-              memory: 16Mi
-            limits:
-              memory: 16Mi
-      csiRBDPluginResource: |
-        - name : driver-registrar
-          resource:
-            requests:
-              cpu: 50m
-              memory: 16Mi
-            limits:
-              memory: 16Mi
-        - name : csi-rbdplugin
-          resource:
-            requests:
-              cpu: 100m
-              memory: 128Mi
-            limits:
-              memory: 256Mi
-        - name : liveness-prometheus
-          resource:
-            requests:
-              cpu: 50m
-              memory: 16Mi
-            limits:
-              memory: 16Mi
+
     monitoring:
       enabled: true
