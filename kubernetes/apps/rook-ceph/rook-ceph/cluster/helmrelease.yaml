@@ -14,9 +14,9 @@ spec:
       enabled: true
       resources:
         requests:
-          memory: 32Mi
+          memory: 64Mi
         limits:
-          memory: 32Mi
+          memory: 64Mi
 
     monitoring:
       enabled: true
