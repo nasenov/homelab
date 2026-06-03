@@ -30,6 +30,7 @@ spec:
     drivers:
       rbd:
         name: rook-ceph.rbd.csi.ceph.com
+        snapshotPolicy: volumeSnapshot
         nodePlugin:
           resources:
             plugin:
