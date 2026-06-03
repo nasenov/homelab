@@ -37,9 +37,6 @@ spec:
           debug_mgr: "0/5"
       cleanupPolicy:
         wipeDevicesFromOtherClusters: true
-      csi:
-        readAffinity:
-          enabled: false # https://github.com/ceph/ceph-csi/issues/5772
       dashboard:
         enabled: true
         urlPrefix: /
