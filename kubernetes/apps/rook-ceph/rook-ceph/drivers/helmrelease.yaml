@@ -21,66 +21,66 @@ spec:
           name: rook-csi-operator-image-set-configmap
         nodePlugin:
           priorityClassName: system-node-critical
-          resources:
-            plugin:
-              requests:
-                cpu: 100m
-                memory: 128Mi
-              limits:
-                memory: 256Mi
-            registrar:
-              requests:
-                cpu: 50m
-                memory: 16Mi
-              limits:
-                memory: 16Mi
-            liveness:
-              requests:
-                cpu: 50m
-                memory: 16Mi
-              limits:
-                memory: 16Mi
+          # resources:
+          #   plugin:
+          #     requests:
+          #       cpu: 100m
+          #       memory: 128Mi
+          #     limits:
+          #       memory: 256Mi
+          #   registrar:
+          #     requests:
+          #       cpu: 50m
+          #       memory: 16Mi
+          #     limits:
+          #       memory: 16Mi
+          #   liveness:
+          #     requests:
+          #       cpu: 50m
+          #       memory: 16Mi
+          #     limits:
+          #       memory: 16Mi
         controllerPlugin:
           replicas: 2
           deploymentStrategy:
             type: Recreate
           priorityClassName: system-cluster-critical
-          resources:
-            attacher:
-              requests:
-                cpu: 100m
-                memory: 32Mi
-              limits:
-                memory: 32Mi
-            plugin:
-              requests:
-                memory: 128Mi
-              limits:
-                memory: 256Mi
-            provisioner:
-              requests:
-                cpu: 100m
-                memory: 64Mi
-              limits:
-                memory: 64Mi
-            resizer:
-              requests:
-                cpu: 100m
-                memory: 32Mi
-              limits:
-                memory: 32Mi
-            snapshotter:
-              requests:
-                cpu: 100m
-                memory: 32Mi
-              limits:
-                memory: 32Mi
-            liveness:
-              requests:
-                cpu: 50m
-                memory: 16Mi
-              limits:
-                memory: 16Mi
+          # resources:
+          #   attacher:
+          #     requests:
+          #       cpu: 100m
+          #       memory: 32Mi
+          #     limits:
+          #       memory: 32Mi
+          #   plugin:
+          #     requests:
+          #       memory: 128Mi
+          #     limits:
+          #       memory: 256Mi
+          #   provisioner:
+          #     requests:
+          #       cpu: 100m
+          #       memory: 64Mi
+          #     limits:
+          #       memory: 64Mi
+          #   resizer:
+          #     requests:
+          #       cpu: 100m
+          #       memory: 32Mi
+          #     limits:
+          #       memory: 32Mi
+          #   snapshotter:
+          #     requests:
+          #       cpu: 100m
+          #       memory: 32Mi
+          #     limits:
+          #       memory: 32Mi
+          #   liveness:
+          #     requests:
+          #       cpu: 50m
+          #       memory: 16Mi
+          #     limits:
+          #       memory: 16Mi
 
     drivers:
       rbd:
