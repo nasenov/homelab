@@ -12,6 +12,12 @@ spec:
   values:
     toolbox:
       enabled: true
+      containerSecurityContext:
+        runAsNonRoot: false
+        runAsUser: 0
+        runAsGroup: 0
+        capabilities:
+          drop: []
       resources:
         requests:
           memory: 64Mi
