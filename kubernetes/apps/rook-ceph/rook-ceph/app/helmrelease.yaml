@@ -13,10 +13,5 @@ spec:
     image:
       repository: ghcr.io/rook/ceph
 
-    csi:
-      serviceMonitor:
-        enabled: true
-        interval: 30s
-
     monitoring:
       enabled: true
