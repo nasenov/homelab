@@ -45,24 +45,10 @@ spec:
                 memory: 16Mi
               limits:
                 memory: 16Mi
-            liveness:
-              requests:
-                cpu: 50m
-                memory: 16Mi
-              limits:
-                memory: 16Mi
-            addons:
-              requests:
-                cpu: 50m
-                memory: 16Mi
-              limits:
-                memory: 16Mi
-            logRotator:
-              requests:
-                cpu: 50m
-                memory: 16Mi
-              limits:
-                memory: 16Mi
+            # https://github.com/ceph/ceph-csi-operator/issues/490
+            liveness: {}
+            addons: {}
+            logRotator: {}
         controllerPlugin:
           resources:
             attacher:
@@ -94,30 +80,11 @@ spec:
                 memory: 32Mi
               limits:
                 memory: 32Mi
-            liveness:
-              requests:
-                cpu: 50m
-                memory: 16Mi
-              limits:
-                memory: 16Mi
-            addons:
-              requests:
-                cpu: 50m
-                memory: 16Mi
-              limits:
-                memory: 16Mi
-            logRotator:
-              requests:
-                cpu: 50m
-                memory: 16Mi
-              limits:
-                memory: 16Mi
-            omapGenerator:
-              requests:
-                cpu: 50m
-                memory: 16Mi
-              limits:
-                memory: 16Mi
+            # https://github.com/ceph/ceph-csi-operator/issues/490
+            liveness: {}
+            addons: {}
+            logRotator: {}
+            omapGenerator: {}
 
       nvmeof:
         enabled: false
