@@ -22,7 +22,6 @@
   ],
   "packageRules": [
     {
-      "addLabels": ["renovate/grafana-dashboard"],
       "automerge": true,
       "automergeType": "branch",
       "ignoreTests": true,
