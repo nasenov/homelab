@@ -8,20 +8,21 @@
 # After this bootstrap phase, Flux is ready to take over management of the
 # application stack and continue reconciling downstream state.
 
-bases:
-  - defaults.yaml
-
 helmDefaults:
   cleanupOnFail: true
+  # https://github.com/NixOS/nixpkgs/pull/461007
   # forceConflicts: true # requires helm v4
   wait: true
   waitForJobs: true
 
+bases:
+  - default.yaml
+
+defaultInherit: default
+
 releases:
   - name: cilium
     namespace: kube-system
-    inherit:
-      - template: default
     hooks:
       - # Wait for CRDs to be available
         command: kubectl
@@ -48,29 +49,21 @@ releases:
 
   - name: coredns
     namespace: kube-system
-    inherit:
-      - template: default
     needs:
       - kube-system/cilium
 
   - name: spegel
     namespace: kube-system
-    inherit:
-      - template: default
     needs:
       - kube-system/coredns
 
   - name: cert-manager
     namespace: cert-manager
-    inherit:
-      - template: default
     needs:
       - kube-system/spegel
 
   - name: external-secrets
     namespace: external-secrets
-    inherit:
-      - template: default
     hooks:
       # Apply Resources
       - command: kubectl
@@ -108,14 +101,10 @@ releases:
 
   - name: flux-operator
     namespace: flux-system
-    inherit:
-      - template: default
     needs:
       - external-secrets/external-secrets
 
   - name: flux-instance
     namespace: flux-system
-    inherit:
-      - template: default
     needs:
       - flux-system/flux-operator
