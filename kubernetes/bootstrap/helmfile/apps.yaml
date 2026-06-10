@@ -10,8 +10,7 @@
 
 helmDefaults:
   cleanupOnFail: true
-  # https://github.com/NixOS/nixpkgs/pull/461007
-  # forceConflicts: true # requires helm v4
+  forceConflicts: true
   wait: true
   waitForJobs: true
 
