@@ -90,6 +90,7 @@ graph LR
     E -->|Creates| F
     E -.->|Depends on| B
 ```
+
 </details>
 
 ---
@@ -98,14 +99,14 @@ graph LR
 
 While most of my infrastructure and workloads are self-hosted I do rely upon the cloud for certain key parts of my setup.
 
-| Service                                      | Use                                                           | Cost          |
-|----------------------------------------------|---------------------------------------------------------------|---------------|
-| [Bitwarden](https://bitwarden.com/)          | Secrets with [External Secrets](https://external-secrets.io/) | Free          |
-| [Cloudflare](https://cloudflare.com/)        | Domain, S3 and Tunnel                                         | ~$12/yr       |
-| [Discord](https://discord.com/)              | Alerts and Notifications                                      | Free          |
-| [Github](https://github.com/)                | Github Actions                                                | Free          |
-| [Let's Encrypt](https://letsencrypt.org/)    | TLS certificates                                              | Free          |
-|                                              |                                                               | Total: ~$1/mo |
+| Service                                   | Use                                                           | Cost          |
+| ----------------------------------------- | ------------------------------------------------------------- | ------------- |
+| [Bitwarden](https://bitwarden.com/)       | Secrets with [External Secrets](https://external-secrets.io/) | Free          |
+| [Cloudflare](https://cloudflare.com/)     | Domain, S3 and Tunnel                                         | ~$12/yr       |
+| [Discord](https://discord.com/)           | Alerts and Notifications                                      | Free          |
+| [Github](https://github.com/)             | Github Actions                                                | Free          |
+| [Let's Encrypt](https://letsencrypt.org/) | TLS certificates                                              | Free          |
+|                                           |                                                               | Total: ~$1/mo |
 
 ---
 
@@ -122,8 +123,8 @@ This is achieved by defining routes with two specific gateways: `internal` for p
 
 ## <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/2699_fe0f/512.gif" alt="⚙" width="20" height="20"> Hardware
 
-| Device                | Num | OS Disk Size | Data Disk Size                                   | RAM   | OS      | Function         |
-|-----------------------|-----|--------------|--------------------------------------------------|-------|---------|------------------|
-| Lenovo m910x i5-7500  | 3   | 256GB NVMe   | 500GB SSD (local) / 1TB NVMe (rook-ceph)         | 16GB  | Talos   | Kubernetes       |
-| Aoostar WTR PRO 5825U | 1   | 512GB NVMe   | 2x2TB SSD                                        | 16GB  | TrueNAS | NAS              |
-| TP-Link Archer AX53   | 1   | -            | -                                                | -     | -       | Router           |
+| Device                | Num | OS Disk Size | Data Disk Size                           | RAM  | OS      | Function   |
+| --------------------- | --- | ------------ | ---------------------------------------- | ---- | ------- | ---------- |
+| Lenovo m910x i5-7500  | 3   | 256GB NVMe   | 500GB SSD (local) / 1TB NVMe (rook-ceph) | 16GB | Talos   | Kubernetes |
+| Aoostar WTR PRO 5825U | 1   | 512GB NVMe   | 2x2TB SSD                                | 16GB | TrueNAS | NAS        |
+| TP-Link Archer AX53   | 1   | -            | -                                        | -    | -       | Router     |

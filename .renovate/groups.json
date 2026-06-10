@@ -15,20 +15,14 @@
       "description": "Node Exporter Group",
       "groupName": "node-exporter",
       "matchDatasources": ["docker", "github-releases"],
-      "matchPackageNames": [
-        "quay.io/prometheus/node-exporter",
-        "prometheus/node_exporter"
-      ],
+      "matchPackageNames": ["quay.io/prometheus/node-exporter", "prometheus/node_exporter"],
       "minimumGroupSize": 2
     },
     {
       "description": "Rook Ceph Group",
       "groupName": "rook-ceph",
       "matchDatasources": ["docker"],
-      "matchPackageNames": [
-        "ghcr.io/rook/rook-ceph",
-        "ghcr.io/rook/rook-ceph-cluster"
-      ],
+      "matchPackageNames": ["ghcr.io/rook/rook-ceph", "ghcr.io/rook/rook-ceph-cluster"],
       "minimumGroupSize": 2
     }
   ]

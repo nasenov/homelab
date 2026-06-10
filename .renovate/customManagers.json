@@ -4,10 +4,7 @@
     {
       "description": "Process annotated dependencies",
       "customType": "regex",
-      "managerFilePatterns": [
-        "/\\.tf$/",
-        "/\\.yaml$/"
-      ],
+      "managerFilePatterns": ["/\\.tf$/", "/\\.yaml$/"],
       "matchStrings": [
         "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( repository=(?<registryUrl>\\S+))?\\n.+(:?[:=]\\s*)\"?(?<currentValue>[^\"\\s]+)\"?"
       ],
