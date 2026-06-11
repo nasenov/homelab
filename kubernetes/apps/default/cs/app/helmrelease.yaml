@@ -18,6 +18,16 @@ spec:
               repository: ghcr.io/gameservermanagers/gameserver
               tag: cs@sha256:0477fc16a2cd80309d70e3962d8af9c5ca8b7024d74c520e2943a416e31edbd6
 
+    service:
+      app:
+        type: LoadBalancer
+        annotations:
+          lbipam.cilium.io/ips: 192.168.0.44
+        ports:
+          game:
+            port: 27015
+            protocol: UDP
+
     persistence:
       data:
         type: persistentVolumeClaim
