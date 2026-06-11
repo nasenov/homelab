@@ -1,0 +1,26 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: cs
+spec:
+  interval: 1h
+  chartRef:
+    kind: OCIRepository
+    name: cs
+  values:
+    controllers:
+      cs:
+        containers:
+          app:
+            image:
+              repository: ghcr.io/gameservermanagers/gameserver
+              tag: cs@sha256:0477fc16a2cd80309d70e3962d8af9c5ca8b7024d74c520e2943a416e31edbd6
+
+    persistence:
+      data:
+        type: persistentVolumeClaim
+        storageClass: openebs-hostpath
+        accessMode: ReadWriteOnce
+        size: 16Gi
