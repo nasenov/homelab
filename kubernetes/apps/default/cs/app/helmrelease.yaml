@@ -17,6 +17,11 @@ spec:
             image:
               repository: ghcr.io/gameservermanagers/gameserver
               tag: cs@sha256:0477fc16a2cd80309d70e3962d8af9c5ca8b7024d74c520e2943a416e31edbd6
+            resources:
+              requests:
+                cpu: 500m
+              limits:
+                memory: 512Mi
 
     service:
       app:
