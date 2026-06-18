@@ -9,7 +9,9 @@
       "matchUpdateTypes": ["minor", "patch"],
       "matchPackageNames": [
         "ghcr.io/n8n-io/n8n",
-        "ghcr.io/prometheus-community/charts/kube-prometheus-stack"
+        "ghcr.io/prometheus-community/charts/kube-prometheus-stack",
+        "ghcr.io/home-operations/charts/kromgo",
+        "ghcr.io/home-operations/charts/tuppr"
       ],
       "ignoreTests": true,
       "schedule": ["before 6am on Monday"]
