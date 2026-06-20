@@ -56,3 +56,7 @@ spec:
         parentRefs:
           - name: envoy-internal
             namespace: networking
+
+    persistence:
+      tmp:
+        type: emptyDir
