@@ -127,6 +127,11 @@ spec:
         - fitness
       password:
         type: AlphaNumeric
+    - name: miscale2pg
+      databases:
+        - miscale2pg
+      password:
+        type: AlphaNumeric
 
   patroni:
     dynamicConfiguration:
