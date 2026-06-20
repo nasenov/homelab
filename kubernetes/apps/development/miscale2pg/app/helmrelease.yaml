@@ -1,0 +1,58 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: miscale2pg
+spec:
+  interval: 1h
+  chartRef:
+    kind: OCIRepository
+    name: miscale2pg
+  values:
+    controllers:
+      miscale2pg:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        pod:
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1000
+            runAsGroup: 1000
+            fsGroup: 1000
+            fsGroupChangePolicy: OnRootMismatch
+        containers:
+          app:
+            image:
+              repository: ghcr.io/nasenov/miscale2pg
+              tag: 0.0.1@sha256:531ab336a9977f7b4273a93f048513210833e2db0acc876be72a009370cf5e52
+            env:
+              SERVER_PORT: &port 80
+            envFrom:
+              - secretRef:
+                  name: "{{ .Release.Name }}"
+            resources:
+              requests:
+                cpu: 10m
+              limits:
+                memory: 512Mi
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities:
+                drop:
+                  - ALL
+
+    service:
+      app:
+        ports:
+          http:
+            port: *port
+
+    route:
+      app:
+        hostnames:
+          - "{{ .Release.Name }}.nasenov.dev"
+        parentRefs:
+          - name: envoy-internal
+            namespace: networking
