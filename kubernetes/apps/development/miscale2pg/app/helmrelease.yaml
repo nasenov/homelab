@@ -72,6 +72,12 @@ spec:
           http:
             port: *port
 
+    serviceMonitor:
+      app:
+        endpoints:
+          - port: http
+            path: /actuator/prometheus
+
     route:
       app:
         hostnames:

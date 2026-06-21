@@ -110,6 +110,13 @@ endpoints:
       - "[STATUS] == 200"
     alerts:
       - type: discord
+  - name: miscale2pg
+    group: internal
+    url: https://miscale2pg.nasenov.dev/actuator/health
+    conditions:
+      - "[STATUS] == 200"
+    alerts:
+      - type: discord
   - name: postgres
     group: internal
     url: tcp://postgres.nasenov.dev:5432
