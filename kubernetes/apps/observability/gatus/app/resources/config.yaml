@@ -110,13 +110,6 @@ endpoints:
       - "[STATUS] == 200"
     alerts:
       - type: discord
-  - name: n8n
-    group: internal
-    url: https://n8n.nasenov.dev
-    conditions:
-      - "[STATUS] == 200"
-    alerts:
-      - type: discord
   - name: postgres
     group: internal
     url: tcp://postgres.nasenov.dev:5432

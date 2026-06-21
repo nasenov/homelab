@@ -8,7 +8,6 @@
       "automergeType": "pr",
       "matchUpdateTypes": ["minor", "patch"],
       "matchPackageNames": [
-        "ghcr.io/n8n-io/n8n",
         "ghcr.io/prometheus-community/charts/kube-prometheus-stack",
         "ghcr.io/home-operations/charts/kromgo",
         "ghcr.io/home-operations/charts/tuppr"
