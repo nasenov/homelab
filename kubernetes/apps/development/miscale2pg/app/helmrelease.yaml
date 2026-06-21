@@ -25,7 +25,7 @@ spec:
           app:
             image:
               repository: ghcr.io/nasenov/miscale2pg
-              tag: 0.0.2@sha256:c3835e50c5f23b0241929cc214b7003105cf84cac3335d709f771ceefa03eaca
+              tag: 0.0.3@sha256:fa087c939f2f815a0f3fa90b9c32e1b10666d1ce6c7cc26d5dfb502286db94f5
             env:
               SERVER_PORT: &port 80
             envFrom:
