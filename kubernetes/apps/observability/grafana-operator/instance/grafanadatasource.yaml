@@ -38,7 +38,7 @@ spec:
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDatasource
 metadata:
-  name: postgres
+  name: miscale2pg
 spec:
   uid: e63033e0-b892-4acb-b709-9eacece5f411
   instanceSelector:
@@ -61,20 +61,20 @@ spec:
     - targetPath: url
       valueFrom:
         secretKeyRef:
-          name: grafana-postgres-datasource-configuration
+          name: grafana-miscale2pg-datasource-configuration
           key: POSTGRES_DATASOURCE_URL
     - targetPath: jsonData.database
       valueFrom:
         secretKeyRef:
-          name: grafana-postgres-datasource-configuration
+          name: grafana-miscale2pg-datasource-configuration
           key: POSTGRES_DATASOURCE_DATABASE
     - targetPath: user
       valueFrom:
         secretKeyRef:
-          name: grafana-postgres-datasource-configuration
+          name: grafana-miscale2pg-datasource-configuration
           key: POSTGRES_DATASOURCE_USER
     - targetPath: secureJsonData.password
       valueFrom:
         secretKeyRef:
-          name: grafana-postgres-datasource-configuration
+          name: grafana-miscale2pg-datasource-configuration
           key: POSTGRES_DATASOURCE_PASSWORD
