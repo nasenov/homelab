@@ -46,7 +46,7 @@ spec:
       dashboards: grafana
   datasource:
     type: postgres
-    name: postgres
+    name: miscale2pg
     access: proxy
     url: ${POSTGRES_DATASOURCE_URL}
     user: ${POSTGRES_DATASOURCE_USER}
