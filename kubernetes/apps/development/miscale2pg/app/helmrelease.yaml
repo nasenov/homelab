@@ -25,7 +25,7 @@ spec:
           app:
             image:
               repository: ghcr.io/nasenov/miscale2pg
-              tag: 0.0.4@sha256:3d3576c345b680a22450d962044e8e4a403aeb844c3067b2b567ccb3d1611d25
+              tag: 0.0.5@sha256:3ab7056b63fc73098cbcb224dbe2acd781ecd293a09c023afd7263692137be78
             env:
               SERVER_PORT: &port 80
               BPL_JVM_THREAD_COUNT: 50
