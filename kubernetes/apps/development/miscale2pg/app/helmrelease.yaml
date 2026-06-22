@@ -29,7 +29,7 @@ spec:
             env:
               SERVER_PORT: &port 80
               BPL_JVM_THREAD_COUNT: 50
-              JAVA_TOOL_OPTIONS: -XX:ReservedCodeCacheSize=48M
+              JAVA_TOOL_OPTIONS: -Xss512k -XX:ReservedCodeCacheSize=48M
             envFrom:
               - secretRef:
                   name: "{{ .Release.Name }}"
