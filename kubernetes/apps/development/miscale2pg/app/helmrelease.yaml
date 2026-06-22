@@ -28,7 +28,8 @@ spec:
               tag: 0.0.4@sha256:3d3576c345b680a22450d962044e8e4a403aeb844c3067b2b567ccb3d1611d25
             env:
               SERVER_PORT: &port 80
-              BPL_JVM_THREAD_COUNT: 100
+              BPL_JVM_THREAD_COUNT: 50
+              JAVA_TOOL_OPTIONS: -XX:ReservedCodeCacheSize=48M
             envFrom:
               - secretRef:
                   name: "{{ .Release.Name }}"
@@ -59,7 +60,7 @@ spec:
               requests:
                 cpu: 10m
               limits:
-                memory: 512Mi
+                memory: 256Mi
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
