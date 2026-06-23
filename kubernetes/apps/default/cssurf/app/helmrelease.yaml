@@ -1,0 +1,45 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: cssurf
+spec:
+  interval: 1h
+  chartRef:
+    kind: OCIRepository
+    name: cssurf
+  values:
+    controllers:
+      cssurf:
+        containers:
+          app:
+            image:
+              repository: ghcr.io/gameservermanagers/gameserver
+              tag: cs@sha256:f52bdd37bd733c2cacb459f81834b18b20d6392afb755b33747148744449dffd
+            env:
+              LGSM_GITHUBUSER: nasenov
+              LGSM_GITHUBREPO: LinuxGSM
+              LGSM_GITHUBBRANCH: fix/bump-amxmodx-version
+            resources:
+              requests:
+                cpu: 100m
+              limits:
+                memory: 512Mi
+
+    service:
+      app:
+        type: LoadBalancer
+        annotations:
+          lbipam.cilium.io/ips: 192.168.0.45
+        ports:
+          game:
+            port: 27015
+            protocol: UDP
+
+    persistence:
+      data:
+        type: persistentVolumeClaim
+        storageClass: ceph-block
+        accessMode: ReadWriteOnce
+        size: 4Gi
