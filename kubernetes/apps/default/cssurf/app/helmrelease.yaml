@@ -12,9 +12,6 @@ spec:
   values:
     controllers:
       cssurf:
-        pod:
-          securityContext:
-            fsGroup: 1000
         containers:
           app:
             image:
@@ -24,6 +21,9 @@ spec:
               LGSM_GITHUBUSER: nasenov
               LGSM_GITHUBREPO: LinuxGSM
               LGSM_GITHUBBRANCH: fix/bump-amxmodx-version
+              USER: root
+              UID: 0
+              GID: 0
             resources:
               requests:
                 cpu: 100m
@@ -49,7 +49,6 @@ spec:
       config:
         type: configMap
         name: "{{ .Release.Name }}"
-        defaultMode: 0777
         globalMounts:
           - path: /data/serverfiles/cstrike/addons/amxmodx/configs/maps.ini
             subPath: maps.ini
