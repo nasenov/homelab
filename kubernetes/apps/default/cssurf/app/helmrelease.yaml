@@ -49,6 +49,7 @@ spec:
       config:
         type: configMap
         name: "{{ .Release.Name }}"
+        defaultMode: 0777
         globalMounts:
           - path: /data/serverfiles/cstrike/addons/amxmodx/configs/maps.ini
             subPath: maps.ini
