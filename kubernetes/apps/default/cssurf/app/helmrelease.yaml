@@ -43,3 +43,9 @@ spec:
         storageClass: ceph-block
         accessMode: ReadWriteOnce
         size: 4Gi
+      config:
+        type: configMap
+        name: "{{ .Release.Name }}"
+        globalMounts:
+          - path: /data/serverfiles/cstrike/addons/amxmodx/configs/maps.ini
+            subPath: maps.ini
