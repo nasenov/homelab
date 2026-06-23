@@ -12,6 +12,15 @@ spec:
   values:
     controllers:
       cssurf:
+        initContainers:
+          config:
+            image:
+              repository: ghcr.io/home-operations/busybox
+              tag: 1.38.0@sha256:7e2c04dd50ede647bf4a7a4c8dbd629dd4971cd139b9b88fb22bfc3c7a6c13df
+            command:
+              - sh
+              - -c
+              - cp /config/maps.ini /data/serverfiles/cstrike/addons/amxmodx/configs/maps.ini
         containers:
           app:
             image:
@@ -21,9 +30,6 @@ spec:
               LGSM_GITHUBUSER: nasenov
               LGSM_GITHUBREPO: LinuxGSM
               LGSM_GITHUBBRANCH: fix/bump-amxmodx-version
-              USER: root
-              UID: 0
-              GID: 0
             resources:
               requests:
                 cpu: 100m
@@ -49,6 +55,3 @@ spec:
       config:
         type: configMap
         name: "{{ .Release.Name }}"
-        globalMounts:
-          - path: /data/serverfiles/cstrike/addons/amxmodx/configs/maps.ini
-            subPath: maps.ini
