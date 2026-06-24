@@ -20,7 +20,9 @@ spec:
             command:
               - sh
               - -c
-              - cp /config/maps.ini /data/serverfiles/cstrike/addons/amxmodx/configs/maps.ini
+              - |
+                cp /config/mapcycle.txt /data/serverfiles/cstrike/mapcycle.txt
+                rm -f /data/serverfiles/cstrike/addons/amxmodx/configs/maps.ini
         containers:
           app:
             image:

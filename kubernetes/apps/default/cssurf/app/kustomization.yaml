@@ -8,6 +8,6 @@ resources:
 configMapGenerator:
   - name: cssurf
     files:
-      - maps.ini=./resources/maps.ini
+      - mapcycle.txt=./resources/mapcycle.txt
 generatorOptions:
   disableNameSuffixHash: true
