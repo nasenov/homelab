@@ -2,7 +2,7 @@
 services:
   meshcentral:
     container_name: meshcentral
-    image: ghcr.io/ylianst/meshcentral:1.2.0
+    image: ghcr.io/ylianst/meshcentral:1.2.1
     restart: unless-stopped
     networks:
       apps_bridge:
