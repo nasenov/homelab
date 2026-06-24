@@ -50,7 +50,7 @@ spec:
           lbipam.cilium.io/ips: 192.168.0.45
         ports:
           game:
-            port: 27015
+            port: 27016
             protocol: UDP
 
     persistence:
