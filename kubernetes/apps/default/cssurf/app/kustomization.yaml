@@ -9,7 +9,8 @@ resources:
 configMapGenerator:
   - name: cssurf
     files:
-      - mapcycle.txt=./resources/mapcycle.txt
       - csserver.cfg=./resources/csserver.cfg
+      - lgsm.cfg=./resources/lgsm.cfg
+      - mapcycle.txt=./resources/mapcycle.txt
 generatorOptions:
   disableNameSuffixHash: true

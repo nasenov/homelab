@@ -25,6 +25,7 @@ spec:
                 rm -f /data/serverfiles/cstrike/addons/amxmodx/configs/maps.ini
                 cp /config/csserver.cfg /data/serverfiles/cstrike/csserver.cfg
                 cp /secret/secrets.cfg /data/serverfiles/cstrike/secrets.cfg
+                cp /config/lgsm.cfg /data/config-lgsm/csserver/common.cfg
         containers:
           app:
             image:
