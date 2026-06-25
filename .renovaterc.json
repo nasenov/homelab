@@ -3,7 +3,7 @@
   "extends": [
     "config:recommended",
     "docker:enableMajor",
-    "helpers:pinGitHubActionDigests",
+    "helpers:pinGitHubActionDigestsToSemver",
     "github>nasenov/homelab//.renovate/autoMerge.json",
     "github>nasenov/homelab//.renovate/changelogs.json",
     "github>nasenov/homelab//.renovate/customManagers.json",
@@ -15,7 +15,6 @@
     ":automergeBranch",
     ":disableRateLimiting",
     ":dependencyDashboard",
-    ":semanticCommits",
     ":timezone(Europe/Sofia)"
   ],
   "dependencyDashboardTitle": "Renovate Dashboard",
