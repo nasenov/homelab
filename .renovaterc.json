@@ -15,6 +15,7 @@
     ":automergeBranch",
     ":disableRateLimiting",
     ":dependencyDashboard",
+    ":semanticCommits",
     ":timezone(Europe/Sofia)"
   ],
   "dependencyDashboardTitle": "Renovate Dashboard",
