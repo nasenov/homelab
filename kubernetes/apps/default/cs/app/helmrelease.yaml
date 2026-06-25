@@ -19,9 +19,9 @@ spec:
               tag: cs@sha256:f52bdd37bd733c2cacb459f81834b18b20d6392afb755b33747148744449dffd
             resources:
               requests:
-                cpu: 500m
+                cpu: 100m
               limits:
-                memory: 512Mi
+                memory: 256Mi
 
     service:
       app:
