@@ -35,8 +35,6 @@ endpoints:
     url: https://flux-webhook.nasenov.dev/hook
     conditions:
       - "[STATUS] == 404"
-    # client:
-    #   dns-resolver: tcp://1.1.1.1:53
     alerts:
       - type: discord
   - name: kromgo
@@ -44,8 +42,6 @@ endpoints:
     url: https://kromgo.nasenov.dev
     conditions:
       - "[STATUS] == 200"
-    # client:
-    #   dns-resolver: tcp://1.1.1.1:53
     alerts:
       - type: discord
 
