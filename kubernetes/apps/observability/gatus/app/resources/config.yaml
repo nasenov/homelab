@@ -32,7 +32,7 @@ endpoints:
       - type: discord
   - name: flux-webhook
     group: external
-    url: https://flux-webhook.nasenov.dev
+    url: https://flux-webhook.nasenov.dev/hook
     conditions:
       - "[STATUS] == 404"
     client:
