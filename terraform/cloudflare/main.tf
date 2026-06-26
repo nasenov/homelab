@@ -118,22 +118,12 @@ resource "cloudflare_zero_trust_tunnel_cloudflared_config" "homelab" {
   tunnel_id  = cloudflare_zero_trust_tunnel_cloudflared.homelab.id
   source     = "cloudflare"
   config = {
-    origin_request = {
-      http2_origin = true
-    }
-
     ingress = [
-      {
-        hostname = "nasenov.dev"
-        origin_request = {
-          origin_server_name = "nasenov.dev"
-        }
-        service = "https://envoy-external.networking.svc.cluster.local"
-      },
       {
         hostname = "*.nasenov.dev"
         origin_request = {
-          origin_server_name = "*.nasenov.dev"
+          http2_origin       = true
+          origin_server_name = "external.nasenov.dev"
         }
         service = "https://envoy-external.networking.svc.cluster.local"
       },
@@ -142,15 +132,6 @@ resource "cloudflare_zero_trust_tunnel_cloudflared_config" "homelab" {
       }
     ]
   }
-}
-
-resource "cloudflare_dns_record" "nasenov_dev" {
-  zone_id = cloudflare_zone.nasenov_dev.id
-  type    = "CNAME"
-  name    = "nasenov.dev"
-  content = "${cloudflare_zero_trust_tunnel_cloudflared.homelab.id}.cfargotunnel.com"
-  proxied = true
-  ttl     = 1
 }
 
 resource "cloudflare_dns_record" "external_nasenov_dev" {
