@@ -16,7 +16,6 @@ spec:
           reloader.stakater.com/auto: "true"
         initContainers:
           config:
-            enabled: false
             image:
               repository: ghcr.io/home-operations/busybox
               tag: 1.38.0@sha256:7e2c04dd50ede647bf4a7a4c8dbd629dd4971cd139b9b88fb22bfc3c7a6c13df
