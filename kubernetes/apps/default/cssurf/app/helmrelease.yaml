@@ -32,7 +32,7 @@ spec:
           app:
             image:
               repository: ghcr.io/gameservermanagers/gameserver
-              tag: cs@sha256:f52bdd37bd733c2cacb459f81834b18b20d6392afb755b33747148744449dffd
+              tag: cs@sha256:a6ce816c2ae7cf4a396fbc82f48d6461d9884f871e77dbf3261ad16825232bae
             env:
               LGSM_GITHUBUSER: nasenov
               LGSM_GITHUBREPO: LinuxGSM
