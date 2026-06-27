@@ -1,4 +1,3 @@
 surf_ninja
 surf_ski
-surf_nice_fly_3
 surf_ski_2
