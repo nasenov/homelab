@@ -14,6 +14,8 @@ spec:
       miscale2pg:
         annotations:
           reloader.stakater.com/auto: "true"
+        replicas: 2
+        strategy: RollingUpdate
         pod:
           securityContext:
             runAsNonRoot: true
@@ -21,6 +23,13 @@ spec:
             runAsGroup: 1000
             fsGroup: 1000
             fsGroupChangePolicy: OnRootMismatch
+          affinity:
+            podAntiAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+                - topologyKey: kubernetes.io/hostname
+                  labelSelector:
+                    matchLabels:
+                      app.kubernetes.io/name: miscale2pg
         containers:
           app:
             image:
