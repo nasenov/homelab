@@ -21,17 +21,6 @@ spec:
           name: rook-csi-operator-image-set-configmap
         nodePlugin:
           priorityClassName: system-node-critical
-        controllerPlugin:
-          replicas: 2
-          deploymentStrategy:
-            type: Recreate
-          priorityClassName: system-cluster-critical
-
-    drivers:
-      rbd:
-        name: rook-ceph.rbd.csi.ceph.com
-        snapshotPolicy: volumeSnapshot
-        nodePlugin:
           resources:
             plugin:
               requests:
@@ -45,11 +34,11 @@ spec:
                 memory: 16Mi
               limits:
                 memory: 16Mi
-            # https://github.com/ceph/ceph-csi-operator/issues/490
-            liveness: {}
-            addons: {}
-            logRotator: {}
         controllerPlugin:
+          replicas: 2
+          deploymentStrategy:
+            type: Recreate
+          priorityClassName: system-cluster-critical
           resources:
             attacher:
               requests:
@@ -80,11 +69,11 @@ spec:
                 memory: 32Mi
               limits:
                 memory: 32Mi
-            # https://github.com/ceph/ceph-csi-operator/issues/490
-            liveness: {}
-            addons: {}
-            logRotator: {}
-            omapGenerator: {}
+
+    drivers:
+      rbd:
+        name: rook-ceph.rbd.csi.ceph.com
+        snapshotPolicy: volumeSnapshot
 
       nvmeof:
         enabled: false
