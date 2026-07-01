@@ -1,5 +1,6 @@
 #!/usr/bin/env -S just --justfile
 
+set default-list
 set default-script
 set lazy
 set quiet
@@ -16,10 +17,6 @@ mod talos "terraform/talos"
 # Terraform Recipes
 [group: 'Terraform']
 mod terraform "terraform"
-
-[private]
-default:
-    just -l
 
 [doc('Bootstrap workstation')]
 [script]
