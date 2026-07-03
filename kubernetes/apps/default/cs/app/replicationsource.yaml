@@ -9,7 +9,7 @@ spec:
   trigger:
     schedule: 0 * * * *
   restic:
-    copyMethod: Snapshot
+    copyMethod: Direct
     pruneIntervalDays: 14
     repository: cs-volsync-local
     volumeSnapshotClassName: csi-ceph-blockpool
