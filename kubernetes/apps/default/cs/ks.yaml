@@ -7,9 +7,18 @@ metadata:
 spec:
   interval: 1h
   targetNamespace: default
+  components:
+    - ../../../../components/volsync
+  dependsOn:
+    - name: rook-ceph-cluster
+      namespace: rook-ceph
   path: ./kubernetes/apps/default/cs/app
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
+  postBuild:
+    substitute:
+      APP: cs
+      VOLSYNC_CAPACITY: 2Gi

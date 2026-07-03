@@ -35,7 +35,4 @@ spec:
 
     persistence:
       data:
-        type: persistentVolumeClaim
-        storageClass: openebs-hostpath
-        accessMode: ReadWriteOnce
-        size: 16Gi
+        existingClaim: "{{ .Release.Name }}"
