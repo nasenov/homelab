@@ -17,6 +17,10 @@ spec:
             image:
               repository: ghcr.io/gameservermanagers/gameserver
               tag: cs@sha256:a6ce816c2ae7cf4a396fbc82f48d6461d9884f871e77dbf3261ad16825232bae
+            env:
+              LGSM_GITHUBUSER: nasenov
+              LGSM_GITHUBREPO: LinuxGSM
+              LGSM_GITHUBBRANCH: fix/bump-amxmodx-version
             resources:
               requests:
                 cpu: 100m
