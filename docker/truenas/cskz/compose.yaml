@@ -1,0 +1,19 @@
+---
+services:
+  cskz:
+    container_name: cskz
+    image: ghcr.io/gameservermanagers/gameserver:cs
+    restart: unless-stopped
+    environment:
+      LGSM_GITHUBUSER: nasenov
+      LGSM_GITHUBREPO: LinuxGSM
+      LGSM_GITHUBBRANCH: fix/bump-amxmodx-version
+    networks:
+      apps_ipvlan:
+        ipv4_address: 192.168.0.55
+    volumes:
+      - /mnt/tank/apps/cskz/data:/data
+
+networks:
+  apps_ipvlan:
+    external: true
