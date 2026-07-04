@@ -23,13 +23,6 @@ endpoints:
       - "[CONNECTED] == true"
     alerts:
       - type: discord
-  - name: cssurf
-    group: external
-    url: udp://cs.nasenov.dev:27016
-    conditions:
-      - "[CONNECTED] == true"
-    alerts:
-      - type: discord
   - name: cskz
     group: external
     url: udp://cs.nasenov.dev:27017
