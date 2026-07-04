@@ -29,7 +29,7 @@ spec:
               BAZARR__PORT: &port 80
             probes:
               liveness: &probes
-                enabled: true
+                enabled: false
                 custom: true
                 spec:
                   httpGet:
