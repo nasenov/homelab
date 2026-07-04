@@ -1,0 +1,19 @@
+---
+services:
+  cs:
+    container_name: cs
+    image: ghcr.io/gameservermanagers/gameserver:cs
+    restart: unless-stopped
+    environment:
+      LGSM_GITHUBUSER: nasenov
+      LGSM_GITHUBREPO: LinuxGSM
+      LGSM_GITHUBBRANCH: fix/bump-amxmodx-version
+    networks:
+      apps_ipvlan:
+        ipv4_address: 192.168.0.54
+    volumes:
+      - /mnt/tank/apps/cs/data:/data
+
+networks:
+  apps_ipvlan:
+    external: true
