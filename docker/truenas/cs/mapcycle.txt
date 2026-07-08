@@ -1,6 +1,6 @@
 cs_alley
 de_snipe_it5
-aim_deagle
+aim_deaglemap
 fy_pool_day
 aim_aztec
 fy_aztec
