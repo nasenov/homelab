@@ -1,8 +1,10 @@
 cs_alley
-aim_aztec
+de_snipe_it5
+aim_deagle
 fy_pool_day
-aim_map
+aim_aztec
 fy_aztec
+aim_map
 awp_india
 fy_dust
 aim_headshot
