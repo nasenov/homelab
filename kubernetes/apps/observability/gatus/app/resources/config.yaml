@@ -16,20 +16,6 @@ connectivity:
 
 endpoints:
   # External Group
-  - name: cs
-    group: external
-    url: udp://cs.nasenov.dev:27015
-    conditions:
-      - "[CONNECTED] == true"
-    alerts:
-      - type: discord
-  - name: cskz
-    group: external
-    url: udp://cs.nasenov.dev:27017
-    conditions:
-      - "[CONNECTED] == true"
-    alerts:
-      - type: discord
   - name: flux-webhook
     group: external
     url: https://flux-webhook.nasenov.dev/hook
