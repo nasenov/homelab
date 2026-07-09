@@ -109,7 +109,7 @@ endpoints:
       - type: discord
   - name: miscale2pg
     group: internal
-    url: https://miscale2pg.nasenov.dev/actuator/readiness
+    url: https://miscale2pg.nasenov.dev/actuator/health/readiness
     conditions:
       - "[STATUS] == 200"
     alerts:
