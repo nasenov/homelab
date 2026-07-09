@@ -1,4 +1,6 @@
+aim_sk_ak_m4
 cs_alley
+aim_glock
 de_snipe_it5
 aim_deaglemap
 fy_pool_day
@@ -6,6 +8,7 @@ aim_aztec
 fy_aztec
 aim_map
 awp_india
+aim_map_usp
 fy_dust
 aim_headshot
 fy_snow
