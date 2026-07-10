@@ -46,7 +46,7 @@ jobs:
       packages: read
     steps:
       - name: Load Secrets
-        uses: bitwarden/sm-action@27c0c9dcab679d7250dbab91227c85b49ffa5e0f # v3.0.0
+        uses: bitwarden/sm-action@1238aae8fc64b212641190a9227c8a734ab1a793 # v3.0.1
         id: load-secrets
         with:
           access_token: ${{ secrets.BW_ACCESS_TOKEN }}
