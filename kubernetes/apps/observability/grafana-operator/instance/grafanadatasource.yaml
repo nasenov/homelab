@@ -94,12 +94,6 @@ spec:
     name: infinity
     access: proxy
     url: http://miscale2pg.development.svc.cluster.local/api/measurements
-    jsonData:
-      secureQueryName1: from
-      secureQueryName2: to
-    secureJsonData:
-      secureQueryValue1: ${__from:date:iso}
-      secureQueryValue2: ${__to:date:iso}
   plugins:
     - name: yesoreyeram-infinity-datasource
       version: latest
