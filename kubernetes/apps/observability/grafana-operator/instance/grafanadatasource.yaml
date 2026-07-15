@@ -78,3 +78,19 @@ spec:
         secretKeyRef:
           name: grafana-miscale2pg-datasource-configuration
           key: POSTGRES_DATASOURCE_PASSWORD
+---
+# yaml-language-server: $schema=https://k8s-schemas.home-operations.com/grafana.integreatly.org/grafanadatasource_v1beta1.json
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDatasource
+metadata:
+  name: infinity
+spec:
+  instanceSelector:
+    matchLabels:
+      dashboards: grafana
+  datasource:
+    type: yesoreyeram-infinity-datasource
+    name: infinity
+  plugins:
+    - name: yesoreyeram-infinity-datasource
+      version: latest
