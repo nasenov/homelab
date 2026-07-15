@@ -40,58 +40,13 @@ kind: GrafanaDatasource
 metadata:
   name: miscale2pg
 spec:
-  uid: e63033e0-b892-4acb-b709-9eacece5f411
-  instanceSelector:
-    matchLabels:
-      dashboards: grafana
-  datasource:
-    type: postgres
-    name: miscale2pg
-    access: proxy
-    url: ${POSTGRES_DATASOURCE_URL}
-    user: ${POSTGRES_DATASOURCE_USER}
-    secureJsonData:
-      password: ${POSTGRES_DATASOURCE_PASSWORD}
-    jsonData:
-      database: ${POSTGRES_DATASOURCE_DATABASE}
-      sslmode: require
-      maxOpenConns: 4
-      maxIdleConnsAuto: true
-  valuesFrom:
-    - targetPath: url
-      valueFrom:
-        secretKeyRef:
-          name: grafana-miscale2pg-datasource-configuration
-          key: POSTGRES_DATASOURCE_URL
-    - targetPath: jsonData.database
-      valueFrom:
-        secretKeyRef:
-          name: grafana-miscale2pg-datasource-configuration
-          key: POSTGRES_DATASOURCE_DATABASE
-    - targetPath: user
-      valueFrom:
-        secretKeyRef:
-          name: grafana-miscale2pg-datasource-configuration
-          key: POSTGRES_DATASOURCE_USER
-    - targetPath: secureJsonData.password
-      valueFrom:
-        secretKeyRef:
-          name: grafana-miscale2pg-datasource-configuration
-          key: POSTGRES_DATASOURCE_PASSWORD
----
-# yaml-language-server: $schema=https://k8s-schemas.home-operations.com/grafana.integreatly.org/grafanadatasource_v1beta1.json
-apiVersion: grafana.integreatly.org/v1beta1
-kind: GrafanaDatasource
-metadata:
-  name: infinity
-spec:
   uid: c21ac472-da08-4012-ae55-7b428c6caa21
   instanceSelector:
     matchLabels:
       dashboards: grafana
   datasource:
     type: yesoreyeram-infinity-datasource
-    name: infinity
+    name: miscale2pg
     access: proxy
     url: http://miscale2pg.development.svc.cluster.local/api/measurements
   plugins:
