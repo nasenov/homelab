@@ -11,5 +11,5 @@ spec:
       dashboards: grafana
   datasources:
     - datasourceName: infinity
-      inputName: datasource
+      inputName: DS_INFINITY
   url: https://raw.githubusercontent.com/nasenov/miscale2pg/refs/heads/main/dashboards/miscale2pg.json
