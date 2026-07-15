@@ -91,6 +91,7 @@ spec:
   datasource:
     type: yesoreyeram-infinity-datasource
     name: infinity
+    access: proxy
   plugins:
     - name: yesoreyeram-infinity-datasource
       version: latest
