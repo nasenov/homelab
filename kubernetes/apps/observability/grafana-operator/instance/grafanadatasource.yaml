@@ -85,6 +85,7 @@ kind: GrafanaDatasource
 metadata:
   name: infinity
 spec:
+  uid: c21ac472-da08-4012-ae55-7b428c6caa21
   instanceSelector:
     matchLabels:
       dashboards: grafana
@@ -93,6 +94,12 @@ spec:
     name: infinity
     access: proxy
     url: http://miscale2pg.development.svc.cluster.local/api/measurements
+    jsonData:
+      secureQueryName1: from
+      secureQueryName2: to
+    secureJsonData:
+      secureQueryValue1: ${__from:date:iso}
+      secureQueryValue2: ${__to:date:iso}
   plugins:
     - name: yesoreyeram-infinity-datasource
       version: latest
