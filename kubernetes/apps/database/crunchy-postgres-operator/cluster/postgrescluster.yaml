@@ -122,6 +122,11 @@ spec:
         - grafana
       password:
         type: AlphaNumeric
+    - name: miniflux
+      databases:
+        - miniflux
+      password:
+        type: AlphaNumeric
     - name: miscale2pg
       databases:
         - miscale2pg
