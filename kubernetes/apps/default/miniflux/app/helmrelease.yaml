@@ -29,6 +29,7 @@ spec:
             env:
               PORT: &port 80
               METRICS_COLLECTOR: 1
+              METRICS_ALLOWED_NETWORKS: 10.244.0.0/16
             envFrom:
               - secretRef:
                   name: "{{ .Release.Name }}"
