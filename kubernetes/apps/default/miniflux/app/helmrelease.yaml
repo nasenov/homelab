@@ -12,6 +12,8 @@ spec:
   values:
     controllers:
       miniflux:
+        annotations:
+          reloader.stakater.com/auto: "true"
         pod:
           securityContext:
             runAsNonRoot: true
@@ -26,6 +28,7 @@ spec:
               tag: 2.3.2@sha256:cd353a6af9ce663291f405eddef26fa0d567f486b521c5d34e3fb50e41938b9a
             env:
               PORT: &port 80
+              METRICS_COLLECTOR: 1
             envFrom:
               - secretRef:
                   name: "{{ .Release.Name }}"
@@ -71,6 +74,11 @@ spec:
         ports:
           http:
             port: *port
+
+    serviceMonitor:
+      app:
+        endpoints:
+          - port: http
 
     route:
       app:
