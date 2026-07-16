@@ -38,7 +38,7 @@ spec:
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDatasource
 metadata:
-  name: miscale2pg
+  name: infinity
 spec:
   uid: c21ac472-da08-4012-ae55-7b428c6caa21
   instanceSelector:
@@ -46,9 +46,8 @@ spec:
       dashboards: grafana
   datasource:
     type: yesoreyeram-infinity-datasource
-    name: miscale2pg
+    name: infinity
     access: proxy
-    url: http://miscale2pg.development.svc.cluster.local/api/measurements
   plugins:
     - name: yesoreyeram-infinity-datasource
       version: latest
