@@ -85,7 +85,7 @@ spec:
       app:
         hostnames:
           - "{{ .Release.Name }}.nasenov.dev"
-          # - feeds.nasenov.dev
+          - feeds.nasenov.dev
         parentRefs:
           - name: envoy-internal
             namespace: networking
