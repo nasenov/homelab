@@ -72,13 +72,6 @@ endpoints:
     url: https://flux-operator.nasenov.dev
     conditions:
       - "[STATUS] == 200"
-  - name: fusion
-    group: internal
-    url: https://fusion.nasenov.dev
-    conditions:
-      - "[STATUS] == 200"
-    alerts:
-      - type: discord
   - name: grafana
     group: internal
     url: https://grafana.nasenov.dev
@@ -103,6 +96,13 @@ endpoints:
   - name: k8s
     group: internal
     url: https://k8s.nasenov.dev:6443/readyz
+    conditions:
+      - "[STATUS] == 200"
+    alerts:
+      - type: discord
+  - name: miniflux
+    group: internal
+    url: https://miniflux.nasenov.dev/readiness
     conditions:
       - "[STATUS] == 200"
     alerts:
