@@ -25,6 +25,7 @@ spec:
               repository: ghcr.io/thelounge/thelounge
               tag: 4.5.2@sha256:6607c590e81c9d553e83a2536a816b5f5536e5f4dae806a1571c53649b30dd36
             env:
+              THELOUNGE_PORT: &port 80
               THELOUNGE_HOME: /config/thelounge
             probes:
               liveness:
@@ -47,7 +48,7 @@ spec:
       app:
         ports:
           http:
-            port: 9000
+            port: *port
 
     route:
       app:
