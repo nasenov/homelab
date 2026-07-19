@@ -5,9 +5,7 @@ services:
     image: ghcr.io/gameservermanagers/gameserver:cs
     restart: unless-stopped
     environment:
-      LGSM_GITHUBUSER: nasenov
-      LGSM_GITHUBREPO: LinuxGSM
-      LGSM_GITHUBBRANCH: fix/bump-amxmodx-version
+      LGSM_GITHUBBRANCH: develop
     networks:
       apps_ipvlan:
         ipv4_address: 192.168.0.54
