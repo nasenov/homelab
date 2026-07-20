@@ -7,6 +7,9 @@ metadata:
 spec:
   instances: 2
 
+  affinity:
+    podAntiAffinityType: required
+
   storage:
     size: 16Gi
     storageClass: openebs-hostpath
