@@ -4,8 +4,6 @@ services:
     container_name: cs
     image: ghcr.io/gameservermanagers/gameserver:cs
     restart: unless-stopped
-    environment:
-      LGSM_GITHUBBRANCH: develop
     networks:
       apps_ipvlan:
         ipv4_address: 192.168.0.54
