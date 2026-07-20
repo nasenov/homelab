@@ -19,3 +19,16 @@ spec:
     storageClass: openebs-hostpath
   affinity:
     podAntiAffinityType: required
+
+  managed:
+    services:
+      additional:
+        - selectorType: rw
+          serviceTemplate:
+            metadata:
+              name: postgres-lb
+              annotations:
+                external-dns.alpha.kubernetes.io/hostname: cnpg.nasenov.dev
+                lbipam.cilium.io/ips: 192.168.0.44
+            spec:
+              type: LoadBalancer
