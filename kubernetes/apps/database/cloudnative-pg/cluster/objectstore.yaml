@@ -1,0 +1,22 @@
+---
+# yaml-language-server: $schema=https://k8s-schemas.home-operations.com/barmancloud.cnpg.io/objectstore_v1.json
+apiVersion: barmancloud.cnpg.io/v1
+kind: ObjectStore
+metadata:
+  name: postgres-garage
+spec:
+  retentionPolicy: 30d
+  configuration:
+    destinationPath: s3://postgres/barman-cloud/database/postgres
+    endpointURL: https://s3.truenas.nasenov.dev
+    s3Credentials:
+      accessKeyId:
+        name: postgres-garage
+        key: ACCESS_KEY
+      secretAccessKey:
+        name: postgres-garage
+        key: ACCESS_KEY_SECRET
+    data:
+      compression: bzip2
+    wal:
+      compression: bzip2
