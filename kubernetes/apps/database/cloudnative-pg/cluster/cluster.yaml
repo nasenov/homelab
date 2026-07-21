@@ -32,3 +32,9 @@ spec:
                 lbipam.cilium.io/ips: 192.168.0.44
             spec:
               type: LoadBalancer
+
+  postgresql:
+    synchronous:
+      method: any
+      number: 1
+      dataDurability: preferred
