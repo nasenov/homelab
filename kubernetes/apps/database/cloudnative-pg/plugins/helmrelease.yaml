@@ -9,3 +9,5 @@ spec:
   chartRef:
     kind: OCIRepository
     name: barman-cloud-plugin
+  values:
+    fullnameOverride: barman-cloud-plugin
