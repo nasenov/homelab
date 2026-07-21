@@ -33,7 +33,7 @@ spec:
         podMonitorSelectorNilUsesHelmValues: false
         scrapeConfigSelectorNilUsesHelmValues: false
         retention: 7d
-        retentionSize: 8GiB
+        retentionSize: 16GiB
         resources:
           requests:
             cpu: 200m
