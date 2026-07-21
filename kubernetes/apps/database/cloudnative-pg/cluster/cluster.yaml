@@ -38,3 +38,29 @@ spec:
       method: any
       number: 1
       dataDurability: preferred
+
+  bootstrap:
+    initdb:
+      import:
+        type: monolith
+        databases:
+          - grafana
+          - miniflux
+          - miscale2pg
+        roles:
+          - grafana
+          - miniflux
+          - miscale2pg
+        source:
+          externalCluster: crunchy-postgres
+
+  externalClusters:
+    - name: crunchy-postgres
+      connectionParameters:
+        host: postgres-primary.database.svc.cluster.local
+        dbname: postgres
+        user: postgres
+        sslmode: require
+      password:
+        name: postgres-pguser-postgres
+        key: password
