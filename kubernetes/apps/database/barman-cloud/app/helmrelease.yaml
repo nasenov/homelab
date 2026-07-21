@@ -3,11 +3,11 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: barman-cloud-plugin
+  name: barman-cloud
 spec:
   interval: 1h
   chartRef:
     kind: OCIRepository
-    name: barman-cloud-plugin
+    name: barman-cloud
   values:
-    fullnameOverride: barman-cloud-plugin
+    fullnameOverride: barman-cloud
