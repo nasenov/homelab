@@ -8,4 +8,4 @@ resources:
   - ./objectstore.yaml
   - ./podmonitor.yaml
   - ./prometheusrule.yaml
-  - ./scheduledbackup.yaml
+  # - ./scheduledbackup.yaml
