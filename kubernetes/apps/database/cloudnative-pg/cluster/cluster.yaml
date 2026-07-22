@@ -7,8 +7,17 @@ metadata:
   annotations:
     cnpg.io/skipEmptyWalArchiveCheck: enabled
 spec:
+  affinity:
+    podAntiAffinityType: required
+
   instances: 2
+
   imageName: ghcr.io/cloudnative-pg/postgresql:18.4-standard-trixie@sha256:4e4ac3fb2c914cfb44f80f0b8be8aa550e83b80bf5220df49c3a8780c1f79bc8
+
+  storage:
+    size: 16Gi
+    storageClass: openebs-hostpath
+
   resources:
     requests:
       cpu: 250m
@@ -16,11 +25,6 @@ spec:
     limits:
       cpu: 250m
       memory: 512Mi
-  storage:
-    size: 16Gi
-    storageClass: openebs-hostpath
-  affinity:
-    podAntiAffinityType: required
 
   managed:
     services:
@@ -34,12 +38,6 @@ spec:
                 lbipam.cilium.io/ips: 192.168.0.44
             spec:
               type: LoadBalancer
-
-  postgresql:
-    synchronous:
-      method: any
-      number: 1
-      dataDurability: preferred
 
   # bootstrap:
   #   initdb:
@@ -68,6 +66,18 @@ spec:
   #       name: postgres-pguser-postgres
   #       key: password
 
+  postgresql:
+    synchronous:
+      method: any
+      number: 1
+      dataDurability: preferred
+
+  plugins:
+    - name: barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters:
+        barmanObjectName: garage
+
   bootstrap:
     recovery:
       source: origin
@@ -79,9 +89,3 @@ spec:
         parameters:
           barmanObjectName: garage
           serverName: postgres
-
-  plugins:
-    - name: barman-cloud.cloudnative-pg.io
-      isWALArchiver: true
-      parameters:
-        barmanObjectName: garage
