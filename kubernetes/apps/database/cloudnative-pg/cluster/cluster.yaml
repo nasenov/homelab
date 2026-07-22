@@ -66,6 +66,11 @@ spec:
   #       name: postgres-pguser-postgres
   #       key: password
 
+  enableSuperuserAccess: true
+
+  superuserSecret:
+    name: postgres-superuser
+
   postgresql:
     synchronous:
       method: any
