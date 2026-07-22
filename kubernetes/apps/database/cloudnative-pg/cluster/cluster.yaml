@@ -83,6 +83,7 @@ spec:
         name: barman-cloud.cloudnative-pg.io
         parameters:
           barmanObjectName: garage
+          serverName: postgres
 
   plugins:
     - name: barman-cloud.cloudnative-pg.io
