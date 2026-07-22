@@ -3,18 +3,18 @@
 apiVersion: barmancloud.cnpg.io/v1
 kind: ObjectStore
 metadata:
-  name: postgres-garage
+  name: garage
 spec:
   retentionPolicy: 30d
   configuration:
-    destinationPath: s3://postgres/barman-cloud/database/postgres
+    destinationPath: s3://postgres/barman-cloud/database
     endpointURL: https://s3.truenas.nasenov.dev
     s3Credentials:
       accessKeyId:
-        name: postgres-garage
+        name: garage
         key: ACCESS_KEY
       secretAccessKey:
-        name: postgres-garage
+        name: garage
         key: ACCESS_KEY_SECRET
     data:
       compression: bzip2
