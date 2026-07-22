@@ -24,3 +24,16 @@ spec:
   login: true
   passwordSecret:
     name: postgres-miniflux
+---
+# yaml-language-server: $schema=https://k8s-schemas.home-operations.com/postgresql.cnpg.io/databaserole_v1.json
+apiVersion: postgresql.cnpg.io/v1
+kind: DatabaseRole
+metadata:
+  name: miscale2pg
+spec:
+  cluster:
+    name: postgres
+  name: miscale2pg
+  login: true
+  passwordSecret:
+    name: postgres-miscale2pg
