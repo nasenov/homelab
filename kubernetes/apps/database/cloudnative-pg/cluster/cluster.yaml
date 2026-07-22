@@ -76,6 +76,8 @@ spec:
   bootstrap:
     recovery:
       source: origin
+      recoveryTarget:
+        backupID: 20260722T084100
 
   externalClusters:
     - name: origin
