@@ -24,7 +24,7 @@ spec:
   interval: 1h
   targetNamespace: observability
   dependsOn:
-    - name: crunchy-postgres-operator-cluster
+    - name: cloudnative-pg-cluster
       namespace: database
     - name: grafana-operator
       namespace: observability

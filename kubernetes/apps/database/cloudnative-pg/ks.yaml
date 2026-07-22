@@ -24,9 +24,9 @@ spec:
   interval: 1h
   targetNamespace: database
   dependsOn:
-    - name: cloudnative-pg
-      namespace: database
     - name: barman-cloud-objectstore
+      namespace: database
+    - name: cloudnative-pg
       namespace: database
     - name: openebs
       namespace: openebs
