@@ -68,8 +68,8 @@ spec:
 
   enableSuperuserAccess: true
 
-  # superuserSecret:
-  #   name: postgres-superuser
+  superuserSecret:
+    name: postgres-superuser-tmp
 
   postgresql:
     synchronous:
