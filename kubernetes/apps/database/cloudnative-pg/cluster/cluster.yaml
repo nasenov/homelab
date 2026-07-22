@@ -46,44 +46,44 @@ spec:
       "pgaudit.log_parameter": "on"
       "pgaudit.log_relation": "on"
 
-  bootstrap:
-    initdb:
-      import:
-        type: monolith
-        databases:
-          - grafana
-          - miniflux
-          - miscale2pg
-        roles:
-          - grafana
-          - miniflux
-          - miscale2pg
-          - _crunchypgbouncer
-        source:
-          externalCluster: crunchy-postgres
-
-  externalClusters:
-    - name: crunchy-postgres
-      connectionParameters:
-        host: postgres-primary.database.svc.cluster.local
-        dbname: postgres
-        user: postgres
-        sslmode: require
-      password:
-        name: postgres-pguser-postgres
-        key: password
-
   # bootstrap:
-  #   recovery:
-  #     source: origin
+  #   initdb:
+  #     import:
+  #       type: monolith
+  #       databases:
+  #         - grafana
+  #         - miniflux
+  #         - miscale2pg
+  #       roles:
+  #         - grafana
+  #         - miniflux
+  #         - miscale2pg
+  #         - _crunchypgbouncer
+  #       source:
+  #         externalCluster: crunchy-postgres
 
   # externalClusters:
-  #   - name: origin
-  #     plugin:
-  #       name: barman-cloud.cloudnative-pg.io
-  #       parameters:
-  #         barmanObjectName: garage
-  #         serverName: postgres
+  #   - name: crunchy-postgres
+  #     connectionParameters:
+  #       host: postgres-primary.database.svc.cluster.local
+  #       dbname: postgres
+  #       user: postgres
+  #       sslmode: require
+  #     password:
+  #       name: postgres-pguser-postgres
+  #       key: password
+
+  bootstrap:
+    recovery:
+      source: origin
+
+  externalClusters:
+    - name: origin
+      plugin:
+        name: barman-cloud.cloudnative-pg.io
+        parameters:
+          barmanObjectName: garage
+          serverName: postgres
 
   plugins:
     - name: barman-cloud.cloudnative-pg.io
