@@ -9,3 +9,5 @@ spec:
     name: postgres
   name: grafana
   login: true
+  passwordSecret:
+    name: postgres-grafana
