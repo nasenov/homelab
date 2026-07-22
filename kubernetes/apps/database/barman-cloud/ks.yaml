@@ -36,8 +36,3 @@ spec:
     name: flux-system
     namespace: flux-system
   wait: true
-  postBuild:
-    substituteFrom:
-      - kind: Secret
-        name: r2-endpoint
-        optional: false
