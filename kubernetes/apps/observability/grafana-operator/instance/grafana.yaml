@@ -59,8 +59,8 @@ spec:
       plugin_admin_enabled: "false"
     database:
       type: postgres
-      host: ${GRAFANA_DATABASE_HOST}
-      name: ${GRAFANA_DATABASE_NAME}
+      host: postgres-rw.database.svc.cluster.local:5432
+      name: grafana
       user: ${GRAFANA_DATABASE_USER}
       password: ${GRAFANA_DATABASE_PASSWORD}
       max_open_conn: "4"
