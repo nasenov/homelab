@@ -3,10 +3,10 @@
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
-  name: cnpg-rules
+  name: cloudnative-pg
 spec:
   groups:
-    - name: cnpg.rules
+    - name: cloudnative-pg.rules
       rules:
         - alert: LongRunningTransaction
           annotations:
