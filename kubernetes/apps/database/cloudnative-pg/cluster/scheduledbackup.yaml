@@ -8,7 +8,7 @@ spec:
   backupOwnerReference: self
   cluster:
     name: postgres
-  schedule: "@hourly"
+  schedule: "@daily"
   immediate: true
   method: plugin
   pluginConfiguration:
