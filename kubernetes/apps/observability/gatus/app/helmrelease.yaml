@@ -29,7 +29,6 @@ spec:
             env:
               TZ: Europe/Sofia
               GATUS_CONFIG_PATH: /config
-              GATUS_DELAY_START_SECONDS: 300
               GATUS_WEB_PORT: &port 80
             envFrom:
               - secretRef:

@@ -7,6 +7,9 @@ metadata:
 spec:
   interval: 1h
   targetNamespace: development
+  dependsOn:
+    - name: cloudnative-pg-cluster
+      namespace: database
   path: ./kubernetes/apps/development/miscale2pg/app
   prune: true
   sourceRef:
