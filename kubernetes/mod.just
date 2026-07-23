@@ -38,7 +38,7 @@ snapshot:
         kubectl --namespace "$ns" patch replicationsources "$name" --type merge -p "{\"spec\":{\"trigger\":{\"manual\":\"$(date +%s)\"}}}"
     done
 
-[arg('resource', pattern='hr|ks|gitrepo|ocirepo|es|cluster')]
+[arg('resource', pattern='hr|ks|gitrepo|ocirepo|es')]
 [doc('Sync a resource')]
 sync resource:
     kubectl get {{ resource }} --all-namespaces --no-headers | while read -r ns name _; do

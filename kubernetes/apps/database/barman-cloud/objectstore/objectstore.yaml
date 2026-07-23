@@ -18,13 +18,12 @@ spec:
         key: ACCESS_KEY_SECRET
     data:
       compression: lz4
-    # wal:
-    #   compression: lz4
+    wal:
+      compression: zstd
   instanceSidecarConfiguration:
     resources:
       requests:
-        cpu: 250m
+        cpu: 10m
         memory: 256Mi
       limits:
-        cpu: 250m
         memory: 256Mi
