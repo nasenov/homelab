@@ -19,7 +19,7 @@ spec:
     data:
       compression: lz4
     wal:
-      compression: zstd
+      compression: lz4
   instanceSidecarConfiguration:
     resources:
       requests:
