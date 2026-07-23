@@ -17,9 +17,9 @@ spec:
         name: garage
         key: ACCESS_KEY_SECRET
     data:
-      compression: bzip2
+      compression: lz4
     wal:
-      compression: bzip2
+      compression: zstd
   instanceSidecarConfiguration:
     resources:
       requests:
