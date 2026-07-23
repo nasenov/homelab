@@ -41,7 +41,6 @@ spec:
     - apiVersion: postgresql.cnpg.io/v1
       kind: Cluster
       current: status.conditions.filter(e, e.type == 'Ready').all(e, e.status == 'True')
-      failed: status.conditions.filter(e, e.type == 'Ready').all(e, e.status == 'False')
 ---
 # yaml-language-server: $schema=https://k8s-schemas.home-operations.com/kustomize.toolkit.fluxcd.io/kustomization_v1.json
 apiVersion: kustomize.toolkit.fluxcd.io/v1
