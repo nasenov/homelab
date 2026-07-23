@@ -15,10 +15,12 @@ spec:
         name: ceph-csi-drivers
   values:
     operatorConfig:
+      namespace: rook-ceph
       driverSpecDefaults:
         clusterName: rook-ceph
         imageSet:
           name: rook-csi-operator-image-set-configmap
+        snapshotPolicy: volumeSnapshot
         nodePlugin:
           priorityClassName: system-node-critical
           resources:
