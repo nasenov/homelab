@@ -9,10 +9,10 @@ resources:
   - ./namespace.yaml
   - ./actual/ks.yaml
   - ./audiobookshelf/ks.yaml
-  - ./autobrr/ks.yaml
+  # - ./autobrr/ks.yaml
   - ./bazarr/ks.yaml
   - ./home-assistant/ks.yaml
-  - ./jellyfin/ks.yaml
+  # - ./jellyfin/ks.yaml
   - ./miniflux/ks.yaml
   - ./mosquitto/ks.yaml
   - ./prowlarr/ks.yaml
@@ -23,4 +23,4 @@ resources:
   - ./seerr/ks.yaml
   - ./sonarr/ks.yaml
   - ./thelounge/ks.yaml
-  - ./zigbee/ks.yaml
+  # - ./zigbee/ks.yaml
