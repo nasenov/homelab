@@ -18,8 +18,8 @@ spec:
         key: ACCESS_KEY_SECRET
     data:
       compression: lz4
-    wal:
-      compression: lz4
+    # wal:
+    #   compression: lz4
   instanceSidecarConfiguration:
     resources:
       requests:
