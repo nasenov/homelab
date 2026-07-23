@@ -12,6 +12,8 @@ spec:
   datasources:
     - datasourceName: prometheus
       inputName: DS_PROMETHEUS
-  configMapRef:
-    name: cnpg-grafana-dashboard
-    key: cnp.json
+  # https://github.com/cloudnative-pg/grafana-dashboards/issues/44
+  url: https://raw.githubusercontent.com/cloudnative-pg/grafana-dashboards/refs/heads/main/charts/cluster/grafana-dashboard.json
+  # configMapRef:
+  #   name: cnpg-grafana-dashboard
+  #   key: cnp.json
