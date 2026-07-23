@@ -51,14 +51,14 @@ spec:
         enabled: true
         serviceMonitor:
           enabled: true
-          interval: ~
+          interval: 30s
       dashboards:
         enabled: true
     prometheus:
       enabled: true
       serviceMonitor:
         enabled: true
-        interval: ~
+        interval: 30s
     dashboards:
       enabled: true
     hubble:
