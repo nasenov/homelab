@@ -44,6 +44,8 @@ spec:
   superuserSecret:
     name: postgres-superuser
 
+  primaryUpdateMethod: switchover
+
   postgresql:
     synchronous:
       method: any
