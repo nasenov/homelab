@@ -76,6 +76,10 @@ spec:
       rbd:
         name: rook-ceph.rbd.csi.ceph.com
         snapshotPolicy: volumeSnapshot
+        controllerPlugin:
+          replicas: 2
+          deploymentStrategy:
+            type: Recreate
 
       nvmeof:
         enabled: false
