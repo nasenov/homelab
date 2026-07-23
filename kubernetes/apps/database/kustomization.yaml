@@ -9,4 +9,3 @@ resources:
   - ./namespace.yaml
   - ./barman-cloud/ks.yaml
   - ./cloudnative-pg/ks.yaml
-  - ./crunchy-postgres-operator/ks.yaml

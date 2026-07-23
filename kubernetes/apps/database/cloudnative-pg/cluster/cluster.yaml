@@ -34,37 +34,10 @@ spec:
             metadata:
               name: postgres-lb
               annotations:
-                external-dns.alpha.kubernetes.io/hostname: cnpg.nasenov.dev
-                lbipam.cilium.io/ips: 192.168.0.44
+                external-dns.alpha.kubernetes.io/hostname: postgres.nasenov.dev
+                lbipam.cilium.io/ips: 192.168.0.42
             spec:
               type: LoadBalancer
-
-  # bootstrap:
-  #   initdb:
-  #     import:
-  #       type: monolith
-  #       databases:
-  #         - grafana
-  #         - miniflux
-  #         - miscale2pg
-  #       roles:
-  #         - grafana
-  #         - miniflux
-  #         - miscale2pg
-  #         - _crunchypgbouncer
-  #       source:
-  #         externalCluster: crunchy-postgres
-
-  # externalClusters:
-  #   - name: crunchy-postgres
-  #     connectionParameters:
-  #       host: postgres-primary.database.svc.cluster.local
-  #       dbname: postgres
-  #       user: postgres
-  #       sslmode: require
-  #     password:
-  #       name: postgres-pguser-postgres
-  #       key: password
 
   enableSuperuserAccess: true
 
