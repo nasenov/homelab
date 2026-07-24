@@ -25,7 +25,7 @@ destroy:
 
 [private]
 apply:
-    terraform apply
+    terraform apply -auto-approve
 
 [private]
 apps:
