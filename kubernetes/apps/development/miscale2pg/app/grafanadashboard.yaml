@@ -10,6 +10,6 @@ spec:
     matchLabels:
       dashboards: grafana
   datasources:
-    - datasourceName: infinity
+    - datasourceName: miscale2pg
       inputName: DS_INFINITY
   url: https://raw.githubusercontent.com/nasenov/miscale2pg/refs/heads/main/dashboards/miscale2pg.json
