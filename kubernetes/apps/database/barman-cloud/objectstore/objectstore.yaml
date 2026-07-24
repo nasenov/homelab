@@ -5,7 +5,7 @@ kind: ObjectStore
 metadata:
   name: garage
 spec:
-  retentionPolicy: 30d
+  retentionPolicy: 7d
   configuration:
     destinationPath: s3://postgres/barman-cloud/database
     endpointURL: https://s3.truenas.nasenov.dev
