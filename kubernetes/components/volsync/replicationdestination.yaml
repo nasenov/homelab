@@ -8,7 +8,6 @@ spec:
   trigger:
     manual: restore-once
   restic:
-    previous: 25
     copyMethod: Snapshot
     repository: "${APP}-volsync-local"
     volumeSnapshotClassName: "${VOLSYNC_SNAPSHOTCLASS:=csi-ceph-blockpool}"
