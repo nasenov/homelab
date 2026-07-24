@@ -46,7 +46,7 @@ spec:
       dashboards: grafana
   datasource:
     type: yesoreyeram-infinity-datasource
-    name: infinity
+    name: miscale2pg
     access: proxy
     url: http://miscale2pg.development.svc.cluster.local/api/measurements
   plugins:
