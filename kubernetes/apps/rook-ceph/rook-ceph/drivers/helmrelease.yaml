@@ -76,7 +76,8 @@ spec:
       rbd:
         name: rook-ceph.rbd.csi.ceph.com
         snapshotPolicy: volumeSnapshot
-        kernelMountOptions: ms_mode=prefer-crc
+        kernelMountOptions:
+          ms_mode: prefer-crc
         controllerPlugin:
           replicas: 2
           deploymentStrategy:
