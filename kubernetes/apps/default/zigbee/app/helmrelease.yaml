@@ -54,7 +54,7 @@ spec:
                 cpu: 10m
               limits:
                 memory: 128Mi
-                squat.ai/zigbee: 1
+                devic.es/zigbee: 1
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
