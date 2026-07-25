@@ -23,8 +23,7 @@
       "groupName": "rook-ceph",
       "matchDatasources": ["docker"],
       "matchPackageNames": ["ghcr.io/rook/rook-ceph", "ghcr.io/rook/rook-ceph-cluster"],
-      "minimumGroupSize": 2,
-      "allowedVersions": "<1.20.0"
+      "minimumGroupSize": 2
     }
   ]
 }
