@@ -7,4 +7,5 @@ resources:
   - ./grafanadashboard.yaml
   - ./helmrelease.yaml
   - ./helmrepository.yaml
+  - ./mutatingadmissionpolicy.yaml
   - ./prometheusrule.yaml
