@@ -11,15 +11,17 @@ spec:
   provider:
     type: Kubernetes
     kubernetes:
-      envoyDaemonSet:
+      envoyDeployment:
+        replicas: 2
         container:
           imageRepository: mirror.gcr.io/envoyproxy/envoy
           resources:
             requests:
               cpu: 10m
-              memory: 64Mi
             limits:
               memory: 128Mi
+      envoyService:
+        externalTrafficPolicy: Cluster
 ---
 # yaml-language-server: $schema=https://k8s-schemas.home-operations.com/gateway.networking.k8s.io/gatewayclass_v1.json
 apiVersion: gateway.networking.k8s.io/v1
