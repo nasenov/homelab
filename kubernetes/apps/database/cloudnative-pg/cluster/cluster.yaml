@@ -12,7 +12,7 @@ spec:
 
   instances: 2
 
-  imageName: ghcr.io/cloudnative-pg/postgresql:17.10-standard-trixie@sha256:06b9545c1413caa37d9adcff8f1d8330a93b1d5fc625fee503c446a2d319d239
+  imageName: ghcr.io/cloudnative-pg/postgresql:18.4-standard-trixie@sha256:4e4ac3fb2c914cfb44f80f0b8be8aa550e83b80bf5220df49c3a8780c1f79bc8
 
   storage:
     size: 16Gi
