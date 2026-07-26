@@ -23,4 +23,5 @@ spec:
   postBuild:
     substitute:
       APP: jellyfin
+      VOLSYNC_SCHEDULE: 12 * * * *
       VOLSYNC_CAPACITY: 5Gi

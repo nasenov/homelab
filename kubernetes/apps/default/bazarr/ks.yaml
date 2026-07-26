@@ -21,3 +21,4 @@ spec:
   postBuild:
     substitute:
       APP: bazarr
+      VOLSYNC_SCHEDULE: 12 * * * *

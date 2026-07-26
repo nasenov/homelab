@@ -21,3 +21,4 @@ spec:
   postBuild:
     substitute:
       APP: actual
+      VOLSYNC_SCHEDULE: 0 * * * *

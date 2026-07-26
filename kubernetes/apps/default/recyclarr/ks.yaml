@@ -21,3 +21,4 @@ spec:
   postBuild:
     substitute:
       APP: recyclarr
+      VOLSYNC_SCHEDULE: 36 * * * *

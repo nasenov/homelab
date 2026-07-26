@@ -21,3 +21,4 @@ spec:
   postBuild:
     substitute:
       APP: home-assistant
+      VOLSYNC_SCHEDULE: 12 * * * *

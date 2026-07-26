@@ -21,3 +21,4 @@ spec:
   postBuild:
     substitute:
       APP: audiobookshelf
+      VOLSYNC_SCHEDULE: 0 * * * *

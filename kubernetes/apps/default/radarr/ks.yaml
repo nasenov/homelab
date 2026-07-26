@@ -21,3 +21,4 @@ spec:
   postBuild:
     substitute:
       APP: radarr
+      VOLSYNC_SCHEDULE: 36 * * * *

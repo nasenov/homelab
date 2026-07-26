@@ -21,3 +21,4 @@ spec:
   postBuild:
     substitute:
       APP: zigbee
+      VOLSYNC_SCHEDULE: 48 * * * *
