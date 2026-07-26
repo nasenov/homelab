@@ -9,6 +9,15 @@
         "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( repository=(?<registryUrl>\\S+))?\\n.+(:?[:=]\\s*)\"?(?<currentValue>[^\"\\s]+)\"?"
       ],
       "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}"
+    },
+    {
+      "description": "Detect CNPG Cluster CRD imageName + extension reference fields",
+      "customType": "regex",
+      "managerFilePatterns": ["/\\.yaml$/"],
+      "matchStrings": [
+        "(?:imageName|reference):\\s+(?<depName>[^:\\s]+):(?<currentValue>[^@\\s]+)(?:@(?<currentDigest>sha256:[a-f0-9]+))?"
+      ],
+      "datasourceTemplate": "docker"
     }
   ]
 }
