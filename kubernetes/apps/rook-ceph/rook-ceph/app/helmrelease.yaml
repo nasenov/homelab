@@ -16,10 +16,6 @@ spec:
     csi:
       enableCephfsDriver: false
       enableCephfsSnapshotter: false
-      enableLiveness: true
-      serviceMonitor:
-        enabled: true
-        interval: 30s
       csiRBDProvisionerResource: |
         - name : csi-provisioner
           resource:
@@ -55,13 +51,6 @@ spec:
               memory: 128Mi
             limits:
               memory: 256Mi
-        - name : liveness-prometheus
-          resource:
-            requests:
-              cpu: 50m
-              memory: 16Mi
-            limits:
-              memory: 16Mi
       csiRBDPluginResource: |
         - name : driver-registrar
           resource:
@@ -77,13 +66,6 @@ spec:
               memory: 128Mi
             limits:
               memory: 256Mi
-        - name : liveness-prometheus
-          resource:
-            requests:
-              cpu: 50m
-              memory: 16Mi
-            limits:
-              memory: 16Mi
 
     monitoring:
       enabled: true
