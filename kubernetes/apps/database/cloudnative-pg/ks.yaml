@@ -21,7 +21,6 @@ kind: Kustomization
 metadata:
   name: cloudnative-pg-cluster
 spec:
-  suspend: true
   interval: 1h
   targetNamespace: database
   dependsOn:
