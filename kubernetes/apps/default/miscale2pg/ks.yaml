@@ -6,11 +6,11 @@ metadata:
   name: miscale2pg
 spec:
   interval: 1h
-  targetNamespace: development
+  targetNamespace: default
   dependsOn:
     - name: cloudnative-pg-cluster
       namespace: database
-  path: ./kubernetes/apps/development/miscale2pg/app
+  path: ./kubernetes/apps/default/miscale2pg/app
   prune: true
   sourceRef:
     kind: GitRepository
