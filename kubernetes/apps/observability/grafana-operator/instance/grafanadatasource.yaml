@@ -48,7 +48,7 @@ spec:
     type: yesoreyeram-infinity-datasource
     name: miscale2pg
     access: proxy
-    url: http://miscale2pg.development.svc.cluster.local/api/measurements
+    url: http://miscale2pg.default.svc.cluster.local/api/measurements
   plugins:
     - name: yesoreyeram-infinity-datasource
       version: latest
