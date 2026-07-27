@@ -1,5 +1,6 @@
 aim_sk_ak_m4
 cs_alley
+fy_snow_dew
 aim_glock
 de_snipe_it5
 aim_deaglemap
