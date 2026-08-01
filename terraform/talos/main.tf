@@ -40,13 +40,19 @@ data "talos_machine_configuration" "this" {
 
   config_patches = concat(
     [for file_name in fileset(path.module, "resources/*.yaml") : file("${path.module}/${file_name}")],
-    # tuppr requirement
     [
       yamlencode({
-        machine = {
-          install = {
-            image = data.talos_image_factory_urls.this.urls.installer
+        apiVersion = "v1alpha1"
+        kind       = "UnattendedInstallConfig"
+        # tuppr requirement
+        installer = {
+          image = data.talos_image_factory_urls.this.urls.installer
+        }
+        provisioning = {
+          diskSelector = {
+            match = "disk.size == 256GB"
           }
+          wipe = false
         }
       })
     ]
