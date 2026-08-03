@@ -26,6 +26,11 @@ spec:
               tag: 2.0.22
             env:
               TZ: Europe/Sofia
+            probes:
+              liveness:
+                enabled: true
+              readiness:
+                enabled: true
             resources:
               requests:
                 cpu: 10m
