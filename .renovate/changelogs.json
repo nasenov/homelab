@@ -5,6 +5,11 @@
       "description": "Changelog URL for Cloudflared",
       "matchPackageNames": ["mirror.gcr.io/cloudflare/cloudflared"],
       "changelogUrl": "https://github.com/cloudflare/cloudflared/blob/master/RELEASE_NOTES"
+    },
+    {
+      "description": "Changelog URL for ActualBugdet",
+      "matchPackageNames": ["ghcr.io/actualbudget/actual-server"],
+      "changelogUrl": "https://actualbudget.org/blog/release-{{newVersion}}"
     }
   ]
 }
