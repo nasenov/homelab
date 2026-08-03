@@ -48,7 +48,7 @@ spec:
         ports:
           http:
             port: 80
-            targetPort: *port
+            targetPort: 8123
 
     serviceMonitor:
       app:

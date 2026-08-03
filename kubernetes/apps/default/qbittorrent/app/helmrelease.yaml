@@ -31,8 +31,10 @@ spec:
             probes:
               liveness:
                 enabled: true
+                port: *port
               readiness:
                 enabled: true
+                port: *port
             resources:
               requests:
                 cpu: 10m
