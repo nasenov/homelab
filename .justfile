@@ -1,21 +1,24 @@
 #!/usr/bin/env -S just --justfile
 
+set minimum-version := '1.55.0'
+
 set default-list
 set default-script
 set lazy
 set quiet
+set script-interpreter := ['bash', '-euo', 'pipefail']
 set shell := ['bash', '-euo', 'pipefail', '-c']
 
 # Kube Recipes
-[group: 'Kube']
+[group('Kube')]
 mod kube "kubernetes"
 
 # Talos Recipes
-[group: 'Talos']
+[group('Talos')]
 mod talos "terraform/talos"
 
 # Terraform Recipes
-[group: 'Terraform']
+[group('Terraform')]
 mod terraform "terraform"
 
 [doc('Bootstrap workstation')]
