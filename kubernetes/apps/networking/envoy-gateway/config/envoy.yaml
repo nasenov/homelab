@@ -111,6 +111,9 @@ spec:
     retryOn:
       triggers:
         - reset
+  timeout:
+    http:
+      requestTimeout: 0s
 ---
 # yaml-language-server: $schema=https://k8s-schemas.home-operations.com/gateway.envoyproxy.io/clienttrafficpolicy_v1alpha1.json
 apiVersion: gateway.envoyproxy.io/v1alpha1
