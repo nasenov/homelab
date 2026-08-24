@@ -102,6 +102,24 @@ resource "cloudflare_account_token" "rclone" {
   ]
 }
 
+resource "cloudflare_account_token" "truenas_admin" {
+  account_id = var.cloudflare_account_id
+  name       = "truenas-admin"
+  policies = [
+    {
+      effect = "allow"
+      permission_groups = [
+        { id = local.r2_storage_write_permission_group.id },
+        { id = local.r2_data_catalog_write_permission_group.id },
+        { id = local.r2_sql_read_permission_group.id }
+      ]
+      resources = jsonencode({
+        "com.cloudflare.api.account.${var.cloudflare_account_id}" : "*"
+      })
+    }
+  ]
+}
+
 resource "cloudflare_zero_trust_tunnel_cloudflared" "homelab" {
   account_id = var.cloudflare_account_id
   name       = "homelab"

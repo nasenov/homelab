@@ -23,6 +23,15 @@ output "rclone_account_token" {
   sensitive = true
 }
 
+output "truenas_admin_account_token" {
+  value = {
+    token             = cloudflare_account_token.truenas_admin.value
+    access_key        = cloudflare_account_token.truenas_admin.id
+    access_key_secret = sha256(cloudflare_account_token.truenas_admin.value)
+  }
+  sensitive = true
+}
+
 output "cloudflared_token" {
   value     = data.cloudflare_zero_trust_tunnel_cloudflared_token.homelab.token
   sensitive = true

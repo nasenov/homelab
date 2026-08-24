@@ -4,8 +4,11 @@ locals {
 }
 
 locals {
-  r2_buckets                       = toset(["obsidian", "truenas"])
-  r2_bucket_write_permission_group = one([for permission_group in data.cloudflare_account_api_token_permission_groups_list.permission_groups.result : permission_group if permission_group.name == "Workers R2 Storage Bucket Item Write"])
+  r2_buckets                             = toset(["obsidian", "truenas"])
+  r2_bucket_write_permission_group       = one([for permission_group in data.cloudflare_account_api_token_permission_groups_list.permission_groups.result : permission_group if permission_group.name == "Workers R2 Storage Bucket Item Write"])
+  r2_storage_write_permission_group      = one([for permission_group in data.cloudflare_account_api_token_permission_groups_list.permission_groups.result : permission_group if permission_group.name == "Workers R2 Storage Write"])
+  r2_data_catalog_write_permission_group = one([for permission_group in data.cloudflare_account_api_token_permission_groups_list.permission_groups.result : permission_group if permission_group.name == "Workers R2 Data Catalog Write"])
+  r2_sql_read_permission_group           = one([for permission_group in data.cloudflare_account_api_token_permission_groups_list.permission_groups.result : permission_group if permission_group.name == "Workers R2 SQL Read"])
 }
 
 locals {
