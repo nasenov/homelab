@@ -10,7 +10,7 @@ spec:
     schedule: "${VOLSYNC_SCHEDULE:=0 * * * *}"
   restic:
     copyMethod: "${VOLSYNC_COPYMETHOD:=Snapshot}"
-    pruneIntervalDays: 14
+    pruneIntervalDays: 1
     repository: "${APP}-volsync-local"
     volumeSnapshotClassName: "${VOLSYNC_SNAPSHOTCLASS:=csi-ceph-blockpool}"
     cacheStorageClassName: "${VOLSYNC_CACHE_SNAPSHOTCLASS:=ceph-block}"
