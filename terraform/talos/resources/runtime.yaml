@@ -1,0 +1,31 @@
+---
+apiVersion: v1alpha1
+kind: EtcFileConfig
+name: nfsmount.conf
+mode: 0o644
+contents: |
+  [ NFSMount_Global_Options ]
+  nfsvers=4.2
+  hard=True
+  nconnect=8
+  noatime=True
+  rsize=1048576
+  wsize=1048576
+---
+apiVersion: v1alpha1
+kind: KernelModuleConfig
+name: nbd
+---
+apiVersion: v1alpha1
+kind: SysctlConfig
+params:
+  fs.inotify.max_queued_events: "65536"
+  fs.inotify.max_user_watches: "524288"
+  fs.inotify.max_user_instances: "8192"
+  net.core.rmem_max: "7500000" # Cloudflared / QUIC
+  net.core.wmem_max: "7500000" # Cloudflared / QUIC
+---
+apiVersion: v1alpha1
+kind: WatchdogTimerConfig
+device: /dev/watchdog0
+timeout: 5m

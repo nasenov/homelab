@@ -38,19 +38,7 @@ data "talos_machine_configuration" "this" {
   # renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet
   kubernetes_version = "v1.36.4"
 
-  config_patches = concat(
-    [for file_name in fileset(path.module, "resources/*.yaml") : file("${path.module}/${file_name}")],
-    # tuppr requirement
-    [
-      yamlencode({
-        machine = {
-          install = {
-            image = data.talos_image_factory_urls.this.urls.installer
-          }
-        }
-      })
-    ]
-  )
+  config_patches = [for file_name in fileset(path.module, "resources/*.yaml") : file("${path.module}/${file_name}")]
 }
 
 resource "talos_machine_configuration_apply" "this" {
@@ -67,6 +55,20 @@ resource "talos_machine_configuration_apply" "this" {
       kind       = "HostnameConfig"
       hostname   = each.key
       auto       = "off"
+    }),
+    yamlencode({
+      apiVersion = "v1alpha1"
+      kind       = "UnattendedInstallConfig"
+      # tuppr requirement
+      installer = {
+        image = data.talos_image_factory_urls.this.urls.installer
+      }
+      provisioning = {
+        diskSelector = {
+          match = "disk.serial == \"${each.value.install_disk_serial}\""
+        }
+        wipe = false
+      }
     })
   ]
 }
