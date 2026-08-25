@@ -82,6 +82,17 @@ resource "talos_machine_bootstrap" "this" {
   node                 = talos_machine_configuration_apply.this["k8s-1"].endpoint
 }
 
+data "talos_cluster_health" "this" {
+  client_configuration   = talos_machine_bootstrap.this.client_configuration
+  endpoints              = local.endpoints
+  control_plane_nodes    = local.endpoints
+  skip_kubernetes_checks = true
+
+  timeouts = {
+    read = "5m"
+  }
+}
+
 data "talos_client_configuration" "this" {
   cluster_name         = data.talos_machine_configuration.this.cluster_name
   client_configuration = talos_machine_secrets.this.client_configuration
@@ -90,21 +101,6 @@ data "talos_client_configuration" "this" {
 }
 
 resource "talos_cluster_kubeconfig" "this" {
-  client_configuration = talos_machine_secrets.this.client_configuration
+  client_configuration = data.talos_cluster_health.this.client_configuration
   node                 = talos_machine_bootstrap.this.node
-}
-
-data "talos_cluster_health" "this" {
-  depends_on = [
-    talos_cluster_kubeconfig.this
-  ]
-
-  client_configuration   = talos_machine_secrets.this.client_configuration
-  endpoints              = local.endpoints
-  control_plane_nodes    = local.endpoints
-  skip_kubernetes_checks = true
-
-  timeouts = {
-    read = "5m"
-  }
 }
