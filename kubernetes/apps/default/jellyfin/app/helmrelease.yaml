@@ -22,6 +22,7 @@ spec:
             runAsGroup: 1000
             fsGroup: 1000
             fsGroupChangePolicy: OnRootMismatch
+          terminationGracePeriodSeconds: 120 # https://github.com/jellyfin/jellyfin/issues/17831
         containers:
           app:
             image:
@@ -42,6 +43,15 @@ spec:
                   timeoutSeconds: 1
                   failureThreshold: 3
               readiness: *probes
+              startup:
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /health
+                    port: *port
+                  periodSeconds: 30
+                  failureThreshold: 80
             resources:
               requests:
                 cpu: 10m
