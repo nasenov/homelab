@@ -20,8 +20,8 @@ fetch-kubeconfig:
 [confirm('Destroy Kubernetes cluster [y|N] ?')]
 [doc('Destroy Kubernetes cluster')]
 destroy:
-    talosctl reset --system-labels-to-wipe STATE --system-labels-to-wipe EPHEMERAL --system-labels-to-wipe u-openebs --graceful=false --reboot
     terraform state rm $(terraform state list)
+    talosctl reset --system-labels-to-wipe STATE --system-labels-to-wipe EPHEMERAL --system-labels-to-wipe u-openebs --graceful=false --reboot
 
 [private]
 apply:
