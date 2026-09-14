@@ -7,13 +7,19 @@
       "automerge": true,
       "automergeType": "pr",
       "matchUpdateTypes": ["minor", "patch"],
-      "matchPackageNames": [
-        "ghcr.io/prometheus-community/charts/kube-prometheus-stack",
-        "ghcr.io/home-operations/charts/kromgo",
-        "ghcr.io/home-operations/charts/tuppr"
-      ],
+      "matchPackageNames": ["ghcr.io/prometheus-community/charts/kube-prometheus-stack"],
       "ignoreTests": true,
       "schedule": ["before 6am on Monday"]
+    },
+    {
+      "description": "Auto-merge trusted GitHub Actions",
+      "matchManagers": ["github-actions"],
+      "automerge": true,
+      "automergeType": "branch",
+      "minimumReleaseAge": "1 minute",
+      "matchUpdateTypes": ["minor", "patch", "digest"],
+      "matchPackageNames": ["renovatebot/github-action"],
+      "ignoreTests": true
     }
   ]
 }
