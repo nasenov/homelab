@@ -39,3 +39,8 @@ spec:
       - tplinkwifi.net
     serviceMonitor:
       enabled: true
+    resources:
+      requests:
+        cpu: 10m
+      limits:
+        memory: 64Mi
