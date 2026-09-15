@@ -22,7 +22,6 @@ spec:
             runAsGroup: 1000
             fsGroup: 1000
             fsGroupChangePolicy: OnRootMismatch
-          terminationGracePeriodSeconds: 120 # https://github.com/jellyfin/jellyfin/issues/17831
         containers:
           app:
             image:
