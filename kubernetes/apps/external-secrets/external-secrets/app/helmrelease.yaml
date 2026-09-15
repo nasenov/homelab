@@ -12,6 +12,13 @@ spec:
   values:
     bitwarden-sdk-server:
       enabled: true
+
+      resources:
+        requests:
+          cpu: 10m
+        limits:
+          memory: 32Mi
+
       securityContext:
         runAsNonRoot: true
         readOnlyRootFilesystem: true
@@ -21,6 +28,12 @@ spec:
           drop:
             - ALL
 
+    resources:
+      requests:
+        cpu: 10m
+      limits:
+        memory: 64Mi
+
     serviceMonitor:
       enabled: true
 
@@ -29,8 +42,16 @@ spec:
 
     webhook:
       replicaCount: 2
+
       podDisruptionBudget:
         enabled: true
+
+      resources:
+        requests:
+          cpu: 10m
+        limits:
+          memory: 64Mi
+
       affinity:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
@@ -38,3 +59,10 @@ spec:
               labelSelector:
                 matchLabels:
                   app.kubernetes.io/name: external-secrets-webhook
+
+    certController:
+      resources:
+        requests:
+          cpu: 10m
+        limits:
+          memory: 64Mi
