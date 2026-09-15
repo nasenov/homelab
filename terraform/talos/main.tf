@@ -1,6 +1,6 @@
 data "talos_image_factory_extensions_versions" "this" {
   # renovate: datasource=custom.talos-factory depName=siderolabs/talos
-  talos_version = "v1.14.0"
+  talos_version = "v1.14.1"
 
   filters = {
     names = [
