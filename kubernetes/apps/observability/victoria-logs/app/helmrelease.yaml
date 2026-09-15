@@ -20,6 +20,11 @@ spec:
       persistentVolume:
         storageClassName: ceph-block
         size: 8Gi
+      resources:
+        requests:
+          cpu: 10m
+        limits:
+          memory: 512Mi
       route:
         enabled: true
         hostnames:
