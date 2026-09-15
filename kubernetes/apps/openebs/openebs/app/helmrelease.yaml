@@ -21,6 +21,11 @@ spec:
         image:
           registry: quay.io/
         basePath: /var/mnt/openebs/local
+        resources:
+          requests:
+            cpu: 10m
+          limits:
+            memory: 32Mi
       hostpathClass:
         xfsQuota:
           enabled: true
