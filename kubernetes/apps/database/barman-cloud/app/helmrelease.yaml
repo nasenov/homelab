@@ -11,3 +11,9 @@ spec:
     name: barman-cloud
   values:
     fullnameOverride: barman-cloud
+
+    resources:
+      requests:
+        cpu: 10m
+      limits:
+        memory: 32Mi
