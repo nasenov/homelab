@@ -10,6 +10,12 @@ spec:
     kind: OCIRepository
     name: kube-state-metrics
   values:
+    resources:
+      requests:
+        cpu: 10m
+      limits:
+        memory: 128Mi
+
     prometheus:
       monitor:
         enabled: true
