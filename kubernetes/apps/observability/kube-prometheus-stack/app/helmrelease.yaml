@@ -16,6 +16,14 @@ spec:
       rules:
         kubeApiserverBurnrate: false
 
+    prometheusOperator:
+      resources:
+        requests:
+          cpu: 10m
+          memory: 64Mi
+        limits:
+          memory: 64Mi
+
     prometheus:
       route:
         main:
@@ -36,7 +44,7 @@ spec:
         retentionSize: 12GiB
         resources:
           requests:
-            cpu: 200m
+            cpu: 100m
           limits:
             memory: 2Gi
         storageSpec:
