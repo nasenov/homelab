@@ -36,6 +36,7 @@ spec:
                 cpu: 10m
               limits:
                 memory: 512Mi
+                devic.es/zigbee: 1
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
