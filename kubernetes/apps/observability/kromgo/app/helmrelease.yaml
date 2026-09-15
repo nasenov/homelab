@@ -58,7 +58,7 @@ spec:
 
         - title: Power
           id: cluster_power_usage
-          query: avg(homeassistant_sensor_power_w{entity="sensor.0x70ac08fffe90a20f_power"})
+          query: avg(homeassistant_sensor_power_w{entity="sensor.living_room_tuya_zigbee_smart_plug_power"})
           valueExpr: humanizeCommas(math.round(result)) + "w"
           colorExpr: 'colorScale(result, [400.0, 750.0], ["green", "orange", "red"])'
 
