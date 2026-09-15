@@ -189,13 +189,6 @@ endpoints:
       - "[STATUS] == 200"
     alerts:
       - type: discord
-  - name: zigbee
-    group: internal
-    url: https://zigbee.nasenov.dev
-    conditions:
-      - "[STATUS] == 200"
-    alerts:
-      - type: discord
 
   # Infrastructure Group
   - name: garage

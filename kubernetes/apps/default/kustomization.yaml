@@ -15,7 +15,6 @@ resources:
   - ./jellyfin/ks.yaml
   - ./miniflux/ks.yaml
   - ./miscale2pg/ks.yaml
-  - ./mosquitto/ks.yaml
   - ./prowlarr/ks.yaml
   - ./qbittorrent/ks.yaml
   - ./qui/ks.yaml
@@ -24,4 +23,3 @@ resources:
   - ./seerr/ks.yaml
   - ./sonarr/ks.yaml
   - ./thelounge/ks.yaml
-  - ./zigbee/ks.yaml
