@@ -71,3 +71,7 @@ allowedRoles:
   - os:admin
 allowedKubernetesNamespaces:
   - system-upgrade
+---
+apiVersion: v1alpha1
+kind: KubeFlannelCNIConfig
+$patch: delete
