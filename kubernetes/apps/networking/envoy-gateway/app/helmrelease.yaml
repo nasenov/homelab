@@ -15,7 +15,7 @@ spec:
     deployment:
       envoyGateway:
         resources:
-          request:
+          requests:
             cpu: 10m
           limits:
             memory: 256Mi
