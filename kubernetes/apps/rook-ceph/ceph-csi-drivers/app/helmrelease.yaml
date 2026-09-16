@@ -24,13 +24,13 @@ spec:
           resources:
             plugin:
               requests:
-                cpu: 100m
-                memory: 128Mi
+                cpu: 10m
+                memory: 256Mi
               limits:
                 memory: 256Mi
             registrar:
               requests:
-                cpu: 50m
+                cpu: 10m
                 memory: 16Mi
               limits:
                 memory: 16Mi
@@ -40,33 +40,40 @@ spec:
           resources:
             attacher:
               requests:
-                cpu: 100m
+                cpu: 10m
                 memory: 32Mi
               limits:
                 memory: 32Mi
             plugin:
               requests:
+                cpu: 10m
                 memory: 128Mi
               limits:
-                memory: 256Mi
+                memory: 128Mi
             provisioner:
               requests:
-                cpu: 100m
+                cpu: 10m
                 memory: 64Mi
               limits:
                 memory: 64Mi
             resizer:
               requests:
-                cpu: 100m
+                cpu: 10m
                 memory: 32Mi
               limits:
                 memory: 32Mi
             snapshotter:
               requests:
-                cpu: 100m
+                cpu: 10m
                 memory: 32Mi
               limits:
                 memory: 32Mi
+            logRotator:
+              requests:
+                cpu: 10m
+                memory: 16Mi
+              limits:
+                memory: 16Mi
 
     drivers:
       rbd:

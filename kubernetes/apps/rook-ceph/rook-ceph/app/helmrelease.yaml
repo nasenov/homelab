@@ -13,6 +13,13 @@ spec:
     image:
       repository: ghcr.io/rook/ceph
 
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+      limits:
+        memory: 128Mi
+
     ceph-csi-operator:
       controllerManager:
         manager:
