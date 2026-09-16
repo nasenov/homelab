@@ -17,3 +17,8 @@ spec:
       privileged: true
       healthMonitoring:
         enabled: false
+      resources:
+        requests:
+          cpu: 10m
+        limits:
+          memory: 64Mi
