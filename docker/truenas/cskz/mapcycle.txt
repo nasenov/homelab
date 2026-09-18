@@ -1,4 +1,0 @@
-kz_longjumps
-kz_climbers_b01
-kz_man_owtcity
-bkz_goldbhop
