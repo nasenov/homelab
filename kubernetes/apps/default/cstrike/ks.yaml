@@ -23,3 +23,4 @@ spec:
       APP: cstrike
       VOLSYNC_SCHEDULE: 12 * * * *
       VOLSYNC_CAPACITY: 2Gi
+      VOLSYNC_STORAGECLASS: openebs-hostpath
