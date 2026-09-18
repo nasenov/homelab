@@ -35,4 +35,8 @@ spec:
 
     persistence:
       data:
-        existingClaim: "{{ .Release.Name }}"
+        # existingClaim: "{{ .Release.Name }}"
+        type: persistentVolumeClaim
+        storageClass: ceph-block
+        accessMode: ReadWriteOnce
+        size: 2Gi
