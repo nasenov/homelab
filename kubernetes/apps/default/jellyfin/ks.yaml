@@ -24,4 +24,4 @@ spec:
     substitute:
       APP: jellyfin
       VOLSYNC_CAPACITY: 5Gi
-      VOLSYNC_SCHEDULE: 12 * * * *
+      VOLSYNC_SCHEDULE: 24 * * * *

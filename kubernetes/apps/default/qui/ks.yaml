@@ -21,4 +21,4 @@ spec:
   postBuild:
     substitute:
       APP: qui
-      VOLSYNC_SCHEDULE: 24 * * * *
+      VOLSYNC_SCHEDULE: 36 * * * *

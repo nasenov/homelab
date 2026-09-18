@@ -21,4 +21,4 @@ spec:
   postBuild:
     substitute:
       APP: seerr
-      VOLSYNC_SCHEDULE: 36 * * * *
+      VOLSYNC_SCHEDULE: 48 * * * *
