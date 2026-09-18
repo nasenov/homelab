@@ -7,8 +7,8 @@ metadata:
 spec:
   interval: 1h
   targetNamespace: default
-  # components:
-  # - ../../../../components/volsync
+  components:
+    - ../../../../components/volsync
   dependsOn:
     - name: rook-ceph-cluster
       namespace: rook-ceph
@@ -18,8 +18,8 @@ spec:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-  # postBuild:
-  #   substitute:
-  #     APP: cstrike
-  #     VOLSYNC_SCHEDULE: 12 * * * *
-  #     VOLSYNC_CAPACITY: 2Gi
+  postBuild:
+    substitute:
+      APP: cstrike
+      VOLSYNC_CAPACITY: 2Gi
+      VOLSYNC_SCHEDULE: 12 * * * *
