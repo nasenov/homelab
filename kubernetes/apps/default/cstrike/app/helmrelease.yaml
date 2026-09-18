@@ -1,0 +1,38 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: cstrike
+spec:
+  interval: 1h
+  chartRef:
+    kind: OCIRepository
+    name: cstrike
+  values:
+    controllers:
+      cstrike:
+        containers:
+          app:
+            image:
+              repository: ghcr.io/gameservermanagers/gameserver
+              tag: cs@sha256:09d1049c21674ab973bb79df9dac357ccb095a856ac5c442a3925c960f638f5f
+            resources:
+              requests:
+                cpu: 10m
+              limits:
+                memory: 1Gi
+
+    service:
+      app:
+        type: LoadBalancer
+        annotations:
+          lbipam.cilium.io/ips: 192.168.0.44
+        ports:
+          game:
+            port: 27015
+            protocol: UDP
+
+    persistence:
+      data:
+        existingClaim: "{{ .Release.Name }}"
