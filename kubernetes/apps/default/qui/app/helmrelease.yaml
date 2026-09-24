@@ -33,13 +33,12 @@ spec:
               QUI__METRICS_ENABLED: true
               QUI__METRICS_HOST: 0.0.0.0
               QUI__METRICS_PORT: &metricsPort 8080
-              QUI__LOG_LEVEL: DEBUG
             envFrom:
               - secretRef:
                   name: "{{ .Release.Name }}"
             probes:
               liveness:
-                enabled: false
+                enabled: true
                 custom: true
                 spec:
                   httpGet:
@@ -50,7 +49,7 @@ spec:
                   timeoutSeconds: 1
                   failureThreshold: 3
               readiness:
-                enabled: false
+                enabled: true
                 custom: true
                 spec:
                   httpGet:
