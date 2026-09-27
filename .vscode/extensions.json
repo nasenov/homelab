@@ -5,7 +5,6 @@
     "nefrob.vscode-just-syntax",
     "redhat.vscode-yaml",
     "tombi-toml.tombi",
-    "oxc.oxc-vscode",
-    "ms-vscode-remote.remote-ssh"
+    "oxc.oxc-vscode"
   ]
 }
