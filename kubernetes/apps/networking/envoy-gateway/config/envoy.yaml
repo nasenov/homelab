@@ -108,7 +108,7 @@ spec:
   retry:
     retryOn:
       triggers:
-        - reset
+        - reset-before-request
   timeout:
     http:
       requestTimeout: 0s
