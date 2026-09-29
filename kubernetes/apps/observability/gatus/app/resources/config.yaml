@@ -109,7 +109,7 @@ endpoints:
       - type: discord
   - name: miniflux
     group: internal
-    url: https://miniflux.nasenov.dev/readiness
+    url: https://miniflux.nasenov.dev
     conditions:
       - "[STATUS] == 200"
     alerts:
