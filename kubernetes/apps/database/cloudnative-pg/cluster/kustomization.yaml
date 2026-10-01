@@ -9,3 +9,4 @@ resources:
   - ./externalsecret.yaml
   - ./podmonitor.yaml
   - ./scheduledbackup.yaml
+  - ./tcproute.yaml
