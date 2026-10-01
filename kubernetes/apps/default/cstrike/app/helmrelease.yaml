@@ -35,6 +35,13 @@ spec:
             port: 27015
             protocol: UDP
 
+    route:
+      app:
+        kind: UDPRoute
+        parentRefs:
+          - name: envoy-external
+            namespace: networking
+
     persistence:
       data:
         existingClaim: "{{ .Release.Name }}"
