@@ -4,6 +4,8 @@ apiVersion: gateway.networking.k8s.io/v1
 kind: TCPRoute
 metadata:
   name: postgres
+  annotations:
+    external-dns.kubernetes.io/hostname: postgres.nasenov.dev
 spec:
   parentRefs:
     - name: envoy-internal
