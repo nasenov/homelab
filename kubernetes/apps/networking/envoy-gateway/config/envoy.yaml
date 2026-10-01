@@ -46,7 +46,7 @@ spec:
   infrastructure:
     annotations:
       external-dns.kubernetes.io/hostname: *hostname
-      lbipam.cilium.io/ips: 192.168.0.43
+      lbipam.cilium.io/ips: 192.168.0.45
   listeners:
     - name: http
       protocol: HTTP
