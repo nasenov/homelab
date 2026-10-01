@@ -10,6 +10,11 @@
       "description": "Changelog URL for ActualBugdet",
       "matchPackageNames": ["ghcr.io/actualbudget/actual-server"],
       "changelogUrl": "https://actualbudget.org/blog/release-{{newVersion}}"
+    },
+    {
+      "description": "Changelog URL for External-DNS",
+      "matchPackageNames": ["external-dns"],
+      "changelogUrl": "https://github.com/kubernetes-sigs/external-dns/blob/master/charts/external-dns/CHANGELOG.md"
     }
   ]
 }
