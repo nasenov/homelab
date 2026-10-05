@@ -12,3 +12,4 @@ resources:
   - ./envoy-gateway/ks.yaml
   - ./external-dns-cloudflare/ks.yaml
   - ./external-dns-pihole/ks.yaml
+  - ./external-dns-unifi/ks.yaml
