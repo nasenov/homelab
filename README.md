@@ -114,7 +114,7 @@ While most of my infrastructure and workloads are self-hosted I do rely upon the
 
 I run two instances of [ExternalDNS](https://github.com/kubernetes-sigs/external-dns) to handle DNS automation:
 
-- **Private DNS**: Syncs records to my `Pi-hole`
+- **Private DNS**: Syncs records to my `UniFi Cloud Gateway Ultra`
 - **Public DNS**: Syncs records to `Cloudflare`
 
 This is achieved by defining routes with two specific gateways: `internal` for private DNS and `external` for public DNS. Each ExternalDNS instance watches for routes using its assigned gateway and syncs the appropriate DNS records to the corresponding platform.

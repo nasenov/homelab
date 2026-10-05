@@ -212,13 +212,6 @@ endpoints:
       - "[STATUS] == 200"
     alerts:
       - type: discord
-  - name: pihole
-    group: infrastructure
-    url: https://pihole.truenas.nasenov.dev/admin
-    conditions:
-      - "[STATUS] == 200"
-    alerts:
-      - type: discord
   - name: traefik
     group: infrastructure
     url: https://traefik.truenas.nasenov.dev
