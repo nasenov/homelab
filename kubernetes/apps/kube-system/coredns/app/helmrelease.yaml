@@ -75,7 +75,7 @@ spec:
           - topologyKey: kubernetes.io/hostname
             labelSelector:
               matchLabels:
-                app.kubernetes.io/instance: coredns
+                app.kubernetes.io/name: coredns
 
     tolerations:
       - key: CriticalAddonsOnly
