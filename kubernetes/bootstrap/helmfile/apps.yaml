@@ -29,7 +29,9 @@ releases:
           - wait
           - --for=create
           - --timeout=2m
-          - crd/ciliuml2announcementpolicies.cilium.io
+          - crd/ciliumbgpadvertisements.cilium.io
+          - crd/ciliumbgpclusterconfigs.cilium.io
+          - crd/ciliumbgppeerconfigs.cilium.io
           - crd/ciliumloadbalancerippools.cilium.io
         events:
           - postsync
@@ -41,7 +43,7 @@ releases:
           - --server-side
           - --force-conflicts
           - --namespace={{ .Release.Namespace }}
-          - --filename=../../apps/{{ .Release.Namespace }}/{{ .Release.Name }}/config/l2.yaml
+          - --kustomize=../../apps/{{ .Release.Namespace }}/{{ .Release.Name }}/config
         events:
           - postsync
         showlogs: true

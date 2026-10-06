@@ -42,7 +42,7 @@ spec:
       hostRoot: /sys/fs/cgroup
     k8sServiceHost: localhost
     k8sServicePort: 7445
-    l2announcements:
+    bgpControlPlane:
       enabled: true
     loadBalancer:
       mode: dsr
