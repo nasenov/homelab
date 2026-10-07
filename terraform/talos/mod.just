@@ -4,18 +4,23 @@ set quiet
 set script-interpreter := ['bash', '-euo', 'pipefail']
 set shell := ['bash', '-euo', 'pipefail', '-c']
 
+controller := `talosctl config info -o json | jq '.endpoints.[0]'`
+
 [confirm('Bootstrap Kubernetes cluster [y|N] ?')]
 [doc('Bootstrap Kubernetes cluster')]
-bootstrap: apply fetch-talosconfig fetch-kubeconfig apps
+bootstrap: apply talosconfig (kubeconfig "node") apps kubeconfig
 
 [doc('Fetch talosconfig')]
-fetch-talosconfig:
+talosconfig:
     umask 077
     terraform output --raw talosconfig > {{ justfile_directory() }}/talosconfig
 
 [doc('Fetch kubeconfig')]
-fetch-kubeconfig:
-    talosctl kubeconfig --nodes $(talosctl config info -o json | jq '.endpoints.[0]') --force {{ justfile_directory() }}
+kubeconfig lb="cilium":
+    talosctl kubeconfig --nodes "{{ controller }}" --force {{ justfile_directory() }}
+    if [[ "{{ lb }}" != "cilium" ]]; then
+        kubectl config set-cluster homelab --server "https://{{ controller }}:6443"
+    fi
 
 [confirm('Destroy Kubernetes cluster [y|N] ?')]
 [doc('Destroy Kubernetes cluster')]

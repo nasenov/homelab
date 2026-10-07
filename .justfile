@@ -26,5 +26,5 @@ mod terraform "terraform"
 bootstrap-workstation:
     just terraform init
     just terraform sync-tfvars
-    just talos fetch-talosconfig
-    just talos fetch-kubeconfig
+    just talos talosconfig
+    just talos kubeconfig
