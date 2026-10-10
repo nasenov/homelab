@@ -16,7 +16,7 @@ spec:
           app:
             image:
               repository: ghcr.io/gameservermanagers/gameserver
-              tag: cs@sha256:46ee613f5e395c47413cbcd78e6048388046878aeba8500972cb627d2673d5e1
+              tag: cs@sha256:8ec66a2be17b1281909efbc8d7674221cb194cce8c8f8df254e77730f2ad7862
             env:
               LGSM_GITHUBBRANCH: develop
             resources:
