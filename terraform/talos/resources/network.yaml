@@ -5,6 +5,8 @@ name: eno1
 features:
   tx-tcp-segmentation: false
   tx-generic-segmentation: false
+rings:
+  rx: 512
 ---
 apiVersion: v1alpha1
 kind: TimeSyncConfig
