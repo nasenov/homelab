@@ -6,7 +6,7 @@ features:
   tx-tcp-segmentation: false
   tx-generic-segmentation: false
 rings:
-  rx: 512
+  rx: 1024
 ---
 apiVersion: v1alpha1
 kind: TimeSyncConfig
