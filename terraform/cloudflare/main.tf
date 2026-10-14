@@ -1,13 +1,3 @@
-# Registrar API doesn't support account API tokens
-# https://developers.cloudflare.com/fundamentals/api/get-started/account-owned-tokens/#compatibility-matrix
-# resource "cloudflare_registrar_domain" "nasenov_dev" {
-#   account_id  = var.cloudflare_account_id
-#   domain_name = "nasenov.dev"
-#   auto_renew  = true
-#   locked      = true
-#   privacy     = true
-# }
-
 resource "cloudflare_zone" "nasenov_dev" {
   account = {
     id = var.cloudflare_account_id
