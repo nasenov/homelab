@@ -62,7 +62,6 @@ This Git repository contains the following directories under [Kubernetes](./kube
 ├── 📁 apps       # applications
 ├── 📁 bootstrap  # bootstrap configuration
 ├── 📁 components # re-useable kustomize components
-└── 📁 cluster    # flux system configuration
 ```
 
 ### Cluster layout
