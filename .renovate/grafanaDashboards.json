@@ -25,8 +25,6 @@
   "packageRules": [
     {
       "automerge": true,
-      "automergeType": "branch",
-      "ignoreTests": true,
       "matchDatasources": ["custom.grafana-dashboards"],
       "matchUpdateTypes": ["major"],
       "semanticCommitType": "chore",

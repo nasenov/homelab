@@ -7,8 +7,6 @@
       "matchPackageNames": ["ghcr.io/prometheus-community/charts/kube-prometheus-stack"],
       "matchUpdateTypes": ["minor", "patch"],
       "automerge": true,
-      "automergeType": "pr",
-      "ignoreTests": true,
       "schedule": ["before 6am on Monday"]
     },
     {
@@ -16,9 +14,7 @@
       "matchManagers": ["github-actions"],
       "matchUpdateTypes": ["minor", "patch", "digest"],
       "automerge": true,
-      "automergeType": "branch",
-      "minimumReleaseAge": "3 days",
-      "ignoreTests": true
+      "minimumReleaseAge": "3 days"
     }
   ]
 }
