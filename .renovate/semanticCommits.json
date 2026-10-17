@@ -28,6 +28,12 @@
       "commitMessageTopic": "image {{depName}}"
     },
     {
+      "matchDatasources": ["docker"],
+      "matchFileNames": ["**/ocirepository.yaml"],
+      "semanticCommitScope": "helm",
+      "commitMessageTopic": "chart {{depName}}"
+    },
+    {
       "matchDatasources": ["helm"],
       "semanticCommitScope": "helm",
       "commitMessageTopic": "chart {{depName}}"
