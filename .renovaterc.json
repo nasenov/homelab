@@ -12,7 +12,6 @@
     "github>nasenov/homelab//.renovate/labels.json",
     "github>nasenov/homelab//.renovate/semanticCommits.json",
     "github>nasenov/homelab//.renovate/talosFactory.json",
-    ":automergeBranch",
     ":disableRateLimiting",
     ":dependencyDashboard",
     ":semanticCommits",
