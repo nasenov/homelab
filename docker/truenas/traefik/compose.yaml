@@ -31,7 +31,7 @@ services:
       - traefik_cloudflare_api_token
     networks:
       apps_ipvlan:
-        ipv4_address: 192.168.0.16
+        ipv4_address: 192.168.20.16
       apps_bridge:
     extra_hosts:
       - host.docker.internal:host-gateway
