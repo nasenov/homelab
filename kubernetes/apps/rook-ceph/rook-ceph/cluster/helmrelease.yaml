@@ -28,17 +28,7 @@ spec:
         CephNodeDiskspaceWarning:
           disabled: true
         CephNodeNetworkPacketDrops:
-          expr: |
-            (
-              rate(node_network_receive_drop_total{device!="lo"}[5m]) +
-              rate(node_network_transmit_drop_total{device!="lo"}[5m])
-            ) / (
-              rate(node_network_receive_packets_total{device!="lo"}[5m]) +
-              rate(node_network_transmit_packets_total{device!="lo"}[5m])
-            ) >= 0.0050000000000000001 and (
-              rate(node_network_receive_drop_total{device!="lo"}[5m]) +
-              rate(node_network_transmit_drop_total{device!="lo"}[5m])
-            ) >= 10
+          disabled: true
 
     cephClusterSpec:
       cephConfig:
