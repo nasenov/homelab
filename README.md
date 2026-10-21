@@ -127,4 +127,5 @@ This is achieved by defining routes with two specific gateways: `internal` for p
 | Lenovo m90q i5-10500T     | 3   | 256GB NVMe   | 500GB SSD (local) / 1TB NVMe (rook-ceph) | 32GB | Talos   | Kubernetes |
 | Aoostar WTR PRO 5825U     | 1   | 512GB NVMe   | 2x2TB SSD                                | 16GB | TrueNAS | NAS        |
 | UniFi Cloud Gateway Ultra | 1   | -            | -                                        | -    | -       | Router     |
-| TP-Link Archer AX53       | 1   | -            | -                                        | -    | -       | AP         |
+| UniFi Switch Lite 8 PoE   | 1   | -            | -                                        | -    | -       | Switch     |
+| UniFi U7 Lite             | 1   | -            | -                                        | -    | -       | AP         |
