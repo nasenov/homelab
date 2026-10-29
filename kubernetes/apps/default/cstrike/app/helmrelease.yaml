@@ -17,8 +17,6 @@ spec:
             image:
               repository: ghcr.io/gameservermanagers/gameserver
               tag: cs@sha256:4ad3847a3b2c1d215ac2d9dd51009ab0e6837c9b783099184e02ab42117c1707
-            env:
-              LGSM_GITHUBBRANCH: develop
             resources:
               requests:
                 cpu: 10m
