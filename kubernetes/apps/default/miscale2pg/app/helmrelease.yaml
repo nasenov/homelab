@@ -40,6 +40,8 @@ spec:
             envFrom:
               - secretRef:
                   name: "{{ .Release.Name }}"
+              - secretRef:
+                  name: "{{ .Release.Name }}-database"
             probes:
               liveness:
                 enabled: true
