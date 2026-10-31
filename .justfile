@@ -15,16 +15,16 @@ mod kube "kubernetes"
 
 # Talos Recipes
 [group('Talos')]
-mod talos "terraform/talos"
+mod talos "opentofu/talos"
 
-# Terraform Recipes
-[group('Terraform')]
-mod terraform "terraform"
+# OpenTofu Recipes
+[group('OpenTofu')]
+mod tofu "opentofu"
 
 [doc('Bootstrap workstation')]
 [script]
 bootstrap-workstation:
-    just terraform init
-    just terraform sync-tfvars
+    just tofu init
+    just tofu sync-tfvars
     just talos talosconfig
     just talos kubeconfig

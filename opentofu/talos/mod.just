@@ -13,7 +13,7 @@ bootstrap: apply talosconfig (kubeconfig "node") apps kubeconfig
 [doc('Fetch talosconfig')]
 talosconfig:
     umask 077
-    terraform output --raw talosconfig > {{ justfile_directory() }}/talosconfig
+    tofu output --raw talosconfig > {{ justfile_directory() }}/talosconfig
 
 [doc('Fetch kubeconfig')]
 kubeconfig lb="cilium":
@@ -25,12 +25,12 @@ kubeconfig lb="cilium":
 [confirm('Destroy Kubernetes cluster [y|N] ?')]
 [doc('Destroy Kubernetes cluster')]
 destroy:
-    terraform state rm $(terraform state list)
+    tofu state rm $(tofu state list)
     talosctl reset --system-labels-to-wipe STATE --system-labels-to-wipe EPHEMERAL --system-labels-to-wipe u-openebs --graceful=false --reboot
 
 [private]
 apply:
-    terraform apply -auto-approve
+    tofu apply --auto-approve
 
 [private]
 apps:

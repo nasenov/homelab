@@ -50,8 +50,8 @@
     },
     {
       "matchDatasources": ["terraform-provider"],
-      "semanticCommitScope": "terraform",
-      "commitMessageTopic": "terraform {{depName}}"
+      "semanticCommitScope": "opentofu",
+      "commitMessageTopic": "opentofu {{depName}}"
     }
   ]
 }

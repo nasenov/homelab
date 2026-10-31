@@ -1,6 +1,6 @@
 {
   "recommendations": [
-    "hashicorp.terraform",
+    "opentofu.vscode-opentofu",
     "hverlin.mise-vscode",
     "nefrob.vscode-just-syntax",
     "redhat.vscode-yaml",
