@@ -57,6 +57,7 @@ spec:
       news_feed_enabled: "false"
     plugins:
       plugin_admin_enabled: "false"
+      preinstall_auto_update: "false"
     database:
       type: postgres
       host: postgres-rw.database.svc.cluster.local:5432
