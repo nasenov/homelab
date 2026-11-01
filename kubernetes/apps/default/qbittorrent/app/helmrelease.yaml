@@ -59,7 +59,6 @@ spec:
       app:
         hostnames:
           - "{{ .Release.Name }}.nasenov.dev"
-          - qb.nasenov.dev
         parentRefs:
           - name: envoy-internal
             namespace: networking
