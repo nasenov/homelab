@@ -19,3 +19,21 @@ spec:
           memory: 256Mi
         limits:
           memory: 256Mi
+
+    prometheus:
+      serviceMonitor:
+        enabled: true
+      inferencePodMonitor:
+        enabled: true
+      prometheusRule:
+        enabled: true
+        namespace: ai
+
+    grafana:
+      dashboards:
+        enabled: true
+        operator:
+          enabled: true
+          instanceSelector:
+            matchLabels:
+              dashboards: grafana
