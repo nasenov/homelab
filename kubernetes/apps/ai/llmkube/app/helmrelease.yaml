@@ -27,7 +27,7 @@ spec:
       serviceMonitor:
         enabled: true
       inferencePodMonitor:
-        enabled: true
+        enabled: false
       prometheusRule:
         enabled: true
         namespace: ai
