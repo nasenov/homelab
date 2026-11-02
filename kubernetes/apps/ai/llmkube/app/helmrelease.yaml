@@ -20,6 +20,9 @@ spec:
         limits:
           memory: 256Mi
 
+    metrics:
+      secure: false
+
     prometheus:
       serviceMonitor:
         enabled: true
