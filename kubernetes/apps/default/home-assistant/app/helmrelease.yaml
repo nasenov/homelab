@@ -13,6 +13,14 @@ spec:
     controllers:
       home-assistant:
         pod:
+          annotations:
+            k8s.v1.cni.cncf.io/networks: |-
+              [{
+                "name": "iot",
+                "namespace": "kube-system",
+                "ips": ["192.168.40.5/24"],
+                "mac": "02:00:c0:a8:28:05"
+              }]
           securityContext:
             runAsNonRoot: true
             runAsUser: 1000
