@@ -7,6 +7,16 @@ features:
   tx-generic-segmentation: false
 ---
 apiVersion: v1alpha1
+kind: DHCPv4Config
+name: eno1
+---
+apiVersion: v1alpha1
+kind: VLANConfig
+name: eno1.3
+vlanID: 3
+parent: eno1
+---
+apiVersion: v1alpha1
 kind: TimeSyncConfig
 ntp:
   servers:
