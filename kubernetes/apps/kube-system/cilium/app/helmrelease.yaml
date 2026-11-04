@@ -10,6 +10,8 @@ spec:
     kind: OCIRepository
     name: cilium
   values:
+    cni:
+      exclusive: false
     ipam:
       mode: kubernetes
     kubeProxyReplacement: true
