@@ -33,6 +33,7 @@ spec:
       - --cloudflare-dns-records-per-page=1000
       - --cloudflare-proxied
       - --gateway-name=envoy-external
+      - --label-filter=external-dns.kubernetes.io/cloudflare notin (false)
     triggerLoopOnEvent: true
     policy: sync
     sources:
