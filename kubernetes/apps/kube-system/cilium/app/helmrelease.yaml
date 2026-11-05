@@ -12,7 +12,7 @@ spec:
   values:
     cni:
       exclusive: false
-    devices: eno+
+    devices: bond+
     ipam:
       mode: kubernetes
     kubeProxyReplacement: true

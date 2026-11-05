@@ -7,14 +7,21 @@ features:
   tx-generic-segmentation: false
 ---
 apiVersion: v1alpha1
+kind: BondConfig
+name: bond0
+links:
+  - eno1
+bondMode: active-backup
+---
+apiVersion: v1alpha1
 kind: DHCPv4Config
-name: eno1
+name: bond0
 ---
 apiVersion: v1alpha1
 kind: VLANConfig
-name: eno1.3
+name: bond0.3
 vlanID: 3
-parent: eno1
+parent: bond0
 ---
 apiVersion: v1alpha1
 kind: TimeSyncConfig
