@@ -48,6 +48,7 @@ spec:
     bgpControlPlane:
       enabled: true
     loadBalancer:
+      algorithm: maglev
       mode: dsr
     routingMode: native
     ipv4NativeRoutingCIDR: 10.244.0.0/16
