@@ -24,6 +24,26 @@ spec:
                 cpu: 10m
               limits:
                 memory: 1Gi
+          fastdl:
+            image:
+              repository: ghcr.io/nginx/nginx-unprivileged
+              tag: 1.31.8@sha256:e1d940677c62963156c6aad83001f37955e58b74343481503c3761d340fb8bb9
+            probes:
+              liveness: &probes
+                enabled: true
+                port: 8080
+              readiness: *probes
+            resources:
+              requests:
+                cpu: 10m
+              limits:
+                memory: 128Mi
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities:
+                drop:
+                  - ALL
 
     service:
       app:
@@ -42,11 +62,22 @@ spec:
     persistence:
       data:
         existingClaim: "{{ .Release.Name }}"
+        advancedMounts:
+          cstrike:
+            app:
+              - path: /data
       fastdl:
         forceRename: cstrike-fastdl
         type: persistentVolumeClaim
         storageClass: ceph-block
         accessMode: ReadWriteOnce
         size: 1Gi
-        globalMounts:
-          - path: /app/public_html
+        advancedMounts:
+          cstrike:
+            app:
+              - path: /app/public_html
+            fastdl:
+              - path: /usr/share/nginx/html
+                readOnly: true
+      tmp:
+        type: emptyDir
