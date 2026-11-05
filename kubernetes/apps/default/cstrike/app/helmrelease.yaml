@@ -28,11 +28,6 @@ spec:
             image:
               repository: ghcr.io/nginx/nginx-unprivileged
               tag: 1.31.8@sha256:e1d940677c62963156c6aad83001f37955e58b74343481503c3761d340fb8bb9
-            probes:
-              liveness: &probes
-                enabled: true
-                port: 8080
-              readiness: *probes
             resources:
               requests:
                 cpu: 10m
@@ -49,8 +44,10 @@ spec:
       app:
         ports:
           game:
-            port: 27015
+            port: &gamePort 27015
             protocol: UDP
+          http:
+            port: &httpPort 8080
 
     route:
       app:
@@ -58,6 +55,23 @@ spec:
         parentRefs:
           - name: envoy-external
             namespace: networking
+        rules:
+          - backendRefs:
+              - identifier: app
+                port: *gamePort
+      fastdl:
+        annotations:
+          external-dns.kubernetes.io/controller: none
+        hostnames:
+          - cs.nasenov.dev
+        parentRefs:
+          - name: envoy-external
+            namespace: networking
+            sectionName: cstrike-fastdl
+        rules:
+          - backendRefs:
+              - identifier: app
+                port: *httpPort
 
     persistence:
       data:

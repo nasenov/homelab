@@ -69,6 +69,12 @@ spec:
       allowedRoutes:
         namespaces:
           from: All
+    - name: cstrike-fastdl
+      protocol: HTTP
+      port: 27015
+      allowedRoutes:
+        namespaces:
+          from: All
     - name: bittorrent
       protocol: TCP
       port: 50413
