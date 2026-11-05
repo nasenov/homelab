@@ -42,3 +42,11 @@ spec:
     persistence:
       data:
         existingClaim: "{{ .Release.Name }}"
+      fastdl:
+        forceRename: cstrike-fastdl
+        type: persistentVolumeClaim
+        storageClass: ceph-block
+        accessMode: ReadWriteOnce
+        size: 1Gi
+        globalMounts:
+          - path: /app/public_html
