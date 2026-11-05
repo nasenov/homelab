@@ -30,9 +30,6 @@ spec:
               TZ: Europe/Sofia
               GATUS_CONFIG_PATH: /config
               GATUS_WEB_PORT: &port 80
-            envFrom:
-              - secretRef:
-                  name: "{{ .Release.Name }}"
             probes:
               liveness: &probes
                 enabled: true

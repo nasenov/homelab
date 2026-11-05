@@ -1,14 +1,4 @@
 ---
-alerting:
-  discord:
-    webhook-url: ${GATUS_DISCORD_WEBHOOK_URL}
-    default-alert:
-      description: health check failed
-      send-on-resolved: true
-      success-threshold: 3
-      failure-threshold: 1
-      minimum-reminder-interval: 1h
-
 connectivity:
   checker:
     target: 1.1.1.1:53
@@ -21,22 +11,16 @@ endpoints:
     url: udp://cs.nasenov.dev:27015
     conditions:
       - "[CONNECTED] == true"
-    alerts:
-      - type: discord
   - name: flux-webhook
     group: external
     url: https://flux-webhook.nasenov.dev/hook
     conditions:
       - "[STATUS] == 404"
-    alerts:
-      - type: discord
   - name: kromgo
     group: external
     url: https://kromgo.nasenov.dev
     conditions:
       - "[STATUS] == 200"
-    alerts:
-      - type: discord
 
   # Internal Group
   - name: actual
@@ -44,36 +28,26 @@ endpoints:
     url: https://actual.nasenov.dev
     conditions:
       - "[STATUS] == 200"
-    alerts:
-      - type: discord
   - name: alertmanger
     group: internal
     url: https://alertmanager.nasenov.dev
     conditions:
       - "[STATUS] == 200"
-    alerts:
-      - type: discord
   - name: audiobookshelf
     group: internal
     url: https://audiobookshelf.nasenov.dev
     conditions:
       - "[STATUS] == 200"
-    alerts:
-      - type: discord
   - name: autobrr
     group: internal
     url: https://autobrr.nasenov.dev
     conditions:
       - "[STATUS] == 200"
-    alerts:
-      - type: discord
   - name: bazarr
     group: internal
     url: https://bazarr.nasenov.dev
     conditions:
       - "[STATUS] == 200"
-    alerts:
-      - type: discord
   - name: flux-operator
     group: internal
     url: https://flux-operator.nasenov.dev
@@ -84,78 +58,56 @@ endpoints:
     url: https://grafana.nasenov.dev
     conditions:
       - "[STATUS] == 200"
-    alerts:
-      - type: discord
   - name: home-assistant
     group: internal
     url: https://home-assistant.nasenov.dev
     conditions:
       - "[STATUS] == 200"
-    alerts:
-      - type: discord
   - name: jellyfin
     group: internal
     url: https://jellyfin.nasenov.dev
     conditions:
       - "[STATUS] == 200"
-    alerts:
-      - type: discord
   - name: k8s
     group: internal
     url: https://k8s.nasenov.dev:6443/readyz
     conditions:
       - "[STATUS] == 200"
-    alerts:
-      - type: discord
   - name: miniflux
     group: internal
     url: https://miniflux.nasenov.dev
     conditions:
       - "[STATUS] == 200"
-    alerts:
-      - type: discord
   - name: miscale2pg
     group: internal
     url: https://miscale2pg.nasenov.dev/actuator/health/readiness
     conditions:
       - "[STATUS] == 200"
-    alerts:
-      - type: discord
   - name: postgres
     group: internal
     url: tcp://postgres.nasenov.dev:5432
     conditions:
       - "[CONNECTED] == true"
-    alerts:
-      - type: discord
   - name: prometheus
     group: internal
     url: https://prometheus.nasenov.dev
     conditions:
       - "[STATUS] == 200"
-    alerts:
-      - type: discord
   - name: prowlarr
     group: internal
     url: https://prowlarr.nasenov.dev
     conditions:
       - "[STATUS] == 200"
-    alerts:
-      - type: discord
   - name: qbittorrent
     group: internal
     url: https://qbittorrent.nasenov.dev
     conditions:
       - "[STATUS] == 200"
-    alerts:
-      - type: discord
   - name: qui
     group: internal
     url: https://qui.nasenov.dev
     conditions:
       - "[STATUS] == 200"
-    alerts:
-      - type: discord
   - name: radarr
     group: internal
     url: https://radarr.nasenov.dev
@@ -166,36 +118,26 @@ endpoints:
     url: https://rook.nasenov.dev
     conditions:
       - "[STATUS] == 200"
-    alerts:
-      - type: discord
   - name: seerr
     group: internal
     url: https://seerr.nasenov.dev
     conditions:
       - "[STATUS] == 200"
-    alerts:
-      - type: discord
   - name: sonarr
     group: internal
     url: https://sonarr.nasenov.dev
     conditions:
       - "[STATUS] == 200"
-    alerts:
-      - type: discord
   - name: thelounge
     group: internal
     url: https://thelounge.nasenov.dev
     conditions:
       - "[STATUS] == 200"
-    alerts:
-      - type: discord
   - name: victoria-logs
     group: internal
     url: https://victoria-logs.nasenov.dev
     conditions:
       - "[STATUS] == 200"
-    alerts:
-      - type: discord
 
   # Infrastructure Group
   - name: garage
@@ -203,29 +145,21 @@ endpoints:
     url: https://garage.truenas.nasenov.dev/health
     conditions:
       - "[STATUS] == 200"
-    alerts:
-      - type: discord
   - name: meshcentral
     group: infrastructure
     url: https://meshcentral.truenas.nasenov.dev
     conditions:
       - "[STATUS] == 200"
-    alerts:
-      - type: discord
   - name: traefik
     group: infrastructure
     url: https://traefik.truenas.nasenov.dev
     conditions:
       - "[STATUS] == 200"
-    alerts:
-      - type: discord
   - name: truenas
     group: infrastructure
     url: https://truenas.nasenov.dev
     conditions:
       - "[STATUS] == 200"
-    alerts:
-      - type: discord
 
 metrics: true
 
