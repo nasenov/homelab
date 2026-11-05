@@ -11,6 +11,8 @@ spec:
   provider:
     type: Kubernetes
     kubernetes:
+      envoyService:
+        externalTrafficPolicy: Cluster
       envoyDaemonSet:
         container:
           imageRepository: mirror.gcr.io/envoyproxy/envoy
