@@ -42,36 +42,18 @@ spec:
 
     service:
       app:
+        type: LoadBalancer
+        annotations:
+          external-dns.kubernetes.io/hostname: cs.nasenov.dev
+          lbipam.cilium.io/ips: 192.168.30.125
+        externalTrafficPolicy: Local
         ports:
           game:
-            port: &gamePort 27015
+            port: 27015
             protocol: UDP
           http:
-            port: &httpPort 8080
-
-    route:
-      app:
-        kind: UDPRoute
-        parentRefs:
-          - name: envoy-external
-            namespace: networking
-        rules:
-          - backendRefs:
-              - identifier: app
-                port: *gamePort
-      fastdl:
-        labels:
-          external-dns.kubernetes.io/cloudflare: "false"
-        hostnames:
-          - cs.nasenov.dev
-        parentRefs:
-          - name: envoy-external
-            namespace: networking
-            sectionName: cstrike-fastdl
-        rules:
-          - backendRefs:
-              - identifier: app
-                port: *httpPort
+            port: 27015
+            targetPort: 8080
 
     persistence:
       data:
