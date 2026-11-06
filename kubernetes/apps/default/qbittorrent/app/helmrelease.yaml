@@ -49,9 +49,16 @@ spec:
 
     service:
       app:
+        forceRename: "{{ .Release.Name }}"
         ports:
           http:
             port: *port
+      bittorrent:
+        type: LoadBalancer
+        annotations:
+          lbipam.cilium.io/ips: 192.168.30.124
+        externalTrafficPolicy: Local
+        ports:
           bittorrent:
             port: *torrentPort
 
@@ -66,15 +73,6 @@ spec:
           - backendRefs:
               - identifier: app
                 port: *port
-      bittorrent:
-        kind: TCPRoute
-        parentRefs:
-          - name: envoy-external
-            namespace: networking
-        rules:
-          - backendRefs:
-              - identifier: app
-                port: *torrentPort
 
     persistence:
       config:
