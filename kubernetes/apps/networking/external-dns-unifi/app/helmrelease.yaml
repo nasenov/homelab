@@ -50,7 +50,6 @@ spec:
     policy: sync
     sources:
       - gateway-httproute
-      - gateway-tcproute
       - service
     txtOwnerId: main
     txtPrefix: k8s.main.%{record_type}-

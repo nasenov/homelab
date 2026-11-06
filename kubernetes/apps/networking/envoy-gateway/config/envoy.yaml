@@ -39,6 +39,37 @@ spec:
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
+  name: envoy-internal
+  annotations:
+    external-dns.kubernetes.io/target: &hostname internal.nasenov.dev
+spec:
+  gatewayClassName: envoy
+  infrastructure:
+    annotations:
+      external-dns.kubernetes.io/hostname: *hostname
+      lbipam.cilium.io/ips: 192.168.30.121
+  listeners:
+    - name: http
+      protocol: HTTP
+      port: 80
+      allowedRoutes:
+        namespaces:
+          from: Same
+    - name: https
+      protocol: HTTPS
+      port: 443
+      allowedRoutes:
+        namespaces:
+          from: All
+      tls:
+        certificateRefs:
+          - kind: Secret
+            name: nasenov-dev-tls
+---
+# yaml-language-server: $schema=https://k8s-schemas.home-operations.com/gateway.networking.k8s.io/gateway_v1.json
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
   name: envoy-external
   annotations:
     external-dns.kubernetes.io/target: &hostname external.nasenov.dev
@@ -80,43 +111,6 @@ spec:
     - name: bittorrent
       protocol: TCP
       port: 50413
-      allowedRoutes:
-        namespaces:
-          from: All
----
-# yaml-language-server: $schema=https://k8s-schemas.home-operations.com/gateway.networking.k8s.io/gateway_v1.json
-apiVersion: gateway.networking.k8s.io/v1
-kind: Gateway
-metadata:
-  name: envoy-internal
-  annotations:
-    external-dns.kubernetes.io/target: &hostname internal.nasenov.dev
-spec:
-  gatewayClassName: envoy
-  infrastructure:
-    annotations:
-      external-dns.kubernetes.io/hostname: *hostname
-      lbipam.cilium.io/ips: 192.168.30.121
-  listeners:
-    - name: http
-      protocol: HTTP
-      port: 80
-      allowedRoutes:
-        namespaces:
-          from: Same
-    - name: https
-      protocol: HTTPS
-      port: 443
-      allowedRoutes:
-        namespaces:
-          from: All
-      tls:
-        certificateRefs:
-          - kind: Secret
-            name: nasenov-dev-tls
-    - name: postgres
-      protocol: TCP
-      port: 5432
       allowedRoutes:
         namespaces:
           from: All
