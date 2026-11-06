@@ -27,8 +27,6 @@ spec:
       prometheusRuleOverrides:
         CephNodeDiskspaceWarning:
           disabled: true
-        CephNodeNetworkPacketDrops:
-          disabled: true
 
     cephClusterSpec:
       cephConfig:
