@@ -43,3 +43,6 @@ spec:
           instanceSelector:
             matchLabels:
               dashboards: grafana
+
+    modelCache:
+      mode: perService
