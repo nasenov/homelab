@@ -16,6 +16,8 @@ spec:
       replicaCount: 1
       leaderElection:
         enabled: false
+      watchCanary:
+        interval: 0s
       resources:
         requests:
           cpu: 10m
