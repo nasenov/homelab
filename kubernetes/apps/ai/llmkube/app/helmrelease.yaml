@@ -30,7 +30,7 @@ spec:
       serviceMonitor:
         enabled: true
       inferencePodMonitor:
-        enabled: false
+        enabled: true
       prometheusRule:
         enabled: true
         namespace: ai
@@ -46,3 +46,4 @@ spec:
 
     modelCache:
       mode: perService
+      size: 4Gi

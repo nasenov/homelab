@@ -1,0 +1,28 @@
+---
+# yaml-language-server: $schema=https://k8s-schemas.home-operations.com/inference.llmkube.dev/model_v1alpha1.json
+apiVersion: inference.llmkube.dev/v1alpha1
+kind: Model
+metadata:
+  name: qwen3.5-4b
+spec:
+  source: https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/resolve/main/Qwen3.5-4B-UD-Q4_K_XL.gguf
+  format: gguf
+  quantization: UD-Q4_K_XL
+  hardware:
+    accelerator: cpu
+---
+# yaml-language-server: $schema=https://k8s-schemas.home-operations.com/inference.llmkube.dev/inferenceservice_v1alpha1.json
+apiVersion: inference.llmkube.dev/v1alpha1
+kind: InferenceService
+metadata:
+  name: qwen3.5-4b
+spec:
+  modelRef: qwen3.5-4b
+  runtime: llamacpp
+  replicas: 1
+  contextSize: 32768
+  flashAttention: true
+  jinja: true
+  resources:
+    cpu: 10m
+    memory: 4Gi
