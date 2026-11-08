@@ -28,12 +28,19 @@ spec:
       fsGroup: 1000
       fsGroupChangePolicy: OnRootMismatch
 
+    copyAppData:
+      command: ["true"]
+
     image:
       useSlim: true
 
     extraEnvVars:
+      - name: WEBUI_URL
+        value: https://open-webui.nasenov.dev
       - name: WEBUI_AUTH
         value: "False"
+      - name: WEBUI_SECRET_KEY_FILE
+        value: /app/backend/data/.webui_secret_key
 
     livenessProbe:
       httpGet:
