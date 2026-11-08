@@ -7,6 +7,9 @@ metadata:
 spec:
   interval: 1h
   targetNamespace: ai
+  dependsOn:
+    - name: rook-ceph-cluster
+      namespace: rook-ceph
   path: ./kubernetes/apps/ai/llmkube/app
   prune: true
   sourceRef:
