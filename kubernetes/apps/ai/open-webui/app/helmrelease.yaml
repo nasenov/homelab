@@ -21,6 +21,47 @@ spec:
       redis:
         enabled: false
 
+    podSecurityContext:
+      runAsNonRoot: true
+      runAsUser: 1000
+      runAsGroup: 1000
+      fsGroup: 1000
+      fsGroupChangePolicy: OnRootMismatch
+
+    image:
+      useSlim: true
+
+    extraEnvVars:
+      - name: WEBUI_AUTH
+        value: "False"
+
+    livenessProbe:
+      httpGet:
+        path: /health
+        port: http
+      periodSeconds: 10
+      failureThreshold: 3
+
+    readinessProbe:
+      httpGet:
+        path: /health/db
+        port: http
+      periodSeconds: 10
+      failureThreshold: 3
+
+    resources:
+      requests:
+        cpu: 10m
+      limits:
+        memory: 512Mi
+
+    containerSecurityContext:
+      allowPrivilegeEscalation: false
+      readOnlyRootFilesystem: true
+      capabilities:
+        drop:
+          - ALL
+
     route:
       enabled: true
       hostnames:
@@ -28,5 +69,21 @@ spec:
       parentRefs:
         - name: envoy-internal
           namespace: networking
+
+    persistence:
+      size: 1Gi
+
+    volumes:
+      - name: static
+        emptyDir: {}
+      - name: tmp
+        emptyDir: {}
+
+    volumeMounts:
+      container:
+        - name: static
+          mountPath: /app/backend/open_webui/static
+        - name: tmp
+          mountPath: /tmp
 
     openaiBaseApiUrl: http://qwen3-5-4b.ai.svc.cluster.local:8080/v1
