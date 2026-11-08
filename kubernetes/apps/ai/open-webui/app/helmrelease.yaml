@@ -21,6 +21,12 @@ spec:
       redis:
         enabled: false
 
+    workload:
+      kind: Deployment
+
+    strategy:
+      type: Recreate
+
     podSecurityContext:
       runAsNonRoot: true
       runAsUser: 1000
