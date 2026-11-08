@@ -84,7 +84,7 @@ spec:
           namespace: networking
 
     persistence:
-      size: 1Gi
+      existingClaim: open-webui
 
     volumes:
       - name: static

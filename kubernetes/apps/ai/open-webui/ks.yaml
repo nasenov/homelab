@@ -7,6 +7,8 @@ metadata:
 spec:
   interval: 1h
   targetNamespace: ai
+  components:
+    - ../../../../components/volsync
   dependsOn:
     - name: rook-ceph-cluster
       namespace: rook-ceph
@@ -16,3 +18,6 @@ spec:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
+  postBuild:
+    substitute:
+      APP: open-webui
