@@ -27,7 +27,7 @@ spec:
           fastdl:
             image:
               repository: ghcr.io/nginx/nginx-unprivileged
-              tag: 1.31.8@sha256:e1d940677c62963156c6aad83001f37955e58b74343481503c3761d340fb8bb9
+              tag: 1.31.8@sha256:e4264279b179f0e654579a90a1a9c1eab3ba9124c17551794bee20f68a38b5ce
             resources:
               requests:
                 cpu: 10m
