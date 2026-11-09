@@ -21,7 +21,7 @@ spec:
               LGSM_GITHUBBRANCH: develop
             resources:
               requests:
-                cpu: 10m
+                cpu: 200m
               limits:
                 memory: 1Gi
           fastdl:
