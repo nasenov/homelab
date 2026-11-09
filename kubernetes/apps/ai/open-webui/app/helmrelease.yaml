@@ -47,6 +47,20 @@ spec:
         value: "False"
       - name: WEBUI_SECRET_KEY_FILE
         value: /app/backend/data/.webui_secret_key
+      - name: RAG_EMBEDDING_ENGINE
+        value: openai
+      - name: RAG_EMBEDDING_MODEL
+        value: qwen3-embedding-0.6b
+      - name: RAG_OPENAI_API_BASE_URL
+        value: http://qwen3-embedding-0-6b.ai.svc.cluster.local:8080/v1
+      - name: ENABLE_RAG_HYBRID_SEARCH
+        value: "true"
+      - name: RAG_RERANKING_ENGINE
+        value: external
+      - name: RAG_RERANKING_MODEL
+        value: qwen3-reranker-0.6b
+      - name: RAG_EXTERNAL_RERANKER_URL
+        value: http://qwen3-reranker-0-6b.ai.svc.cluster.local:8080/v1/rerank
 
     livenessProbe:
       httpGet:
