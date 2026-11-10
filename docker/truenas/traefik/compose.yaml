@@ -30,7 +30,7 @@ services:
     secrets:
       - traefik_cloudflare_api_token
     networks:
-      apps_ipvlan:
+      apps_macvlan:
         ipv4_address: 192.168.20.16
       apps_bridge:
     extra_hosts:
@@ -44,7 +44,7 @@ secrets:
     file: /mnt/tank/apps/traefik/traefik_cloudflare_api_token
 
 networks:
-  apps_ipvlan:
+  apps_macvlan:
     external: true
   apps_bridge:
     external: true
