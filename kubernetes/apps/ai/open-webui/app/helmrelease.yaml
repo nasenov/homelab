@@ -47,6 +47,8 @@ spec:
         value: "False"
       - name: WEBUI_SECRET_KEY_FILE
         value: /app/backend/data/.webui_secret_key
+      - name: TASK_MODEL_EXTERNAL
+        value: qwen3.5-0.8b
       - name: RAG_EMBEDDING_ENGINE
         value: openai
       - name: RAG_EMBEDDING_MODEL
@@ -113,4 +115,6 @@ spec:
         - name: tmp
           mountPath: /tmp
 
-    openaiBaseApiUrl: http://qwen3-5-4b.ai.svc.cluster.local:8080/v1
+    openaiBaseApiUrls:
+      - http://qwen3-5-2b.ai.svc.cluster.local:8080/v1
+      - http://qwen3-5-0-8b.ai.svc.cluster.local:8080/v1
