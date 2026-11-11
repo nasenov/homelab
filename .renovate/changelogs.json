@@ -15,14 +15,6 @@
       "description": "Changelog URL for External-DNS",
       "matchPackageNames": ["external-dns"],
       "changelogUrl": "https://github.com/kubernetes-sigs/external-dns/blob/master/charts/external-dns/CHANGELOG.md"
-    },
-    {
-      "description": "Source URL for Prometheus Community Helm Charts",
-      "matchPackageNames": [
-        "ghcr.io/prometheus-community/charts/kube-state-metrics",
-        "ghcr.io/prometheus-community/charts/prometheus-smartctl-exporter"
-      ],
-      "sourceUrl": "https://github.com/prometheus-community/helm-charts"
     }
   ]
 }
