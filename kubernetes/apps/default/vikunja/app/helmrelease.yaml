@@ -1,0 +1,88 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: vikunja
+spec:
+  interval: 1h
+  chartRef:
+    kind: OCIRepository
+    name: vikunja
+  values:
+    controllers:
+      vikunja:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        pod:
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1000
+            runAsGroup: 1000
+            fsGroup: 1000
+            fsGroupChangePolicy: OnRootMismatch
+        containers:
+          app:
+            image:
+              repository: ghcr.io/go-vikunja/vikunja
+              tag: 2.8.0@sha256:35d937baf3b5d5803bed6b9e11d007448b7b536df9e4346dc35551e1072636c3
+            env:
+              VIKUNJA_DATABASE_PATH: /data/vikunja.db
+              VIKUNJA_FILES_BASEPATH: /data/files
+              VIKUNJA_METRICS_ENABLED: "true"
+              VIKUNJA_SERVICE_INTERFACE: :80
+              VIKUNJA_SERVICE_PUBLICURL: https://{{ .Release.Name }}.nasenov.dev
+              VIKUNJA_SERVICE_TIMEZONE: Europe/Sofia
+            envFrom:
+              - secretRef:
+                  name: "{{ .Release.Name }}"
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /health
+                    port: &port 80
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
+            resources:
+              requests:
+                cpu: 10m
+              limits:
+                memory: 256Mi
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities:
+                drop:
+                  - ALL
+
+    service:
+      app:
+        ports:
+          http:
+            port: *port
+
+    serviceMonitor:
+      app:
+        endpoints:
+          - port: http
+            path: /api/v1/metrics
+
+    route:
+      app:
+        hostnames:
+          - "{{ .Release.Name }}.nasenov.dev"
+        parentRefs:
+          - name: envoy-internal
+            namespace: networking
+
+    persistence:
+      data:
+        existingClaim: "{{ .Release.Name }}"
+      tmp:
+        type: emptyDir

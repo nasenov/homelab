@@ -24,3 +24,4 @@ resources:
   - ./seerr/ks.yaml
   - ./sonarr/ks.yaml
   - ./thelounge/ks.yaml
+  - ./vikunja/ks.yaml

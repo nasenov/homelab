@@ -152,6 +152,11 @@ endpoints:
     url: https://victoria-logs.nasenov.dev
     conditions:
       - "[STATUS] == 200"
+  - name: vikunja
+    group: internal
+    url: https://vikunja.nasenov.dev/health
+    conditions:
+      - "[STATUS] == 200"
 
   # Infrastructure Group
   - name: garage
