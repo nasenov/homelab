@@ -14,6 +14,16 @@ spec:
         kind: HelmRepository
         name: headlamp
   values:
+    pluginsManager:
+      enabled: true
+      configContent: |
+        plugins:
+          - name: flux
+            source: https://artifacthub.io/packages/headlamp/headlamp-plugins/headlamp_flux
+            version: 0.8.0
+        installOptions:
+          parallel: true
+
     resources:
       requests:
         cpu: 10m
