@@ -7,6 +7,10 @@
     "grafana": {
       "type": "http",
       "url": "https://grafana-mcp.nasenov.dev/mcp"
+    },
+    "unifi": {
+      "type": "http",
+      "url": "https://unifi-mcp.nasenov.dev/mcp"
     }
   }
 }

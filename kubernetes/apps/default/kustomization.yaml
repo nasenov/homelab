@@ -24,4 +24,5 @@ resources:
   - ./seerr/ks.yaml
   - ./sonarr/ks.yaml
   - ./thelounge/ks.yaml
+  - ./unifi-mcp/ks.yaml
   - ./vikunja/ks.yaml

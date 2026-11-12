@@ -1,0 +1,66 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: unifi-mcp
+spec:
+  interval: 1h
+  chartRef:
+    kind: OCIRepository
+    name: unifi-mcp
+  values:
+    controllers:
+      unifi-mcp:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        pod:
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1000
+            runAsGroup: 1000
+        containers:
+          app:
+            image:
+              repository: ghcr.io/sirkirby/unifi-network-mcp
+              tag: 0.45.1@sha256:17e8d34e871d1869b43663922e172a91904154a1f3d27e99fd681321eb17ddd9
+            env:
+              UNIFI_NETWORK_HOST: unifi.nasenov.dev
+              UNIFI_NETWORK_VERIFY_SSL: true
+              UNIFI_NETWORK_READ_ONLY: true
+              UNIFI_MCP_HTTP_ENABLED: true
+              UNIFI_MCP_HOST: 0.0.0.0
+              UNIFI_MCP_ALLOWED_HOSTS: "{{ .Release.Name }}.nasenov.dev"
+            envFrom:
+              - secretRef:
+                  name: "{{ .Release.Name }}"
+            probes:
+              liveness:
+                enabled: true
+              readiness:
+                enabled: true
+            resources:
+              requests:
+                cpu: 10m
+              limits:
+                memory: 256Mi
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities:
+                drop:
+                  - ALL
+
+    service:
+      app:
+        ports:
+          http:
+            port: 3000
+
+    route:
+      app:
+        hostnames:
+          - "{{ .Release.Name }}.nasenov.dev"
+        parentRefs:
+          - name: envoy-internal
+            namespace: networking
