@@ -3,6 +3,10 @@
     "flux-operator": {
       "type": "http",
       "url": "https://flux-operator-mcp.nasenov.dev/mcp"
+    },
+    "grafana": {
+      "type": "http",
+      "url": "https://grafana-mcp.nasenov.dev/mcp"
     }
   }
 }

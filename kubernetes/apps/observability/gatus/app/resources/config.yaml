@@ -67,6 +67,16 @@ endpoints:
     url: https://grafana.nasenov.dev
     conditions:
       - "[STATUS] == 200"
+  - name: grafana-mcp
+    group: internal
+    url: https://grafana-mcp.nasenov.dev/mcp
+    method: POST
+    headers:
+      Content-Type: application/json
+      Accept: application/json, text/event-stream
+    body: '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-06-18","capabilities":{},"clientInfo":{"name":"gatus","version":"1.0.0"}}}'
+    conditions:
+      - "[STATUS] == 200"
   - name: home-assistant
     group: internal
     url: https://home-assistant.nasenov.dev
