@@ -67,6 +67,11 @@ endpoints:
     url: https://grafana.nasenov.dev
     conditions:
       - "[STATUS] == 200"
+  - name: headlamp
+    group: internal
+    url: https://headlamp.nasenov.dev
+    conditions:
+      - "[STATUS] == 200"
   - name: home-assistant
     group: internal
     url: https://home-assistant.nasenov.dev
