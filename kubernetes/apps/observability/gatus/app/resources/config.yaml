@@ -53,6 +53,15 @@ endpoints:
     url: https://flux-operator.nasenov.dev
     conditions:
       - "[STATUS] == 200"
+  - name: flux-operator-mcp
+    group: internal
+    url: https://flux-operator-mcp.nasenov.dev/mcp
+    method: POST
+    headers:
+      Content-Type: application/json
+    body: '{"jsonrpc":"2.0","id":1,"method":"ping"}'
+    conditions:
+      - "[STATUS] == 200"
   - name: grafana
     group: internal
     url: https://grafana.nasenov.dev
