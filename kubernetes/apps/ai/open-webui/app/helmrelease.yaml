@@ -116,5 +116,4 @@ spec:
           mountPath: /tmp
 
     openaiBaseApiUrls:
-      - http://qwen3-5-2b.ai.svc.cluster.local:8080/v1
       - http://qwen3-5-0-8b.ai.svc.cluster.local:8080/v1
