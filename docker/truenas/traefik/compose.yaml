@@ -2,7 +2,7 @@
 services:
   traefik:
     container_name: traefik
-    image: traefik:v3.7.18
+    image: traefik:v3.7.19
     labels:
       - traefik.enable=true
       - traefik.http.routers.dashboard.rule=Host(`traefik.truenas.nasenov.dev`)
