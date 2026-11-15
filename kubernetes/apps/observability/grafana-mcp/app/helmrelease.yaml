@@ -23,7 +23,7 @@ spec:
 
     extraArgs:
       - --transport=streamable-http
-      - --allowed-hosts=grafana-mcp.observability.svc.cluster.local:8000
+      - --allowed-hosts=grafana-mcp.observability.svc.cluster.local
 
     resources:
       requests:

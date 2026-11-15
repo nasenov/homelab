@@ -30,7 +30,7 @@ spec:
               UNIFI_NETWORK_READ_ONLY: true
               UNIFI_MCP_HTTP_ENABLED: true
               UNIFI_MCP_HOST: 0.0.0.0
-              UNIFI_MCP_ALLOWED_HOSTS: "{{ .Release.Name }}.{{ .Release.Namespace }}.svc.cluster.local:*"
+              UNIFI_MCP_ALLOWED_HOSTS: "{{ .Release.Name }}.{{ .Release.Namespace }}.svc.cluster.local"
             envFrom:
               - secretRef:
                   name: "{{ .Release.Name }}"
