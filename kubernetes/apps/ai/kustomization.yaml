@@ -8,5 +8,3 @@ components:
 resources:
   - ./namespace.yaml
   - ./agentgateway/ks.yaml
-  - ./llmkube/ks.yaml
-  - ./open-webui/ks.yaml

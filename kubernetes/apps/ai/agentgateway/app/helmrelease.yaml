@@ -19,13 +19,6 @@ spec:
     gateway:
       service:
         type: ClusterIP
-      extraServices:
-        - name: ui
-          type: ClusterIP
-          ports:
-            - name: http
-              port: 80
-              targetPort: 4001
 
     monitoring:
       enabled: true
@@ -38,23 +31,10 @@ spec:
       gateways:
         default:
           port: 4000
-        ui-gateway:
-          port: 4001
 
       ui:
         gateways:
-          - ui-gateway
-
-      llm:
-        models:
-          - name: qwen3.5-0.8b
-            provider:
-              custom:
-                formats:
-                  - type: completions
-            params:
-              model: qwen3.5-0.8b
-              baseUrl: http://qwen3-5-0-8b.ai.svc.cluster.local:8080/v1
+          - default
 
       mcp:
         targets:
