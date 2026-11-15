@@ -19,6 +19,13 @@ spec:
     gateway:
       service:
         type: ClusterIP
+      extraServices:
+        - name: ui
+          type: ClusterIP
+          ports:
+            - name: http
+              port: 80
+              targetPort: 4001
 
     monitoring:
       enabled: true
@@ -31,6 +38,12 @@ spec:
       gateways:
         default:
           port: 4000
+        ui-gateway:
+          port: 4001
+
+      ui:
+        gateways:
+          - ui-gateway
 
       llm:
         models:

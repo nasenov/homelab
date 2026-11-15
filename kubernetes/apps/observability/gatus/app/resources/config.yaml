@@ -28,6 +28,11 @@ endpoints:
     url: https://actual.nasenov.dev
     conditions:
       - "[STATUS] == 200"
+  - name: agentgateway
+    group: internal
+    url: https://agentgateway.nasenov.dev/ui
+    conditions:
+      - "[STATUS] == 200"
   - name: alertmanger
     group: internal
     url: https://alertmanager.nasenov.dev
