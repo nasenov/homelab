@@ -46,4 +46,4 @@ spec:
               host: http://grafana-mcp.observability.svc.cluster.local:8000/mcp
           - name: unifi
             mcp:
-              host: http://unifi-mcp.default.svc.cluster.local:3000/mcp
+              host: http://unifi-mcp.ai.svc.cluster.local:3000/mcp

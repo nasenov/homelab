@@ -8,3 +8,4 @@ components:
 resources:
   - ./namespace.yaml
   - ./agentgateway/ks.yaml
+  - ./unifi-mcp/ks.yaml

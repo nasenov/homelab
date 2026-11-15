@@ -6,8 +6,8 @@ metadata:
   name: unifi-mcp
 spec:
   interval: 1h
-  targetNamespace: default
-  path: ./kubernetes/apps/default/unifi-mcp/app
+  targetNamespace: ai
+  path: ./kubernetes/apps/ai/unifi-mcp/app
   prune: true
   sourceRef:
     kind: GitRepository
