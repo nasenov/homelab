@@ -55,3 +55,15 @@ spec:
             params:
               model: qwen3.5-0.8b
               baseUrl: http://qwen3-5-0-8b.ai.svc.cluster.local:8080/v1
+
+      mcp:
+        targets:
+          - name: flux-operator
+            mcp:
+              host: http://flux-operator-mcp.flux-system.svc.cluster.local:9090/mcp
+          - name: grafana
+            mcp:
+              host: http://grafana-mcp.observability.svc.cluster.local:8000/mcp
+          - name: unifi
+            mcp:
+              host: http://unifi-mcp.default.svc.cluster.local:3000/mcp

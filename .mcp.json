@@ -1,16 +1,8 @@
 {
   "mcpServers": {
-    "flux-operator": {
+    "agentgateway": {
       "type": "http",
-      "url": "https://flux-operator-mcp.nasenov.dev/mcp"
-    },
-    "grafana": {
-      "type": "http",
-      "url": "https://grafana-mcp.nasenov.dev/mcp"
-    },
-    "unifi": {
-      "type": "http",
-      "url": "https://unifi-mcp.nasenov.dev/mcp"
+      "url": "https://agentgateway.nasenov.dev/mcp"
     }
   }
 }

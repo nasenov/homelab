@@ -32,3 +32,10 @@ spec:
       backendRefs:
         - name: agentgateway-ui
           port: 80
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /mcp
+      backendRefs:
+        - name: agentgateway
+          port: 80

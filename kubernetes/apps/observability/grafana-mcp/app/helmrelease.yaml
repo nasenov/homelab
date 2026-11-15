@@ -23,7 +23,7 @@ spec:
 
     extraArgs:
       - --transport=streamable-http
-      - --allowed-hosts=grafana-mcp.nasenov.dev
+      - --allowed-hosts=grafana-mcp.observability.svc.cluster.local:8000
 
     resources:
       requests:
@@ -37,12 +37,3 @@ spec:
 
     serviceMonitor:
       enabled: true
-
-    route:
-      main:
-        enabled: true
-        hostnames:
-          - grafana-mcp.nasenov.dev
-        parentRefs:
-          - name: envoy-internal
-            namespace: networking

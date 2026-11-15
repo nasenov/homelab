@@ -22,11 +22,3 @@ spec:
       limits:
         cpu: null
         memory: 128Mi
-
-    httpRoute:
-      enabled: true
-      hostnames:
-        - flux-operator-mcp.nasenov.dev
-      parentRefs:
-        - name: envoy-internal
-          namespace: networking
