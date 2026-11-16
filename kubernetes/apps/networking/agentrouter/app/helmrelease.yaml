@@ -1,0 +1,32 @@
+---
+# yaml-language-server: $schema=https://k8s-schemas.home-operations.com/helm.toolkit.fluxcd.io/helmrelease_v2.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: agentrouter
+spec:
+  interval: 1h
+  chartRef:
+    kind: OCIRepository
+    name: agentrouter
+  values:
+    extProc:
+      image:
+        repository: mirror.gcr.io/envoyproxy/ai-gateway-extproc
+      logFormat: json
+
+    controller:
+      image:
+        repository: mirror.gcr.io/envoyproxy/ai-gateway-controller
+      logFormat: json
+      mutatingWebhook:
+        certManager:
+          enable: true
+      resources:
+        requests:
+          cpu: 10m
+        limits:
+          memory: 256Mi
+
+    envoyGateway:
+      namespace: networking
