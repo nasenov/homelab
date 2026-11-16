@@ -21,6 +21,9 @@ bases:
 defaultInherit: default
 
 releases:
+  - name: agentrouter-crds
+    namespace: networking
+
   - name: envoy-gateway
     namespace: networking
 
