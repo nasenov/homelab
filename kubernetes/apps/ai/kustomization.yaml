@@ -7,5 +7,4 @@ components:
   - ../../components/alerts
 resources:
   - ./namespace.yaml
-  - ./agentgateway/ks.yaml
   - ./unifi-mcp/ks.yaml
