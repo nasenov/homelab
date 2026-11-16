@@ -41,6 +41,7 @@ kind: Gateway
 metadata:
   name: envoy-internal
   annotations:
+    aigateway.envoyproxy.io/gateway-config: agentrouter
     external-dns.kubernetes.io/target: &hostname internal.nasenov.dev
 spec:
   gatewayClassName: envoy

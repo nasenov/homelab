@@ -1,0 +1,13 @@
+---
+apiVersion: aigateway.envoyproxy.io/v1beta1
+kind: GatewayConfig
+metadata:
+  name: agentrouter
+spec:
+  extProc:
+    kubernetes:
+      resources:
+        requests:
+          cpu: 10m
+        limits:
+          memory: 64Mi
