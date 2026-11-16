@@ -1,8 +1,8 @@
 {
   "mcpServers": {
-    "agentgateway": {
+    "agentrouter": {
       "type": "http",
-      "url": "https://agentgateway.nasenov.dev/mcp"
+      "url": "https://mcp.nasenov.dev"
     }
   }
 }
