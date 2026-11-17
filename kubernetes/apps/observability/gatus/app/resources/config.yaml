@@ -58,6 +58,16 @@ endpoints:
     url: https://grafana.nasenov.dev
     conditions:
       - "[STATUS] == 200"
+  - name: hermes-agent
+    group: internal
+    url: https://hermes-agent.nasenov.dev
+    conditions:
+      - "[STATUS] == 200"
+  - name: hermes-agent-dashboard
+    group: internal
+    url: https://hermes-agent-dashboard.nasenov.dev
+    conditions:
+      - "[STATUS] == 200"
   - name: home-assistant
     group: internal
     url: https://home-assistant.nasenov.dev
