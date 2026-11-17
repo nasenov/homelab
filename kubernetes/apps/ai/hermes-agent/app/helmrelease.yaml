@@ -12,6 +12,8 @@ spec:
   values:
     controllers:
       hermes-agent:
+        annotations:
+          reloader.stakater.com/auto: "true"
         pod:
           securityContext:
             fsGroup: 1000
@@ -28,11 +30,36 @@ spec:
               TZ: Europe/Sofia
               HERMES_UID: 1000
               HERMES_GID: 1000
+              API_SERVER_ENABLED: "true"
+              API_SERVER_HOST: 0.0.0.0
+              API_SERVER_PORT: &httpPort 8642
+            envFrom:
+              - secretRef:
+                  name: "{{ .Release.Name }}"
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /health
+                    port: *httpPort
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
             resources:
               requests:
                 cpu: 10m
               limits:
                 memory: 1Gi
+
+    service:
+      app:
+        ports:
+          http:
+            port: *httpPort
 
     persistence:
       data:
