@@ -24,6 +24,14 @@ spec:
     - group: gateway.envoyproxy.io
       kind: Backend
       name: victoria-logs
+    - group: gateway.envoyproxy.io
+      kind: Backend
+      name: vikunja
+      path: /api/v2/mcp
+      securityPolicy:
+        apiKey:
+          secretRef:
+            name: agentrouter-vikunja-mcp
 ---
 # yaml-language-server: $schema=https://k8s-schemas.home-operations.com/gateway.envoyproxy.io/backend_v1alpha1.json
 apiVersion: gateway.envoyproxy.io/v1alpha1
@@ -68,3 +76,14 @@ spec:
     - fqdn:
         hostname: victoria-logs-mcp.observability.svc.cluster.local
         port: 8080
+---
+# yaml-language-server: $schema=https://k8s-schemas.home-operations.com/gateway.envoyproxy.io/backend_v1alpha1.json
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: Backend
+metadata:
+  name: vikunja
+spec:
+  endpoints:
+    - fqdn:
+        hostname: vikunja.default.svc.cluster.local
+        port: 80
