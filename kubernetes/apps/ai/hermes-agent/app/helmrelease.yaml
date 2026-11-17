@@ -35,8 +35,8 @@ spec:
               API_SERVER_PORT: &apiPort 8642
               HERMES_DASHBOARD: "1"
               HERMES_DASHBOARD_HOST: 0.0.0.0
-              HERMES_DASHBOARD_PORT: &httpPort 9119
-              HERMES_DASHBOARD_PUBLIC_URL: https://hermes-dashboard.nasenov.dev
+              HERMES_DASHBOARD_PORT: &dashboardPort 9119
+              HERMES_DASHBOARD_PUBLIC_URL: https://hermes-agent-dashboard.nasenov.dev
             envFrom:
               - secretRef:
                   name: "{{ .Release.Name }}"
@@ -62,22 +62,32 @@ spec:
     service:
       app:
         ports:
-          http:
-            port: *httpPort
-          api:
-            port: *apiPort
+          webapp:
+            port: &webappPort 9120
+          dashboard:
+            port: *dashboardPort
 
     route:
-      app:
+      webapp:
         hostnames:
-          - hermes-dashboard.nasenov.dev
+          - hermes-agent.nasenov.dev
         parentRefs:
           - name: envoy-internal
             namespace: networking
         rules:
           - backendRefs:
               - identifier: app
-                port: *httpPort
+                port: *webappPort
+      dashboard:
+        hostnames:
+          - hermes-agent-dashboard.nasenov.dev
+        parentRefs:
+          - name: envoy-internal
+            namespace: networking
+        rules:
+          - backendRefs:
+              - identifier: app
+                port: *dashboardPort
 
     persistence:
       data:
