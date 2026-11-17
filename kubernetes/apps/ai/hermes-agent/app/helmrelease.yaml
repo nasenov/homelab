@@ -1,0 +1,41 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: hermes-agent
+spec:
+  interval: 1h
+  chartRef:
+    kind: OCIRepository
+    name: hermes-agent
+  values:
+    controllers:
+      hermes-agent:
+        pod:
+          securityContext:
+            fsGroup: 1000
+            fsGroupChangePolicy: OnRootMismatch
+        containers:
+          app:
+            image:
+              repository: docker.io/nousresearch/hermes-agent
+              tag: v0.23.2@sha256:d6746a084e9341baada483e3d6210444d3c1aeb7c130f0915150065fb2851459
+            args:
+              - gateway
+              - run
+            env:
+              TZ: Europe/Sofia
+              HERMES_UID: 1000
+              HERMES_GID: 1000
+            resources:
+              requests:
+                cpu: 10m
+              limits:
+                memory: 1Gi
+
+    persistence:
+      data:
+        existingClaim: "{{ .Release.Name }}"
+        globalMounts:
+          - path: /opt/data
