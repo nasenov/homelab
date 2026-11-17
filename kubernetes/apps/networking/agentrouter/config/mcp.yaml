@@ -21,6 +21,9 @@ spec:
     - group: gateway.envoyproxy.io
       kind: Backend
       name: unifi
+    - group: gateway.envoyproxy.io
+      kind: Backend
+      name: victoria-logs
 ---
 # yaml-language-server: $schema=https://k8s-schemas.home-operations.com/gateway.envoyproxy.io/backend_v1alpha1.json
 apiVersion: gateway.envoyproxy.io/v1alpha1
@@ -54,3 +57,14 @@ spec:
     - fqdn:
         hostname: unifi-mcp.ai.svc.cluster.local
         port: 3000
+---
+# yaml-language-server: $schema=https://k8s-schemas.home-operations.com/gateway.envoyproxy.io/backend_v1alpha1.json
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: Backend
+metadata:
+  name: victoria-logs
+spec:
+  endpoints:
+    - fqdn:
+        hostname: victoria-logs-mcp.observability.svc.cluster.local
+        port: 8080
