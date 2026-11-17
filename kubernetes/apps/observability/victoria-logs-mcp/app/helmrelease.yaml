@@ -18,6 +18,8 @@ spec:
     env:
       - name: MCP_LOG_FORMAT
         value: json
+      - name: MCP_LOG_LEVEL
+        value: warn
 
     resources:
       requests:
