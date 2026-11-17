@@ -32,7 +32,11 @@ spec:
               HERMES_GID: 1000
               API_SERVER_ENABLED: "true"
               API_SERVER_HOST: 0.0.0.0
-              API_SERVER_PORT: &httpPort 8642
+              API_SERVER_PORT: &apiPort 8642
+              HERMES_DASHBOARD: "1"
+              HERMES_DASHBOARD_HOST: 0.0.0.0
+              HERMES_DASHBOARD_PORT: &httpPort 9119
+              HERMES_DASHBOARD_PUBLIC_URL: https://hermes-dashboard.nasenov.dev
             envFrom:
               - secretRef:
                   name: "{{ .Release.Name }}"
@@ -43,7 +47,7 @@ spec:
                 spec:
                   httpGet:
                     path: /health
-                    port: *httpPort
+                    port: *apiPort
                   initialDelaySeconds: 0
                   periodSeconds: 10
                   timeoutSeconds: 1
@@ -60,6 +64,20 @@ spec:
         ports:
           http:
             port: *httpPort
+          api:
+            port: *apiPort
+
+    route:
+      app:
+        hostnames:
+          - hermes-dashboard.nasenov.dev
+        parentRefs:
+          - name: envoy-internal
+            namespace: networking
+        rules:
+          - backendRefs:
+              - identifier: app
+                port: *httpPort
 
     persistence:
       data:
