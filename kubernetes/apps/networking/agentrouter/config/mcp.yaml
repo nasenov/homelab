@@ -8,9 +8,18 @@ spec:
     - group: gateway.networking.k8s.io
       kind: Gateway
       name: envoy-internal
-  path: /
   hostnames:
     - mcp.nasenov.dev
+  path: /
+  securityPolicy:
+    apiKeyAuth:
+      credentialRefs:
+        - name: agentrouter-mcp-clients
+      extractFrom:
+        - headers:
+            - Authorization
+      sanitize: true
+      forwardClientIDHeader: x-client-id
   backendRefs:
     - group: gateway.envoyproxy.io
       kind: Backend
