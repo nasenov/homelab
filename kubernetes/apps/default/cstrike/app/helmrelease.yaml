@@ -47,6 +47,7 @@ spec:
           external-dns.kubernetes.io/hostname: cs.nasenov.dev
           lbipam.cilium.io/ips: 192.168.30.125
         externalTrafficPolicy: Local
+        allocateLoadBalancerNodePorts: false
         ports:
           game:
             port: 27015

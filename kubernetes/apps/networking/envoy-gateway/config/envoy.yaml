@@ -13,6 +13,7 @@ spec:
     kubernetes:
       envoyService:
         externalTrafficPolicy: Cluster
+        allocateLoadBalancerNodePorts: false
       envoyDaemonSet:
         container:
           imageRepository: mirror.gcr.io/envoyproxy/envoy

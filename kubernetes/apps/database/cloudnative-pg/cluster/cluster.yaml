@@ -38,6 +38,7 @@ spec:
             spec:
               type: LoadBalancer
               externalTrafficPolicy: Local
+              allocateLoadBalancerNodePorts: false
 
   enableSuperuserAccess: true
 

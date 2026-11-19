@@ -9,6 +9,7 @@ metadata:
 spec:
   type: LoadBalancer
   externalTrafficPolicy: Local
+  allocateLoadBalancerNodePorts: false
   selector:
     k8s-app: kube-apiserver
     tier: control-plane
