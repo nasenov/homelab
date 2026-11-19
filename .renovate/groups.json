@@ -2,6 +2,16 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "packageRules": [
     {
+      "description": "Agentrouter Group",
+      "groupName": "agentrouter",
+      "matchDatasources": ["docker"],
+      "matchPackageNames": [
+        "mirror.gcr.io/envoyproxy/ai-gateway-helm",
+        "mirror.gcr.io/envoyproxy/ai-gateway-crds-helm"
+      ],
+      "minimumGroupSize": 2
+    },
+    {
       "description": "Flux Operator Group",
       "groupName": "flux-operator",
       "matchDatasources": ["docker"],
