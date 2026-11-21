@@ -28,6 +28,7 @@ spec:
               UNIFI_NETWORK_HOST: unifi.nasenov.dev
               UNIFI_NETWORK_VERIFY_SSL: true
               UNIFI_NETWORK_READ_ONLY: true
+              UNIFI_NETWORK_WEBSOCKET_ENABLED: false
               UNIFI_MCP_HTTP_ENABLED: true
               UNIFI_MCP_HOST: 0.0.0.0
               UNIFI_MCP_ALLOWED_HOSTS: "{{ .Release.Name }}.{{ .Release.Namespace }}.svc.cluster.local"
