@@ -33,6 +33,7 @@ spec:
               VIKUNJA_SERVICE_INTERFACE: :80
               VIKUNJA_SERVICE_PUBLICURL: https://{{ .Release.Name }}.nasenov.dev
               VIKUNJA_SERVICE_TIMEZONE: Europe/Sofia
+              VIKUNJA_AUTH_LOCAL_ENABLED: "false"
               VIKUNJA_AUTH_OPENID_ENABLED: "true"
               VIKUNJA_AUTH_OPENID_PROVIDERS_POCKETID_NAME: PocketID
               VIKUNJA_AUTH_OPENID_PROVIDERS_POCKETID_AUTHURL: https://id.nasenov.dev
