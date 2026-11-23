@@ -20,6 +20,7 @@ spec:
     serviceMonitor:
       create: true
     web:
+      configSecretName: flux-operator-web-config
       httpRoute:
         enabled: true
         hostnames:
