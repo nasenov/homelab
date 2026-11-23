@@ -6,13 +6,9 @@ metadata:
   name: external-dns-cloudflare
 spec:
   interval: 1h
-  chart:
-    spec:
-      chart: external-dns
-      version: 1.24.0
-      sourceRef:
-        kind: HelmRepository
-        name: external-dns-cloudflare
+  chartRef:
+    kind: OCIRepository
+    name: external-dns-cloudflare
   values:
     fullnameOverride: external-dns-cloudflare
     provider:

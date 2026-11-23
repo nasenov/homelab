@@ -17,9 +17,9 @@
       "extractVersion": "^(?:chart-v)?(?<version>\\d.*)$"
     },
     {
-      "description": "Changelog URL for External-DNS",
-      "matchPackageNames": ["external-dns"],
-      "changelogUrl": "https://github.com/kubernetes-sigs/external-dns/blob/master/charts/external-dns/CHANGELOG.md"
+      "description": "Match External-DNS helm chart release tags for release notes",
+      "matchPackageNames": ["registry.k8s.io/external-dns/charts/external-dns"],
+      "extractVersion": "^(?:external-dns-helm-chart-)?(?<version>\\d.*)$"
     }
   ]
 }
