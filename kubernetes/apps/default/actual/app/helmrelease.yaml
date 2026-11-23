@@ -26,6 +26,7 @@ spec:
               tag: 26.11.0@sha256:06cf186569cf58d93e12659ff1a517b65b5b0ebee7050a3991d4bd8a1d398da6
             env:
               ACTUAL_PORT: &httpPort 80
+              ACTUAL_OPENID_ENFORCE: "true"
             probes:
               liveness: &probes
                 enabled: true
