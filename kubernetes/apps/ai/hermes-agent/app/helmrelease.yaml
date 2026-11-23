@@ -37,6 +37,7 @@ spec:
               HERMES_DASHBOARD_HOST: 0.0.0.0
               HERMES_DASHBOARD_PORT: &dashboardPort 9119
               HERMES_DASHBOARD_PUBLIC_URL: https://hermes-agent-dashboard.nasenov.dev
+              HERMES_DASHBOARD_OIDC_ISSUER: https://id.nasenov.dev
             envFrom:
               - secretRef:
                   name: "{{ .Release.Name }}"
