@@ -7,9 +7,14 @@
       "changelogUrl": "https://github.com/cloudflare/cloudflared/blob/master/RELEASE_NOTES"
     },
     {
-      "description": "Changelog URL for ActualBugdet",
+      "description": "Changelog URL for ActualBudget",
       "matchPackageNames": ["ghcr.io/actualbudget/actual-server"],
       "changelogUrl": "https://actualbudget.org/blog/release-{{newVersion}}"
+    },
+    {
+      "description": "Match Reloader helm chart release tags for release notes",
+      "matchPackageNames": ["ghcr.io/stakater/charts/reloader"],
+      "extractVersion": "^(?:chart-v)?(?<version>\\d.*)$"
     },
     {
       "description": "Changelog URL for External-DNS",
