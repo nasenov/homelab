@@ -28,16 +28,18 @@ spec:
                 - name: GF_SECURITY_ADMIN_USER
                   valueFrom:
                     secretKeyRef:
-                      name: grafana-admin-configuration
+                      name: grafana
                       key: GF_SECURITY_ADMIN_USER
                 - name: GF_SECURITY_ADMIN_PASSWORD
                   valueFrom:
                     secretKeyRef:
-                      name: grafana-admin-configuration
+                      name: grafana
                       key: GF_SECURITY_ADMIN_PASSWORD
               envFrom:
                 - secretRef:
-                    name: grafana-postgres-configuration
+                    name: grafana
+                - secretRef:
+                    name: grafana-postgres
 
   httpRoute:
     spec:
@@ -53,6 +55,20 @@ spec:
       check_for_plugin_updates: "false"
       feedback_links_enabled: "false"
       reporting_enabled: "false"
+    auth:
+      disable_login_form: "true"
+    auth.generic_oauth:
+      enabled: "true"
+      name: PocketID
+      auth_url: https://id.nasenov.dev/authorize
+      token_url: https://id.nasenov.dev/api/oidc/token
+      api_url: https://id.nasenov.dev/api/oidc/userinfo
+      scopes: openid email profile groups
+      allow_assign_grafana_admin: "true"
+      role_attribute_path: contains(groups[*], 'admins') && 'GrafanaAdmin' || 'Viewer'
+      use_pkce: "true"
+      validate_id_token: "true"
+      jwk_set_url: https://id.nasenov.dev/.well-known/jwks.json
     news:
       news_feed_enabled: "false"
     plugins:
@@ -61,9 +77,6 @@ spec:
     database:
       type: postgres
       host: postgres-rw.database.svc.cluster.local:5432
-      name: ${GRAFANA_DATABASE_USER}
-      user: ${GRAFANA_DATABASE_USER}
-      password: ${GRAFANA_DATABASE_PASSWORD}
       max_open_conn: "4"
       ssl_mode: require
     server:
