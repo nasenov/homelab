@@ -28,6 +28,15 @@ spec:
               PORT: &port 80
               METRICS_COLLECTOR: 1
               METRICS_ALLOWED_NETWORKS: 10.244.0.0/16
+              OAUTH2_PROVIDER: oidc
+              OAUTH2_OIDC_PROVIDER_NAME: PocketID
+              DISABLE_LOCAL_AUTH: 0
+              OAUTH2_OIDC_DISCOVERY_ENDPOINT: https://id.nasenov.dev
+              OAUTH2_REDIRECT_URL: https://{{ .Release.Name }}.nasenov.dev/oauth2/oidc/callback
+              OAUTH2_ADDITIONAL_SCOPES: groups
+              OAUTH2_GROUP_CLAIM: groups
+              OAUTH2_ADMIN_GROUP: admins
+              OAUTH2_USER_CREATION: 0
             envFrom:
               - secretRef:
                   name: "{{ .Release.Name }}"
