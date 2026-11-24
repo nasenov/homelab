@@ -14,7 +14,6 @@ spec:
       miscale2pg:
         annotations:
           reloader.stakater.com/auto: "true"
-        replicas: 2
         strategy: RollingUpdate
         pod:
           securityContext:
