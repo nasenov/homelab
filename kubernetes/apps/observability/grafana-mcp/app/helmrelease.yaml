@@ -21,9 +21,12 @@ spec:
 
     disableWrite: true
 
+    allowedHosts:
+      extra:
+        - grafana-mcp.observability.svc.cluster.local
+
     extraArgs:
       - --transport=streamable-http
-      - --allowed-hosts=grafana-mcp.observability.svc.cluster.local
 
     resources:
       requests:
