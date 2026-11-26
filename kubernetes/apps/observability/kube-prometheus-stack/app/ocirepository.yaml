@@ -5,7 +5,7 @@ kind: OCIRepository
 metadata:
   name: kube-prometheus-stack
 spec:
-  interval: 15m
+  interval: 1h
   url: oci://ghcr.io/prometheus-community/charts/kube-prometheus-stack
   ref:
     tag: 93.9.0

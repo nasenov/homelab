@@ -5,7 +5,7 @@ kind: OCIRepository
 metadata:
   name: grafana-operator
 spec:
-  interval: 15m
+  interval: 1h
   url: oci://ghcr.io/grafana/helm-charts/grafana-operator
   ref:
     tag: 5.26.0

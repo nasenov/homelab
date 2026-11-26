@@ -5,7 +5,7 @@ kind: OCIRepository
 metadata:
   name: intel-gpu-resource-driver
 spec:
-  interval: 15m
+  interval: 1h
   url: oci://ghcr.io/intel/intel-gpu-resource-driver-chart
   ref:
     tag: 0.12.1

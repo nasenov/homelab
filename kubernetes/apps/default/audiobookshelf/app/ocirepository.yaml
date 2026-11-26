@@ -5,7 +5,7 @@ kind: OCIRepository
 metadata:
   name: audiobookshelf
 spec:
-  interval: 15m
+  interval: 1h
   url: oci://ghcr.io/bjw-s-labs/helm/app-template
   ref:
     tag: 5.3.0

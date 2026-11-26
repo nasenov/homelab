@@ -5,7 +5,7 @@ kind: OCIRepository
 metadata:
   name: cert-manager
 spec:
-  interval: 15m
+  interval: 1h
   url: oci://quay.io/jetstack/charts/cert-manager
   ref:
     tag: v1.21.3

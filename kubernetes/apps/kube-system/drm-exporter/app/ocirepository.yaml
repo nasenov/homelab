@@ -5,7 +5,7 @@ kind: OCIRepository
 metadata:
   name: drm-exporter
 spec:
-  interval: 15m
+  interval: 1h
   url: oci://ghcr.io/home-operations/charts/drm-exporter
   ref:
     tag: 0.3.6

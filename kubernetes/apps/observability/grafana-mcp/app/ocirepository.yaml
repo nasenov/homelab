@@ -5,7 +5,7 @@ kind: OCIRepository
 metadata:
   name: grafana-mcp
 spec:
-  interval: 15m
+  interval: 1h
   url: oci://ghcr.io/grafana-community/helm-charts/grafana-mcp
   ref:
     tag: 0.37.0

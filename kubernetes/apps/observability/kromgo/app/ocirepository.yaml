@@ -5,7 +5,7 @@ kind: OCIRepository
 metadata:
   name: kromgo
 spec:
-  interval: 15m
+  interval: 1h
   url: oci://ghcr.io/home-operations/charts/kromgo
   ref:
     tag: 0.16.4
