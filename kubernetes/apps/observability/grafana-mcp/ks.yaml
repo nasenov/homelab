@@ -13,6 +13,6 @@ spec:
   path: ./kubernetes/apps/observability/grafana-mcp/app
   prune: true
   sourceRef:
-    kind: GitRepository
-    name: flux-system
+    kind: ExternalArtifact
+    name: grafana-mcp
     namespace: flux-system

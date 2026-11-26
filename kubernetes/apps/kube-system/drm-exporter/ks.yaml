@@ -13,6 +13,6 @@ spec:
   path: ./kubernetes/apps/kube-system/drm-exporter/app
   prune: true
   sourceRef:
-    kind: GitRepository
-    name: flux-system
+    kind: ExternalArtifact
+    name: drm-exporter
     namespace: flux-system

@@ -13,8 +13,8 @@ spec:
   path: ./kubernetes/apps/database/barman-cloud/app
   prune: true
   sourceRef:
-    kind: GitRepository
-    name: flux-system
+    kind: ExternalArtifact
+    name: barman-cloud
     namespace: flux-system
   wait: true
 ---
@@ -32,7 +32,7 @@ spec:
   path: ./kubernetes/apps/database/barman-cloud/objectstore
   prune: true
   sourceRef:
-    kind: GitRepository
-    name: flux-system
+    kind: ExternalArtifact
+    name: barman-cloud
     namespace: flux-system
   wait: true

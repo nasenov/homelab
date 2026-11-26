@@ -17,8 +17,8 @@ spec:
   path: ./kubernetes/apps/default/jellyfin/app
   prune: true
   sourceRef:
-    kind: GitRepository
-    name: flux-system
+    kind: ExternalArtifact
+    name: jellyfin
     namespace: flux-system
   postBuild:
     substitute:

@@ -10,8 +10,8 @@ spec:
   path: ./kubernetes/apps/observability/grafana-operator/app
   prune: true
   sourceRef:
-    kind: GitRepository
-    name: flux-system
+    kind: ExternalArtifact
+    name: grafana-operator
     namespace: flux-system
   wait: true
 ---
@@ -31,6 +31,6 @@ spec:
   path: ./kubernetes/apps/observability/grafana-operator/instance
   prune: true
   sourceRef:
-    kind: GitRepository
-    name: flux-system
+    kind: ExternalArtifact
+    name: grafana-operator
     namespace: flux-system

@@ -15,8 +15,8 @@ spec:
   path: ./kubernetes/apps/default/thelounge/app
   prune: true
   sourceRef:
-    kind: GitRepository
-    name: flux-system
+    kind: ExternalArtifact
+    name: thelounge
     namespace: flux-system
   postBuild:
     substitute:

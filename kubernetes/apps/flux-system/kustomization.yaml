@@ -7,5 +7,6 @@ components:
   - ../../components/alerts
 resources:
   - ./namespace.yaml
+  - ./artifactgenerator.yaml
   - ./flux-operator/ks.yaml
   - ./flux-operator-mcp/ks.yaml

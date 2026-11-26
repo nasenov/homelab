@@ -15,8 +15,8 @@ spec:
   path: ./kubernetes/apps/ai/hermes-agent/app
   prune: true
   sourceRef:
-    kind: GitRepository
-    name: flux-system
+    kind: ExternalArtifact
+    name: hermes-agent
     namespace: flux-system
   postBuild:
     substitute:

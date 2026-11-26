@@ -10,8 +10,8 @@ spec:
   path: ./kubernetes/apps/kube-system/cilium/app
   prune: false
   sourceRef:
-    kind: GitRepository
-    name: flux-system
+    kind: ExternalArtifact
+    name: cilium
     namespace: flux-system
   wait: true
 ---
@@ -29,6 +29,6 @@ spec:
   path: ./kubernetes/apps/kube-system/cilium/config
   prune: false
   sourceRef:
-    kind: GitRepository
-    name: flux-system
+    kind: ExternalArtifact
+    name: cilium
     namespace: flux-system

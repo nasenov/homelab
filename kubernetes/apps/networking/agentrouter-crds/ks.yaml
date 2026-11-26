@@ -10,7 +10,7 @@ spec:
   path: ./kubernetes/apps/networking/agentrouter-crds/app
   prune: true
   sourceRef:
-    kind: GitRepository
-    name: flux-system
+    kind: ExternalArtifact
+    name: agentrouter-crds
     namespace: flux-system
   wait: true

@@ -15,8 +15,8 @@ spec:
   path: ./kubernetes/apps/security/pocket-id/app
   prune: true
   sourceRef:
-    kind: GitRepository
-    name: flux-system
+    kind: ExternalArtifact
+    name: pocket-id
     namespace: flux-system
   postBuild:
     substitute:

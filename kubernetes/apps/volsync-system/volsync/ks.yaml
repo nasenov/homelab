@@ -13,8 +13,8 @@ spec:
   path: ./kubernetes/apps/volsync-system/volsync/app
   prune: true
   sourceRef:
-    kind: GitRepository
-    name: flux-system
+    kind: ExternalArtifact
+    name: volsync
     namespace: flux-system
   wait: true
 ---
@@ -29,8 +29,8 @@ spec:
   path: ./kubernetes/apps/volsync-system/volsync/store
   prune: true
   sourceRef:
-    kind: GitRepository
-    name: flux-system
+    kind: ExternalArtifact
+    name: volsync
     namespace: flux-system
   wait: true
   healthCheckExprs:

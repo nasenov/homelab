@@ -17,8 +17,8 @@ spec:
   path: ./kubernetes/apps/default/home-assistant/app
   prune: true
   sourceRef:
-    kind: GitRepository
-    name: flux-system
+    kind: ExternalArtifact
+    name: home-assistant
     namespace: flux-system
   postBuild:
     substitute:

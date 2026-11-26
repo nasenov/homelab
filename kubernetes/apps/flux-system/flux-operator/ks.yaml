@@ -9,9 +9,10 @@ spec:
   targetNamespace: flux-system
   path: ./kubernetes/apps/flux-system/flux-operator/app
   prune: false
+  # If source-watcher is down, point this and flux-instance at the flux-system GitRepository to apply a fix from Git
   sourceRef:
-    kind: GitRepository
-    name: flux-system
+    kind: ExternalArtifact
+    name: flux-operator
     namespace: flux-system
   wait: true
 ---
@@ -28,7 +29,8 @@ spec:
       namespace: flux-system
   path: ./kubernetes/apps/flux-system/flux-operator/instance
   prune: false
+  # If source-watcher is down, point this and flux-operator at the flux-system GitRepository to apply a fix from Git
   sourceRef:
-    kind: GitRepository
-    name: flux-system
+    kind: ExternalArtifact
+    name: flux-operator
     namespace: flux-system

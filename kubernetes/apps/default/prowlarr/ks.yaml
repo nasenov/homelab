@@ -15,8 +15,8 @@ spec:
   path: ./kubernetes/apps/default/prowlarr/app
   prune: true
   sourceRef:
-    kind: GitRepository
-    name: flux-system
+    kind: ExternalArtifact
+    name: prowlarr
     namespace: flux-system
   postBuild:
     substitute:

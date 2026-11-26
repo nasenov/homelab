@@ -15,8 +15,8 @@ spec:
   path: ./kubernetes/apps/default/vikunja/app
   prune: true
   sourceRef:
-    kind: GitRepository
-    name: flux-system
+    kind: ExternalArtifact
+    name: vikunja
     namespace: flux-system
   postBuild:
     substitute:
