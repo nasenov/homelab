@@ -19,6 +19,7 @@
     ":timezone(Europe/Sofia)"
   ],
   "dependencyDashboardTitle": "Renovate Dashboard",
+  "rebaseWhen": "conflicted",
   "flux": {
     "managerFilePatterns": ["/\\.yaml$/"]
   },
