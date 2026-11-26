@@ -16,7 +16,7 @@ spec:
 
     server:
       fullnameOverride: victoria-logs
-      retentionPeriod: 7d
+      retentionPeriod: 30d
       persistentVolume:
         storageClassName: ceph-block
         size: 8Gi

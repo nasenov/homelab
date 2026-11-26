@@ -41,8 +41,8 @@ spec:
         serviceMonitorSelectorNilUsesHelmValues: false
         podMonitorSelectorNilUsesHelmValues: false
         scrapeConfigSelectorNilUsesHelmValues: false
-        retention: 7d
-        retentionSize: 12GiB
+        retention: 30d
+        retentionSize: 56GiB
         resources:
           requests:
             cpu: 100m
@@ -54,7 +54,7 @@ spec:
               storageClassName: ceph-block
               resources:
                 requests:
-                  storage: 16Gi
+                  storage: 64Gi
         tsdb:
           chunkEncoding:
             floats: Xor2
