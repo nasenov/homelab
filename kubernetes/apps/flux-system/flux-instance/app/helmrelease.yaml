@@ -16,6 +16,7 @@ spec:
         - kustomize-controller
         - helm-controller
         - notification-controller
+        - source-watcher
       cluster:
         networkPolicy: false
       sync:
@@ -95,7 +96,7 @@ spec:
                             memory: 256Mi
             target:
               kind: Deployment
-              name: "(kustomize-controller|source-controller|notification-controller)"
+              name: "(kustomize-controller|source-controller|notification-controller|source-watcher)"
           - patch: |-
               apiVersion: apps/v1
               kind: Deployment
