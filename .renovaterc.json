@@ -6,6 +6,7 @@
     "helpers:pinGitHubActionDigestsToSemver",
     "github>nasenov/homelab//.renovate/autoMerge.json",
     "github>nasenov/homelab//.renovate/changelogs.json",
+    "github>nasenov/homelab//.renovate/cnpg.json",
     "github>nasenov/homelab//.renovate/customManagers.json",
     "github>nasenov/homelab//.renovate/grafanaDashboards.json",
     "github>nasenov/homelab//.renovate/groups.json",
