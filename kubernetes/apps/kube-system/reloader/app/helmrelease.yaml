@@ -10,7 +10,9 @@ spec:
     kind: OCIRepository
     name: reloader
   values:
+    fullnameOverride: reloader
     reloader:
+      readOnlyRootFileSystem: true
       reloadStrategy: annotations
       deployment:
         resources:
@@ -18,3 +20,5 @@ spec:
             cpu: 10m
           limits:
             memory: 128Mi
+      podMonitor:
+        enabled: true
