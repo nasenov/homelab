@@ -22,6 +22,13 @@ defaultInherit: default
 releases:
   - name: cilium
     namespace: kube-system
+    # Relay is not Ready until it resolves hubble-peer, and CoreDNS installs after Cilium.
+    # Flux turns Relay and the UI back on when it reconciles Cilium.
+    set:
+      - name: hubble.relay.enabled
+        value: "false"
+      - name: hubble.ui.enabled
+        value: "false"
     hooks:
       - # Wait for CRDs to be available
         command: kubectl

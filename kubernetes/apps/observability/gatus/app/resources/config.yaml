@@ -73,6 +73,11 @@ endpoints:
     url: https://home-assistant.nasenov.dev
     conditions:
       - "[STATUS] == 200"
+  - name: hubble
+    group: internal
+    url: https://hubble.nasenov.dev
+    conditions:
+      - "[STATUS] == 200"
   - name: jellyfin
     group: internal
     url: https://jellyfin.nasenov.dev
