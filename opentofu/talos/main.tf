@@ -14,6 +14,12 @@ data "talos_image_factory_extensions_versions" "this" {
 resource "talos_image_factory_schematic" "this" {
   schematic = yamlencode({
     customization = {
+      extraKernelArgs = [
+        "-selinux",
+        "audit=0",
+        "selinux=0",
+        "talos.auditd.disabled=1"
+      ]
       systemExtensions = {
         officialExtensions = data.talos_image_factory_extensions_versions.this.extensions_info[*].name
       }

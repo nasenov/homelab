@@ -1,6 +1,16 @@
 ---
 version: v1alpha1
+machine:
+  logging:
+    destinations:
+      - endpoint: tcp://10.96.0.60:6050/
+        format: json_lines
 cluster:
   etcd:
     extraArgs:
       listen-metrics-urls: http://0.0.0.0:2381
+---
+apiVersion: v1alpha1
+kind: KmsgLogConfig
+name: talos-logs-relay
+url: tcp://10.96.0.60:6050/
