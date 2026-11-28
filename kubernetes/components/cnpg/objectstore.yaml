@@ -11,10 +11,10 @@ spec:
     endpointURL: https://s3.truenas.nasenov.dev
     s3Credentials:
       accessKeyId:
-        name: "${APP}-postgres-objectstore"
+        name: postgres-objectstore
         key: ACCESS_KEY
       secretAccessKey:
-        name: "${APP}-postgres-objectstore"
+        name: postgres-objectstore
         key: ACCESS_KEY_SECRET
     data:
       compression: lz4
