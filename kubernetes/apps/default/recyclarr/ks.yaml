@@ -7,8 +7,6 @@ metadata:
 spec:
   interval: 1h
   targetNamespace: default
-  components:
-    - ../../../../components/volsync
   dependsOn:
     - name: rook-ceph-cluster
       namespace: rook-ceph
@@ -18,7 +16,3 @@ spec:
     kind: ExternalArtifact
     name: recyclarr
     namespace: flux-system
-  postBuild:
-    substitute:
-      APP: recyclarr
-      VOLSYNC_SCHEDULE: 36 * * * *
