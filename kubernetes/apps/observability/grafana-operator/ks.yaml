@@ -24,7 +24,7 @@ spec:
   interval: 1h
   targetNamespace: observability
   components:
-    - ../../../../components/cnpg/initdb
+    - ../../../../components/cnpg/recovery
   dependsOn:
     - name: barman-cloud
       namespace: database

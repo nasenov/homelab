@@ -9,7 +9,7 @@ metadata:
 spec:
   deployment:
     spec:
-      replicas: 0
+      replicas: 2
 
       template:
         spec:
@@ -25,8 +25,22 @@ spec:
               envFrom:
                 - secretRef:
                     name: grafana
-                - secretRef:
-                    name: grafana-postgres
+              env:
+                - name: GF_DATABASE_NAME
+                  valueFrom:
+                    secretKeyRef:
+                      name: grafana-postgres-app
+                      key: dbname
+                - name: GF_DATABASE_USER
+                  valueFrom:
+                    secretKeyRef:
+                      name: grafana-postgres-app
+                      key: username
+                - name: GF_DATABASE_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: grafana-postgres-app
+                      key: password
 
   httpRoute:
     spec:
@@ -63,7 +77,7 @@ spec:
       preinstall_auto_update: "false"
     database:
       type: postgres
-      host: postgres-rw.database.svc.cluster.local:5432
+      host: grafana-postgres-rw.observability.svc.cluster.local:5432
       max_open_conn: "4"
       ssl_mode: require
     server:
