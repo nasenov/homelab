@@ -6,9 +6,12 @@ metadata:
   name: external-secrets
 spec:
   interval: 1h
-  chartRef:
+  chart:
     kind: OCIRepository
-    name: external-secrets
+    spec:
+      url: oci://ghcr.io/external-secrets/charts/external-secrets
+      ref:
+        tag: 2.15.0
   values:
     bitwarden-sdk-server:
       enabled: true

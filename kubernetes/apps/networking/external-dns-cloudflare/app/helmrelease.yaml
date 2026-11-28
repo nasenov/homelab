@@ -6,9 +6,12 @@ metadata:
   name: external-dns-cloudflare
 spec:
   interval: 1h
-  chartRef:
+  chart:
     kind: OCIRepository
-    name: external-dns-cloudflare
+    spec:
+      url: oci://registry.k8s.io/external-dns/charts/external-dns
+      ref:
+        tag: 1.24.0
   values:
     fullnameOverride: external-dns-cloudflare
     provider:

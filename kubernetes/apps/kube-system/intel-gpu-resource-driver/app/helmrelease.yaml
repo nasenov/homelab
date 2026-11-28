@@ -6,9 +6,12 @@ metadata:
   name: intel-gpu-resource-driver
 spec:
   interval: 1h
-  chartRef:
+  chart:
     kind: OCIRepository
-    name: intel-gpu-resource-driver
+    spec:
+      url: oci://ghcr.io/intel/intel-gpu-resource-driver-chart
+      ref:
+        tag: 0.12.1
   values:
     cdi:
       staticPath: /run/cdi

@@ -6,9 +6,12 @@ metadata:
   name: agentrouter
 spec:
   interval: 1h
-  chartRef:
+  chart:
     kind: OCIRepository
-    name: agentrouter
+    spec:
+      url: oci://mirror.gcr.io/envoyproxy/ai-gateway-helm
+      ref:
+        tag: v1.3.0
   values:
     extProc:
       image:

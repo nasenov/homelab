@@ -6,9 +6,12 @@ metadata:
   name: cloudnative-pg
 spec:
   interval: 1h
-  chartRef:
+  chart:
     kind: OCIRepository
-    name: cloudnative-pg
+    spec:
+      url: oci://ghcr.io/cloudnative-pg/charts/cloudnative-pg
+      ref:
+        tag: 0.29.2
   values:
     resources:
       requests:

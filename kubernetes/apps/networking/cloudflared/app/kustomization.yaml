@@ -6,4 +6,3 @@ resources:
   - ./externalsecret.yaml
   - ./helmrelease.yaml
   - ./grafanadashboard.yaml
-  - ./ocirepository.yaml

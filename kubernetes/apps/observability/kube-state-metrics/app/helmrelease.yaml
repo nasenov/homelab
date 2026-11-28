@@ -6,9 +6,12 @@ metadata:
   name: kube-state-metrics
 spec:
   interval: 1h
-  chartRef:
+  chart:
     kind: OCIRepository
-    name: kube-state-metrics
+    spec:
+      url: oci://ghcr.io/prometheus-community/charts/kube-state-metrics
+      ref:
+        tag: 9.1.0
   values:
     resources:
       requests:

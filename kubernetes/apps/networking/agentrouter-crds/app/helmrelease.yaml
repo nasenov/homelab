@@ -6,6 +6,9 @@ metadata:
   name: agentrouter-crds
 spec:
   interval: 1h
-  chartRef:
+  chart:
     kind: OCIRepository
-    name: agentrouter-crds
+    spec:
+      url: oci://mirror.gcr.io/envoyproxy/ai-gateway-crds-helm
+      ref:
+        tag: v1.3.0

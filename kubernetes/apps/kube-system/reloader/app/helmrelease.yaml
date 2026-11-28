@@ -6,9 +6,12 @@ metadata:
   name: reloader
 spec:
   interval: 1h
-  chartRef:
+  chart:
     kind: OCIRepository
-    name: reloader
+    spec:
+      url: oci://ghcr.io/stakater/charts/reloader
+      ref:
+        tag: 2.2.21
   values:
     fullnameOverride: reloader
     reloader:

@@ -6,9 +6,12 @@ metadata:
   name: node-exporter
 spec:
   interval: 1h
-  chartRef:
+  chart:
     kind: OCIRepository
-    name: prometheus-node-exporter
+    spec:
+      url: oci://ghcr.io/prometheus-community/charts/prometheus-node-exporter
+      ref:
+        tag: 6.0.0
   values:
     fullnameOverride: node-exporter
 

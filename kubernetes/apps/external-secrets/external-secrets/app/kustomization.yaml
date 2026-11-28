@@ -6,4 +6,3 @@ resources:
   - ./certificate.yaml
   - ./grafanadashboard.yaml
   - ./helmrelease.yaml
-  - ./ocirepository.yaml

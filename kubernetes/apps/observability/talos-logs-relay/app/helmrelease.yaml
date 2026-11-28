@@ -6,9 +6,12 @@ metadata:
   name: talos-logs-relay
 spec:
   interval: 1h
-  chartRef:
+  chart:
     kind: OCIRepository
-    name: talos-logs-relay
+    spec:
+      url: oci://ghcr.io/fluent/helm-charts/fluent-bit
+      ref:
+        tag: 0.58.3
   values:
     fullnameOverride: talos-logs-relay
 

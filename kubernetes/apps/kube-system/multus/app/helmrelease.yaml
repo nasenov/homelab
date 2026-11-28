@@ -6,9 +6,12 @@ metadata:
   name: multus
 spec:
   interval: 1h
-  chartRef:
+  chart:
     kind: OCIRepository
-    name: multus
+    spec:
+      url: oci://ghcr.io/home-operations/charts/multus
+      ref:
+        tag: 0.1.2
   values:
     resources:
       requests:

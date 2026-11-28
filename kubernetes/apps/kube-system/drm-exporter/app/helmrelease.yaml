@@ -6,9 +6,12 @@ metadata:
   name: drm-exporter
 spec:
   interval: 1h
-  chartRef:
+  chart:
     kind: OCIRepository
-    name: drm-exporter
+    spec:
+      url: oci://ghcr.io/home-operations/charts/drm-exporter
+      ref:
+        tag: 0.3.6
   values:
     resources:
       requests:

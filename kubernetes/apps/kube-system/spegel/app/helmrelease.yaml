@@ -6,9 +6,12 @@ metadata:
   name: spegel
 spec:
   interval: 1h
-  chartRef:
+  chart:
     kind: OCIRepository
-    name: spegel
+    spec:
+      url: oci://ghcr.io/spegel-org/helm-charts/spegel
+      ref:
+        tag: 0.8.2
   values:
     spegel:
       containerdSock: /run/containerd/containerd.sock

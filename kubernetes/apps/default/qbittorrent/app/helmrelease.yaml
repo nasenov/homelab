@@ -6,9 +6,12 @@ metadata:
   name: qbittorrent
 spec:
   interval: 1h
-  chartRef:
+  chart:
     kind: OCIRepository
-    name: qbittorrent
+    spec:
+      url: oci://ghcr.io/bjw-s-labs/helm/app-template
+      ref:
+        tag: 5.3.0
   values:
     controllers:
       qbittorrent:

@@ -7,9 +7,12 @@ metadata:
 spec:
   interval: 1h
   timeout: 10m
-  chartRef:
+  chart:
     kind: OCIRepository
-    name: rook-ceph-cluster
+    spec:
+      url: oci://ghcr.io/rook/rook-ceph-cluster
+      ref:
+        tag: 1.21.3
   values:
     toolbox:
       enabled: true
