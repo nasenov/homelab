@@ -23,8 +23,12 @@ metadata:
 spec:
   interval: 1h
   targetNamespace: observability
+  components:
+    - ../../../../components/cnpg/initdb
   dependsOn:
-    - name: cloudnative-pg-cluster
+    - name: barman-cloud
+      namespace: database
+    - name: cloudnative-pg-catalog
       namespace: database
     - name: grafana-operator
       namespace: observability
@@ -34,3 +38,31 @@ spec:
     kind: ExternalArtifact
     name: grafana-operator
     namespace: flux-system
+  postBuild:
+    substitute:
+      APP: grafana
+  patches:
+    - patch: |-
+        apiVersion: postgresql.cnpg.io/v1
+        kind: Cluster
+        metadata:
+          name: ${APP}-postgres
+        spec:
+          bootstrap:
+            initdb:
+              import:
+                type: microservice
+                databases:
+                  - grafana
+                source:
+                  externalCluster: shared
+          externalClusters:
+            - name: shared
+              connectionParameters:
+                host: postgres-rw.database.svc.cluster.local
+                user: postgres
+                dbname: postgres
+                sslmode: require
+              password:
+                name: grafana-postgres-migration
+                key: password
