@@ -20,6 +20,12 @@
       "description": "Match External-DNS helm chart release tags for release notes",
       "matchPackageNames": ["registry.k8s.io/external-dns/charts/external-dns"],
       "extractVersion": "^(?:external-dns-helm-chart-)?(?<version>\\d.*)$"
+    },
+    {
+      "description": "Source URL and release tags for UniFi Network MCP",
+      "matchPackageNames": ["ghcr.io/sirkirby/unifi-network-mcp"],
+      "sourceUrl": "https://github.com/sirkirby/unifi-mcp",
+      "extractVersion": "^(?:network/v)?(?<version>\\d.*)$"
     }
   ]
 }
