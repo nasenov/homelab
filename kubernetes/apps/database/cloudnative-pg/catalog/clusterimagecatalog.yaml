@@ -3,7 +3,7 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: ClusterImageCatalog
 metadata:
-  name: postgresql
+  name: postgres
 spec:
   images:
     - major: 18

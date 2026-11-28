@@ -1,0 +1,29 @@
+---
+# yaml-language-server: $schema=https://k8s-schemas.home-operations.com/barmancloud.cnpg.io/objectstore_v1.json
+apiVersion: barmancloud.cnpg.io/v1
+kind: ObjectStore
+metadata:
+  name: "${APP}-postgres"
+spec:
+  retentionPolicy: 7d
+  configuration:
+    destinationPath: s3://postgres/barman-cloud/database
+    endpointURL: https://s3.truenas.nasenov.dev
+    s3Credentials:
+      accessKeyId:
+        name: "${APP}-postgres-objectstore"
+        key: ACCESS_KEY
+      secretAccessKey:
+        name: "${APP}-postgres-objectstore"
+        key: ACCESS_KEY_SECRET
+    data:
+      compression: lz4
+    wal:
+      compression: zstd
+  instanceSidecarConfiguration:
+    resources:
+      requests:
+        cpu: 10m
+        memory: 256Mi
+      limits:
+        memory: 256Mi

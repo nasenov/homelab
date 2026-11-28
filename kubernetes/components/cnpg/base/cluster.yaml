@@ -1,0 +1,43 @@
+---
+# yaml-language-server: $schema=https://k8s-schemas.home-operations.com/postgresql.cnpg.io/cluster_v1.json
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: "${APP}-postgres"
+spec:
+  affinity:
+    podAntiAffinityType: required
+
+  instances: 2
+
+  imageCatalogRef:
+    apiGroup: postgresql.cnpg.io
+    kind: ClusterImageCatalog
+    name: postgres
+    major: 19
+
+  storage:
+    size: "${CNPG_CAPACITY:=2Gi}"
+    storageClass: "${CNPG_STORAGECLASS:=openebs-hostpath}"
+
+  resources:
+    requests:
+      cpu: "${CNPG_CPU_REQUEST:=10m}"
+      memory: "${CNPG_MEMORY_REQUEST:=256Mi}"
+    limits:
+      memory: "${CNPG_MEMORY_LIMIT:=256Mi}"
+
+  primaryUpdateMethod: switchover
+
+  postgresql:
+    synchronous:
+      method: any
+      number: 1
+      dataDurability: preferred
+
+  plugins:
+    - name: barman-cloud.cloudnative-pg.io
+      isWALArchiver: true
+      parameters:
+        barmanObjectName: "${APP}-postgres"
+        serverName: "${APP}"
