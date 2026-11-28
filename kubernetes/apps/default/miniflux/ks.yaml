@@ -7,7 +7,13 @@ metadata:
 spec:
   interval: 1h
   targetNamespace: default
+  components:
+    - ../../../../components/cnpg/initdb
   dependsOn:
+    - name: barman-cloud
+      namespace: database
+    - name: cloudnative-pg-catalog
+      namespace: database
     - name: cloudnative-pg-cluster
       namespace: database
   path: ./kubernetes/apps/default/miniflux/app
@@ -16,3 +22,6 @@ spec:
     kind: ExternalArtifact
     name: miniflux
     namespace: flux-system
+  postBuild:
+    substitute:
+      APP: miniflux
