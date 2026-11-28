@@ -24,7 +24,7 @@ spec:
   interval: 1h
   targetNamespace: observability
   components:
-    - ../../../../components/cnpg/recovery
+    - ../../../../components/cnpg
   dependsOn:
     - name: barman-cloud
       namespace: database
@@ -41,3 +41,4 @@ spec:
   postBuild:
     substitute:
       APP: grafana
+      CNPG_MAJOR: "19"

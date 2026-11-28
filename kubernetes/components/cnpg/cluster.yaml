@@ -4,6 +4,8 @@ apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
   name: "${APP}-postgres"
+  annotations:
+    cnpg.io/skipEmptyWalArchiveCheck: enabled
 spec:
   affinity:
     podAntiAffinityType: required
@@ -14,7 +16,7 @@ spec:
     apiGroup: postgresql.cnpg.io
     kind: ClusterImageCatalog
     name: postgres
-    major: 19
+    major: ${CNPG_MAJOR}
 
   storage:
     size: "${CNPG_CAPACITY:=2Gi}"
@@ -35,9 +37,23 @@ spec:
       number: 1
       dataDurability: preferred
 
+  bootstrap:
+    recovery:
+      source: origin
+      database: "${APP}"
+      owner: "${APP}"
+
+  externalClusters:
+    - name: origin
+      plugin:
+        name: barman-cloud.cloudnative-pg.io
+        parameters:
+          barmanObjectName: "${APP}-postgres"
+          serverName: pg${CNPG_MAJOR}
+
   plugins:
     - name: barman-cloud.cloudnative-pg.io
       isWALArchiver: true
       parameters:
         barmanObjectName: "${APP}-postgres"
-        serverName: "${APP}"
+        serverName: pg${CNPG_MAJOR}
