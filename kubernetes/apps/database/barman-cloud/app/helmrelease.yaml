@@ -15,6 +15,17 @@ spec:
   values:
     fullnameOverride: barman-cloud
 
+    replicaCount: 2
+
+    affinity:
+      podAntiAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          - topologyKey: kubernetes.io/hostname
+            labelSelector:
+              matchLabels:
+                app.kubernetes.io/instance: barman-cloud
+                app.kubernetes.io/name: plugin-barman-cloud
+
     resources:
       requests:
         cpu: 10m
