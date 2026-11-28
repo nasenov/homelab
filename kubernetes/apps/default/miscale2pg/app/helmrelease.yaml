@@ -12,6 +12,7 @@ spec:
   values:
     controllers:
       miscale2pg:
+        replicas: 0
         annotations:
           reloader.stakater.com/auto: "true"
         strategy: RollingUpdate
