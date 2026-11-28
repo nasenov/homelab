@@ -12,7 +12,6 @@ spec:
   values:
     controllers:
       miscale2pg:
-        replicas: 0
         annotations:
           reloader.stakater.com/auto: "true"
         strategy: RollingUpdate
@@ -35,11 +34,14 @@ spec:
               tag: 0.4.0@sha256:76eadba7354c52b15f4b1cbfc0d1cb2937e7722fc5634aa5c6ce64970fe6c0a5
             env:
               SERVER_PORT: &port 80
+              SPRING_DATASOURCE_URL:
+                valueFrom:
+                  secretKeyRef:
+                    name: "{{ .Release.Name }}-postgres-app"
+                    key: jdbc-uri
             envFrom:
               - secretRef:
                   name: "{{ .Release.Name }}"
-              - secretRef:
-                  name: "{{ .Release.Name }}-database"
             probes:
               liveness:
                 enabled: true
