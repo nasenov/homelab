@@ -108,11 +108,6 @@ endpoints:
     url: https://miscale2pg.nasenov.dev/actuator/health/readiness
     conditions:
       - "[STATUS] == 200"
-  - name: postgres
-    group: internal
-    url: tcp://postgres.nasenov.dev:5432
-    conditions:
-      - "[CONNECTED] == true"
   - name: prometheus
     group: internal
     url: https://prometheus.nasenov.dev
